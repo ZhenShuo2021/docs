@@ -1,0 +1,92 @@
+[
+  {
+    "title": "K8s 基本架構",
+    "permalink": "/docs/containerization/k8s-for-dummies/k8s-architecture/",
+    "description": "簡單介紹 K8s 基本架構與各元件職責。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Container",
+        "permalink": "/docs/tags/container"
+      },
+      {
+        "inline": true,
+        "label": "K8s",
+        "permalink": "/docs/tags/k-8-s"
+      }
+    ],
+    "date": 1724515200000,
+    "yearMonth": "2024 年 08 月",
+    "day": "25"
+  },
+  {
+    "title": "在文件庫和部落格的文章下方加上 giscus 留言區",
+    "permalink": "/docs/docusaurus/customization/add-giscus-to-docusaurus/",
+    "description": "介紹在 Docusaurus 的文章中加入 giscus 留言區的方法。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/docs/tags/docusaurus"
+      }
+    ],
+    "date": 1724428800000,
+    "yearMonth": "2024 年 08 月",
+    "day": "24"
+  },
+  {
+    "title": "從 GitHub 公開 Repository 中引用範例程式碼的方法",
+    "permalink": "/docs/docusaurus/customization/add-github-codeblock/",
+    "description": "介紹如何在 Docusaurus 中引用 GitHub 公開 Repository 裡的範例程式碼。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/docs/tags/docusaurus"
+      }
+    ],
+    "date": 1713024000000,
+    "yearMonth": "2024 年 04 月",
+    "day": "14"
+  },
+  {
+    "title": "Markdown 語法小抄",
+    "permalink": "/docs/docusaurus/how-to-use/markdown-cheatsheet/",
+    "description": "Docusaurus 支援基本的 Markdown 語法，要寫文章的話基本上得先大概知道 Markdown 怎麼用。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/docs/tags/docusaurus"
+      }
+    ],
+    "date": 1678204800000,
+    "yearMonth": "2023 年 03 月",
+    "day": "08"
+  },
+  {
+    "title": "敏捷迭代小遊戲 - 棉花糖挑戰",
+    "permalink": "/docs/agile/activities-and-games/the-marshmallow-challenge/",
+    "description": "棉花糖挑戰是我第一次帶給團隊的敏捷小遊戲。 當時主要是為了讓團隊體驗不同的 Retrospective 進行方式。 對團隊來說，算是一種很新鮮的體驗，對我來說也是一種很新鮮的嘗試，而且效果也很不錯。 團隊成員在活動後的 Retrospective 環節更願意發表意見了。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Agile",
+        "permalink": "/docs/tags/agile"
+      },
+      {
+        "inline": true,
+        "label": "小遊戲",
+        "permalink": "/docs/tags/小遊戲"
+      },
+      {
+        "inline": true,
+        "label": "小活動",
+        "permalink": "/docs/tags/小活動"
+      }
+    ],
+    "date": 1673971200000,
+    "yearMonth": "2023 年 01 月",
+    "day": "18"
+  }
+]

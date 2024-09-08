@@ -16,7 +16,7 @@ last_update:
 這篇介紹遠端工作時常用的指令。  
 減小克隆空間請見[這篇文章](/docs/git/git-reduce-size/)。
 
-# 基本遠端指令
+## 基本遠端指令
 設定遠程倉庫地址，clone 下來後可用
 ```sh
 git clone [remote.git] [dir]                  # 克隆遠端倉庫，dir為可選
@@ -55,7 +55,7 @@ git checkout -b dev origin/dev    # 創建並切換到dev
 
 
 
-# 子模塊
+## 子模塊
 
 將P5D新增為 `batch-processing/P5D` 子模塊
 ```sh

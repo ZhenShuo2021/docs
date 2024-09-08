@@ -19,14 +19,14 @@ last_update:
 
 不過現在想想可能是 gpg 金鑰過期了。
 
-# 修復
+## 修復
 很簡單，[一行指令完成](https://stackoverflow.com/questions/41882919/is-there-a-way-to-gpg-sign-all-previous-commits)
 
 ```sh
 git filter-branch --commit-filter 'git commit-tree -S "$@";' -- --all
 ```
 
-# 意外事件
+## 意外事件
 但是遇到問題，出現以下錯誤
 ```sh
 Rewrite COMMIT_ID (1/179) (0 seconds passed, remaining 0 predicted)    error: gpg failed to sign the data
@@ -46,7 +46,7 @@ gpg: 簽署時失敗: Inappropriate ioctl for device
 gpg: [stdin]: clear-sign failed: Inappropriate ioctl for device
 ```
 
-# 解決
+## 解決
 發現是終端設定不知為何跑掉，使用以下指令告訴 gpg 使用當前終端操作，即可正常提交 commit
 ```sh
 export GPG_TTY=$(tty)

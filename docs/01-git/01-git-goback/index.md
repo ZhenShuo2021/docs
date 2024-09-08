@@ -13,7 +13,7 @@ last_update:
 ---
 
 # Git 回到過去
-# 前言
+## 前言
 想加新 feature 時常常會 bug 東一個西一個，沒用 git 的時候就是 `ctrl+z` 大法，有了 branch 就不用再做這種蠢事了。本文介紹從舊 commit 新增 feature 的方式，由於新版 git 把 checkout [拆分](https://dwye.dev/post/git-checkout-switch-restore/)為 restore 和 switch，這裡也與時俱進使用新指令。
 
 - git restore 恢復工作區文件
@@ -22,7 +22,7 @@ last_update:
 **什麼時候需要回到過去？**  
 當你需要舊版本的一些功能，或者舊版本是穩定版本，又或者 de 某些只出現在舊版本的 bug 時。
 
-# 回到過去
+## 回到過去
 如果我想回到某個 commit，從該 commit 開始修改：
 
 ```sh
@@ -39,7 +39,7 @@ git switch -d <hash>
 
 [^1]: 沒有家的 HEAD，如果有記 hash 可以找回，否則會被 git gc 機制一段時間後丟掉。
 
-# 新增 feature
+## 新增 feature
 接下來修改文件，完成後合併回主分支，依照工作量有兩種合併方式：
 
 - 只是小 feature:  
@@ -54,7 +54,7 @@ git switch -d <hash>
 
 接著是修改時可能會用到的指令。
 
-# git stash
+## git stash
 
 
 
@@ -71,7 +71,7 @@ git stash clear             # 清除所有stash
 
 當你改到昏頭可以用 `git diff branch1..branch2` 查看兩個分支的差異。
 
-# git restore
+## git restore
 
 ```sh
 git restore <file>                  # 回復到最新commit

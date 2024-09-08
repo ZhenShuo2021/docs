@@ -52,16 +52,16 @@ export default {
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "OUCH1978@GITHUB",
-  tagline: "不務正業的架構師",
-  url: "https://ouch1978.github.io", //process.env.URL,
+  title: "Docs",
+  tagline: "個人用文檔庫",
+  url: "https://docs.zsl0621.cc", //process.env.URL,
   baseUrl: "/", //process.env.BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: false,
-  organizationName: "Ouch1978", // Usually your GitHub org/user name.
-  projectName: "ouch1978.github.io", // Usually your repo name.
+  organizationName: "ZhenShuo2021", // Usually your GitHub org/user name.
+  projectName: "zsl0621@Docs", // Usually your repo name.
   i18n: {
     defaultLocale: 'zh-TW',
     locales: ['zh-TW'],
@@ -88,10 +88,10 @@ module.exports = {
       {
         name: 'og:type',
         content: 'article'
-      },
-      {
-        name: 'fb:app_id',
-        content: '173025689387886'
+      // },
+      // {
+      //   name: 'fb:app_id',
+      //   content: '173025689387886'
       }
     ],
     docs: {
@@ -99,12 +99,12 @@ module.exports = {
         hideable: true,
       },
     },
-    algolia: {
-      appId: 'XA2FZH7CHR',
-      apiKey: '52ba1dbf6e599f15075a60d464318d01',
-      indexName: 'ouch1978',
-      contextualSearch: true,
-    },
+    // algolia: {
+    //   appId: 'XA2FZH7CHR',
+    //   apiKey: '52ba1dbf6e599f15075a60d464318d01',
+    //   indexName: 'ouch1978',
+    //   contextualSearch: true,
+    // },
     zoom: {
       selector: '.markdown :not(em,a) > img',
       config: {
@@ -120,7 +120,7 @@ module.exports = {
       darkTheme: prismThemes.vsDark,
     },
     navbar: {
-      title: "OUCH1978@GITHUB",
+      title: "zsl0621@Docs",
       logo: {
         alt: "Site Logo",
         src: "img/logo.png",
@@ -131,34 +131,34 @@ module.exports = {
           position: "left",
           label: "文件庫",
         },
-        {
-          to: "/blog",
-          label: "部落格",
-          position: "left",
-        },
-        {
-          to: "pathname:///slides",
-          label: "投影片",
-          position: "right",
-        }
+        // {
+        //   to: "/blog",
+        //   label: "部落格",
+        //   position: "left",
+        // },
+        // {
+        //   to: "pathname:///slides",
+        //   label: "投影片",
+        //   position: "right",
+        // }
       ],
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Ouch Liu(劉耀群). Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()}. Built with Docusaurus.`,
     },
   },
   presets: [
     [
       "@docusaurus/preset-classic",
       {
-        googleAnalytics: {
-          trackingID: 'UA-20523508-2',
-          anonymizeIP: true,
-        },
+        // googleAnalytics: {
+        //   trackingID: 'UA-20523508-2',
+        //   anonymizeIP: true,
+        // },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/ouch1978/ouch1978.github.io/edit/main",
+          editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",
           remarkPlugins: [math],
           rehypePlugins: [
             [rehypeExtendedTable, {}],
@@ -179,19 +179,19 @@ module.exports = {
           },
           */
         },
-        blog: {
-          blogSidebarCount: 0,
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: "https://github.com/ouch1978/ouch1978.github.io/edit/main",
-          remarkPlugins: [math],
-          rehypePlugins: [
-            [rehypeExtendedTable, {}],
-            [katex, {
-              strict: false
-            }]
-          ],
-        },
+        // blog: {
+        //   blogSidebarCount: 0,
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   editUrl: "https://github.com/ouch1978/ouch1978.github.io/edit/main",
+        //   remarkPlugins: [math],
+        //   rehypePlugins: [
+        //     [rehypeExtendedTable, {}],
+        //     [katex, {
+        //       strict: false
+        //     }]
+        //   ],
+        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -218,11 +218,11 @@ module.exports = {
       href: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap",
     },
   ],
-  scripts: [
-    {
-      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8120664310721472",
-      async: true,
-      crossorigin: "anonymous",
-    }
-  ],
+  // scripts: [
+  //   {
+  //     src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8120664310721472",
+  //     async: true,
+  //     crossorigin: "anonymous",
+  //   }
+  // ],
 };

@@ -39,15 +39,15 @@ jobs:
           # The GH actions bot is used by default if you didn't specify the two fields.
           # You can swap them out with your own user credentials.
           user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          user_email: 98386542+github-actions[bot]@users.noreply.github.com
 
-      - name: Run DocSearch Scraper
-        env:
-          APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
-          API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: |
-          docker run \
-          -e APPLICATION_ID -e API_KEY \
-          -e CONFIG="$(cat .github/scrapeConfig/docusaurus-v2.json)" \
-          algolia/docsearch-scraper
+      # - name: Run DocSearch Scraper
+      #   env:
+      #     APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+      #     API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      #   run: |
+      #     docker run \
+      #     -e APPLICATION_ID -e API_KEY \
+      #     -e CONFIG="$(cat .github/scrapeConfig/docusaurus-v2.json)" \
+      #     algolia/docsearch-scraper
   

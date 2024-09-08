@@ -1,3 +1,8 @@
+# Custom
+02-containerization
+03-docusaurus
+*.zip
+
 # Dependencies
 /node_modules
 

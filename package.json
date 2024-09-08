@@ -1,5 +1,5 @@
 {
-  "name": "ouch1978-at-github",
+  "name": "zsl0621-at-github",
   "version": "0.0.0",
   "license": "UNLICENSED",
   "private": true,
@@ -7,7 +7,7 @@
     "docusaurus": "docusaurus",
     "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
     "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start -p 8080",
-    "build": "set TZ=Asia/Taipei && set URL=https://ouch1978.github.io&& set BASE_URL=/&&docusaurus build",
+    "build": "set TZ=Asia/Taipei && set URL=https://docs.zsl0621.cc&& set BASE_URL=/&&docusaurus build",
     "swizzle": "set URL=http://localhost&& set BASE_URL=/&& docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

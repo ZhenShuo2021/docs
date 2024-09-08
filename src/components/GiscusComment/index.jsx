@@ -7,11 +7,11 @@ export default function GiscusComment() {
 
     return (
         <Giscus
-            repo="Ouch1978/ouch1978.github.io"
-            repoId="R_kgDOG-7JAg"
+            repo="ZhenShuo2021/docs"
+            repoId="R_kgDOMuZlHQ"
             category="Announcements"
-            categoryId="DIC_kwDOG-7JAs4Cbsvt"
-            mapping="title"
+            categoryId="DIC_kwDOMuZlHc4CiStx"
+            mapping="url"
             strict="0"
             reactionsEnabled="1"
             emitMetadata="0"

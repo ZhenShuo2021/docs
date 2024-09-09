@@ -9,6 +9,7 @@ keywords:
   - Linux
 last_update:
   date: 2024-05-30 GMT+8
+  author: zsl0621
 ---
 
 # 常用 Linux 指令

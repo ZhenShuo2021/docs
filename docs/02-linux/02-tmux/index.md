@@ -7,6 +7,7 @@ keywords:
   - Linux
 last_update:
   date: 2024-07-21T07:12:50+08:00
+  author: zsl0621
 ---
 
 # tmux 使用教學

@@ -9,6 +9,7 @@ keywords:
   - Linux
 last_update:
   date: 2024-05-27 GMT+8
+  author: zsl0621
 ---
 
 # 檢視資訊

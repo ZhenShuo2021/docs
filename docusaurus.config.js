@@ -42,12 +42,9 @@ function unwrapCategory(items) {
 
 export default {
   markdown: {
-    mdx1Compat: {
-      comments: true,
-      admonitions: true,
-      headingIds: true,
-    },
+    mermaid: true,
   },
+  themes: ['@docusaurus/theme-mermaid'],
 };
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */

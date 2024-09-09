@@ -1,5 +1,5 @@
 ---
-title: 'Git 遠端指令'
+title: '遠端指令'
 description: 操作遠端儲存庫的指令都在這。
 tags:
   - Git
@@ -14,7 +14,7 @@ last_update:
 
 # Git 遠端指令
 這篇介紹遠端工作時常用的指令。  
-減小克隆空間請見[這篇文章](/docs/git/git-reduce-size/)。
+減小克隆空間請見[這篇文章](/docs/git/reduce-size/)。
 
 ## 基本遠端指令
 設定遠程倉庫地址，clone 下來後可用

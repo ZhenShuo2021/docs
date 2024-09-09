@@ -120,7 +120,7 @@ module.exports = {
       title: "zsl0621@Docs",
       logo: {
         alt: "Site Logo",
-        src: "img/logo.png",
+        src: "img/favicon.svg",
       },
       items: [{
           type: "doc",

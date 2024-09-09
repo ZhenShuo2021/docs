@@ -15,8 +15,28 @@
     "day": "08"
   },
   {
-    "title": "Git 遠端指令",
-    "permalink": "/docs/git/git-remote/",
+    "title": "修改已提交的內容",
+    "permalink": "/docs/git/edit-commits/",
+    "description": "最快速上手 Git 的文章沒有之一。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1725689412000,
+    "yearMonth": "2024 年 09 月",
+    "day": "07"
+  },
+  {
+    "title": "遠端指令",
+    "permalink": "/docs/git/remote-commands/",
     "description": "操作遠端儲存庫的指令都在這。",
     "tags": [
       {
@@ -35,8 +55,8 @@
     "day": "25"
   },
   {
-    "title": "Git clone 時如何減少 repo 容量",
-    "permalink": "/docs/git/git-reduce-size/",
+    "title": "Clone repo 時如何減少容量",
+    "permalink": "/docs/git/reduce-size/",
     "description": "操作大型儲存庫時減少容量的方式。",
     "tags": [
       {
@@ -55,8 +75,8 @@
     "day": "22"
   },
   {
-    "title": "Git 幫所有過往 commit 加上 GPG 簽名",
-    "permalink": "/docs/git/git-batch-sign/",
+    "title": "幫所有 commit 加上 GPG 簽名",
+    "permalink": "/docs/git/batch-sign/",
     "description": "幫 commit 加上已認證標籤。",
     "tags": [
       {
@@ -73,25 +93,5 @@
     "date": 1724275867000,
     "yearMonth": "2024 年 08 月",
     "day": "22"
-  },
-  {
-    "title": "Git 回到過去",
-    "permalink": "/docs/git/git-goback/",
-    "description": "回到過去 commit 修改。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1723824453000,
-    "yearMonth": "2024 年 08 月",
-    "day": "17"
   }
 ]

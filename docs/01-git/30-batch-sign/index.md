@@ -1,5 +1,5 @@
 ---
-title: 'Git 幫所有過往 commit 加上 GPG 簽名'
+title: '幫所有 commit 加上 GPG 簽名'
 description: 幫 commit 加上已認證標籤。
 tags:
   - Git

@@ -1,5 +1,5 @@
 ---
-title: 'Git 回到過去'
+title: 從舊版 Commit 新增 Feature
 description: 回到過去 commit 修改。
 tags:
   - Git
@@ -12,14 +12,14 @@ last_update:
   author: zsl0621
 ---
 
-# Git 回到過去
+# 從舊版 Commit 新增 Feature
 ## 前言
 想加新 feature 時常常會 bug 東一個西一個，沒用 git 的時候就是 `ctrl+z` 大法，有了 branch 就不用再做這種蠢事了。本文介紹從舊 commit 新增 feature 的方式，由於新版 git 把 checkout [拆分](https://dwye.dev/post/git-checkout-switch-restore/)為 restore 和 switch，這裡也與時俱進使用新指令。
 
 - git restore 恢復工作區文件
 - git switch 切換或創建新分支
 
-**什麼時候需要回到過去？**  
+**什麼時候需要？**  
 當你需要舊版本的一些功能，或者舊版本是穩定版本，又或者 de 某些只出現在舊版本的 bug 時。
 
 ## 回到過去
@@ -32,7 +32,7 @@ git switch -d <hash>
 
 這個指令會：
 1. 切換到指定的 commit，進入 detached HEAD[^1]模式
-2. 用於檢視舊版本或進行臨時測試，這個狀態下的修改容易被丟棄，不會自動保存
+2. 用於檢視舊版本或進行臨時測試，這個狀態下的修改不會自動保存
 4. 等同於舊版 `git checkout <hash>`
 
 如果不需要回到以前，直接使用 `git switch -c` 創建新分支，c = create。

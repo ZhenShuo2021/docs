@@ -31,7 +31,7 @@ last_update:
    - 附帶一提修改順序是從舊到新
 
 
-## 情況二：修改前一個 commit
+## 情況二：修改前一個 commit 內容
 
 完成一個 feature 之後很開心的 commit，伸個懶腰馬上發現有 typo 要怎麼修改呢？
 
@@ -44,7 +44,7 @@ last_update:
 
 話說這天天在發生...甚至在寫這篇的當下也是
 
-## 情況三：單獨修改更早的 commit
+## 情況三：單獨修改更早的 commit 內容
 
 接連修復了幾個 bug 並且分開 commit，結果發現舊 commit 有地方沒修好，要怎麼單獨修改那個 commit？
 

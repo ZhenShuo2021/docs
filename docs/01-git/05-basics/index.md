@@ -1,5 +1,5 @@
 ---
-title: 基礎概念與實戰指令
+title: 基礎指令
 author: zsl0621
 description: 最快速上手 Git 的文章沒有之一。
 tags:
@@ -9,183 +9,147 @@ keywords:
   - Git
   - Programming
 last_update:
-  date: 2024-06-02 GMT+8
+  date: 2024-06-02T04:07:33+08:00
   author: zsl0621
 ---
 
-# Git 基礎概念與實戰指令
+# Git 基礎指令
 
-## 前言
-剛開始學 git 的時候東一篇西一篇就是不知道完整的流程，每個步驟都要上網查，光這篇文章的資訊可能就分散在四五個不同頁面很浪費時間，一開始只想先能動，之後遇到問題再說，所以這篇以能動起來為原則，並且給出多個基礎指令，至少出現問題知道怎麼查。
+這篇會介紹 Git 的基礎指令，會先介紹最簡單可操作的指令，再介紹日常常用的指令集。
 
-## 原理篇
-Git 是一個版本管理工具，實際使用時有三個層面，分別是你的硬碟、本地儲存庫 (git)、遠端儲存庫 (github/gitlab)。你的硬碟什麼版本都不知道只放檔案當前狀態，儲存庫儲存所有版本，遠端儲存庫是最後同步共享的地方。
-
-撰寫程式時，commit 提交到本地儲存庫，push 到遠端讓大家看。
-
-### 檔案狀態（可先跳過）
-> 以下修改自[官方說明](https://git-scm.com/book/zh-tw/v2/%E9%96%8B%E5%A7%8B-Git-%E5%9F%BA%E7%A4%8E%E8%A6%81%E9%BB%9E)：三種狀態   
-
-Git 會把你的檔案標記為三種主要的狀態：已修改modified、已預存staged、已提交committed。 
-1. 己修改 => 檔案被修改但尚未預存（處於工作目錄 working directory 中）。
-2. 已預存 => 檔案將會被存到預存區，準備被提交（git add 後放在預存區 staging area）。
-3. 已提交 => 檔案己安全地存在你的本地儲存庫（commit 後的狀態）。
-
-### 版本狀態（可先跳過）
-Git 可以看作一顆樹，每次 commit 都有獨一無二的 hash，並且指向上次的 commit 以紀錄每次版本變更，可新建分支功能，作為功能開發/修復緊急 bug 使用。
-
-## 基礎指令篇
-### 1. 初始化
+## 基礎操作指令
+以下指令就是最基本的操作方式：
 ```sh
-git init
+git init                    # 初始化 git
+git add <file-name>         # 放到預存區
+git commit -m <messages>    # 提交到 git 儲存庫
 ```
-### 2. 索引檔案
-```sh
-git add [file-name]
-git add .                   # 索引全部檔案
-git reset [file-name]       # 移除索引檔案
-git reset                   # 移除全部索引
-```
-### 3. 提交版本並附註 
-到這步就可以跑起基本的 git 了。
-```sh
-git commit -m [comments]
-```
-### 4. 查看狀態 
+
+這些指令完成了上一篇中描述的[檔案標記狀態](/docs/git/preliminary#git-是什麼)。
+
+## 常用本地命令
+接下來介紹日常常用的指令，會先介紹所有命令，再一一介紹每個命令的選項。首先介紹本地處理常用的命令：
+
 ```sh
 git status                  # 檔案狀態（新增A、修改M、刪除D、未追蹤U）
 git log                     # 提交歷史
+git reset                   # 修改檔案狀態
+git branch                  # 分支操作
+git stash                   # 暫存檔案（非預存）
+git rebase                  # 修改提交歷史
 ```
 
-### 5. 還原（重要）[^2]
-這是使用度非常高的指令
+### 提交與狀態
+1. git status：查看尚未提交的修改狀況，當修改告一段落時可以 add and commit
+2. git add
+   - `.`, 儲存所有檔案修改
+   - `-p`, 補丁模式，互動式加入預存，常用選項為
+     - y, yes
+     - n, no
+     - d, 該檔案之後都不要加入
+     - s, 切成更小的區塊
+3. 使用 `git log` 查看提交歷史，加上 --oneline 印出乾淨的提交歷史
+
+在這裡初學者只需要無腦 `git add .` 即可。
+
+![git status](git-status.webp "git status")
+git status 分成三種狀態，從下到上分別是未追蹤、追蹤已修改、已預存。
+
+### 還原與修改
+這裡是 Git 的重頭戲，但是是基本篇所以只會講基本操作。
+
+#### 還原 git reset
+這是使用度非常高的指令，分為三種：
+- `git reset --soft <hash>`：只刪 commit，其他不動
+- `git reset --mixed <hash>`：刪 commit 和 add
+- `git reset --hard <hash>`：除了 commit 和 add 以外，連你的寫的程式都刪了，謹慎使用！
+
+> 使用情境：不小心提交，但還想繼續編輯：
+> ```sh
+> git reset --soft HEAD^
+> ```
+
+會取消最新的提交，但保留所有程式碼修改（保留在預存區 staging area）。另外兩個選項主要分成兩種情況，mixed 用於想要選擇哪些是需要 `git add` 加入的，而 hard 非常危險，commit, stage, 工作目錄**全部刪除**，需要小心使用。
+
+> 使用情境：提交了多個小變更，想整理成一個提交：
+> ```
+> git reset HEAD~3
+> ```
+
+這會移除包含現在的三個提交。
+
+> 使用情境：只還原指定檔案，到前一個提交：
+> ```
+> git reset HEAD~1 -- <file-name>
+> ```
+
+:::info 
+
+1. HEAD 代表目前工作的 commit 位置
+2. "^" 代表前一個提交，"~n" 代表前 n 個提交
+3. -- 代表檔案分界線
+
+:::
+
+這裡之後的暫時不會用到，但是先把指令放在這裡，有需要可以回來看。
+
+#### 暫存 git stash
+這是一個特別的指令，會把所有檔案都放進獨立的 stash 中，再把工作目錄還原成上一次提交的版本。  
+使用情境：
+1. 使用 git rebase 時強制目錄不能有未存檔檔案
+2. 改到一半需要改一個更重要的東西
+3. 改到一半需要跳到別的分支
+
+可以看出來他是一個暫時擋刀用的指令。
+
+基本選項：
 ```sh
-# 軟重置：只刪 commit，其他不動
-git reset --soft [hash]
-
-# 混合重置：預設方式，刪 commit 和 add
-git reset --mixed [hash]
-
-# 硬重置：除了 commit 和 add 以外，連你的寫的程式都刪了，謹慎使用！
-git reset --hard [hash]
+git stash                  # 暫存變更
+git stash list             # 查看所有的 stash
+git stash apply stash@{0}  # 恢復第一個暫存的變更
+git stash drop stash@{0}   # 刪除 applied stash
+git stash pop              # 等同 apply + drop
+git stash clear            # 清除所有 stash
 ```
 
-[^2]: 工作目錄 (Working Directory)：硬碟實際編輯的檔案。  
-預存區 (Staging Area)：預存你的變更，準備提交 (add的位置)。  
-儲存庫 (Repository)：保存所有版本歷史的地方 (commit的位置)。   
-暫存區 (Stash)：(先不用看) 還不想 commit 卻要跑到其他地方操作的暫存區域。
+#### 修改 git rebase
+這是一個非常複雜的指令，包含很多強大的功能，甚至有教學說[「不會 rebase, 等於沒學過 Git」](https://myapollo.com.tw/blog/git-tutorial-rebase/)。
 
-### 5. 分支（可先跳過）
-當你工作變複雜一條分支不夠用就會用到這些。
+這裡只講解他的基本邏輯，引用自[码农高天](https://www.youtube.com/watch?v=uj8hjLyEBmU)，是我看過講的最好，最清楚也最簡短的說明：
+
+<center><h5>將「目前分支」移到旁邊，放進「目標分支」，再想辦法把移到旁邊的「目前分支」接上去</h5></center>
+
+為了搞懂 rebase 看了很多文章，直到看到這句話才搞懂，真的不需要了解工具怎麼實現的，只要會用工具就好了。用都不會用就講原理的結果就是不會用也不懂原理。
+
+其他功能主要集中在選項 `git rebase -i`，提供互動式修改方式，可以移動/刪除/修改內容/修改 commit 等，非常靈活。
+
+:::danger
+
+雖然初學暫時不會碰到多人合作，但還是必須強調 rebase **永遠只該用於個人分支**，尤其是會看這篇文章的人！
+
+:::
+
+
+### 分支 git branch
+當你工作變複雜一條分支不夠用就會用到這些，可先跳過。
 ```sh
-git branch                  # 查看
-git branch [name]           # 新建
-git checkout [name]         # 切換
-git branch -D [name]        # 刪除
-git branch -m [old] [new]   # 改名
-git merge "NAME"            # 合併
+git branch                           # 查看
+git branch <name>                    # 新建
+git checkout <name>                  # 切換
+git branch -D <name>                 # 刪除
+git branch -m <old> <new>            # 改名
+git merge "NAME"                     # 合併
 ```
 
-
-## 上傳到遠端儲存庫
-
-最常見的遠端儲存庫就是 Github 了，這裡以 Github 為例。
-
-### 1. SSH
-
-Github 已不支援帳號密碼登入，只能用 SSH 認證。  
-1. [產生ssh金鑰](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)，官網教學寫的非常詳細。
-2. (選用) 隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"，如要隱藏信箱，請到 `https://api.github.com/users/你的github名稱` 查看下面需要的 ID。
-3. 設定名稱及信箱，如不需隱藏信箱則直接打自己的信箱
+## 常用遠端指令
+這裡都滿直觀沒什麼好解釋的，需要解釋的是 `origin` 是 git 預設的遠端儲存庫名稱，你也可以修改名稱/新增其他儲存庫。
 ```sh
-git config --global user.name "NAME"
-git config --global user.email "{ID}+{username}@users.noreply.github.com"
-```
-4. 上傳 `git push -u origin main`
-5. (選用) 新建的 git 連接既有的 github repo
-```sh
-git remote add origin git@github.com:your-username/your-repo.git
-ssh -T git@github.com
-git remote set-url origin git@github.com:ZhenShuo2021/ZhenShuo2021.github.io.git
-```
-
-### 2. GPG
-(選用) 請直接看 [利用 GPG 簽署 git commit](https://blog.puckwang.com/posts/2019/sign_git_commit_with_gpg/) 的教學。  
-如果要隱藏信箱在 GPG 設定時需使用剛剛設定的 noreply 信箱。  
-如果已經有 GPG key，可以用以下指令刪除：
-```sh
-git config --global --unset-all user.signingkey
-```
-
-### 3. 遠端常用指令
-
-```sh
-git clone [remote.git] [dir]         # 克隆遠端倉庫，dir為可選
-git push [origin] [branch]           # 推送到遠端，後兩項可選
-git pull [origin] [branch]           # 拉取並合併，後兩項可選
-git fetch [remote]                   # 拉取但不合併
+git clone <remote.git> <dir>         # 克隆遠端倉庫，dir為可選
+git push <origin> <branch>           # 推送到遠端，後兩項可選
+git pull <origin> <branch>           # 拉取並合併，後兩項可選
+git fetch <remote>                   # 拉取但不合併
 git remote -v                        # 顯示遠端倉庫
-git remote add [name] [remote.git]   # 增加遠端倉庫並指定名稱
+git remote add <name> <remote.git>   # 增加遠端倉庫並指定名稱
+git remote remove <name>             # 移除遠端倉庫
+git push --set-upstream <name> <branch>   # 首次上傳需要設定名稱和分支
 ```
-
-<!-- - [進階] 新增部分 commit  
-Git Cherry Pick
-```sh
-# 挑選特定 commit 到當前分支
-git cherry-pick <commit-hash>
-
-# 可以連續挑選多個 commit 
-git cherry-pick <commit-hash1> <commit-hash2> ...
-``` -->
-
-## 正式工作篇 {#s1}
-By [码农高天](https://www.youtube.com/watch?v=uj8hjLyEBmU)
-
-一開始都一樣
-```sh
-git clone xxx.git                # 拉取遠端儲存庫
-git checkout -b [my-feature]     # 新建分支進行工作
-git add <file>
-git commit -m [comments]
-# git push origin [my-feature]
-```
-
-因為遠端更新，所以回到 main branch 同步遠端的新 commit，之後 rebase[^1] main branch，這樣就可以push。
-
-[^1]: rebase: 讓兩個分支合而為一。把**目前分支**的修改放旁邊，加入**你輸入的分支**的修改，再想辦法把**目前分支**修改放進來。可能需要處理 rebase conflict。
-```sh
-git checkout main                # 回到main分支
-git pull origin main             # 從遠端倉庫更新到main分支到本地
-git checkout [my-feature]        # 回到feature分支
-git rebase main                  # 把"feature"的更新接到main之後
-git push -f origin [my-feature]  # 推送到遠端
-```
-
-接下來可以:
-- Pull request 請求合併
-- Squash and merge 合併並整合為一個commit
-- Delete branch 刪除合併完的分支
-
-遠端都處理好剛剛的分支後，刪除 branch 再同步 main branch。
-```sh
-git checkout main                 # 回到main分支
-git pull origin main              # 推送main
-git branch -D [my-feature]        # 刪除完成的my-feature
-```
-
-完整版的架構圖：
-
-
-## 別用 git pull?
-By [Philomatics](https://www.youtube.com/watch?v=xN1-2p06Urc)
-
-原理是避免 git pull 產生一堆無用的 merge conflict。其實這和码农高天的用法是一樣的，只是合併成 git pull --rebase。如果沒衝突那很好，有衝突則 git rebase --abort 回復再做一般的 git pull。
-
-<!-- ## rebase vs cherry-pick
-Rebase: 將一個分支的**所有變更**移到另一個分支的頂端，用於保持線性歷史  
-Cherry-pick: 提取單個 commit 到另一個分支，用於只需要特定更改的情況  
-
-
-選用：  
-Rebase 移動整個分支，cherry-pick 只移動單個 commit  
-Rebase 用於整合分支，cherry-pick 用於選擇性地應用更改   -->

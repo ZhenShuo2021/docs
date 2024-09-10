@@ -1,5 +1,5 @@
 ---
-title: 修改已提交的內容
+title: 實戰：修改已提交的內容
 author: zsl0621
 description: 最快速上手 Git 的文章沒有之一。
 tags:

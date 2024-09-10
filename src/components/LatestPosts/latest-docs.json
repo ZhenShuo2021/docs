@@ -1,5 +1,45 @@
 [
   {
+    "title": "Git 中的關鍵字",
+    "permalink": "/docs/git/keyword/",
+    "description": "這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1725961867000,
+    "yearMonth": "2024 年 09 月",
+    "day": "10"
+  },
+  {
+    "title": "常用指令",
+    "permalink": "/docs/git/step-above-basic/",
+    "description": "最快速上手 Git 的文章沒有之一。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1725956133000,
+    "yearMonth": "2024 年 09 月",
+    "day": "10"
+  },
+  {
     "title": "遠端儲存庫設定",
     "permalink": "/docs/git/remote-setup/",
     "description": "最快速上手 Git 的文章沒有之一。",
@@ -20,9 +60,9 @@
     "day": "10"
   },
   {
-    "title": "前言",
-    "permalink": "/docs/git/preliminary/",
-    "description": "最快速上手 Git 的文章沒有之一。",
+    "title": "Vim 文字編輯器基礎操作",
+    "permalink": "/docs/git/preliminaries/vim/",
+    "description": "foo",
     "tags": [
       {
         "inline": true,
@@ -53,45 +93,5 @@
     "date": 1725724800000,
     "yearMonth": "2024 年 09 月",
     "day": "08"
-  },
-  {
-    "title": "修改已提交的內容",
-    "permalink": "/docs/git/edit-commits/",
-    "description": "最快速上手 Git 的文章沒有之一。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1725689412000,
-    "yearMonth": "2024 年 09 月",
-    "day": "07"
-  },
-  {
-    "title": "遠端指令",
-    "permalink": "/docs/git/remote-commands/",
-    "description": "操作遠端儲存庫的指令都在這。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1724595882000,
-    "yearMonth": "2024 年 08 月",
-    "day": "25"
   }
 ]

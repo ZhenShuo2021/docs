@@ -1,5 +1,5 @@
 ---
-title: 從舊版 Commit 新增 Feature
+title: 實戰：從過去提交新增 Feature
 description: 回到過去 commit 修改。
 tags:
   - Git
@@ -12,7 +12,7 @@ last_update:
   author: zsl0621
 ---
 
-# 從舊版 Commit 新增 Feature
+# 從過去提交新增 Feature
 ## 前言
 當你需要舊版本的一些功能，或者需要在舊版的基礎上添加新功能時，又或者 de 某些只出現在舊版本的 bug 時需要回到過去這個功能。本文介紹從舊 commit 新增 feature 的方式，由於新版 git 把 checkout [拆分](https://dwye.dev/post/git-checkout-switch-restore/)為 restore 和 switch，這裡也與時俱進使用新指令。
 

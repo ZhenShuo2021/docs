@@ -4,6 +4,10 @@
  * work well for content-centric websites.
  */
 
+blockquote {
+  border-left-width: 4.5px; 
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #800020;
@@ -102,7 +106,7 @@ html[data-theme="dark"] .footer_eye {
 }
 
 /* Prism.js 相關 */
-.prism-code {
+/* .prism-code {
   counter-reset: line-number;
 }
 
@@ -127,7 +131,7 @@ html[data-theme="dark"] .footer_eye {
 
 [data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(128, 128, 128, 0.3);
-}
+} */
 
 /* Hero */
 .herowave {
@@ -452,7 +456,7 @@ code {
   font-family: "Noto Sans TC", sans-serif;
   font-size: initial;
   vertical-align: initial;
-  padding: 2px 6px;
+  padding: 0px 4px;
 }
 
 div[class^="admonitionHeading_"] {

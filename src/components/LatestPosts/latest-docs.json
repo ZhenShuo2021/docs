@@ -1,5 +1,45 @@
 [
   {
+    "title": "遠端儲存庫設定",
+    "permalink": "/docs/git/remote-setup/",
+    "description": "最快速上手 Git 的文章沒有之一。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1725919653000,
+    "yearMonth": "2024 年 09 月",
+    "day": "10"
+  },
+  {
+    "title": "前言",
+    "permalink": "/docs/git/preliminary/",
+    "description": "最快速上手 Git 的文章沒有之一。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1725908853000,
+    "yearMonth": "2024 年 09 月",
+    "day": "10"
+  },
+  {
     "title": "關於這個網站",
     "permalink": "/docs/intro/",
     "description": "這裡是 zsl0621 的個人文檔庫。",
@@ -53,45 +93,5 @@
     "date": 1724595882000,
     "yearMonth": "2024 年 08 月",
     "day": "25"
-  },
-  {
-    "title": "Clone repo 時如何減少容量",
-    "permalink": "/docs/git/reduce-size/",
-    "description": "操作大型儲存庫時減少容量的方式。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1724331805000,
-    "yearMonth": "2024 年 08 月",
-    "day": "22"
-  },
-  {
-    "title": "幫所有 commit 加上 GPG 簽名",
-    "permalink": "/docs/git/batch-sign/",
-    "description": "幫 commit 加上已認證標籤。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1724275867000,
-    "yearMonth": "2024 年 08 月",
-    "day": "22"
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: Git 中的關鍵字
+title: 附件：關鍵字和符號
 description: 這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號
 tags:
   - Git

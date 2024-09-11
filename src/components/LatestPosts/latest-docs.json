@@ -1,5 +1,25 @@
 [
   {
+    "title": "Python 正則表達式",
+    "permalink": "/docs/python/regex/",
+    "description": "Python 正則表達式",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      }
+    ],
+    "date": 1725984000000,
+    "yearMonth": "2024 年 09 月",
+    "day": "11"
+  },
+  {
     "title": "Git 中的關鍵字",
     "permalink": "/docs/git/keyword/",
     "description": "這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號",
@@ -78,20 +98,5 @@
     "date": 1725908853000,
     "yearMonth": "2024 年 09 月",
     "day": "10"
-  },
-  {
-    "title": "關於這個網站",
-    "permalink": "/docs/intro/",
-    "description": "這裡是 zsl0621 的個人文檔庫。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Docusaurus",
-        "permalink": "/docs/tags/docusaurus"
-      }
-    ],
-    "date": 1725724800000,
-    "yearMonth": "2024 年 09 月",
-    "day": "08"
   }
 ]

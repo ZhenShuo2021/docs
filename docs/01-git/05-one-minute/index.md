@@ -22,13 +22,12 @@ last_update:
 以下指令就是最基本的操作方式：
 ```sh
 git init                    # 初始化
-git add <file-name>         # 放到預存區，git add . 選擇所有檔案
+git add <file-name>         # 放到預存區，使用 git add . 預存所有檔案
 git commit -m <messages>    # 提交到儲存庫
 ```
 
-這些指令完成了上一篇中描述的[檔案標記狀態](/docs/git/preliminary#git-是什麼)。
+這些指令完成了上一篇中描述的[檔案標記狀態](/docs/git/preliminary#git-是什麼)。接下來可以用這些指令查看檔案狀態和歷史：
 
-接下來可以用這些指令查看檔案狀態和歷史：
 ```sh
 git status                  # 檔案狀態（新增A、修改M、刪除D、未追蹤U）
 git log                     # 提交歷史
@@ -43,8 +42,8 @@ git log                     # 提交歷史
 
 每次 commit 不該累積太多修改，每有一個基本可運行的模組就該提交，原因有：
 
-1. 定位：當出現問題時，回到前一個小提交很容易。如果是大量提交，還需要的程式碼則會出現問題。
-2. 可讀性：提升可讀性，每次提交的目的清晰。
+1. 定位：當出現問題時回到前一個小提交很容易。如果累積大量更新則難以單獨還原一個功能。
+2. 可讀性：提升可讀性。
 3. 協作：多人協作時減少合併衝突。
 
 :::
@@ -58,7 +57,7 @@ git log                     # 提交歷史
 ![git status](git-status.webp "git status")
 <br />
 
-再來是 git log 範例：黃色字體是 `commit \<hash\> (目前位置 -> 分支)`   
+再來是 git log 範例，黃色字體是 `commit <hash> (目前位置 -> 所在分支)`   
 
 ![git log](git-log.webp "git log")
 

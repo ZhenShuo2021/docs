@@ -1,7 +1,7 @@
 ---
 title: 實戰：修改已提交的內容
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 各種修改 commit 的情況和對應的解決方式。
 tags:
   - Git
   - Programming

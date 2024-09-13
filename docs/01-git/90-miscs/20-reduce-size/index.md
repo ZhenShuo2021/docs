@@ -1,5 +1,5 @@
 ---
-title: 'Clone repo 時如何減少容量'
+title: Clone repo 時如何減少容量
 description: 操作大型儲存庫時減少容量的方式。
 tags:
   - Git

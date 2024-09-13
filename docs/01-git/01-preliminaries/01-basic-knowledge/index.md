@@ -1,7 +1,7 @@
 ---
 title: 基礎知識
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 宏觀、精簡的介紹 Git 基礎概念。
 tags:
   - Git
   - Programming

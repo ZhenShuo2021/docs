@@ -1,7 +1,7 @@
 ---
 title: 常用指令
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 挑選日常常用指令集合，囊括 99% 的日常使用問題。
 tags:
   - Git
   - Programming
@@ -51,11 +51,15 @@ git reset *.py                       # 移除 py 檔案，或者 **/*.py 遞迴�
 git add $(git ls-files | grep -v '\.py$')
 ```
 
+<br/>
+
 ### 提交檔案 git commit
 - `git commit -am <message>`: 懶人指令，略過 `git add .`。
 - `git commit --amend`: 修改上次的提交訊息和檔案。
 - `git commit --amend --no-edit`: 修改上次的提交檔案，訊息不變。
 - `git commit -m "<Title> <enter>`: 提交有標題的 commit message 的方式，打好標題後按兩次 enter，到第三行繼續寫內容。
+
+<br/>
 
 ### 管理檔案 git restore
 
@@ -95,6 +99,7 @@ git restore --source=<hash> <file>
 [參考資料](https://dwye.dev/post/git-checkout-switch-restore/)
 </details>
 
+<br/>
 
 ### 清除提交 git reset
 
@@ -153,6 +158,8 @@ git reset HEAD~1 -- <file-name>
 
 :::
 
+<br/>
+
 ### 救命稻草 git reflog
 當操作錯誤時，git 的日誌功能 git reflog 可以還原操作。直接講使用方法：
 ```sh
@@ -171,6 +178,10 @@ $ git reset --hard HEAD@{4}
 到這邊就結束單一分支的基本操作了，接下來是多分支的操作。
 
 
+<br/>
+
+<br/>
+
 ## 進階操作
 進階操作包含跨分支的操作，本文中只要實質上是操作分支的都放在這個類別。
 ```sh
@@ -181,6 +192,7 @@ git rebase                           # 修改提交歷史
 git revert                           # 恢復提交
 ```
 
+<br/>
 
 ### 分支 git branch
 當你工作變複雜一條分支不夠用就會用到這些，用於功能開發、問題修復、或者是發佈用的分支。
@@ -193,6 +205,7 @@ git branch -m <old> <new>            # 改名
 git merge "NAME"                     # 合併
 ```
 
+<br/>
 
 ### 暫存 git stash
 這是一個特別的指令，會把所有檔案都放進獨立的 stash 中，再把工作目錄還原成上一次提交的版本。  
@@ -213,6 +226,8 @@ git stash pop                        # 等同 apply + drop
 git stash clear                      # 清除所有 stash
 ```
 
+<br/>
+
 ### 修改 git rebase
 這是一個功能非常強大的指令，甚至有教學說[「不會 rebase, 等於沒學過 Git」](https://myapollo.com.tw/blog/git-tutorial-rebase/)。這裡只講解他的基本邏輯，引用自[码农高天](https://www.youtube.com/watch?v=uj8hjLyEBmU)，是我看過講的最好，最清楚也最簡短的說明：
 
@@ -227,10 +242,14 @@ git stash clear                      # 清除所有 stash
 
 :::
 
+<br/>
+
 ### 恢復 git revert
 用實際案例講解比較簡單。想撤銷提交 A，但是團隊合作最好別修改提交歷史，我們可以用 git revert 提交一個 negative A，這樣會產生一個新的提交把提交 A 抵銷，也不用修改歷史。
 
 放在這裡的原因是團隊合作才會用到，一個人的話想怎麼改就怎麼改。
+
+<br/>
 
 ## 結語
 到這邊你已經可以基本流暢的操作 git 了，需要修改過去提交再看實戰文章，不然可以快轉到[遠端儲存庫設定](/docs/git/remote-setup)。

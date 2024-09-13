@@ -73,7 +73,6 @@ module.exports = {
         systemvars: true, // Set to true if you would rather load all system variables as well (useful for CI purposes)
       },
     ],
-    ['drawio', {}],
   ],
   markdown: {
     mermaid: true,

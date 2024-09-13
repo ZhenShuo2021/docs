@@ -17,9 +17,32 @@ last_update:
 本篇文章以最快的速度帶領初學者了解 Git 基礎知識，首先介紹大的 picture 方便宏觀理解。
 
 ## Quick Overview
-Git 是一個版本管理工具，每次提交 (commit) 都會計算獨一無二的 hash 以紀錄版本變更，並指向上次的 commit。除了基本的前後順序，也可新建分支功能，作為功能開發/修復緊急 bug 使用。上網查 git 時一定都會看過這種圖，分支的意義在於不影響穩定的 main，所有開發都在別的分支進行，確認可行才合併回 main。
+Git 是一個版本管理工具，每次提交 (commit) 都會計算獨一無二的 hash 以紀錄版本變更，並指向上次的 commit。除了基本的版本歷史順序，也有分支功能，可作為功能開發/修復緊急 bug 使用。上網查 git 時一定都看過這種流程圖，以本圖為例，從主分支切出 feature/login 和 feature/OTP 分支進行開發，完成後再合併回 main，這樣的意義在於不影響穩定的 main，所有開發都在別的分支進行，確認可行才合併回 main。
 
-![Git branch](branch.webp "Git branch")
+```mermaid
+gitGraph
+  commit id: "main A"
+  checkout main
+  branch feature/login
+  commit id: "login A"
+  commit id: "login B"
+
+  checkout main
+  merge feature/login id: "merge feature/login"
+
+  checkout feature/login
+  branch feature/OTP
+  commit id: "OTP A"
+  commit id: "OTP B"
+
+  checkout feature/login
+  commit id: "login C"
+  commit id: "login D"
+
+  checkout main
+  merge feature/OTP id: "merge feature/OTP"
+```
+範例：從主分支新增分支負責登錄功能，OTP (一次性密碼) 功能又基於登錄功能開發，再切出第二分支，完成開發後合併兩個開發分支。
 
 ## 概念
 實際使用時有三個層面，分別是你的硬碟、本地儲存庫 (git)、遠端儲存庫 (github/gitlab)。你的硬碟什麼版本都不知道只放檔案當前狀態，儲存庫儲存所有版本，遠端儲存庫是最後同步共享的地方。
@@ -41,8 +64,8 @@ Git 是一個版本管理工具，每次提交 (commit) 都會計算獨一無二
 
 ## 關鍵字
 初學時關鍵字中英混雜有點難記憶，每個人講的也不太一樣，這裡提供一些關鍵字關係對照：
-| 狀態           | 位置                      | 相關指令        |   說明         |  註記     |
-|-------------- |-------------------------- |----------------|-------------- | -------- |
-| 未追蹤/已修改   | 工作目錄 working directory | `git add`      | 存放到預存區    | 這就是硬碟 |
-| 已預存         | 預存區 staging area        | `git commit`   | 提交到儲存庫    | 網路有人翻暫存區 |
-| 已提交         | 儲存庫 repository          | `git checkout`<br/> | 取出到工作目錄  | 儲存所有提交的地方  |
+| 狀態           | 位置                      | 相關指令        |   說明         |
+|-------------- |-------------------------- |----------------|-------------- |
+| 未追蹤/已修改   | 工作目錄 working directory | `git add`      | 存放到預存區    |
+| 已預存         | 預存區 staging area        | `git commit`   | 提交到儲存庫    |
+| 已提交         | 儲存庫 repository          | `git checkout`<br/> | 取出到工作目錄  |

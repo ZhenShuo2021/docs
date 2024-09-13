@@ -13,7 +13,7 @@ last_update:
 ---
 
 # 從過去提交新增 Feature
-## 前言
+## 什麼情況會用到
 當你需要舊版本的一些功能，或者需要在舊版的基礎上添加新功能時，又或者 de 某些只出現在舊版本的 bug 時需要回到過去這個功能。本文介紹從舊 commit 新增 feature 的方式，由於新版 git 把 checkout [拆分](https://dwye.dev/post/git-checkout-switch-restore/)為 restore 和 switch，這裡也與時俱進使用新指令。
 
 - git restore 恢復工作區文件
@@ -45,34 +45,4 @@ git switch -d <hash>
 - 需要延伸修改:  
 新建分支: 用新的 branch 儲存，`git switch -c <new-branch>`，接下來依照[前一篇教學](/docs/git/remote-best-practice)完成合併。
 
-
-
----
-
-接著是修改時可能會用到的指令。
-
-## git stash
-
-
-
-尚未 commit 可能會不讓你切換，可以使用 `git stash` 暫存檔案：
-
-```sh
-git stash push -m "<msg>"   # 也可不命名
-git stash list              # 列出所有暫存檔案
-git stash pop stash@{2}     # 還原檔案並且刪除暫存，沒指定會找最近的
-git stash drop stash@{2}    # 刪除指定暫存
-git stash apply stash@{2}   # 還原檔案但不刪除該暫存
-git stash clear             # 清除所有stash
-```
-
 當你改到昏頭可以用 `git diff branch1..branch2` 查看兩個分支的差異。
-
-## git restore
-
-```sh
-git restore <file>                  # 回復到最新commit
-git restore --source HEAD~2 <file>  # 回復到指定commit
-git restore --staged <file>         # 移除暫存區檔案，等同git reset <file>
-```
-

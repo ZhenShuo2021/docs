@@ -1,5 +1,25 @@
 [
   {
+    "title": "關於修改的動詞小抄",
+    "permalink": "/docs/git/miscs/verb-cheatsheet/",
+    "description": "這是一堂英文課",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1726196107000,
+    "yearMonth": "2024 年 09 月",
+    "day": "13"
+  },
+  {
     "title": "基礎知識",
     "permalink": "/docs/git/preliminaries/basic-knowledge/",
     "description": "宏觀、精簡的介紹 Git 基礎概念。",
@@ -40,7 +60,7 @@
     "day": "11"
   },
   {
-    "title": "Git 中的關鍵字",
+    "title": "附件：關鍵字和符號",
     "permalink": "/docs/git/keyword/",
     "description": "這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號",
     "tags": [
@@ -76,26 +96,6 @@
       }
     ],
     "date": 1725956133000,
-    "yearMonth": "2024 年 09 月",
-    "day": "10"
-  },
-  {
-    "title": "遠端儲存庫設定",
-    "permalink": "/docs/git/remote-setup/",
-    "description": "上傳到遠端儲存庫的必要前置設定。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1725919653000,
     "yearMonth": "2024 年 09 月",
     "day": "10"
   }

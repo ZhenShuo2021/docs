@@ -1,6 +1,6 @@
 new Crawler({
-    appId: 'ALCC8DXA30',
-    apiKey: '2a65032f6fe780309e9ea52d1a05e77e',
+    appId: 'DSU91EEXY7',
+    apiKey: 'd6be4daef0ab4a655727096c8a3a6000',
     rateLimit: 8,
     maxDepth: 10,
     startUrls: ['https://docs.zsl0621.cc/'],
@@ -9,7 +9,7 @@ new Crawler({
     discoveryPatterns: ['https://docs.zsl0621.cc/**'],
     actions: [
       {
-        indexName: 'docs.zsl0621.cc',
+        indexName: 'zsl0621',
         pathsToMatch: ['https://docs.zsl0621.cc/**'],
         recordExtractor: ({ $, helpers }) => {
           // priority order: deepest active sub list header -> navbar active item -> 'Documentation'

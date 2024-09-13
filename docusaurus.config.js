@@ -42,9 +42,12 @@ function unwrapCategory(items) {
 
 export default {
   markdown: {
-    mermaid: true,
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
   },
-  themes: ['@docusaurus/theme-mermaid'],
 };
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -72,7 +75,10 @@ module.exports = {
     ],
     ['drawio', {}],
   ],
-  themes: ['docusaurus-theme-github-codeblock'],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['docusaurus-theme-github-codeblock', '@docusaurus/theme-mermaid'],
   themeConfig: {
     tableOfContents: {
       minHeadingLevel: 2,
@@ -97,9 +103,9 @@ module.exports = {
       },
     },
     algolia: {
-      appId: 'ALCC8DXA30',
-      apiKey: '2a65032f6fe780309e9ea52d1a05e77e',
-      indexName: 'docs.zsl0621.cc',
+      appId: 'DSU91EEXY7',
+      apiKey: 'd6be4daef0ab4a655727096c8a3a6000',
+      indexName: 'zsl0621',
       contextualSearch: true,
     },
     zoom: {

@@ -1,7 +1,7 @@
 ---
 title: 實戰：使用 Rebase 重構提交
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 最快最清楚的搞懂 git rebase。
 tags:
   - Git
   - Programming

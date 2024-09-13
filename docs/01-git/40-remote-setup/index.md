@@ -1,7 +1,7 @@
 ---
 title: 遠端儲存庫設定
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 上傳到遠端儲存庫的必要前置設定。
 tags:
   - Git
   - Programming

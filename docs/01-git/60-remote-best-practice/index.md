@@ -1,7 +1,7 @@
 ---
 title: 實戰：在團隊中推送和合併分支
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
+description: 實戰搞懂如何多人協作，與開源作者使用相同流程開發。
 tags:
   - Git
   - Programming

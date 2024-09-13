@@ -1,5 +1,5 @@
 ---
-title: '遠端指令'
+title: 遠端指令
 description: 操作遠端儲存庫的指令都在這。
 tags:
   - Git

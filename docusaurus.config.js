@@ -96,12 +96,12 @@ module.exports = {
         hideable: true,
       },
     },
-    // algolia: {
-    //   appId: 'XA2FZH7CHR',
-    //   apiKey: '52ba1dbf6e599f15075a60d464318d01',
-    //   indexName: 'ouch1978',
-    //   contextualSearch: true,
-    // },
+    algolia: {
+      appId: 'ALCC8DXA30',
+      apiKey: '2a65032f6fe780309e9ea52d1a05e77e',
+      indexName: 'docs.zsl0621.cc',
+      contextualSearch: true,
+    },
     zoom: {
       selector: '.markdown :not(em,a) > img',
       config: {

@@ -20,19 +20,19 @@ last_update:
 ## 設定 SSH
 
 Github 已不支援帳號密碼登入，只能用 SSH 認證。  
-1. [產生ssh金鑰](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)，官網教學寫的非常詳細。
+1. [產生ssh金鑰](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)，官網教學寫的非常詳細，照著做絕對可以成功。
 2. (選用) 隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"，如要隱藏信箱，請到 `https://api.github.com/users/你的github名稱` 查看下面需要的 ID。
 3. 設定名稱及信箱，如不需隱藏信箱則直接打自己的信箱
 ```sh
 git config --global user.name "NAME"
 git config --global user.email "{ID}+{username}@users.noreply.github.com"
 ```
-4. 上傳 `git push -u origin main`
-5. (選用) 新建的 git 連接既有的 github repo
+4. 測試 `ssh -T git@github.com`，出現 successfully authenticated 即成功，GitHub does not provide shell access 不用管。
+5. (選用) 連接並且上傳既有的 github repo
 ```sh
 git remote add origin git@github.com:your-username/your-repo.git
-ssh -T git@github.com
 git remote set-url origin git@github.com:ZhenShuo2021/ZhenShuo2021.github.io.git
+git push -u origin main
 ```
 
 ## 設定 GPG 簽名

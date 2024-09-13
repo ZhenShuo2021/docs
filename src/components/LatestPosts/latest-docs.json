@@ -1,5 +1,25 @@
 [
   {
+    "title": "基礎知識",
+    "permalink": "/docs/git/preliminaries/basic-knowledge/",
+    "description": "宏觀、精簡的介紹 Git 基礎概念。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1726171233000,
+    "yearMonth": "2024 年 09 月",
+    "day": "13"
+  },
+  {
     "title": "Python 正則表達式",
     "permalink": "/docs/python/regex/",
     "description": "Python 正則表達式",
@@ -42,7 +62,7 @@
   {
     "title": "常用指令",
     "permalink": "/docs/git/step-above-basic/",
-    "description": "最快速上手 Git 的文章沒有之一。",
+    "description": "挑選日常常用指令集合，囊括 99% 的日常使用問題。",
     "tags": [
       {
         "inline": true,
@@ -62,7 +82,7 @@
   {
     "title": "遠端儲存庫設定",
     "permalink": "/docs/git/remote-setup/",
-    "description": "最快速上手 Git 的文章沒有之一。",
+    "description": "上傳到遠端儲存庫的必要前置設定。",
     "tags": [
       {
         "inline": true,
@@ -76,26 +96,6 @@
       }
     ],
     "date": 1725919653000,
-    "yearMonth": "2024 年 09 月",
-    "day": "10"
-  },
-  {
-    "title": "Vim 文字編輯器基礎操作",
-    "permalink": "/docs/git/preliminaries/vim/",
-    "description": "foo",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1725908853000,
     "yearMonth": "2024 年 09 月",
     "day": "10"
   }

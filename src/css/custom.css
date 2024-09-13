@@ -8,6 +8,24 @@ blockquote {
   border-left-width: 4.5px; 
 }
 
+/* .tabs-container {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+} */
+
+.tabs-container {
+  position: relative;
+}
+
+.tabs-container .tabs {
+  border-bottom: 1.5px solid #d3d3d3;
+}
+
+/* .tabs-container .margin-top--md {
+  padding-top: 10px;
+} */
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #800020;

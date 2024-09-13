@@ -50,7 +50,7 @@ git pull origin main              # 推送 main
 git branch -D <my-feature>        # 刪除完成的 my-feature
 ```
 
-### 示意圖
+## 示意圖
 我一開始看以為我懂了，第一次用的時候才發現其實我好像不是很懂，於是回來做了示意圖
 
 1. Clone 遠端儲存庫（初始狀態）：
@@ -93,4 +93,4 @@ A---B---C---G main
 ## 別用 git pull?
 By [Philomatics](https://www.youtube.com/watch?v=xN1-2p06Urc)
 
-原理是避免 git pull 產生一堆無用的 merge conflict。其實這和码农高天的用法是一樣的，只是合併成 git pull --rebase。如果沒衝突那很好，有衝突則 git rebase --abort 回復再做一般的 git pull。
+码农高天的教學沒有涵蓋到多人共同修改同一分支，這裡描述這個情況，原理是避免 git pull 產生一堆無用的 merge，而是用 git pull --rebase。如果沒衝突那很好，有衝突則 git rebase --abort 回復再做一般的 git pull。

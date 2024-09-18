@@ -1,5 +1,25 @@
 [
   {
+    "title": "TrueNAS 無預警斷線（原因排查中）",
+    "permalink": "/docs/nas/unexpected-disconnection/",
+    "description": "TrueNAS 無預警斷線，ping 主機也失敗",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/docs/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/docs/tags/linux"
+      }
+    ],
+    "date": 1726675200000,
+    "yearMonth": "2024 年 09 月",
+    "day": "19"
+  },
+  {
     "title": "關於修改的動詞小抄",
     "permalink": "/docs/git/miscs/verb-cheatsheet/",
     "description": "這是一堂英文課",
@@ -76,26 +96,6 @@
       }
     ],
     "date": 1725961867000,
-    "yearMonth": "2024 年 09 月",
-    "day": "10"
-  },
-  {
-    "title": "常用指令",
-    "permalink": "/docs/git/step-above-basic/",
-    "description": "挑選日常常用指令集合，囊括 99% 的日常使用問題。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1725956133000,
     "yearMonth": "2024 年 09 月",
     "day": "10"
   }

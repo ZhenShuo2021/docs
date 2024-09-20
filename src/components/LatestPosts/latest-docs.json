@@ -1,5 +1,30 @@
 [
   {
+    "title": "在 NAS 中設定 Traefik 反向代理 Docker 服務",
+    "permalink": "/docs/nas/traefik-setting/",
+    "description": "如何在 NAS 中設定 Traefik 反向代理 Docker 服務，包含 DDNS 教學",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/docs/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/docs/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Traefik",
+        "permalink": "/docs/tags/traefik"
+      }
+    ],
+    "date": 1726848000000,
+    "yearMonth": "2024 年 09 月",
+    "day": "21"
+  },
+  {
     "title": "TrueNAS 無預警斷線（原因排查中）",
     "permalink": "/docs/nas/unexpected-disconnection/",
     "description": "TrueNAS 無預警斷線，ping 主機也失敗",
@@ -78,25 +103,5 @@
     "date": 1725984000000,
     "yearMonth": "2024 年 09 月",
     "day": "11"
-  },
-  {
-    "title": "附件：關鍵字和符號",
-    "permalink": "/docs/git/keyword/",
-    "description": "這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1725961867000,
-    "yearMonth": "2024 年 09 月",
-    "day": "10"
   }
 ]

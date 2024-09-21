@@ -6,6 +6,7 @@
 
 blockquote {
   border-left-width: 4.5px; 
+  font-style: italic;
 }
 
 /* .tabs-container {

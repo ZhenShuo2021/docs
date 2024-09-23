@@ -1,5 +1,30 @@
 [
   {
+    "title": "Ubuntu 中套件管理工具的差異",
+    "permalink": "/docs/nas/package/",
+    "description": "介紹 Ubuntu 中套件管理工具 apt apt-get dpkg snap flatpak 差異",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/docs/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/docs/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Ubuntu",
+        "permalink": "/docs/tags/ubuntu"
+      }
+    ],
+    "date": 1727020800000,
+    "yearMonth": "2024 年 09 月",
+    "day": "23"
+  },
+  {
     "title": "設定 Traefik 反向代理",
     "permalink": "/docs/nas/traefik-setting/",
     "description": "如何在 NAS 中設定 Traefik 反向代理 Docker 服務安全的讓服務連上外網",
@@ -88,25 +113,5 @@
     "date": 1726171233000,
     "yearMonth": "2024 年 09 月",
     "day": "13"
-  },
-  {
-    "title": "Python 正則表達式",
-    "permalink": "/docs/python/regex/",
-    "description": "Python 正則表達式",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      }
-    ],
-    "date": 1725984000000,
-    "yearMonth": "2024 年 09 月",
-    "day": "11"
   }
 ]

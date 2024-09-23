@@ -127,11 +127,24 @@ module.exports = {
         alt: "Site Logo",
         src: "img/favicon.svg",
       },
-      items: [{
+      items: [
+        {
           type: "doc",
           docId: "intro/intro",
           position: "left",
           label: "文件庫",
+        },
+        {
+          href: 'https://blog.zsl0621.cc/',
+          position: 'right',
+          className: 'header-blog-link',
+          'aria-label': 'Personal blog',
+        },
+        {
+          href: 'https://github.com/ZhenShuo2021',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
         // {
         //   to: "/blog",

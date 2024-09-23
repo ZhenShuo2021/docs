@@ -1,3 +1,5 @@
+This site is from https://github.com/Ouch1978/ouch1978.github.io
+
 # 簡介
 
 這是一個基於 [Docusaurus 3](https://docusaurus.io/) 打造的個人網站，同時啟用了文件庫和部落格的功能。

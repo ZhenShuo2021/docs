@@ -8,7 +8,7 @@
     "description": "Navbar item with label Documents"
   },
   "item.label.Blog": {
-    "message": "部落格",
+    "message": "Blog",
     "description": "Navbar item with label Blog"
   }
 }

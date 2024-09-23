@@ -1,8 +1,8 @@
 [
   {
-    "title": "在 NAS 中設定 Traefik 反向代理 Docker 服務",
+    "title": "設定 Traefik 反向代理",
     "permalink": "/docs/nas/traefik-setting/",
-    "description": "如何在 NAS 中設定 Traefik 反向代理 Docker 服務，包含 DDNS 教學",
+    "description": "如何在 NAS 中設定 Traefik 反向代理 Docker 服務安全的讓服務連上外網",
     "tags": [
       {
         "inline": true,
@@ -18,6 +18,11 @@
         "inline": true,
         "label": "Traefik",
         "permalink": "/docs/tags/traefik"
+      },
+      {
+        "inline": true,
+        "label": "Reverse-Proxy",
+        "permalink": "/docs/tags/reverse-proxy"
       }
     ],
     "date": 1726848000000,

@@ -1,5 +1,5 @@
 ---
-title: TrueNAS 無預警斷線（原因排查中）
+title: 無預警斷線（原因排查中）
 description: TrueNAS 無預警斷線，ping 主機也失敗
 tags:
   - NAS

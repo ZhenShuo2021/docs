@@ -1,12 +1,13 @@
 ---
-title: Python 正則表達式
-description: Python 正則表達式
+title: 正則表達式
+description: Python 正則表達式 Regex
 tags:
   - Programming
   - Python
 keywords:
   - Programming
   - Python
+  - Regex
 last_update:
   date: 2024-09-11 GMT+8
   author: zsl0621

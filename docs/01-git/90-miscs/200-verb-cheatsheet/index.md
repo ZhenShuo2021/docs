@@ -58,3 +58,49 @@ last_update:
 | Debug     | 排查和修正錯誤                     | `debug: identified and fixed null pointer issue` |
 | Resolve   | 解決複雜或長期存在的問題           | `resolve: fixed long-standing race condition`|
 | Repair    | 修復嚴重損壞的功能                 | `repair: restored broken DB connection`     |
+
+## 文章類型動詞
+
+| 動詞      | 簡短解釋     | 範例                                                       |
+|-----------|--------------|----------------------------------------------------------|
+| Proofread | 校對         | "Proofread: Fix typos and punctuation"                     |
+| Format    | 格式         | "Format: Adjust heading styles"                            |
+| Correct   | 修正         | "Correct: Fix incorrect date"                              |
+| Clarify   | 闡明         | "Clarify: Reword paragraph for clarity"                    |
+| Edit/Modify | 編輯         | "Edit: Improve sentence structure and flow"                |
+| Update    | 更新         | "Update: Update latest statistics"                         |
+| Polish    | 潤飾         | "Polish: Improve overall tone and voice"                   |
+| Enhance   | 強化         | "Enhance: Add relevant images and charts"                  |
+| Refine    | 精煉         | "Refine: Elevate overall writing quality"                  |
+| Improve   | 改善         | "Improve: Strengthen arguments and provide more evidence"  |
+| Condense  | 濃縮、精簡   | "Condense: Remove repetitive or irrelevant paragraphs"     |
+| Revise    | 修訂、修改   | "Revise: Adjust the main argument of the article"          |
+| Amend     | 修正、修訂   | "Amend: Correct outdated information and add new findings" |
+
+> Q: Explain the differences between the following verbs used for article writing: Amend vs edit
+
+<details>
+  <summary>A</summary>
+
+Certainly, let's clarify the distinctions between "amend" and "edit" within the context of article writing:
+
+**Amend**
+
+* **Connotation:** Suggests a formal and substantial alteration, often to correct errors, inaccuracies, or outdated information.
+* **Scope:** Typically implies changes to specific sections or clauses of an article, rather than a comprehensive revision.
+* **Usage:** Frequently employed in legal, academic, or official documents where precision and adherence to standards are crucial.
+
+**Edit**
+
+* **Connotation:** Encompasses a broader range of modifications, from minor corrections to comprehensive revisions of style, tone, and content.
+* **Scope:** Can involve refining language, improving clarity, restructuring sentences, enhancing flow, or even rewriting substantial portions.
+* **Usage:** Applies to various stages of article writing, from initial drafts to final polishing, and is common in all forms of written communication.
+
+**In Summary**
+
+* **Amending** is a focused action, rectifying specific flaws within an existing article.
+* **Editing** is a more holistic process, encompassing various improvements to enhance the overall quality and effectiveness of an article.
+
+Let me know if you have any further questions about specific aspects of article writing or language usage! 
+
+</details>

@@ -1,5 +1,25 @@
 [
   {
+    "title": "How to Write Clean Code",
+    "permalink": "/docs/python/how-to-write-clean-code/",
+    "description": "How to Write Clean Code",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      }
+    ],
+    "date": 1727712000000,
+    "yearMonth": "2024 年 10 月",
+    "day": "01"
+  },
+  {
     "title": "[轉載] Z 檔案系統 (ZFS)",
     "permalink": "/docs/nas/zfs/",
     "description": "[轉載] Z 檔案系統 (ZFS)",
@@ -98,25 +118,5 @@
     "date": 1726675200000,
     "yearMonth": "2024 年 09 月",
     "day": "19"
-  },
-  {
-    "title": "關於修改的動詞小抄",
-    "permalink": "/docs/git/miscs/verb-cheatsheet/",
-    "description": "這是一堂英文課",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1726196107000,
-    "yearMonth": "2024 年 09 月",
-    "day": "13"
   }
 ]

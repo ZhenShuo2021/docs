@@ -1,5 +1,5 @@
 ---
-title: How to Write Clean Code
+title: 寫出優雅程式
 description: How to Write Clean Code
 tags:
   - Programming
@@ -24,7 +24,7 @@ These guides are not absolute rules, you should remember that the final purpose 
 2. **DRY (Don't Repeat Yourself)**: 避免重複的程式碼。重複的程式碼難以維護，因為對一處的更改需要在多個地方進行。
 3. **YAGNI (You Aren't Gonna Need It)**: 避免過度設計。只在真正需要時才添加功能，不要提前實現你認為*可能*會需要的功能。
 4. **Separation of Concerns (SoC)**: 將程式分為不同的部分，每個部分都解決一個單獨的問題。這有助於提高程式碼的可維護性和可重用性。
-5. **Principle of Least Knowledge (迪米特法則)**: 一個物件應該對其他物件儘可能少的了解。這有助於降低耦合度，使程式碼更易於維護和修改。
+5. **Principle of Least Knowledge (最少知識原則)**: 一個物件應該對其他物件儘可能少的了解。這有助於降低耦合度，使程式碼更易於維護和修改。
 6. **Fail-fast**: 儘早暴露錯誤，以便及時發現和解決問題。這可以通過使用斷言、異常處理和日誌記錄等技術來實現。
 7. **Coding conventions**: 遵循一致的程式碼風格和命名約定。
 8. **3 levels of indentation**: Linux Kernel Coding Guide: *The answer to that is that if you need more than 3 levels of indentation, you’re screwed anyway, and should fix your program.*

@@ -111,10 +111,10 @@ Review code for an interesting project about controlling while loop time out.
 ## Other Knowledge
 
 [Win系統舊代碼導致CPU干冒煙？谷歌程序員慘背鍋 | 谷歌 | 微軟 | Chrome | 負優化 | 內存 | 系統 | Windows | 程序員 | CPU](https://www.youtube.com/watch?v=9RjZxB1M1P0)  
-Too old and not clear Windows API causes page fault overhead.
+Outdated and unclear Windows API incurs page fault overhead.
 
 [【python】听说Python的多线程是假的？它真的没有存在的价值么？](https://www.youtube.com/watch?v=1Bk3IpNsvIU)  
 Explains multi-threading of Python, including asyncio, aiohttp.
 
 [Kotlin颜值为啥遥遥领先 | 不可变变量 | lambda | 语法糖 | 构造函数 | 教程 | 中缀表达式 | val var](https://www.youtube.com/watch?v=iTy13tsi054)  
-How a good design improves readability and ratio of read-only variables (2.9% to 86.3% without pain).
+Good design increases read-only variables from 2.9% to 86.3%, enhancing code quality effortlessly.

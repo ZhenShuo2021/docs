@@ -20,16 +20,69 @@ Collections of useful infos on the internet for writing clean, readable code.
 These guides are not absolute rules, you should remember that the final purpose is writing a maintainable, extendable, readable and high-performance code.
 
 > This list is organized by myself, the Chinese text is summarized by GPT. 
-1. **KISS (Keep It Simple, Stupid)**: 簡單就是美。複雜的程式碼難以理解、維護和除錯。盡可能保持程式碼簡潔易懂。
-2. **DRY (Don't Repeat Yourself)**: 避免重複的程式碼。重複的程式碼難以維護，因為對一處的更改需要在多個地方進行。
-3. **YAGNI (You Aren't Gonna Need It)**: 避免過度設計。只在真正需要時才添加功能，不要提前實現你認為*可能*會需要的功能。
-4. **Separation of Concerns (SoC)**: 將程式分為不同的部分，每個部分都解決一個單獨的問題。這有助於提高程式碼的可維護性和可重用性。
-5. **Principle of Least Knowledge (最少知識原則)**: 一個物件應該對其他物件儘可能少的了解。這有助於降低耦合度，使程式碼更易於維護和修改。
-6. **Fail-fast**: 儘早暴露錯誤，以便及時發現和解決問題。這可以通過使用斷言、異常處理和日誌記錄等技術來實現。
-7. **Coding conventions**: 遵循一致的程式碼風格和命名約定。
-8. **3 levels of indentation**: Linux Kernel Coding Guide: *The answer to that is that if you need more than 3 levels of indentation, you’re screwed anyway, and should fix your program.*
-9. **SOLID principle**
-10. **Balance between spaghetti code and ravioli code**
+
+1. 可讀性
+    - KISS (Keep It Simple, Stupid)
+        - 保持程式碼簡單明瞭，避免不必要的複雜性
+        - 使用清晰的命名和簡潔的邏輯
+        - 避免為炫耀技巧而寫複雜難懂的程式碼
+    - 單一職責原則
+        - 每個類別或模組應該只有一個改變的理由
+    - 程式碼風格一致性
+        - 遵循一致的程式碼風格指南
+        - 使用程式碼格式化工具確保一致性
+    - 撰寫有意義的註釋
+        - 解釋程式碼的目的和邏輯，但避免過度註釋
+        - 好的程式碼光是用變數和常見邏輯就可讀懂意義，過多的註釋就是廢話或程式碼太複雜！
+    - 最小驚訝原則 (Principle of Least Astonishment)
+        - 設計應符合使用者的直覺預期，提高可用性
+    - 顯式優於隱式
+      - 程式碼的意圖應該明確，避免隱式表達（把大家當笨蛋）
+    - **把握可讀性後，會覺得自己的程式碼跟 Github 那些大專案瞄過去的感覺有五六分像，別人可以輕鬆理解自己的程式邏輯**
+
+2. 可維護性
+    - DRY (Don't Repeat Yourself)
+        - 避免重複程式碼，提高可重用性和可維護性
+        - 將重複邏輯提取到函式或類別中
+    - 關注點分離 (Separation of Concerns)
+        - 將程式分為不同部分，每部分解決單獨問題
+        - 提高模組化，降低耦合度
+    - 高內聚低耦合
+        - 確保模組內部緊密相關，模組間盡量獨立
+    - **把握可維護性，可以減少改一個錯兩個的問題**
+
+3. 可擴展性
+    - YAGNI (You Aren't Gonna Need It)
+        - 只實現當前需要的功能，避免過度設計
+        - 保持程式碼靈活性，降低維護成本
+    - 組合優於繼承
+        - 優先使用組合而非繼承來實現程式碼重用
+    - 迪米特法則 (Law of Demeter / Principle of Least Knowledge)
+        - 一個物件應對其他物件有最少的了解
+        - 減少耦合，提高模組化
+    - **把握可擴展性就不會有每次加東西都覺得到處衝突，或者是增加新功能還要修改舊功能的問題**
+
+4. 錯誤處理
+    - Fail-fast 原則
+        - 儘早暴露錯誤，以便及時發現和解決問題
+        - 使用斷言、異常處理和日誌記錄等技術
+    - 錯誤處理 (Error Handling)
+        - 預期和處理可能發生的錯誤
+        - 提供有意義的錯誤訊息
+
+5. 效能與優化
+    - 避免過早優化 (Avoid Premature Optimization)
+        - 先寫出可讀性高的程式碼，再進行效能優化
+        - 只有在確認效能瓶頸後，才進行程式碼優化
+    - 平衡 spaghetti code 和 ravioli code
+        - 避免過度複雜 (spaghetti) 或過度分割 (ravioli) 的程式碼結構
+
+其他重要原則
+    - 單一職責原則 (很重要就再寫一次)
+        - 每個類別或模組應該只有一個改變的理由
+    - SOLID 原則
+        - 複雜，五個原則可以寫成五篇文章，把握好基本原則再看 SOLID 原則
+
 
 ## Basic Knowledge (Essential)
 You should never skip this part.

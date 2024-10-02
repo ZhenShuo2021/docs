@@ -33,10 +33,10 @@ import TabItem from '@theme/TabItem';
 4. 如何撰寫 Docker for Github Actions 完成 Python CI
 5. 精選常用指令
 
-## Docker 和 VM 差異
-或者說 Docker 到底如何比 VM 還快，這是我組 NAS 時最疑惑的點。
+# Docker 和虛擬機差異
+或者說 Docker 到底如何比虛擬機還快，這是我一開始最疑惑的點。
 
-簡單來說 Docker 就是一個超輕量化的虛擬機，和虛擬機最大差異在**不用模擬硬體**（所以你不會看到在 docker 上安裝驅動程式，但是 VM/qemu 要），並且**共用宿主 kernel**，這就是讓他輕量快速的原因。以 i5-7400 16G ram 而言，開一個 VM 等同一台完整主機，宿主 10G 虛擬機 6G 就差不多了，但是我在裡面架設的 ubuntu server 中開了十多個容器，加上 ubuntu 本身作業系統還吃不到 2G。
+簡單來說 Docker 就是一個超輕量化的虛擬機，和虛擬機最大差異在**不用模擬硬體**（所以你不會看到在 docker 上安裝驅動程式，但是 [VMware](https://docs.vmware.com/tw/VMware-Tools/12.4.0/com.vmware.vsphere.vmwaretools.doc/GUID-6994A5F9-B62B-4BF1-99D8-E325874A4C7A.html)/[QEMU-KVM](https://github.com/virtio-win/kvm-guest-drivers-windows) 要），並且**共用宿主 kernel**，這就是讓他輕量快速的原因。以宿主機配備 i5-7400 16G ram 而言，開一個虛擬機等同一台完整主機，記憶體分配宿主機 10G 虛擬機 6G 就差不多了，但是我在裡面架設的 ubuntu server 中開了十多個容器，加上 ubuntu 本身作業系統還吃不到 2G。
 
 ![struct1.webp](struct1.webp)
 

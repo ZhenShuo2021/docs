@@ -29,16 +29,21 @@ These guides are not absolute rules, you should remember that the final purpose 
     - 單一職責原則
         - 每個類別或模組應該只有一個改變的理由
     - 程式碼風格一致性
-        - 遵循一致的程式碼風格指南
-        - 使用程式碼格式化工具確保一致性
+        - 遵循一致的程式碼風格指南 (PEP 8)
+        - 使用程式碼格式化工具確保一致性 ([Black](https://blog.kyomind.tw/flake8-and-black/)) ([Ruff](https://blog.kyomind.tw/migrate-to-ruff/))
+        - 補充，Python 身為動態語言也可以加上 [linter](https://blog.kyomind.tw/flake8-yapf-setting/) 進行靜態檢查，可參可這三篇文章
     - 撰寫有意義的註釋
         - 解釋程式碼的目的和邏輯，但避免過度註釋
+        - 甚至於程式改了註釋記得刪掉也是，真看過有人抱怨被註釋騙
         - 好的程式碼光是用變數和常見邏輯就可讀懂意義，過多的註釋就是廢話或程式碼太複雜！
-    - 最小驚訝原則 (Principle of Least Astonishment)
-        - 設計應符合使用者的直覺預期，提高可用性
     - 顯式優於隱式
-      - 程式碼的意圖應該明確，避免隱式表達（把大家當笨蛋）
-    - **把握可讀性後，會覺得自己的程式碼跟 Github 那些大專案瞄過去的感覺有五六分像，別人可以輕鬆理解自己的程式邏輯**
+      - 程式碼的意圖應該明確，避免隱式表達
+      - 隱示代表程式語言本身任何的隱示表達方式，例如
+        - `from package import *` 
+        - [`語法約束好於邏輯約束`](https://youtu.be/7EQsUOT3NKY?si=_0m5QidZkAGhSYM2&t=180)
+        - [`字典取鍵值`](https://youtu.be/er9MKp7foEQ?si=JZbsHST4aBu2_pis&t=827)
+        - [`顯式的寫出 if-else`](https://youtu.be/vbF5M1L2SnU?si=Zao09Wxk0rHwfFmi&t=236) 就算只是補上 else 都比懶惰不寫好
+    - **把握可讀性後，會覺得自己的程式碼瞄過去感覺跟 Github 那些大專案有五六分像，別人也可以輕鬆理解自己的程式邏輯**
 
 2. 可維護性
     - DRY (Don't Repeat Yourself)
@@ -82,10 +87,19 @@ These guides are not absolute rules, you should remember that the final purpose 
         - 每個類別或模組應該只有一個改變的理由
     - SOLID 原則
         - 複雜，五個原則可以寫成五篇文章，把握好基本原則再看 SOLID 原則
+    - 最小驚訝原則 (Principle of Least Astonishment)
+        - 用於前端設計，看過就好
+        - 設計應符合使用者的直覺預期，提高可用性
+    - 版本控制 (Git)
+    - 單元測試
+    - 自動化測試 (Github Actions CI)
 
 
 ## Basic Knowledge (Essential)
 You should never skip this part.
+
+[【Code Review】把&当and用可是不行！测试写成这样也有点离谱哦！](https://www.youtube.com/watch?v=ERosfjjY40Y&list=PLSo-C2L8kdSNr5yUJYhyDArnM4FU9iG1S)  
+A beginner-friendly code review demonstrating basic code optimization techniques.
 
 [如何優雅地避免程式碼巢狀 | 程式碼嵌套 | 狀態模式 | 表驅動法 |](https://www.youtube.com/watch?v=dzO0yX4MRLM)  
 Introduces methods for reducing code nesting, including table methods, early returns, assertions, polymorphism, and useful built-in functions (filter, sort, group, map, any, all). Also covers better null pointer handling.

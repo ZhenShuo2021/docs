@@ -1,5 +1,5 @@
 ---
-title: 實戰：從過去提交新增 Feature
+title: "[實戰] 從過去提交新增 Feature"
 description: 回到過去 commit 修改程式碼。
 tags:
   - Git

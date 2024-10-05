@@ -25,16 +25,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Numba 教學：加速 Python 科學計算
-鑑於繁體中文資源匱乏，最近剛好又重新看了一下文檔，於是整理資訊分享給大家。本篇的目標讀者是沒學過計算機的初階用戶到中高階用戶都可以讀，筆者能非常肯定的說這篇文章絕對是你能找到最好的教學，本教學覆蓋了除了 CUDA 以外的所有使用方式，對於 CUDA，本文直接提供更好的教學連結。
+
+> 你能找到最好的中文教學！
+
+鑑於繁體中文資源匱乏，最近剛好又重新看了一下文檔，於是整理資訊分享給大家。本篇的目標讀者是沒學過計算機的初階用戶到中階用戶都可以讀，筆者能非常肯定的說這篇文章絕對是你能找到最好的教學，本教學覆蓋了除了 CUDA 以外的所有使用方式，對於 CUDA，本文直接提供更好的教學連結。
 
 - **為甚麼選擇此教學**  
     >最快、最正確、最完整[^feature]   
     
     筆者各種坑都踩過了，只要照教學做就可以得到最好性能，不會漏掉**任何**優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出精選的延伸閱讀。
 
-    更新：還有**絕對正確**，整理資料同時發現中文資訊**錯誤百出**，文中已經做出勘誤和實測。
-
-[^feature]: 對於初階使用者，本文明確說明需要閱讀的章節以免模乎焦點；對於中高階使用者，本文對平行化或 vectorize 等高級使用技巧也有詳細說明。
+[^feature]: 對於初階使用者，本文明確說明需要閱讀的章節以免模糊焦點；對於中階使用者，本文對平行化或 vectorize 等高級使用技巧也有詳細說明，保證本文內容絕對正確，對網路文章中的**諸多錯誤**做出勘誤和實測。
 
 - **如何閱讀本文**  
     本文根據官方文檔重新編排，邏輯由常用到少用，使用方式簡單到複雜。  
@@ -49,12 +50,12 @@ import TabItem from '@theme/TabItem';
 :::
 
 ## 簡介：Numba 是什麼？
-Numba 是一個針對 Python 數值和科學計算優化的即時編譯器 (JIT compiler)，能顯著提升 Python 執行速度，尤其是涉及大量 Numpy 數學運算的程式。
+Numba 是一個針對 Python 數值和科學計算優化的即時編譯器 (JIT compiler)，能顯著提升 Python 執行速度，特別針對大量 Numpy 數學運算的程式優化。
 
 Python 之所以慢的原因是身為動態語言，在運行時需要額外開銷來進行類型檢查，還需要轉譯成字節碼在虛擬機上執行，更有 GIL 進一步限制效能[^python1][^python2]，於是 Numba 就針對這些問題來解決，以下是他的優化原理：
 
 - 靜態類型推斷：Numba 在編譯時分析程式碼推斷變數類型，避免型別檢查拖累速度。
-- 即時編譯：將 Python 函數編譯[^interpret]成針對當前 CPU 架構優化的機器碼，並且以 LLVM 優化效能。
+- 即時編譯：將 Python 函式編譯[^interpret]成針對當前 CPU 架構優化的機器碼，並且以 LLVM 優化效能。
 - 向量化：LLVM 架構會調用 SIMD，將操作向量化。
 - 平行化：Numba 支援平行運算，還支援使用 CUDA 計算。
 
@@ -93,9 +94,7 @@ Python 之所以慢的原因是身為動態語言，在運行時需要額外開�
     - CuPy：為了 Numpy+Scipy 而生的 CUDA 計算套件。
 
 - **效能**   
-    從 [Python 加速符文](https://stephlin.github.io/posts/Python/Python-speedup.html) 這篇文章中我們可以看到效能[^1]相差不大，除此之外，你能確定文章作者真的會用該套件嗎[^2]？就像我在寫這篇文章前也不知道 Numba 有這個[魔法](/docs/python/numba-tutorial-accelerate-python-computing#guvectorize)，網路上也幾乎沒有文章提到。  
-
-    所以我們應該考量的是套件是否有限制和可維護性，而不是追求最快的效能，不然一開始就寫 C 不就好了。但是套件的限制在使用之前根本不知道，例如 Numba 不支援稀疏矩陣我也是踩過坑才知道，所以考量就剩下維護性了，而 Numba 在可讀性和偵錯都有很好的表現。
+    從 [Python 加速符文](https://stephlin.github.io/posts/Python/Python-speedup.html) 這篇文章中我們可以看到效能[^1]相差不大，除此之外，你能確定文章作者真的會用該套件嗎[^2]？所以我們應該考量的是套件是否有限制和可維護性，而不是追求最快的效能，不然一開始就寫 C 不就好了。但是套件的限制在使用之前根本不知道，例如 Numba 不支援稀疏矩陣我也是踩過坑才知道，所以考量就剩下維護性了，而 Numba 在可讀性和偵錯都有很好的表現。
     
     另外與 Numba 相似的 Pythran 搜尋結果只有一萬筆資料，筆者將其歸類為 others，不要折磨自己。
 
@@ -106,9 +105,9 @@ Python 之所以慢的原因是身為動態語言，在運行時需要額外開�
     - pybind：極限性能要求。
     - CuPy：大量平行計算，需要 CUDA 計算。
 
-[^1]: 因為 Numba 支援 LLVM 所以他甚至[比普通的 C++ 還快](https://stackoverflow.com/questions/70297011/why-is-numba-so-fast)，所以文章作者程式碼碰巧對 LLVM 友善時（大多數教學的程式碼都是碰運氣的哪管你友不友善）速度就會變快反之亦然，也就是說單一項的實驗無法作為代表只能參考，尤其是當函式越簡單，Numba 當然越好優化，該文章的代表性就越低，只是網路文章寫那麼複雜誰看得完，所以也不會有人寫複雜函式來測試。
+[^1]: 這裡解釋有關效能測試的問題。因為 Numba 支援 LLVM 所以他甚至可以[比普通的 C++ 還快](https://stackoverflow.com/questions/70297011/why-is-numba-so-fast)，所以當文章作者程式碼碰巧對 LLVM 友善時速度就會變快，反之亦然。也就是說單一項的實驗無法作為代表只能參考，尤其是當函式越簡單，Numba 當然越好優化，該文章的代表性就越低，只是網路文章寫那麼複雜誰看得完，所以也不會有人寫複雜函式來測試。
 
-[^2]: 甚至連 geeksforgeeks 的文章 [Numba vs. Cython: A Technical Comparison](https://www.geeksforgeeks.org/numba-vs-cython-a-technical-comparison/) 都犯了一個最基本的錯誤：把 Numba 初次編譯的時間也算進去，該作者甚至都不覺得 Numba 比 Python 還久很奇怪，這麼大一個組織都錯了，我們還能期望網路上的文章多正確嗎？另外幫大家跑了他的程式，在 colab 上實際運行時間運行執行 1000 次取平均，兩者都是 `1.58ms`，因為他的程式碼簡單到即使 Numba 是自動優化的，也可以編譯出和 Cython 一樣速度的機器碼，除了證實註腳二的猜想，也說明該文章毫無參考價值。
+[^2]: 甚至連 geeksforgeeks 的文章 [Numba vs. Cython: A Technical Comparison](https://www.geeksforgeeks.org/numba-vs-cython-a-technical-comparison/) 都犯了一個最基本的錯誤：把 Numba 初次編譯的時間也算進去，該作者甚至都不覺得 Numba 比 Python 還久很奇怪，這麼大一個組織都錯了，我們還能期望網路上的文章多正確嗎？另外幫大家跑了他的程式，在 colab 上實際運行時間運行執行 1000 次取平均，兩者都是 `1.58ms`，因為他的程式碼簡單到即使 Numba 是自動優化的，也可以編譯出和 Cython 一樣速度的機器碼，除了證實了註腳六，也說明該文章毫無參考價值。
 
 ## 基礎使用
 說是基礎使用，但是已經包含七成的使用情境。
@@ -256,9 +255,7 @@ pip install intel-openmp
 ```
 
 2. 使用 `@vectorize` 或 `@guvectorize`  
-    恭喜你看到這裡，這是隱藏密技中文教學幾乎沒人提到[^vectorize]，vectorize 除了支援 ufunc 以外還可以**大幅提升效能**，使用方式請見[下方說明](/docs/python/numba-tutorial-accelerate-python-computing#guvectorize)。
-
-[^vectorize]: 就算有提到的也亂講一通，拿計算是 if 邏輯判斷說 vectorize 優化程度比 njit 還小，是在搞笑嗎？請記得 Numba 的優化方式：去掉型別檢查，使用 LLVM 優化機器碼，使用 SIMD 加速計算，支援自動優化的平行化計算，拿 if 測試幾乎沒有使用到 Numba 的特性。
+    中文教學幾乎沒人提到 vectorize 到底在做什麼。vectorize 除了支援 ufunc 以外還可以**大幅提升效能**，詳細說明請見[下方](/docs/python/numba-tutorial-accelerate-python-computing#vectorize)。
 
 3. 使用 Numba 反而變慢
     - 別忘了扣掉首次執行需要消耗的編譯時間。
@@ -267,6 +264,7 @@ pip install intel-openmp
     - 宣告後就不要修改矩陣維度或型別。
     - 語法越簡單越好，不要使用任何各種包裝，因為你不知道 Numba 是否支援。
     - 記憶體問題 [The wrong way to speed up your code with numba](https://pythonspeed.com/articles/slow-numba/)。
+    - 分支預測問題 [Understanding CPUs can help speed up Numba and NumPy code](https://pythonspeed.com/articles/speeding-up-numba/)
 
 4. [threading layers 設定平行計算方式](https://numba.readthedocs.io/en/stable/user/threading-layer.html)
     - `default` provides no specific safety guarantee and is the default.
@@ -282,7 +280,8 @@ pip install intel-openmp
     set_num_threads(2)
     sen: %s" % threading_layer())
     ```
-
+    
+    - 進階技巧，為每個線程建立 local storage [Tips for optimising parallel numba code](https://chryswoods.com/accelerating_python/numba_bonus.html)
 讀到這裡你已經學會基礎的使用方式，能夠簡單的使用 Numba。如果有競爭危害的知識再開啟自動平行化功能，否則請務必關閉以免跑很快但全錯。
 
 ### 如何除錯
@@ -300,7 +299,6 @@ Numba 官方文檔有如何除錯的詳細教學，使用 `@jit(debug=True)`，�
 1. Numba likes loops 在心裡默念十次
 2. Numba likes NumPy functions
 3. Numba likes NumPy broadcasting
-4. 不要在函式內修改數據結構
 5. 保持順序記憶體讀取
 6. 函式中不要包含 I/O 操作
 7. 所有優化方式都是 case-specific，不能說 parallel 優化幅度一定很小或者 njit 一定很快，一切取決於被編譯的程式碼如何設計，如果 njit 很慢就試試看開關選項，或者嘗試 guvectorize。
@@ -320,11 +318,11 @@ Numba 官方文檔有如何除錯的詳細教學，使用 `@jit(debug=True)`，�
 
 在 `jit()` 函式中設置 `parallel` 選項，可以啟用 Numba 的轉換過程，嘗試自動平行化函式（或部分函式）以執行其他優化。目前此功能僅適用於CPU。
 
-一些在用戶定義的函式中執行的操作（例如對陣列加上純量）已知具有平行語義。用戶的程式碼可能包含很多這種操作，雖然每個操作都可以單獨平行化，但這種方法通常會因為快取行為不佳而導致性能下降。相反地，通過自動平行化，Numba 會嘗試識別用戶程式碼中的這類操作並將相鄰的操作合併到一起，形成一個或多個自動平行執行的 kernels。這個過程是完全自動的，無需修改用戶程式碼，這與 Numba 的 `vectorize()` 或 `guvectorize()` 機制形成對比，後者需要手動創建並行 kernels。
+一些在用戶定義的函式中執行的操作（例如對陣列加上純量）已知具有平行語意。用戶的程式碼可能包含很多這種操作，雖然每個操作都可以單獨平行化，但這種方法通常會因為快取行為不佳而導致性能下降。相反地，通過自動平行化，Numba 會嘗試識別用戶程式碼中的這類操作並將相鄰的操作合併到一起，形成一個或多個自動平行執行的 kernels。這個過程是完全自動的，無需修改用戶程式碼，這與 Numba 的 `vectorize()` 或 `guvectorize()` 機制形成對比，後者需要手動創建並行 kernels。
 
 
 - [**支援的運算符**](https://apachecn.github.io/numba-doc-zh/#/docs/21?id=_1101%e3%80%82%e6%94%af%e6%8c%81%e7%9a%84%e6%93%8d%e4%bd%9c)  
-此處列出所有帶有平行化語義的運算符，Numba 會試圖平行化這些運算。
+此處列出所有帶有平行化語意的運算符，Numba 會試圖平行化這些運算。
 
 :::note Reduction 翻譯
 
@@ -560,9 +558,9 @@ print("Are the outputs equal?", np.array_equal(result_numba_prod, result_python_
 |_| \_|  \__,_| |_| |_| |_| |_.__/   \__,_|
 
 ```
-除非你是進階用戶，否則 **你不應該看進階使用章節！** 看了反而模糊焦點，你應該把握好如何基礎使用，基礎使用已經包含了八成以上的使用情景。
+除非你是進階用戶，否則 **你不應該看進階使用章節！** 看了反而模糊焦點，你應該把握好如何基礎使用，基礎使用已經包含了七成以上的使用情景。
 
-進階使用裡面就只有 [使用字典傳遞參數](/docs/python/numba-tutorial-accelerate-python-computing#numbatypeddict) 你可以先偷看。
+進階使用裡面就只有 [使用字典傳遞參數](/docs/python/numba-tutorial-accelerate-python-computing#numbatypeddict) 和 [vectorize 裝飾器](/docs/python/numba-tutorial-accelerate-python-computing#vectorize) 可以先偷看。
 
 ### 使用 CUDA 加速運算
 [官方文檔](https://numba.readthedocs.io/en/stable/cuda/overview.html)
@@ -570,10 +568,10 @@ print("Are the outputs equal?", np.array_equal(result_numba_prod, result_python_
 優化 CUDA 不像優化 CPU 加上裝飾器那麼簡單，而是要針對 CUDA 特別寫函式，導致程式只能在 GPU 上跑，所以筆者目前還沒寫過，不過基本注意事項一樣是注意 IO、工作量太小的不適合 CUDA。那比較什麼函式適合 CPU 而不是 CUDA 呢？
 
 1. **順序處理而不是平行處理**，影像處理以外的演算法大概都是這類
-2. 記憶體超過顯卡記憶體上限（註：不應該寫出這種程式，Numba likes loops）
-3. 大量分支處理 (if-else)（註：不應該寫出這種程式，尤其在 Numba 中）
-4. 顯卡雙精度浮點運算效能差，深度學習和遊戲都吃單精度，但是科學計算需要雙精度，我們又只能買到遊戲卡
-5. 一些 library 只支援 CPU，這要試了才知道
+2. 記憶體超過顯卡記憶體上限
+3. 大量分支處理 (if-else)
+4. 顯卡雙精度浮點運算效能差，深度學習和遊戲都吃單精度，但是科學計算需要雙精度，而我們又只能買到遊戲卡
+5. 需要只支援 CPU 的 library
 
 如果你需要使用 CUDA，這裡也有好用的指南連結：
 
@@ -600,7 +598,7 @@ print("Are the outputs equal?", np.array_equal(result_numba_prod, result_python_
 <details>
 <summary>簡單的 Numba signature 範例和效能測試</summary>
 
-這裡的結果很奇怪，我預期應該是相差不多，結果反而顯式比較慢。測試在 apple M1 上運行，也有可能是 apple silicon 在搞鬼，x86 的用戶可以在自己電腦上執行看看結果如何。
+這裡的結果很奇怪，我預期速度應該是差不多，結果反而顯式比較慢。測試在 apple M1 和 Google Colab 都一樣。
 
 ```py
 import numpy as np
@@ -626,7 +624,7 @@ def add_and_sqrt_no_sig(x, y):
     return result
 
 
-# 測試函數
+# 測試函式
 def test_function(func, x, y, num_runs=1000):
     start_time = time.time()
     for _ in range(num_runs):
@@ -732,13 +730,6 @@ if __name__ == "__main__":
 #### vectorize
 [官方文檔](https://numba.readthedocs.io/en/stable/user/vectorize.html#the-vectorize-decorator)
 
-:::tip 恭喜！
-
-看到這裡你已經比 99% 的 Numba 中文用戶更熟悉這個套件了，因為根本沒有中文文章提到這裡。  
-（提到但是講錯的不算，你別說，講錯的還一堆。）
-
-:::
-
 `vectorize` 允許把 scalar 輸入的函式當作向量 [Numpy ufunc](http://docs.scipy.org/doc/numpy/reference/ufuncs.html) 使用。官方文檔花了很大的篇幅在描述該方法可以簡單的建立 Numpy ufunc 函式，因為[傳統方法](https://numpy.org/devdocs/user/c-info.ufunc-tutorial.html)需要寫 C 語言。對於效能，文檔很帥氣的輕描淡寫了一句話：
 
 > Numba will generate the surrounding loop (or kernel) allowing efficient iteration over the actual inputs.
@@ -747,13 +738,14 @@ if __name__ == "__main__":
 
 此方法的限制是輸入和輸出都只能是 scalar 不能是向量，建議把這個方法單純用作加速使用，拿他當 ufunc 用不好懂，你看著一個函式會想說這方法從哪來的，別人不好理解程式碼，IDE 也會跳警告。
 
-這裡是基礎使用範例，效能測試我們放到下面強化版的 `guvectorize`：
+這裡是基礎語法範例，效能測試我們放到下面強化版的 `guvectorize`：
 ```py
 # Edit from: https://github.com/numba/numba/blob/main/numba/tests/doc_examples/test_examples.py
 # test_vectorize_multiple_signatures
 from numba import vectorize
 import numpy as np
 
+# 使用 vectorize 時最好加上輸入型別，格式是 ["選項1", "選項2"]，每個選項的格式是 "輸出(輸入1, 輸入2)"
 @vectorize(["int32(int32, int32)",
             "int64(int64, int64)",
             "float32(float32, float32)",
@@ -801,24 +793,24 @@ print(result4)
 #### guvectorize
 [官方文檔](https://numba.readthedocs.io/en/stable/user/vectorize.html#the-guvectorize-decorator)
 
-generalized universal functions，強化版的 vectorize，允許輸入是任意數量的 ufunc 元素，接受任意形狀輸入輸出的元素。黑魔法又來了，這裡官方沒有任何有關效能的描述，然而根據 [Making Python extremely fast with Numba: Advanced Deep Dive (3/3)](https://medium.com/@mflova/making-python-extremely-fast-with-numba-advanced-deep-dive-3-3-695440b62030) 的測試，`guvectorize` 竟然還能比 `vectorize` 更快。
+generalized universal functions，強化版的 vectorize，允許輸入是任意數量的 ufunc 元素，接受任意形狀輸入輸出的元素。黑魔法又來了，這裡官方仍舊沒有描述效能，然而根據 [Making Python extremely fast with Numba: Advanced Deep Dive (3/3)](https://medium.com/@mflova/making-python-extremely-fast-with-numba-advanced-deep-dive-3-3-695440b62030) 的測試，`guvectorize` 竟然還能比 `vectorize` 再快六倍。
 
 :::note 參數語法
 
 guvectorize 和 vectorize 的 parallel 語法是 `target="option"`，選項有 cpu, parallel 和 cuda 三種。
 
-如果測試數據太小 parallel 和 cuda 性能反而會下降，因為才剛搬東西到記憶體就結束了。官方給出的建議是使用 parallel 數據至少大於 1KB，cuda 肯定要再大更多。
+如果測試數據太小 parallel 和 cuda 性能反而會下降，因為才剛搬東西到記憶體就結束了。官方給出的建議是使用 parallel 數據至少大於 1KB，至於 cuda 那肯定要再大更多。
 
 :::
 
-這裡附上使用範例和效能測試
+這裡附上語法範例和效能測試
 
 <Tabs>
 
-  <TabItem value="1" label="命名方式示範">
+  <TabItem value="1" label="語法示範">
 
     ```py
-    # 以矩陣相乘示範 guvectorize 的命名語法
+    # 以矩陣相乘示範 guvectorize 的語法
     from numba import guvectorize, prange
     import numpy as np
     import time
@@ -828,7 +820,7 @@ guvectorize 和 vectorize 的 parallel 語法是 `target="option"`，選項有 c
     # tuple 第一項設定輸入
     # 輸入：在 list 中設定選項，這裡可接受四種類型的輸入，型別設定分別是 "輸入, 輸入, 輸出"
     # 輸入 "C"：guvectorize 不需要 return，而是把回傳值直接寫入輸入矩陣 C
-    # 輸出：只需定義維度 (m,n),(n,p)->(m,p)
+    # 輸出：只需定義維度 (m,n),(n,p)->(m,p)，也可以空白表示未指定，函式中不可寫 return
     @guvectorize(
         [
             "float64[:,:], float64[:,:], float64[:,:]",
@@ -1010,7 +1002,7 @@ guvectorize 和 vectorize 的 parallel 語法是 `target="option"`，選項有 c
 
 <TabItem value="3" label="測試邏輯迴歸">
 
-這是[官方文檔的範例](https://numba.readthedocs.io/en/stable/user/parallel.html#examples)，說明不要用 `guvectorize`，會把簡單的程式碼展開到很複雜，讓我意外的是 `guvectorize` 速度比 `njit` 慢。
+這是[官方文檔的範例](https://numba.readthedocs.io/en/stable/user/parallel.html#examples)，文檔目的是說明使用 `guvectorize` 會把簡單的程式碼展開到很複雜，讓我意外的是 `guvectorize` 速度比 `njit` 慢。
 
     ```py
     # 測試邏輯回歸的效能
@@ -1089,12 +1081,12 @@ guvectorize 和 vectorize 的 parallel 語法是 `target="option"`，選項有 c
 
 <TabItem value="4" label="測試計算弧長">
 
-本範例來自於 [Python 加速符文：高效能平行科學計算](https://stephlin.github.io/posts/Python/Python-speedup.html)，這裡我們就推翻了他的效能測試，因為他沒有使用 `guvectorize` 就下結論了，這裡幫他補上後可以發現效能又快了將近一個數量級，應該比 pybind11 還快了。但是相同的，我們也不知道他的其他套件是否有摸熟，也許他們也能榨出更多性能。
+本範例來自於 [Python 加速符文：高效能平行科學計算](https://stephlin.github.io/posts/Python/Python-speedup.html)，這裡我們就推翻了他的效能測試，因為他沒有使用 `guvectorize` 就下結論了，這裡幫他補上後可以發現效能又快了將近一個數量級，應該比 pybind11 還快了，但是相同的，我們也不知道他的其他套件是否有摸熟，也許他們也能榨出更多性能。
 
-此處也有一個有趣的發現，同樣的優化方式，在 Google Colab 執行 `njit` 反而比較 Python 原生慢，推測是 Xeon 伺服器處理器單核心性能薄弱導致，而 `guvectorize` 可以使用 SIMD 壓榨多核心效能（不過我記得 Xeon 每人分配到也只有兩核心，也有可能是指令集差異造成此問題），但是無論原因為何這裡都再度驗證 Numba 的效能是 case-specific。
+此處也有一個有趣的發現，同樣的優化方式，在 Google Colab 執行 `njit` 反而比 Python 原生慢，推測是 Xeon 伺服器處理器單核心性能薄弱導致，而 `guvectorize` 可以使用 SIMD 壓榨多核心效能（不過我記得 Xeon 每人分配到也只有兩核心，也有可能是指令集差異造成此問題），但是無論原因為何這裡都再度驗證 Numba 的效能是 case-specific。
 
     ```py
-    # 測試計算弧長的時間
+    # 測試計算弧長的效能
     import time
     import numpy as np
     from numba import guvectorize, njit, prange
@@ -1256,11 +1248,11 @@ print("Are the outputs equal?", np.array_equal(output_array_stencil, output_arra
 Numba 主要是使用即時編譯，但也支援像 C 語言一樣提前編譯打包後執行。
 
 - 優點
-    - 執行時不需 numba 套件
-    - 沒有編譯時間開銷  
+    - 執行時不需 Numba 套件。
+    - 沒有編譯時間開銷。  
 - 缺點
-    - 不支援 ufuncs
-    - 必須明確指定函式簽名 (signatures)
+    - 不支援 ufunc。
+    - 必須明確指定函式簽名 (signatures)。
     - 導出的函式不會檢查傳遞的參數類型，調用者需提供正確的類型。
     - AOT 編譯生成針對 CPU 架構系列的通用程式碼（如 "x86-64"），而 JIT 編譯則生成針對特定 CPU 型號的優化程式碼。
 
@@ -1273,7 +1265,10 @@ Numba 主要是使用即時編譯，但也支援像 C 語言一樣提前編譯�
 
 
 ## 結合分佈式計算
-常見的分佈式有 Ray 和 Dask，比如說我們可以結合 Dask + Numba 打一套[組合拳](/docs/python/numba-tutorial-accelerate-python-computing#see-also)。
+常見的分佈式工具有 Ray 和 Dask，比如說我們可以結合 Dask + Numba 打一套組合拳，例如
+
+- [資料層級的平行化處理](https://blog.dask.org/2019/04/09/numba-stencil)，也包含 stencil 範例。
+- [減少記憶體使用量](https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-scoring-dfc9b68ba6ce)。
 
 ## 常見問題
 1. 我要學會寫平行運算？  
@@ -1304,13 +1299,17 @@ Numba 主要是使用即時編譯，但也支援像 C 語言一樣提前編譯�
 [Profiling your numba code](https://pythonspeed.com/articles/numba-profiling/)
 - 🔥 陣列運算降低 Numba 速度的範例。  
 [The wrong way to speed up your code with numba](https://pythonspeed.com/articles/slow-numba/)  
+- 🔥 分支預測如何降低程式碼速度，以強迫寫入解決。  
+[Understanding CPUs can help speed up Numba and NumPy code](https://pythonspeed.com/articles/speeding-up-numba/)
+- 影像處理演算法的優化：從基礎實現開始  
+[Speeding up your code when multiple cores aren’t an option](https://pythonspeed.com/articles/optimizing-dithering/)
 - 🔥 CUDA 加速並且有完整的對比，值得一看。  
 [28000x speedup with numba.CUDA](https://curiouscoding.nl/posts/numba-cuda-speedup/)   
 - 非常長的 CUDA 教學文章。  
 [用 numba 學 CUDA! 從入門到精通 (上)](https://medium.com/@spacetime0311/%E7%94%A8-numba-%E5%AD%B8-cuda-%E5%BE%9E%E5%85%A5%E9%96%80%E5%88%B0%E7%B2%BE%E9%80%9A-%E4%B8%8A-ede7b381f6c7) 
 - 非常長的 CUDA 教學文章。  
 [用 numba 學 CUDA! 從入門到精通 (下)](https://medium.com/@spacetime0311/%E7%94%A8-numba-%E5%AD%B8-cuda-%E5%BE%9E%E5%85%A5%E9%96%80%E5%88%B0%E7%B2%BE%E9%80%9A-%E4%B8%8B-770c11bffd37)
-- 🔥 使用 Dask + Numba 的簡單範例，其中包括 guvectoize 的使用，值得一看。  
+- 使用 Dask + Numba 的簡單範例，其中包括 guvectoize 的使用。  
 [Dask + Numba for Efficient In-Memory Model Scoring](https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-scoring-dfc9b68ba6ce) 
 - 使用 Numba CUDA 功能加上 Dask 分散式加速運算並解決顯卡記憶體不足的問題。  
 [Accelerated Portfolio Construction with Numba and Dask in Python](https://developer.nvidia.com/blog/accelerated-portfolio-construction-with-numba-and-dask-in-python/)
@@ -1338,10 +1337,14 @@ Numba 主要是使用即時編譯，但也支援像 C 語言一樣提前編譯�
 
 - [延伸嘴砲] 甚至可以找到這樣的一篇論文：Dask & Numba: Simple libraries for optimizing scientific python code，恕我直言，這比熊文案還水。
 
+- 參考資料  
+  雖然本文自己說面向中階用戶，但是在 Anaconda 爸爸的投影片裡面我們才在最初階而已 (p13)
+  [Accelerated Computing in Python (with Numba)](https://indico.cern.ch/event/824917/contributions/3571661/attachments/1934964/3206289/2019_10_DANCE_Numba.pdf)
+
 ## 結語
 長達一萬字的教學結束了，Markdown 總字數接近三萬，應該來個一鍵三連吧。
 
-目標讀者其實就是在說通訊系，也就是當年的自己。另外看到別篇文章結尾感謝部門其餘四個人，所以總共五個人討論出來才寫出 numba 文章，當時雖然比他晚一年，但筆者當年可是研究生，一個人自己學會用 numba...夭壽實驗室。
+目標讀者其實就是在說通訊系，也就是當年的自己。
 
 開頭的最快、最正確和最完整，其實是自己看網路文章一直以來的不舒服感，完整的太詳細（跟讀文檔沒兩樣），快且正確的文章又不完整，好像永遠沒辦法兼顧。於是本文和我寫的其他教學文章一樣，主要照顧初學者，讓初學者可以快速上手，讀起來又完整，而且內容還正確，當讀者不需要使用平行化時可以在十分鐘之內搞定 Numba，需要平行化或 vectorize 等高級使用技巧時也對網路上許多錯誤做出勘誤和實測結果，感謝能讀完的各位。
 

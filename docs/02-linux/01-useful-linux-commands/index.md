@@ -107,6 +107,32 @@ username=遠端SMB帳戶
 password=密碼
 ```
 
+## SSH 金鑰登入
+
+```shell
+# 生成密鑰，接著會要你輸入密碼，如果不需要可以直接enter
+ssh-keygen -t ed25519 -f ~/.ssh/{file_name}
+
+# 修改設定檔，貼上以下區塊
+vim ~/.ssh/config
+# =================
+Host {alias name}
+  HostName {server IP}
+  User {user name}
+  IdentityFile ~/.ssh/{file_name}
+# =================
+
+# 上傳公鑰到伺服器
+ssh-copy-id {user name}@{server IP}
+
+# 連線
+ssh {alias name}
+```
+
+- -t: algorithm
+- -f: file
+
+
 ## 列出系統時間
 ```shell
 date

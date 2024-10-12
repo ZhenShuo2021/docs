@@ -1,28 +1,419 @@
 ---
-title: 寫出高效程式
-description: 整理 Numba 教學裡面參考的效能優化技巧。
+title: Numba 效能深入解析：矩陣計算與訊號還原演算法
+description: Numba 效能深入解析：矩陣計算與訊號還原演算法
 tags:
-  - Programming
-  - Python
-  - Performance
-keywords:
   - Programming
   - Python
   - Numba
   - Performance
+  - 教學
+keywords:
+  - Programming
+  - Python
+  - Numba
+  - Numpy
+  - 教學
+  - Speed-Up
+  - Accelerate
+  - Performance
 last_update:
-  date: 2024-10-03 GMT+8
+  date: 2024-10-12 GMT+8
   author: zsl0621
 ---
 
-# 寫出高效程式
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Numba 效能深入解析：矩陣計算與訊號還原演算法
+
+本篇是效能實測，包含了三種情況：
+
+1. 簡單三角函數計算（測試簡單計算和開關 SVML 影響）
+2. 矩陣相乘計算（測試可平行化處理的計算）
+3. 訊號還原演算法（測試吃重迭代的計算）
+
+我們平常使用不外乎就是直接 call 指令、矩陣相乘、迴圈迭代，這三種運算已經包含影像處理以外的大部分計算場景，<u>避免其他文章中的問題：效能測試的結論只適用於該場景</u>。此篇包含更多效能的討論以及潑冷水，演示上一篇的向量化裝飾器 guvectorize 不是永遠都那麼快，再次展示了 Numba 的效能是 case-specific，從演算法到 CPU 平台都是。
+
+在測試中，我們使用的基準線是 numpy 陣列運算[^1]，橫軸是資料維度，縱軸是加速倍率，測試程式碼可以在[這裡](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)找到。結束測試後，在 <u>SVML 偵錯</u>和<u>深入探討效能問題</u>這兩個章節，我們會整理其他效能相關問題，其中也包含前一篇文章的內容整理。
+
+[^1]: 網路上拿迴圈運算當作 baseline 根本是在搞，拿一個絕對不會這樣寫的方式當比較基準毫無意義。
+
+## Case1: 三角函數
+這個章節我們主要比較各種不同裝飾器的效能差異，以及開關 SVML 對效能帶來的影響，計算以下三角函數：
+
+$$
+\sum_{i=1}^{n} \left( \sin(x_i)^2 + \cos(x_i)^2 \right)
+$$
+
+我知道平方相加是一，這只是一個示範範例，透過簡單的計算避免不必要的因素影響我們對這些裝飾器的認知。此測試和文檔範例相同，只多加了 summation 模擬常見的 reduction 操作。比較項目總共有
+
+- njit: 基本 Numba 設定 `@njit`
+- njit_parallel: 開啟迴圈平行化 `@njit(parallel=True)`
+- njit_nogil_threadpool: 將陣列拆分給多線程計算 `@njit + ThreadPoolExecutor`
+- njit_nogil_parallel_threadpool: 開啟迴圈平行化後再拆分給多線程 `@njit(parallel=True) + ThreadPoolExecutor`
+- vectorize: 使用向量化裝飾器 `@vectorize`
+- guvectorize: 使用通用向量化裝飾器 `@guvectorize`
+
+一律關閉 fastmath 以減少變因，一開始我們先關閉 SVML，再測試開啟後的效能變化。
+
+可以看到單純使用 njit 裝飾器的方式效能僅有小幅提高，不過只加上五個字就可以有 1.5~2 倍的效能提升已經很不錯了。接著來看使用 threadpool 線程池的兩種實現方式，在資料數量小的時候效能差勁，隨著資料數量上升效能提升穩定提高，因為每次啟動線程和資料同步的開銷漸漸被平分掉，所以在資料數量少的時候使用 threadpool 方式是不明智的。接下來看到綠色線代表開啟 Numba 自動的迴圈平行計算 parallel=True，輕鬆的達到最高效能提升，然而當資料數量過多時，猜測可能是記憶體存取問題，導致效能逐漸下降。最後兩個虛線是向量化裝飾器 vectorize 和 guvectorize，效能提升幅度低於平行化，但是對於超高維度資料並沒有發生效能降低問題。
+
+![三角函數無 SVML](results_original.webp "三角函數無 SVML")
+
+下圖是測試開啟 SVML 後性能測試，njit 和 njit_nogil_threadpool 效能大幅提升，可以清楚看到 SVML 帶來的效能差異，由此可知那些連 SVML 都不知道有沒有裝的「效能測試」文章真的是來亂的。不過不是所有函數都得到 SVML 加速，還需要檢查哪裡出問題（例如官方文檔說 parallel 也要加速，但這裡的測試沒有）。
+
+![三角函數 + SVML](results_svml.webp "三角函數 + SVML")
+
+
+
+## Case2: 訊號還原
+我們以稀疏訊號處理演算法測試 Numba 能帶來多少的性能提升。
+
+簡單說明稀疏訊號處理和 OMP 演算法，稀疏訊號處理和一般的 $\mathbf{y} = \mathbf{S}\mathbf{x} + \mathbf{n}$ 問題一模一樣，都是想辦法從接收訊號 $\mathbf{y}$ 還原原始訊號 $\mathbf{x}$。唯二的差別是 $\mathbf{y}$ 的維度遠小於 $\mathbf{x}$ 的維度，導致其為一個未定的矩陣問題，以及輸入訊號零值非常多，想辦法使用這個特徵還原訊號。
+
+OMP 演算法則是每次迭代中找出 $\mathbf{x}$ 最有可能的非零值位置，由該位置還原訊號後，下次迭代再透過上次的資訊還原，所以說這是一個高度迭代的演算法。
+
+### 矩陣相乘
+還原訊號前我們要先生成接收訊號 $\mathbf{y}$，也就是進行矩陣相乘，程式碼如下：
+
+```py
+def generate_data(n_observation, n_feature, sparsity, noise_level=0.1):
+    """
+    Generates the sensing matrix, true coefficients, and observation vector.
+
+    Args:
+      n_observation (int):  The number of samples.
+      n_feature (int): The number of features.
+      sparsity (float):  The sparsity level.
+      noise_level (float): The standard deviation of the noise.
+
+    Returns:
+      S (float): A n_observation-by-n_feature dimension matrix.
+      x (float): A n_feature dimension vector.
+      y (float): A n_observation dimension vector.
+    """
+    np.random.seed(42)
+    S = np.random.randn(n_observation, n_feature)
+    x = np.zeros(n_feature)
+    support = np.random.choice(n_feature, int(sparsity * n_feature), replace=False)
+    x[support] = np.random.randn(len(support))
+    y = S @ x + np.random.randn(n_observation) * noise_level
+    return S, x, y
+```
+
+這裡我們做了一個有趣的測試，額外比較了 `np.dot(S, x)` 和 `S @ x` 的效能差異，在圖中的 label 分別是 npdot 和 atsign。另外 unroll 是把矩陣相乘拆開成兩個迴圈，也就是 $
+\mathbf{y}_{i} = \sum_{j=1}^{n} S_{ij} x_j $ 的形式。
+
+不使用迴圈平行化時，使用 np.dot 和 @ 的效能可以說是一模一樣（npdot 被蓋住了），但是開啟平行化之後， np.dot 效能直接飛天，從這裡我們發現到即使在我們眼裡這兩個 expression 是一樣的，經過 Numba 編譯結果可能不同，所以盡可能寫簡單的表達方式。在這個範例中 unroll 迴圈效能是最高的，與前一篇提到的 Numba likes loop 一樣，不過 numpy 本身已經對矩陣相乘有很多優化，所以我們只能看到微幅的性能提升。
+
+![matrix-vec](generate_data_speedup.png "matrix-vec")
+
+
+### 迴圈迭代
+在這裡我們一共迭代兩個演算法：OMP 演算法和他用到的 LSQR 演算法，LSQR 就是加上 QR 分解的 least square 演算法，如果聽不懂就當他是能用迴圈逼近的反矩陣就好了，以下是兩個演算法的實作，不用看只要知道很多迴圈就好了。
+
+這個演算法常見的輸入維度大概是輸出的 1~10 倍之間，可以看到在 5 倍 (500) 時效能將近六倍提升還是挺不錯的，測試到輸入維度是 200 倍也沒什麼效能降低，再上去測試時間指數上升就跑不完了所以只測到這裡。由於是前後相關的迭代，無法開啟平行化處理，所以只有三條線，也沒什麼好解釋的。
+
+![omp](omp_speedup.png "omp")
+
+
+```py
+def omp(S, y, sparsity, itrMax=100):
+    """
+    Orthogonal Matching Pursuit (OMP) algorithm.
+
+    Args:
+      S: Sensing matrix (numpy array)
+      y: Measurement vector (numpy array)
+      sparsity: Sparsity level (integer)
+      itrMax: Maximum number of iterations (integer)
+
+    Returns:
+      x: Estimated sparse signal (numpy array)
+    """
+
+    n_feature = S.shape[1]
+    support = int(sparsity * n_feature)
+    x = np.zeros(n_feature)
+    residual = y
+    support_set = np.zeros(n_feature, dtype=np.bool_)
+
+    for _ in range(max(itrMax, support)):
+        corr_max = 0
+        est_act = 0
+        for ii in range(n_feature):
+            corr = abs(np.dot(residual, S[:, ii]))
+            if corr > corr_max:
+                corr_max = corr
+                est_act = ii
+
+        support_set[est_act] = True
+        S_active = S[:, support_set]
+        x_hat = njit_lsqr_numpy(S_active, y)
+        residual = y - S_active @ x_hat
+
+        if np.sum(support_set) >= support:
+            break
+    x[support_set] = x_hat
+    return x
+```
+
+
+<details>
+    <summary>LSQR 太長了</summary>
+
+```py
+
+def lsqr_numpy(A, b, itnlim=0, damp=0.0, atol=1.0e-9, btol=1.0e-9, conlim=1.0e8):
+    """
+    Solve the least-squares problem using LSQR.
+
+    The function minimizes the residual ||Ax - b||, where A is the matrix and b is the target vector.
+
+    Args:
+        A (np.ndarray): Coefficient matrix of shape (m, n).
+        b (np.ndarray): Target vector of shape (m,).
+        itnlim (int, optional): Maximum number of iterations. Defaults to 0 (3 * n).
+        damp (float, optional): Regularization parameter. Defaults to 0.0.
+        atol (float, optional): Absolute tolerance for convergence. Defaults to 1.0e-9.
+        btol (float, optional): Relative tolerance for convergence. Defaults to 1.0e-9.
+        conlim (float, optional): Condition limit. Defaults to 1.0e8.
+
+    Returns:
+        np.ndarray: Solution vector x that minimizes ||Ax - b||.
+    """
+    m, n = A.shape
+
+    if itnlim == 0:
+        itnlim = 3 * n
+
+    dampsq = damp * damp
+
+    itn = 0
+    istop = 0
+    ctol = 0.0
+    if conlim > 0.0:
+        ctol = 1.0 / conlim
+    Anorm = Acond = 0.0
+    z = xnorm = xxnorm = ddnorm = res2 = 0.0
+    cs2 = -1.0
+    sn2 = 0.0
+
+    x = np.zeros(n)
+    xNrgNorm2 = 0.0
+
+    u = b.copy()
+    beta = np.linalg.norm(u)
+    if beta > 0:
+        u /= beta
+
+        v = A.T @ u
+        alpha = np.linalg.norm(v)
+
+    if alpha > 0:
+        v /= alpha
+        w = v.copy()
+
+    x_is_zero = False
+    Arnorm = alpha * beta
+    if Arnorm == 0.0:
+        x_is_zero = True
+        istop = 0
+
+    rhobar = alpha
+    phibar = beta
+    bnorm = beta
+    rnorm = beta
+    r1norm = rnorm
+    r2norm = rnorm
+
+    # Main iteration loop.
+    while itn < itnlim and not x_is_zero:
+        itn = itn + 1
+
+        u = A @ v - alpha * u
+        beta = np.linalg.norm(u)
+        if beta > 0:
+            u /= beta
+
+            Anorm = sqrt(Anorm**2 + alpha**2 + beta**2 + damp**2)
+
+            v = A.T @ u - beta * v
+            alpha = np.linalg.norm(v)
+            if alpha > 0:
+                v /= alpha
+
+        rhobar1 = sqrt(rhobar**2 + damp**2)
+        cs1 = rhobar / rhobar1
+        sn1 = damp / rhobar1
+        psi = sn1 * phibar
+        phibar = cs1 * phibar
+
+        rho = sqrt(rhobar1**2 + beta**2)
+        cs = rhobar1 / rho
+        sn = beta / rho
+        theta = sn * alpha
+        rhobar = -cs * alpha
+        phi = cs * phibar
+        phibar = sn * phibar
+        tau = sn * phi
+
+        t1 = phi / rho
+        t2 = -theta / rho
+        dk = (1.0 / rho) * w
+
+        x += t1 * w
+        w *= t2
+        w += v
+        ddnorm += np.linalg.norm(dk) ** 2
+
+        xNrgNorm2 += phi * phi
+
+        delta = sn2 * rho
+        gambar = -cs2 * rho
+        rhs = phi - delta * z
+        zbar = rhs / gambar
+        xnorm = sqrt(xxnorm + zbar**2)
+        gamma = sqrt(gambar**2 + theta**2)
+        cs2 = gambar / gamma
+        sn2 = theta / gamma
+        z = rhs / gamma
+        xxnorm += z * z
+
+        Acond = Anorm * sqrt(ddnorm)
+        res1 = phibar**2
+        res2 = res2 + psi**2
+        rnorm = sqrt(res1 + res2)
+        Arnorm = alpha * abs(tau)
+
+        r1sq = rnorm**2 - dampsq * xxnorm
+        r1norm = sqrt(abs(r1sq))
+        if r1sq < 0:
+            r1norm = -r1norm
+        r2norm = rnorm
+
+        test1 = rnorm / bnorm
+        if Anorm == 0.0 or rnorm == 0.0:
+            test2 = float("inf")
+        else:
+            test2 = Arnorm / (Anorm * rnorm)
+        if Acond == 0.0:
+            test3 = float("inf")
+        else:
+            test3 = 1.0 / Acond
+        t1 = test1 / (1 + Anorm * xnorm / bnorm)
+        rtol = btol + atol * Anorm * xnorm / bnorm
+
+        if itn >= itnlim:
+            istop = 7
+        if 1 + test3 <= 1:
+            istop = 6
+        if 1 + test2 <= 1:
+            istop = 5
+        if 1 + t1 <= 1:
+            istop = 4
+
+        if test3 <= ctol:
+            istop = 3
+        if test2 <= atol:
+            istop = 2
+        if test1 <= rtol:
+            istop = 1
+
+        if istop > 0:
+            break
+
+    return x
+```
+
+</details>
+
+## 向量化裝飾器
+向量化裝飾器好像被說的一無是處，但是要看的是使用場景才對，像是在[這篇文章](https://medium.com/@mflova/making-python-extremely-fast-with-numba-advanced-deep-dive-3-3-695440b62030)中效能提升就非常可觀。
+
+## SVML 偵錯
+
+這個段落介紹 SVML 偵錯技巧和常見問題，根據這個 [Github issue](https://github.com/numba/numba/issues/5562#issuecomment-614034210) 完成，如何安裝 SVML 請見前一篇文章，測試程式碼都可以在文章開頭的[連結](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)中找到。
+
+在檔案加上
+
+```py
+import llvmlite.binding as llvm
+llvm.set_option('', '--debug-only=loop-vectorize')
+```
+
+並且在要測試的函式中使用
+
+```py
+ty = nb.types.complex128[:]
+foo.compile((ty, ))   # 一定要加上逗號變成 tuple
+
+print(foo.inspect_asm(foo.signatures[0]))
+```
+
+來檢測 SVML 啟用狀況，如果失敗會顯示記憶體衝突、不安全、已經被向量化或被禁止向量化等等訊息。除了這個基本偵錯方式，筆者也整理了以下幾點問題：
+
+1. 開啟fastmath  
+雖然 fastmath 在文檔中沒有說到的是他和 SVML 掛勾，但筆者以上述的 Github issue 進行測試，如果顯示機器碼 `movabsq $__svml_atan24` 代表安裝成功，此時我們將 fastmath 關閉後發現向量化失敗，偵錯訊息顯示 `LV: Found FP op with unsafe algebra.`。
+
+2. 計算函數的類型  
+使用 inspect_asm 方法可以檢查 Numba 編譯的機器碼，經過測試不是所有運算都會調用 SVML，有些簡單運算會直接使用內建指令集，所以 grep svml 沒 grep 到只是剛好沒用到 SVML 而已，例如簡單的加減乘除就是向量化計算，以 ARM (Apple Silicon) 為例，可以檢查是否包含這些機器碼
+
+```sh
+python test.py | grep -E '\b(vadd|vsub|vmul|vdiv|fadd|fsub|fmul|fdiv)\b'`
+```
+
+3. Dtype  
+數據類型也影響 SVML 是否開啟，例如 complex value 不支援某些 SVML 向量化。
+
+
+
+## 深入探討效能問題
+
+考慮上一篇內容太廣泛和可能有人直接點進來這篇，既然這篇是在講效能，於是整理一下優化技巧。
+- 基礎
+    1. [Loop fusion、Loop invariant code motion、Allocation hoisting](https://numba.readthedocs.io/en/stable/user/parallel.html#diagnostics:~:text=To%20aid%20users%20unfamiliar%20with%20the%20transforms%20undertaken%20when%20the%20parallel%20option%20is%20used%2C%20and%20to%20assist%20in%20the%20understanding%20of%20the%20subsequent%20sections%2C%20the%20following%20definitions%20are%20provided%3A)
+    2. 順序讀取記憶體內容，[不要跳來跳去](https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays)
+    3. 盡可能 [inline 函式、避免除法](https://stackoverflow.com/questions/67743726/numba-fast-math-does-not-improve-speed)
+    4. 提前分配陣列：每次 function call 都是很昂貴的，不要一直建立小陣列
+
+- 指令集
+    1. 善用 CPU 指令集 SIMD/AVX 指令集，[適當向量化計算](https://github.com/numba/numba/issues/5562#issuecomment-614034210)
+    2. 不是所有操作都需要向量化，尤其在 Numba 中[錯誤使用向量化反而可能帶來性能衰退](https://pythonspeed.com/articles/slow-numba/)
+
+- I/O 操作
+    1. 記憶體和快取：注意記憶體和快取連續性、減少記憶體分配和資料移動、分塊計算以提高快取命中率
+    2. 減少減少記憶體複製的 I/O 操作，要[搬就一次搬](https://pythonspeed.com/articles/optimizing-dithering/)
+    3. prefetch 預取，不過 Numpy 中好像沒必要做這件事
+
+- 分支預測
+    1. CPU 計算速度遠大於記憶體速度，可以[強迫計算避免分支預測問題](https://pythonspeed.com/articles/speeding-up-numba/)，或者想盡辦法移除條件判斷
+    2. 調整 if 語句的優先順序，讓開銷大的擺在後面
+
+- 平行化問題
+    1. false-sharing，CPU 快取是一次讀一行 64 bytes，如果任一份資料被寫入，即使另外一個執行緒寫入目的地是別份資料，還是會把整條 cache line 標記為 dirty 重新讀取，造成 I/O 浪費，可用 padding 解決。
+    2. Load imbalance，分配的任務比重不一樣，別人算完在發呆我還在繼續算
+
+- Last but not least, [profile your code](https://pythonspeed.com/articles/numba-profiling/)
+
+
+## 結語
+跑 benchmark 比想像中麻煩...
+
+如果有任何錯誤請留言告知，謝謝。
+
+
+<details>
+<summary>合併文章：寫出高效程式，因為內容重疊也不長，沒必要分兩篇</summary>
+
+###### 寫出高效程式
 寫不完，根本寫不完。
 
 這篇文章目的是摘要 [Numba 教學](/docs/python/numba-tutorial-accelerate-python-computing) 中優化技巧，下面章節<u>我自己寫的技巧</u>指的是我在該教學中自己寫的，其他章節則是教學中引用的文章，把這些全部丟給 GPT 叫他摘要文章重點，以後有機會才有可能再整理這些文章，因為光我自己寫的就三萬字，累死了，而且整理別人的文章也沒什麼意義。
 
 不外乎幾個重點，使用迴圈而不是陣列計算（對於 Numba 的特殊情況）、優化分支處理、注意記憶體和快取連續性、減少記憶體分配和資料移動、分塊計算以提高快取命中率、利用 CPU 指令集。
 
-## 我自己寫的技巧
+###### 我自己寫的技巧
 
 **基礎優化技巧**
 
@@ -51,7 +442,7 @@ last_update:
     * 提出不變的程式碼：將迴圈內不變的計算移到迴圈外。
     * 分配外提：避免在迴圈內重複分配記憶體，例如將 `np.zeros`  拆分成  `np.empty`  和賦值操作。
 
-## [The wrong way to speed up your code with Numba](https://pythonspeed.com/articles/slow-numba/)
+###### [The wrong way to speed up your code with Numba](https://pythonspeed.com/articles/slow-numba/)
 
 * **避免 NumPy 風格的陣列操作:** 雖然 Numba 支援 NumPy API，但直接套用 NumPy 的陣列導向寫法，可能會錯失優化機會。
 * **使用 `for` 迴圈進行逐元素操作:** Numba  可以高效地編譯  `for`  迴圈，逐元素操作可以減少記憶體分配和提升執行速度。
@@ -67,7 +458,7 @@ last_update:
 
 
 
-## [Python gives you fast development—and slow code](https://pythonspeed.com/products/lowlevelcode/)
+###### [Python gives you fast development—and slow code](https://pythonspeed.com/products/lowlevelcode/)
 
 * **使用編譯語言或 JIT 編譯器：**  將效能瓶頸程式碼使用 Cython、Rust 或 Numba 等編譯，可以提升執行速度。
 * **理解 CPU 特性：**  現代 CPU 具有指令級平行、分支預測、SIMD 和記憶體快取等特性，善用這些特性可以大幅提升程式碼效能。
@@ -83,7 +474,7 @@ last_update:
 
 
 
-## [Diagnostics Numba Codes](https://numba.readthedocs.io/en/stable/user/parallel.html#diagnostics)
+###### [Diagnostics Numba Codes](https://numba.readthedocs.io/en/stable/user/parallel.html#diagnostics)
 
 **效能優化技巧重點整理：**
 
@@ -108,7 +499,7 @@ Numba 提供了診斷工具和 chunk size 設定功能，可以幫助開發者�
 
 
 
-## [28000x speedup with Numba.CUDA](https://curiouscoding.nl/posts/numba-cuda-speedup/)
+###### [28000x speedup with Numba.CUDA](https://curiouscoding.nl/posts/numba-cuda-speedup/)
 
 **程式碼優化：**
 
@@ -142,7 +533,7 @@ Numba 提供了診斷工具和 chunk size 設定功能，可以幫助開發者�
 
 
 
-## With Dask
+###### With Dask
 https://blog.dask.org/2019/04/09/numba-stencil  
 https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-scoring-dfc9b68ba6ce  
 
@@ -151,7 +542,7 @@ https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-sco
 
 
 
-## [Understanding CPUs can help speed up Numba and NumPy code](https://pythonspeed.com/articles/speeding-up-numba/)
+###### [Understanding CPUs can help speed up Numba and NumPy code](https://pythonspeed.com/articles/speeding-up-numba/)
 
 * **減少分支預測失敗：**
     *  `if` 語句和其他條件判斷會導致 CPU 分支預測，預測失敗會降低效能。
@@ -171,7 +562,7 @@ https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-sco
 
 
 
-## [Profiling your Numba code](https://pythonspeed.com/articles/numba-profiling/)
+###### [Profiling your Numba code](https://pythonspeed.com/articles/numba-profiling/)
 
 **效能分析後，被診斷到的問題和優化技巧：**
 
@@ -226,7 +617,7 @@ https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-sco
 
 
 
-## [The wrong way to speed up your code with Numba](https://pythonspeed.com/articles/slow-numba/)
+###### [The wrong way to speed up your code with Numba](https://pythonspeed.com/articles/slow-numba/)
 
 這篇文章主要說明了使用 Numba  優化程式碼時，不應受限於 NumPy 的陣列導向思維，而應該採用更底層的逐元素操作，才能充分發揮 Numba 的效能優勢。
 
@@ -255,7 +646,7 @@ https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-sco
 
 
 
-## [Speeding up your code when multiple cores aren’t an option](https://pythonspeed.com/articles/optimizing-dithering/)
+###### [Speeding up your code when multiple cores aren’t an option](https://pythonspeed.com/articles/optimizing-dithering/)
 
 這篇文章示範了如何優化 Floyd-Steinberg 錯誤擴散抖動演算法的 Numba 程式碼，透過減少分支預測失敗、優化記憶體使用和減少記憶體讀寫等技巧，逐步提升程式碼的效能。
 
@@ -295,7 +686,7 @@ https://medium.com/capital-one-tech/dask-numba-for-efficient-in-memory-model-sco
 
 
 
-## [How to Write Fast Numerical Code](https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
+###### [How to Write Fast Numerical Code](https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
 
 Summary of below all text
 
@@ -331,8 +722,7 @@ Summary of below all text
     透過實驗搜尋最佳的程式碼參數，例如分塊大小和迴圈展開次數，可以針對特定硬體平台優化程式碼效能。
 
 
-<details>
-<summary>All text</summary>
+
 
 4.4 Parameter-Based Performance Tuning and Program Generation
 

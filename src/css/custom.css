@@ -5,8 +5,8 @@
  */
 
 u {
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--ifm-link-color);
+  text-decoration-thickness: 1.8px;
+  text-decoration-color: var(--ifm-color-primary-lightest);
   text-underline-offset: 2.75px;
 }
 

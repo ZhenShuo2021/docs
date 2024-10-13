@@ -167,10 +167,10 @@ module.exports = {
     [
       "@docusaurus/preset-classic",
       {
-        // googleAnalytics: {
-        //   trackingID: 'UA-20523508-2',
-        //   anonymizeIP: true,
-        // },
+        googleAnalytics: {
+          trackingID: 'G-QB2VKFSQ0J',
+          anonymizeIP: true,
+        },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",

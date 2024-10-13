@@ -36,6 +36,8 @@ import TabItem from '@theme/TabItem';
 
 在測試中，我們使用的基準線是 numpy 陣列運算[^1]，橫軸是資料維度，縱軸是加速倍率，測試程式碼可以在[這裡](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)找到。結束測試後，在 <u>SVML 偵錯</u>和<u>深入探討效能問題</u>這兩個章節，我們會整理其他效能相關問題，其中也包含前一篇文章的內容整理。
 
+本篇所有測試在虛擬機架設的 Ubuntu Server 22.04/i5-7400/8G RAM 上執行。
+
 [^1]: 網路上拿迴圈運算當作 baseline 根本是在搞，拿一個絕對不會這樣寫的方式當比較基準毫無意義。
 
 ## Case1: 三角函數

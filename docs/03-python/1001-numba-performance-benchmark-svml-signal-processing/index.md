@@ -26,17 +26,19 @@ import TabItem from '@theme/TabItem';
 
 # Numba 效能深入解析：矩陣計算與訊號還原演算法
 
-本篇是效能實測，包含了三種情況：
+這篇文章我們將使用三種不同的計算場景評估 Numba 的效能表現，目的在全方面的評估 Numba 的實際效能。為了避免了其他文章常見的問題<u>效能測試的結論只適用於該場景</u>，筆者選擇的測試涵蓋了常見的科學與數值計算情境：
 
-1. 簡單三角函數計算（測試簡單計算和開關 SVML 影響）
-2. 矩陣相乘計算（測試可平行化處理的計算）
-3. 訊號還原演算法（測試吃重迭代的計算）
+1. **三角函數計算**：使用簡單的三角函數運算作為參考，測試 Numba 在基礎計算中的加速效果，讓讀者能有一個簡單但是全面的理解，並測試開啟 SVML對效能的影響。
 
-我們平常使用不外乎就是直接 call 指令、矩陣相乘、迴圈迭代，這三種運算已經包含影像處理以外的大部分計算場景，<u>避免其他文章中的問題：效能測試的結論只適用於該場景</u>。此篇包含更多效能的討論以及潑冷水，演示上一篇的向量化裝飾器 guvectorize 不是永遠都那麼快，再次展示了 Numba 的效能是 case-specific，從演算法到 CPU 平台都是。
+2. **矩陣相乘**：矩陣相乘是最基本也是最常見的操作。我們比較 Numba 於 Numpy 已經高度優化的矩陣運算上還能提升多少效能。
+
+3. **訊號還原演算法**：最後，我們測試一個實際應用：訊號還原演算法。此演算法涉及大量迭代的計算場景，測試 Numba 在迭代運算中的效能表現。
+
+這三個測試案例代表已經涵蓋數值計算中大多數的運算類型，從簡單的運算到大規模數據處理，再到複雜迭代，避免了許多效能測試的結論侷限在特定場景。除此之外，我們也會討論一些問題，像是向量化裝飾器（如 guvectorize），Numba 的加速效果依然因應用場景和硬體環境的不同而異。
 
 在測試中，我們使用的基準線是 numpy 陣列運算[^1]，橫軸是資料維度，縱軸是加速倍率，測試程式碼可以在[這裡](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)找到。結束測試後，在 <u>SVML 偵錯</u>和<u>深入探討效能問題</u>這兩個章節，我們會整理其他效能相關問題，其中也包含前一篇文章的內容整理。
 
-本篇所有測試在虛擬機架設的 Ubuntu Server 22.04/i5-7400/8G RAM 上執行。
+本文所有測試在虛擬機架設的 Ubuntu Server 22.04/i5-7400/8G RAM 上執行。
 
 [^1]: 網路上拿迴圈運算當作 baseline 根本是在搞，拿一個絕對不會這樣寫的方式當比較基準毫無意義。
 
@@ -47,26 +49,32 @@ $$
 \sum_{i=1}^{n} \left( \sin(x_i)^2 + \cos(x_i)^2 \right)
 $$
 
-我知道平方相加是一，這只是一個示範範例，透過簡單的計算避免不必要的因素影響我們對這些裝飾器的認知。此測試和文檔範例相同，只多加了 summation 模擬常見的 reduction 操作。比較項目總共有
+我知道平方相加是一，這是一個示範範例，透過簡單的計算避免不必要的因素影響我們對這些裝飾器的認知。此測試和文檔範例相同，只多加了 summation 模擬常見的 reduction 操作。比較項目總共有
 
 - njit: 基本 Numba 設定 `@njit`
-- njit_parallel: 開啟迴圈平行化 `@njit(parallel=True)`
+- njit_parallel: 開啟自動平行化功能 `@njit(parallel=True)`
 - njit_nogil_threadpool: 將陣列拆分給多線程計算 `@njit + ThreadPoolExecutor`
-- njit_nogil_parallel_threadpool: 開啟迴圈平行化後再拆分給多線程 `@njit(parallel=True) + ThreadPoolExecutor`
-- vectorize: 使用向量化裝飾器 `@vectorize`
-- guvectorize: 使用通用向量化裝飾器 `@guvectorize`
+- njit_nogil_parallel_threadpool: 將陣列拆分給多線程計算之外又開啟自動平行化功能 `@njit(parallel=True) + ThreadPoolExecutor`
+- vectorize: 使用向量化裝飾器 `@vectorize`，使用 parallel=True, nopython=True
+- guvectorize: 使用通用向量化裝飾器 `@guvectorize`，使用 parallel=True, nopython=True
 
-一律關閉 fastmath 以減少變因，一開始我們先關閉 SVML，再測試開啟後的效能變化。
+一律不使用 fastmath 以減少變因。第一張圖先關閉 SVML，第二章圖再測試開啟後的效能變化。
 
-可以看到單純使用 njit 裝飾器的方式效能僅有小幅提高，不過只加上五個字就可以有 1.5~2 倍的效能提升已經很不錯了。接著來看使用 threadpool 線程池的兩種實現方式，在資料數量小的時候效能差勁，隨著資料數量上升效能提升穩定提高，因為每次啟動線程和資料同步的開銷漸漸被平分掉，所以在資料數量少的時候使用 threadpool 方式是不明智的。接下來看到綠色線代表開啟 Numba 自動的迴圈平行計算 parallel=True，輕鬆的達到最高效能提升，然而當資料數量過多時，猜測可能是記憶體存取問題，導致效能逐漸下降。最後兩個虛線是向量化裝飾器 vectorize 和 guvectorize，效能提升幅度低於平行化，但是對於超高維度資料並沒有發生效能降低問題。
+### 關閉 SVML
+
+可以看到單純使用 njit 裝飾器的方式效能僅有小幅提高，不過只加上五個字就可以有 1.5~2 倍的效能提升已經很不錯了。接著來看使用 threadpool 線程池的兩種實現方式，在資料數量小的時候效能差勁，隨著資料數量上升效能提升穩定提高，因為每次啟動線程和資料同步的開銷漸漸被平分掉，從這裡我們知道在資料數量少的時候使用 threadpool 方式是不明智的。接下來看到綠色線代表的 Numba 自動平行化功能，可以輕鬆的達到最高程度的效能提升，然而當資料數量過多時效能逐漸下降，筆者猜測可能是記憶體存取問題。最後兩條虛線是向量化裝飾器 vectorize 和 guvectorize，效能提升幅度低於平行化，但是對於超高維度資料並沒有發生效能降低問題。
+
+這張圖我們可以得到結論，如果能開啟自動平行化功能就盡量開啟，提升幅度最高，程式碼也最簡潔方便。
 
 ![三角函數無 SVML](results_original.webp "三角函數無 SVML")
 
-下圖是測試開啟 SVML 後性能測試，njit 和 njit_nogil_threadpool 效能大幅提升，可以清楚看到 SVML 帶來的效能差異，由此可知那些連 SVML 都不知道有沒有裝的「效能測試」文章真的是來亂的。不過不是所有函數都得到 SVML 加速，還需要檢查哪裡出問題（例如官方文檔說 parallel 也要加速，但這裡的測試沒有）。
+### 使用 SVML
+
+下圖是測試開啟 SVML 後的性能測試，njit 和 njit_nogil_threadpool 效能大幅提升，可以清楚看到 SVML 帶來的效能差異，njit 方法提升到和 njit_parallel 一樣的約五倍效能提升；使用多線程的 njit_nogil_threadpool 方法更是隨著數據增加效能逐步提升，到一千萬筆數據時來到將近十倍的效能提升[^2]。不過不是所有函數都得到 SVML 加速，還需要檢查哪裡出問題（例如官方文檔說 parallel 也要加速，但這裡的測試沒有），此處我們可以呼應上一篇文章中 Numba 像是黑箱的評語，因為很方便所以我們不知道他到底做了什麼事，好在 Numba 有提供 inspect_types, gdb, inspect_asm, parallel_diagnostics 等偵錯方式。
 
 ![三角函數 + SVML](results_svml.webp "三角函數 + SVML")
 
-
+[^2]: 由此可知那些連 SVML 都不知道有沒有裝的「效能測試」文章真的是來亂的。
 
 ## Case2: 訊號還原
 我們以稀疏訊號處理演算法測試 Numba 能帶來多少的性能提升。
@@ -103,22 +111,23 @@ def generate_data(n_observation, n_feature, sparsity, noise_level=0.1):
     return S, x, y
 ```
 
-這裡我們做了一個有趣的測試，額外比較了 `np.dot(S, x)` 和 `S @ x` 的效能差異，在圖中的 label 分別是 npdot 和 atsign。另外 unroll 是把矩陣相乘拆開成兩個迴圈，也就是 $
+這裡我們做了一個有趣的測試，額外比較了 `np.dot(S, x)` 和 `S @ x` 的效能差異，在圖中的 label 分別以 npdot 和 atsign 代表，unroll 則是表示把矩陣相乘拆開成兩個迴圈，也就是 $
 \mathbf{y}_{i} = \sum_{j=1}^{n} S_{ij} x_j $ 的形式。
 
-不使用迴圈平行化時，使用 np.dot 和 @ 的效能可以說是一模一樣（npdot 被蓋住了），但是開啟平行化之後， np.dot 效能直接飛天，從這裡我們發現到即使在我們眼裡這兩個 expression 是一樣的，經過 Numba 編譯結果可能不同，所以盡可能寫簡單的表達方式。在這個範例中 unroll 迴圈效能是最高的，與前一篇提到的 Numba likes loop 一樣，不過 numpy 本身已經對矩陣相乘有很多優化，所以我們只能看到微幅的性能提升。
+不使用迴圈平行化時，使用 njit_npdot 和 njit_atsign 的效能可以說是一模一樣（njit_npdot 被蓋住了），但是開啟平行化之後， njit_npdot 效能直接飛天，從這裡我們發現到即使在我們眼裡這兩個 expression 是一樣的，經過 Numba 編譯結果可能不同，所以盡可能寫簡單的表達方式。在這個範例中效能提升約在三倍之間，是因為 Numpy 本身已經對矩陣相乘有很多優化，所以效能提升就不如前面那麼明顯，同樣的情況也出現在捲積計算，讀者可以自行嘗試。在各種方法之間，使用 njit_parallel_unroll 方法將迴圈效能是最高的，印證前一篇提到的 Numba likes loop，但是對比使用 njit_parallel_npdot 的提升幅度有限，所以沒必要特別將矩陣相乘拆開成迴圈計算。
 
 ![matrix-vec](generate_data_speedup.png "matrix-vec")
 
 
 ### 迴圈迭代
-在這裡我們一共迭代兩個演算法：OMP 演算法和他用到的 LSQR 演算法，LSQR 就是加上 QR 分解的 least square 演算法，如果聽不懂就當他是能用迴圈逼近的反矩陣就好了，以下是兩個演算法的實作，不用看只要知道很多迴圈就好了。
+在這裡我們一共迭代兩個演算法：OMP 演算法和他用到的 LSQR 演算法，LSQR 就是加上 QR 分解的 least square 演算法，可以理解成用迴圈逼近的反矩陣。
 
-這個演算法常見的輸入維度大概是輸出的 1~10 倍之間，可以看到在 5 倍 (500) 時效能將近六倍提升還是挺不錯的，測試到輸入維度是 200 倍也沒什麼效能降低，再上去測試時間指數上升就跑不完了所以只測到這裡。由於是前後相關的迭代，無法開啟平行化處理，所以只有三條線，也沒什麼好解釋的。
+由於是前後相關的迭代，無法開啟平行化處理，所以只有兩種測試方式。這個演算法常見的輸入維度大概是輸出的 1~10 倍之間，可以看到在 5 倍 (500) 時效能將近六倍提升還是挺不錯的，測試到輸入維度是 200 倍也沒有明顯的效能降低，維度再增加測試時間指數上升所以只測到這裡。此測試顯示 Numba 在吃重迭代的演算法，即使輸入維度相對低（100x500，相較於影像處理動輒十幾萬筆數據）的情況，對比原生 Python 陣列計算仍然可以保持約 4.5 倍的效能提升。
 
 ![omp](omp_speedup.png "omp")
 
 
+以下是兩個演算法的實作，不用看只要知道很多迴圈就好了。
 ```py
 def omp(S, y, sparsity, itrMax=100):
     """
@@ -335,9 +344,9 @@ def lsqr_numpy(A, b, itnlim=0, damp=0.0, atol=1.0e-9, btol=1.0e-9, conlim=1.0e8)
 
 ## SVML 偵錯
 
-這個段落介紹 SVML 偵錯技巧和常見問題，根據這個 [Github issue](https://github.com/numba/numba/issues/5562#issuecomment-614034210) 完成，如何安裝 SVML 請見前一篇文章，測試程式碼都可以在文章開頭的[連結](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)中找到。
+這個段落介紹 SVML 的偵錯和常見問題，根據此 [Github issue](https://github.com/numba/numba/issues/5562#issuecomment-614034210) 完成，如何安裝 SVML 請見前一篇文章，測試程式碼都可以在文章開頭的[連結](https://github.com/ZhenShuo2021/blog-script/tree/main/numba)中找到。
 
-在檔案加上
+在檔案中加上
 
 ```py
 import llvmlite.binding as llvm
@@ -353,19 +362,19 @@ foo.compile((ty, ))   # 一定要加上逗號變成 tuple
 print(foo.inspect_asm(foo.signatures[0]))
 ```
 
-來檢測 SVML 啟用狀況，如果失敗會顯示記憶體衝突、不安全、已經被向量化或被禁止向量化等等訊息。除了這個基本偵錯方式，筆者也整理了以下幾點問題：
+之後執行檔案就可以檢測 SVML 啟用狀況，以該 issue 來說，可以加上 `| grep svml` 來擷取使用 SVML 的機器碼。如果 SVML 向量化失敗會顯示記憶體衝突、不安全、已經被向量化或被禁止向量化等等訊息，則根據這些資訊來除錯。失敗的原因筆者也整理了以下幾點問題：
 
-1. 開啟fastmath  
+1. 使用 fastmath  
 雖然 fastmath 在文檔中沒有說到的是他和 SVML 掛勾，但筆者以上述的 Github issue 進行測試，如果顯示機器碼 `movabsq $__svml_atan24` 代表安裝成功，此時我們將 fastmath 關閉後發現向量化失敗，偵錯訊息顯示 `LV: Found FP op with unsafe algebra.`。
 
-2. 計算函數的類型  
-使用 inspect_asm 方法可以檢查 Numba 編譯的機器碼，經過測試不是所有運算都會調用 SVML，有些簡單運算會直接使用內建指令集，所以 grep svml 沒 grep 到只是剛好沒用到 SVML 而已，例如簡單的加減乘除就是向量化計算，以 ARM (Apple Silicon) 為例，可以檢查是否包含這些機器碼
+2. 計算類型  
+使用 inspect_asm 方法可以檢查 Numba 編譯的機器碼，經過測試不是所有運算都會調用 SVML，有些簡單運算會直接使用內建指令集，所以 grep svml 沒 grep 到只是剛好沒用到 SVML 而已，例如簡單的加減乘除可能不會調用 SVML 的向量化計算，而是使用本機的機器碼，以 ARM (Apple Silicon) 為例，可以檢查是否包含這些機器碼
 
 ```sh
 python test.py | grep -E '\b(vadd|vsub|vmul|vdiv|fadd|fsub|fmul|fdiv)\b'`
 ```
 
-3. Dtype  
+3. 數據類型 Dtype  
 數據類型也影響 SVML 是否開啟，例如 complex value 不支援某些 SVML 向量化。
 
 

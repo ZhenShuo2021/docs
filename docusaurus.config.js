@@ -10,11 +10,11 @@ const remarkParse = require("remark-parse");
 const stringify = require("rehype-stringify");
 const remark2rehype = require("remark-rehype");
 
-import { rehypeExtendedTable } from 'rehype-extended-table';
+// import { rehypeExtendedTable } from 'rehype-extended-table';
 
 import { themes as prismThemes } from 'prism-react-renderer';
 
-require("dotenv").config();
+// require("dotenv").config();
 
 function unwrapCategory(items) {
   const newItems = [];
@@ -68,11 +68,10 @@ module.exports = {
   },
   plugins: [
     require.resolve("docusaurus-plugin-image-zoom"),
-    ["docusaurus2-dotenv",
-      {
-        systemvars: true, // Set to true if you would rather load all system variables as well (useful for CI purposes)
-      },
-    ],
+    // "docusaurus2-dotenv",
+    //   {
+    //     systemvars: true, // Set to true if you would rather load all system variables as well (useful for CI purposes)
+    //   },
   ],
   markdown: {
     mermaid: true,
@@ -176,7 +175,7 @@ module.exports = {
           editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",
           remarkPlugins: [math],
           rehypePlugins: [
-            [rehypeExtendedTable, {}],
+            // [rehypeExtendedTable, {}],
             [katex, {
               strict: false
             }]

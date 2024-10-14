@@ -6,7 +6,7 @@ import type {WrapperProps} from '@docusaurus/types';
 //import GiscusComment
 import GiscusComment from '@site/src/components/GiscusComment';
 
-import { useDoc } from "@docusaurus/plugin-content-docs/client";
+// import { useDoc } from "@docusaurus/plugin-content-docs/client";
 
 type Props = WrapperProps<typeof FooterType>;
 

@@ -1,5 +1,25 @@
 [
   {
+    "title": "幫 Git 上標籤",
+    "permalink": "/docs/git/tagging/",
+    "description": "幫 Git 上標籤",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1729362093000,
+    "yearMonth": "2024 年 10 月",
+    "day": "20"
+  },
+  {
     "title": "Numba 教學：加速 Python 科學計算",
     "permalink": "/docs/python/numba-tutorial-accelerate-python-computing/",
     "description": "最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。",
@@ -108,25 +128,5 @@
     "date": 1727798400000,
     "yearMonth": "2024 年 10 月",
     "day": "02"
-  },
-  {
-    "title": "寫出優雅程式",
-    "permalink": "/docs/python/how-to-write-clean-code/",
-    "description": "How to Write Clean Code",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      }
-    ],
-    "date": 1727712000000,
-    "yearMonth": "2024 年 10 月",
-    "day": "01"
   }
 ]

@@ -26,30 +26,4 @@ last_update:
 git filter-branch --commit-filter 'git commit-tree -S "$@";' -- --all
 ```
 
-## 意外事件
-但是遇到問題，出現以下錯誤
-```sh
-Rewrite COMMIT_ID (1/179) (0 seconds passed, remaining 0 predicted)    error: gpg failed to sign the data
-could not write rewritten commit
-```
-
-gpg 無法簽名，不讓我重寫 commit，於是先檢查檢查 gpg 是否正常運作
-```sh
-gpg --list-secret-keys --keyid-format LONG
-git config --global user.signingkey
-echo "test" | gpg --batch --yes --clearsign
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
-
-test
-gpg: 簽署時失敗: Inappropriate ioctl for device
-gpg: [stdin]: clear-sign failed: Inappropriate ioctl for device
-```
-
-## 解決
-發現是終端設定不知為何跑掉，使用以下指令告訴 gpg 使用當前終端操作，即可正常提交 commit
-```sh
-export GPG_TTY=$(tty)
-```
-
 最後可以用 `git log --show-signature` 檢查簽名情況。

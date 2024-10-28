@@ -18,41 +18,40 @@ last_update:
 
 用標籤標示重要版本，分為兩種lightweight 和 annotated，官方建議使用 annotated。
 
-## 新增標籤
 
-- 新增 Annotated 標籤
-  ```bash
-  git tag -a 'v0.1.0' -m 'commend messages'
-  ```
+## 快速清單
+非常直觀，直接上指令。
 
-- 查看標籤
-  ```bash
-  git tag -n
-  ```
+### 常用
+| 功能 | 本地指令 | 遠端指令 |
+|---|---|---|
+| 列出 | `git tag` | `git ls-remote --tags origin` | 
+| 建立 | `git tag -a v1.0.0 -m "messages"` | `git push origin v1.0.0` |  
+| 刪除 | `git tag -d v1.0.0` | `git push origin --delete v1.0.0` |  
+| 推送 | `git push origin v1.0.0` |  |  
 
-- 為先前 commit 加標籤
-  ```bash
-  git tag -a '1.0.dev' 3b7de7f
-  ```
+```bash
+# 為先前 commit 加標籤
+git tag -a 1.0.0 3b7de7f
 
-- **推送標籤**
-  ```bash
-  git push origin my-annotated-tag
-  ```
+# 列出標籤
+git tag -n
 
-- 推送所有標籤
-  ```bash
-  git push --tags
-  ```
+# 列出特定標籤
+git tag -l "v1.8.5*"
 
-## 刪除標籤
+# 印出標籤訊息
+git tag -l --format='%(contents)' <tag name>
 
-- 刪除本地標籤
-  ```bash
-  git tag -d <tag_name>
-  ```
+# 編輯標籤（刪除並且重建）
+git tag <tag name> <tag name>^{} -f -m "<new message>"
+```
 
-- 刪除遠端標籤
-  ```bash
-  git push <upstream> :refs/tags/<tag_name>
-  ```
+
+### 第二常用
+| 功能 | 本地指令 | 遠端指令 |
+|---|---|---|
+| 推送所有標籤 | `git push origin --tags` |  |  
+| 更新本地標籤 | `git fetch origin --tags` |  |  
+| 檢出 | `git checkout v1.0.0` |  |  
+| 驗證 | `git tag -v v1.0.0` |  |  

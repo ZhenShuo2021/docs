@@ -146,14 +146,14 @@ module.exports = {
           type: "doc",
           docId: "intro/intro",  // 更新路徑
           position: "left",
-          label: "文件庫",
+          label: "文件庫📚",
         },
         {
           type: "doc",
           docId: "intro/memo",
           docsPluginId: "memo", // 指定使用 memo plugin
           position: "left",
-          label: "備忘錄",
+          label: "備忘錄📝",
         },
         {
           href: 'https://blog.zsl0621.cc/',

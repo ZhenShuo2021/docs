@@ -17,8 +17,8 @@
 
 .latest_post_row {
   flex-direction: column;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  /* padding-top: 2em;
+  padding-bottom: 2em; */
 }
 
 .latest_post_row_item {

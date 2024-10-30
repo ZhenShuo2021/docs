@@ -44,7 +44,6 @@ function Post({ title, permalink, tags, yearMonth, day }) {
 export default function LatestPosts() {
   return (
     <section className={styles.latestPosts}>
-      <p />
       {/* <h1 className={styles.title}>最新部落格文章</h1> */}
       <div className="container">
         <div className={styles.latest_post_row}>
@@ -54,7 +53,6 @@ export default function LatestPosts() {
             ))}
         </div>
       </div>
-      <p /><p />
       {/* <h1 className={styles.title}>最新文件庫文章</h1> */}
       <div className="container">
         <div className={styles.latest_post_row}>

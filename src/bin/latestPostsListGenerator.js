@@ -15,6 +15,8 @@ const latestDocsList = "./src/components/LatestPosts/latest-docs.json";
 const memoPath = "./.docusaurus/docusaurus-plugin-content-docs/memo";
 const memoFilesPattern = "site-docs-*.json";
 
+const totalArticles = 10
+
 generateLatestPostList(blogPath, blogFilesPattern, latestBlogPostList);
 
 // 合併 docs 和 memo 的最新文章
@@ -63,7 +65,7 @@ function generateLatestCombinedList(sources, outputPath) {
   });
 
   const allIds = Object.keys(allItems);
-  const latestIds = allIds.sort().reverse().slice(0, 5);
+  const latestIds = allIds.sort().reverse().slice(0, totalArticles);
   const latestItems = latestIds.map((v) => allItems[v]);
 
   generateLatestFile(latestItems, outputPath);
@@ -107,7 +109,7 @@ function generateLatestPostList(folderPath, filesPattern, outputPath) {
   });
 
   const allIds = Object.keys(allItems);
-  const latestIds = allIds.sort().reverse().slice(0, 5);
+  const latestIds = allIds.sort().reverse().slice(0, totalArticles);
   const latestItems = latestIds.map((v) => allItems[v]);
 
   generateLatestFile(latestItems, outputPath);

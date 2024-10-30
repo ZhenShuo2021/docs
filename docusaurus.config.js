@@ -68,10 +68,25 @@ module.exports = {
   },
   plugins: [
     require.resolve("docusaurus-plugin-image-zoom"),
-    // "docusaurus2-dotenv",
-    //   {
-    //     systemvars: true, // Set to true if you would rather load all system variables as well (useful for CI purposes)
-    //   },
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'memo',
+        path: 'docs/memo',
+        routeBasePath: 'memo',
+        sidebarPath: require.resolve('./sidebars-memo.js'),
+        remarkPlugins: [math],
+        rehypePlugins: [
+          // [rehypeExtendedTable, {}],
+          [katex, {
+            strict: false
+          }]
+        ],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
   ],
   markdown: {
     mermaid: true,
@@ -129,9 +144,16 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "intro/intro",
+          docId: "intro/intro",  // 更新路徑
           position: "left",
           label: "文件庫",
+        },
+        {
+          type: "doc",
+          docId: "intro/memo",
+          docsPluginId: "memo", // 指定使用 memo plugin
+          position: "left",
+          label: "備忘錄",
         },
         {
           href: 'https://blog.zsl0621.cc/',
@@ -173,6 +195,8 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",
+          path: 'docs/docs',  // 更新文件庫路徑
+          routeBasePath: 'docs',
           remarkPlugins: [math],
           rehypePlugins: [
             // [rehypeExtendedTable, {}],

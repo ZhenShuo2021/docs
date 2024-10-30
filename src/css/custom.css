@@ -19,6 +19,17 @@ blockquote {
   font-style: italic;
 }
 
+.clean-btn,
+.menu__caret {
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
+.menu__link {
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
 .header-github-link:hover,
 .header-blog-link:hover {
   opacity: 0.6;

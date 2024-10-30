@@ -1,8 +1,73 @@
 [
   {
-    "title": "幫 Git 上標籤",
-    "permalink": "/docs/git/tagging/",
-    "description": "幫 Git 上標籤",
+    "title": "Type Hint 教學：從入門到進階的 Python 型別註釋",
+    "permalink": "/docs/python/type-hint-typing-complete-guide/",
+    "description": "Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "typing",
+        "permalink": "/docs/tags/typing"
+      },
+      {
+        "inline": true,
+        "label": "type hint",
+        "permalink": "/docs/tags/type-hint"
+      }
+    ],
+    "date": 1730234673000,
+    "yearMonth": "2024 年 10 月",
+    "day": "30"
+  },
+  {
+    "title": "關於這個區域",
+    "permalink": "/memo/intro/",
+    "description": "這裡是 zsl0621 的個人文檔庫。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/memo/tags/docusaurus"
+      }
+    ],
+    "date": 1730217600000,
+    "yearMonth": "2024 年 10 月",
+    "day": "30"
+  },
+  {
+    "title": "初嘗策略模式",
+    "permalink": "/memo/python/strategy-pattern-first-attempt/",
+    "description": "第一次撰寫策略模式的紀錄",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": 1730190573000,
+    "yearMonth": "2024 年 10 月",
+    "day": "29"
+  },
+  {
+    "title": "慣例式提交",
+    "permalink": "/docs/git/conventional-commits/",
+    "description": "寫好慣例式提交，讓提交訊息一目了然",
     "tags": [
       {
         "inline": true,
@@ -15,118 +80,28 @@
         "permalink": "/docs/tags/programming"
       }
     ],
-    "date": 1729362093000,
+    "date": 1730141052000,
+    "yearMonth": "2024 年 10 月",
+    "day": "29"
+  },
+  {
+    "title": "解決 GPG 無法提交的錯誤",
+    "permalink": "/docs/git/miscs/gpg-failed-to-sign-the-data/",
+    "description": "解決 GPG 無法提交的錯誤",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1729367767000,
     "yearMonth": "2024 年 10 月",
     "day": "20"
-  },
-  {
-    "title": "Numba 教學：加速 Python 科學計算",
-    "permalink": "/docs/python/numba-tutorial-accelerate-python-computing/",
-    "description": "最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1729180800000,
-    "yearMonth": "2024 年 10 月",
-    "day": "18"
-  },
-  {
-    "title": "Numba 效能深入解析：矩陣計算與訊號還原演算法",
-    "permalink": "/docs/python/numba-performance-benchmark-svml-signal-processing/",
-    "description": "Numba 效能深入解析：矩陣計算與訊號還原演算法",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1728662400000,
-    "yearMonth": "2024 年 10 月",
-    "day": "12"
-  },
-  {
-    "title": "LeetCode Record",
-    "permalink": "/docs/asd/aiohttp",
-    "description": "LeetCode Record",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "C",
-        "permalink": "/docs/tags/c"
-      }
-    ],
-    "date": 1727884800000,
-    "yearMonth": "2024 年 10 月",
-    "day": "03"
-  },
-  {
-    "title": "LeetCode Record",
-    "permalink": "/docs/python/leetcode/",
-    "description": "LeetCode Record",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "C",
-        "permalink": "/docs/tags/c"
-      }
-    ],
-    "date": 1727798400000,
-    "yearMonth": "2024 年 10 月",
-    "day": "02"
   }
 ]

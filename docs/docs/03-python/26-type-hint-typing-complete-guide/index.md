@@ -1,5 +1,5 @@
 ---
-title: Type Hint 教學：從入門到進階的 Python 型別註釋
+title: Python Type Hint 教學
 description: Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints
 tags:
   - Programming

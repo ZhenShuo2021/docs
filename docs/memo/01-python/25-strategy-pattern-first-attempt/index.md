@@ -24,13 +24,6 @@ import TabItem from '@theme/TabItem';
 ## 問題描述
 一開始很簡單的實現，這個 class，在 `scrape_link` 中基於 `is_album_list` 決定要調用 `_process_album_list_links` 還是 `_process_album_image_links`，每次調用會把該輸入的 URL 翻頁翻到底並擷取每頁結果：如果在相簿列表，獲取所有相簿網址才開始爬取相簿，`scrape_link` 回傳網址列表 `list[str]`；否則回傳圖片網址和檔名列表 `list[tuple[str, str]]`。會這樣寫的原因是該網站只有兩種類型頁面，相簿列表和相簿本身，使用相同翻頁方式，所以覺得沒必要分成兩個 class method 來寫。
 
-但是使用 mypy 檢查時抱怨 incompatible type 的問題就由此引發：
-
-```sh
-error: Argument 2 to "_process_album_list_links" of "LinkScraper" has incompatible type "list[str] | list[tuple[str, str]]"; expected "list[str]"  [arg-type]
-error: Argument 2 to "_process_album_image_links" of "LinkScraper" has incompatible type "list[str] | list[tuple[str, str]]"; expected "list[tuple[str, str]]"  [arg-type]
-```
-
 ```py
 class LinkScraper:
     """Scrape logic."""
@@ -52,36 +45,23 @@ class LinkScraper:
             page_result (list[str] | list[tuple[str, str]]): A list of URLs if is_album_list=True; 
             otherwise, a list of (URL, filename) tuples.
         """
+        # highlight-next-line
         page_result: list[str] | list[tuple[str, str]] = []
-        page = start_page
-        consecutive_page = 0
-        max_consecutive_page = 3
-        alt_ctr = 0
-        xpath_page_links = XPATH_ALBUM_LIST if is_album_list else XPATH_ALBUM
 
         while True:  # each loop turns a page
-            full_url = LinkParser.add_page_num(url, page)
-            html_content = self.web_bot.get_html(full_url)
-            tree = LinkParser.parse_html(html_content, self.logger)
-            
-            # ...輸入檢查
+            # ...省略
 
             if is_album_list:
                 self._process_album_list_links(page_links, page_result, page)
             else:
                 self._process_album_image_links(page_links, page_result, alt_ctr, tree, page)
 
-            if page >= LinkParser.get_max_page(tree):
-                self.logger.info("Reached last page, stopping")
-                break
-
-            page += 1
-            consecutive_page += 1
         return page_result
 
     def _process_album_list_links(
         self,
         page_links: list[str],
+        # highlight-next-line
         page_result: list[str],     # 注意這裡和下面不同！！！
         page: int,
     ):
@@ -92,6 +72,7 @@ class LinkScraper:
     def _process_album_image_links(
         self,
         page_links: list[str],
+        # highlight-next-line
         page_result: list[tuple[str, str]],     # 注意這裡和上面不同！！！
         alt_ctr: int,
         tree: html.HtmlElement,
@@ -119,6 +100,13 @@ class LinkScraper:
         # ...Find the first non-digits element
 ```
 
+但是使用 mypy 檢查時抱怨 incompatible type：
+
+```sh
+error: Argument 2 to "_process_album_list_links" of "LinkScraper" has incompatible type "list[str] | list[tuple[str, str]]"; expected "list[str]"  [arg-type]
+error: Argument 2 to "_process_album_image_links" of "LinkScraper" has incompatible type "list[str] | list[tuple[str, str]]"; expected "list[tuple[str, str]]"  [arg-type]
+```
+
 想到的解決方式有這幾個
 
 1. 使用 isinstance 檢查，但是如果中間跨函式 mypy 一樣會抱怨，而且 list 包 tuple 要每項檢查很繁瑣。
@@ -129,7 +117,7 @@ class LinkScraper:
 同時也想到，如果該網站擴充新的頁面類型，以上方法基本只剩掩耳盜鈴法有用，現在的 scrape_link 結構也會造成維護困難，於是需要更好的解決方式。
 
 ## 解決方式
-終於進入策略模式，但是現在程式碼改太多了和原本的幾乎認不出是同一個人，這裡就給虛擬碼：
+決定使用策略模式解決，策略模式就只是把具體方法封裝在一個類別或函式中，再看你使用哪種方式選擇，這裡簡單使用字典鍵值選擇。
 
 
 <Tabs>
@@ -147,10 +135,8 @@ class LinkScraper:
     def __init__(self):
         # 在這裡初始化所有策略
         self.strategies: dict[str, ScrapingStrategy] = {
-            self.SCRAPE_TYPE["ALBUM_LIST"]: AlbumListStrategy(runtime_config, base_config, web_bot),
-            self.SCRAPE_TYPE["ALBUM_IMAGE"]: AlbumImageStrategy(
-                runtime_config, base_config, web_bot
-            ),
+            self.SCRAPE_TYPE["ALBUM_LIST"]: AlbumListStrategy(config),
+            self.SCRAPE_TYPE["ALBUM_IMAGE"]: AlbumImageStrategy(config),
         }
 
 
@@ -259,7 +245,7 @@ class AlbumImageStrategy(ScrapingStrategy[ImageLink]):
 
 ---
 
-雖然策略模式到這邊就結束了，但是最開始的 mypy 型別檢查的問題好像還沒解決欸？細心的讀者可能已經發現 `_scrape_link` 變成私有函數，這邊使用幾個緩衝 method 解決型別的問題，暫時只能想到這個解決方法，未來如果找到更好方式再更新。
+雖然策略模式到這邊就結束了，但是最開始的 mypy 型別檢查的問題好像還沒解決欸？沒錯各位被我紅鯡魚了，策略模式和解決後續調用輸出結果的 incompatible type 沒有關係。細心的讀者可能已經發現 `_scrape_link` 變成私有函數，這邊使用幾個緩衝 method 解決型別的問題，暫時只能想到這個滿點醜的方式，未來如果找到更好方式再更新，不過也許最好的方式是使用 `list[Any]` 作為 type hint。
 
 ```py
 def buffer_album_list(
@@ -284,7 +270,7 @@ def buffer_album_images(
 
 ## 心得感想
 
-沒想到修復 mypy 會用到策略模式，除此之外還學了 typing 工具，例如 ClassVar, Generic, TypeAlias, TypeVar。其中還發現了模板方法模式、外觀模式，感覺滿硬要的，正常人寫程式自動就會變成這些模式，沒必要去記這些，死記這些也沒用，就像以前電磁學第一大題都是名詞解釋，考完根本沒有理解核心，不過也是因為電磁學太難需要送分就是了。另外，平衡 spaghetti code 和 ravioli code，以及程式優化的時機也是個學問，太早優化後面要改更痛苦，太晚優化中間開發很卡。
+沒想到修復 mypy 會用到策略模式，除此之外還學了 typing 工具，例如 ClassVar, Generic, TypeAlias, TypeVar。其中還發現了模板方法模式、外觀模式，感覺滿硬要的，正常人寫程式自動就會變成這些模式，沒必要去記這些，死記這些也沒用，就像以前電磁學第一大題都是名詞解釋，考完根本沒有理解核心，不過電磁學是因為太難需要送分就是了。另外，平衡 spaghetti code 和 ravioli code，以及程式優化的時機也是個學問，太早優化後面要改更痛苦，太晚優化中間開發很卡。
 
 寫那麼長，一言以蔽之就是實現多種不同實作，透過類別封裝，以單一個變數作為入口點，再看你想怎麼調用這個入口，我是以字串調用，下面語言模型生成的範例放在列表裡面調用。
 
@@ -531,4 +517,4 @@ print(f"Total after removing bulk discount: {cart.get_total():.2f}")
 
 ## 後話
 
-寫的當下就覺得有點 over-design 了，現在想想確實如此，一開始直接寫 type-hint 是 list 就好，把 type-hint 寫的這麼詳細反而浪費了 Pyhton 方便的特性，尤其是在這麼小的項目上，不過這本來就是一個練習專案，當作練習剛剛好囉。
+寫的當下就覺得有點 over-design 了，現在想想確實如此，一開始直接寫 type-hint 是 list 就好，把 type-hint 寫的這麼詳細反而浪費了 Python 方便的特性，尤其是在這麼小的項目上，不過這本來就是一個練習專案，當作練習剛剛好囉。

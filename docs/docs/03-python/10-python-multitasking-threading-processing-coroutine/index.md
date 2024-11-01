@@ -1,6 +1,6 @@
 ---
-title: Python 中的多工處理：多線程/多進程/協程/分佈式計算
-description: Python 正則表達式 Regex
+title: Python 中的多工處理原理介紹
+description:  Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算
 tags:
   - Programming
   - Python
@@ -18,7 +18,7 @@ last_update:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Python 中的多工處理 - 多線程/多進程/協程/分佈式計算
+# Python 中的多工處理原理介紹
 
 這篇文章整理 Python 中各種多工處理方式，啟發自網路上錯誤且分散的資訊，<u>**著重在原理而不是語法**</u>，目的在提供一個全局的視角，方便選擇自己的任務適合哪種方式加速，藉此解決程式碼寫完了，可以動，但實際上用錯了的問題。筆者希望本文是 <u>**清晰、快速、準確、完整**</u> 的介紹文章，不過沒人能保證自己絕對正確，所以如果有任何錯誤煩請回報。
 

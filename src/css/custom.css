@@ -6,7 +6,7 @@
 
 u {
   text-decoration-thickness: 1.8px;
-  text-decoration-color: var(--ifm-color-primary-lightest);
+  text-decoration-color: var(--ifm-color-primary-darker);
   text-underline-offset: 2.75px;
 }
 

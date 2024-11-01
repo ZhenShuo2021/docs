@@ -6,8 +6,12 @@
 
 u {
   text-decoration-thickness: 1.8px;
-  text-decoration-color: var(--ifm-color-primary-darker);
+  text-decoration-color: var(--ifm-color-primary-lightest);
   text-underline-offset: 2.75px;
+}
+
+html[data-theme="dark"] u {
+  text-decoration-color: var(--ifm-color-primary-darker);
 }
 
 a {

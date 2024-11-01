@@ -74,6 +74,9 @@ drission_bot.py
 
 還有自動化 CHANGELOG 工具 [git-cliff](https://github.com/orhun/git-cliff)
 
+## 自動化
+Git 工具除了慣例式的提交訊息，也可以整合自動化工具在每次提交前檢查提交內容，非常好用。完整文章請見 [初嘗 Python 工作流自動化](/memo/python/first-attempt-python-workflow-automation)。
+
 ## 玩具
 幫無聊的生活增加一點樂趣
 

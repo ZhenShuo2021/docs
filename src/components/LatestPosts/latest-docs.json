@@ -1,8 +1,28 @@
 [
   {
-    "title": "Python 中的多工處理：多線程/多進程/協程/分佈式計算",
+    "title": "初嘗 Python 工作流自動化",
+    "permalink": "/memo/python/first-attempt-python-workflow-automation/",
+    "description": "初嘗 Python 工作流自動化",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": 1730480133000,
+    "yearMonth": "2024 年 11 月",
+    "day": "02"
+  },
+  {
+    "title": "Python 中的多工處理原理介紹",
     "permalink": "/docs/python/python-multitasking-threading-processing-coroutine/",
-    "description": "Python 正則表達式 Regex",
+    "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
     "tags": [
       {
         "inline": true,
@@ -25,7 +45,57 @@
     "day": "01"
   },
   {
-    "title": "Type Hint 教學：從入門到進階的 Python 型別註釋",
+    "title": "Python 中的多工處理：結合 Queue 使用",
+    "permalink": "/memo/multithreading-with-queue/",
+    "description": "Python 中的多工處理：結合 Queue 使用",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/memo/tags/multitasking"
+      }
+    ],
+    "date": 1730365740000,
+    "yearMonth": "2024 年 10 月",
+    "day": "31"
+  },
+  {
+    "title": "poetry-cheatsheet",
+    "permalink": "/memo/poetry-cheatsheet/",
+    "description": "poetry-cheatsheet",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/memo/tags/multitasking"
+      }
+    ],
+    "date": 1730365680000,
+    "yearMonth": "2024 年 10 月",
+    "day": "31"
+  },
+  {
+    "title": "Python Type Hint 教學",
     "permalink": "/docs/python/type-hint-typing-complete-guide/",
     "description": "Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints",
     "tags": [
@@ -148,95 +218,5 @@
     "date": 1729362093000,
     "yearMonth": "2024 年 10 月",
     "day": "20"
-  },
-  {
-    "title": "Numba 教學：加速 Python 科學計算",
-    "permalink": "/docs/python/numba-tutorial-accelerate-python-computing/",
-    "description": "最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1729180800000,
-    "yearMonth": "2024 年 10 月",
-    "day": "18"
-  },
-  {
-    "title": "Numba 效能深入解析：矩陣計算與訊號還原演算法",
-    "permalink": "/docs/python/numba-performance-benchmark-svml-signal-processing/",
-    "description": "Numba 效能深入解析：矩陣計算與訊號還原演算法",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1728662400000,
-    "yearMonth": "2024 年 10 月",
-    "day": "12"
-  },
-  {
-    "title": "寫出優雅程式",
-    "permalink": "/memo/python/how-to-write-clean-code/",
-    "description": "How to Write Clean Code",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/memo/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
-      }
-    ],
-    "date": 1727712000000,
-    "yearMonth": "2024 年 10 月",
-    "day": "01"
   }
 ]

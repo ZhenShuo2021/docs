@@ -27,11 +27,11 @@ import TabItem from '@theme/TabItem';
 身為 NAS 用戶，Docker 最方便的就是怎麼搞都不會壞，不像傳統程式搞壞之後高機率有奇怪的[殘留設定](/posts/clean-linux-settings)清不掉有夠搞人，有問題就是把 mount 的東西全部 rm -rf 就清潔溜溜。不過一開始單純作為使用者使用真的不好理解，尤其是 Docker 和虛擬機的差別，拜某「看了會上癮的」的教學所賜大幅降低我理解效率，不敢相信賣課的可以把東西講成這樣，我已經是長年關注電腦軟硬體的人第一次看都搞不懂他在說什麼。
 
 這篇文章包含：
-1. Docker 和 VM 差異（Docker 介紹）
+1. Docker 介紹，說明和傳統虛擬機的差異
 2. 如何撰寫 Dockerfile 並構建自己的 Image
-3. 構建 Image Matplotlib 的字體問題
+3. 構建 Image 和 Matplotlib 的字體問題
 4. 如何撰寫 Docker for Github Actions 完成 Python CI
-5. 精選常用指令
+5. 常用指令小抄
 
 # Docker 和虛擬機差異
 或者說 Docker 到底如何比虛擬機還快，這是我一開始最疑惑的點。
@@ -40,18 +40,19 @@ import TabItem from '@theme/TabItem';
 
 ![struct1.webp](struct1.webp)
 
-<sub>Docker 架構圖。我發現很多人放了這張圖都不解釋導致第一次看有點似懂非懂，在 infra (硬體)上都必須要有作業系統，再往上會出現第一個不同，虛擬機使用管理器，而 docker 叫做 docker engine。虛擬機管理器之下是獨立的客戶 OS，而 docker 沒有 OS，直接共享宿主 OS 核心。附帶一提，VM 管理器分成兩種，以我們最容易接觸到的 VMware Workstation ([範例](https://www.youtube.com/watch?v=WN92__i4rbw)) 為例他是屬於 type II。</sub>
+<sub>Docker 架構圖。我發現很多人都沒解釋這張圖所以第一次看有點似懂非懂。在 infra (硬體)上都必須要有作業系統，再往上會出現第一個不同，虛擬機使用管理器，而 docker 叫做 docker engine。虛擬機管理器之下是獨立的客戶 OS，而 docker 沒有 OS，直接共享宿主 OS 核心。附帶一提，VM 管理器分成兩種，以我們最容易接觸到的 VMware Workstation 為例他是屬於 type II。</sub>
 
 <br/>
 <br/>
 
-新名詞「容器」不拖泥帶水馬上介紹，Docker 主要組成為 
+接著馬上介紹剛剛提到的新名詞「容器」。Docker 主要組成為 
+
 - image 鏡像
 - container 容器
 - volume 卷宗
 - network 網路
 
-由 Dockerfile 作為設計圖設計這個容器該用什麼 image，用 volume 掛載宿主資料夾，network 應該不需多做解釋，最後合起來是運行時的實體、消耗記憶體和 CPU 資源的叫做 container。上面那隻鯨魚是 Docker Hub，是類似 Github 的地方，把 build 好的鏡像讓大家使用。
+整個 Docker 的組成是由 Dockerfile 作為設計圖設計這個容器該用哪些 image，再用 volume 掛載宿主資料夾，network 設定網路，最後合起來是運行時的實體、消耗記憶體和 CPU 資源的叫做 container。上面那隻鯨魚是 Docker Hub，是類似 Github 的地方，把 build 好的鏡像讓大家使用。
 
 ![struct2.jpg](struct2.jpg)
 
@@ -72,7 +73,7 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 ## 撰寫 Dockerfile
 其實這篇文章原本不是教學，標題是「第一次嘗試寫 Dockerfile」範圍只有這裡，只是想記錄我的構建過程，但是看到某教學之後就越寫越多...
 
-直接開戰，我認為沒那麼難理解只是資源太分散，基礎版是 python slim，加上下面兩段構建版本，以及 `--virtual` 共三個版本：
+直接開戰，我認為沒那麼難理解只是資源太分散，基礎版是 python slim，加上兩段構建，以及 `--virtual` 方式共三個版本：
 
 <Tabs>
   <TabItem value="1" label="slim (basic)">
@@ -160,16 +161,14 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 - `VOLUME ["/mnt/local_folder", "/mnt/remote_folder"]`: 設定掛載卷宗。  
 - `ENTRYPOINT ["python", "-m", "p5d"]`: 容器啟動時執行的預設指令。  
 
-很簡單吧，上網自學真的很浪費時間，另外每個命令至少都是[一層或多層](https://www.google.com/search?q=docker+layer&oq=docker+layer)，所以相似命令盡量用 && 合併。
-
-> Image 到底放什麼？[用 Dive 看 Docker Image 裡面每一層的內容](https://blog.gslin.org/archives/2018/11/27/8581/%E7%94%A8-dive-%E7%9C%8B-docker-image-%E8%A3%A1%E9%9D%A2%E6%AF%8F%E4%B8%80%E5%B1%A4%E7%9A%84%E5%85%A7%E5%AE%B9/)
+很簡單吧，另外每個命令至少都會使用[一層或多層](https://www.google.com/search?q=docker+layer&oq=docker+layer)的映像檔，所以相似命令盡量用 && 合併。
 
 ### 比較不同構建方式
 接下來比較不同構建方式的鏡像大小
 
-1. slim：直接 apt-get 安裝字體包後刪除不必要字體
-2. alpine：改成 slim 安裝編譯工具後沒刪除編譯工具（沒放在上面）
-3. alpine --virtual：用於刪除之後用不到的包，要和刪除放在同一行使用才可以刪除
+1. slim：原始版本，使用 python slim 並且用 apt-get 安裝字體包
+2. alpine：改成 python alpine，安裝必要編譯工具後沒刪除編譯工具（沒放在上面的 tab 中）
+3. alpine --virtual：使用 python alpine 安裝後刪除未來用不到的包
 4. alpine 多段構建：用 FROM 分隔不同階段，用於減少鏡像容量，例如 alpine 沒有編譯功能，編譯完成後直接複製到下一階段使用
 
 
@@ -182,7 +181,7 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 | alpine `--virtual`   | 245MB        |
 | 多階段構建減少容量   | 226MB        |
 
-可以看到什麼都不管，直接使用 slim 檔案來到誇張的 402MB，alpine 雖然本體小，但是加上編譯工具反而變大。用另外兩種方式進一步優化之後可降低將近 50% 容量。進入容器內部觀察，發現 /usr/local/lib/python3.10 就佔據 190 MB，都是單一小檔最大只有 1MB，而我本機開發端的 .venv 資料夾約為 130MB，約多出 60MB。本以為優化空間也差不多了，但是由於我是 NAS 過來的手上一堆鏡像可以參考，發現專業專案的 python 資料夾還更小，所以一定有優化空間，目前已知最大問題是 matplotlib 和他需求的 numpy 兩個都是容量怪物。
+可以看到什麼都不管，直接使用 slim 檔案來到誇張的 402MB，alpine 雖然本體小，但是加上編譯工具反而變大。用另外兩種方式進一步優化之後可降低將近 50% 容量。進入容器內部觀察，發現 /usr/local/lib/python3.10 就佔據 190 MB，該資料夾中都是小檔案最大只有 1MB，相較本身電腦開發端的 .venv 資料夾約為 130MB 約多出 60MB。本以為優化空間也差不多了，但是參考其他專案鏡像發現專業專案的 python 資料夾還更小所以一定有優化空間，目前已知最大問題是 matplotlib 和他需求的 numpy 兩個都是容量怪物。
 
 ## 構建和執行指令
 構建
@@ -191,7 +190,7 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 docker build -t p5d . 
 ```
 
-執行
+執行 p5d
 
 ```sh
 docker run --rm -v /Users/leo/Pictures/downloads拷貝3/:/mnt/local_path \
@@ -200,7 +199,7 @@ docker run --rm -v /Users/leo/Pictures/downloads拷貝3/:/mnt/local_path \
 -it p5d
 ```
 
-偵錯 unittest
+在 docker 中運行 unittest 偵錯
 
 ```sh
 docker run --rm -v /Users/leo/local_folder:/mnt/local_folder \ 
@@ -209,7 +208,7 @@ docker run --rm -v /Users/leo/local_folder:/mnt/local_folder \
 p5d:test python -m unittest discover -s tests -p "*.py"
 ```
 
-進入容器查看，由於沒有固定存在的程式所以容器會馬上退出
+進入容器查看，由於沒有固定存在的程式所以容器會馬上退出，所以指令要改成這樣
 
 ```sh
 docker run -v /Users/leo/Pictures/downloads拷貝3/:/mnt/local_path \
@@ -228,7 +227,7 @@ docker ps -a
 docker rm -v -f $(docker ps -qa)
 ```
 
-然後我發現大部分指令在我使用 NAS 時就都已經會了。
+學完之後發現大部分指令在使用 NAS 時就就學會了。
 
 ## 遇到的問題
 ### Matplotlib
@@ -317,7 +316,8 @@ jobs:
 ```
 
 ## 補充相似工具
-> 碰過 NAS 的這些全都知道，但我懶的寫了叫 GPT 生，我叫他學我的口氣寫提示詞叫他只講重點不知道有沒有像，另外 TrueNAS 移除 k3s 真的德政...能有幾個人用的到 k3s？
+
+> 補充相似的容器化工具，這些工具如果有碰過 NAS 的人全都知道，但我懶的寫了叫 GPT 生，我叫他學我的口氣寫提示詞叫他只講重點不知道有沒有像。
 
 不過隨著需求增加，單純的 Docker 容器還是會有一些限制。像是當你要管理一大堆容器的時候，你就會發現「手動一個個啟動」變得不太實際了。而且，有時候我們需要確保服務**永遠運行**，一旦容器掛了自動重啟，甚至還有自動擴展容器的需求。這時候我們就需要進階的工具來幫我們搞定多容器和叢集的管理。
 
@@ -352,7 +352,7 @@ K8s 的核心概念是將你的容器打包成「Pod」，每個 Pod 可以運�
 有了這些工具，你就可以根據需求選擇合適的容器管理解決方案，無論是單台機器上的簡單應用，還是多台機器上的大型分散式系統都能搞定！
 
 ## 補充常用指令
-這是這文章最早期的版本，從一個筆記開始長大成一篇文章。
+這篇文章最早只是常用指令小抄，從小抄開始長大成一篇文章。
 
 ### 檢視資訊
 ```
@@ -388,7 +388,4 @@ docker rm -v -f $(docker ps -qa)  # 刪除所有容器
 ```
 
 ## 結束！
-終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。其實還有什麼 client-server 可以寫，不過感覺沒有到很重要（老話一句，你又不是核心開發者懂這麼多又不能改有啥用）就不講了，還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多。
-
-
-
+終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多。

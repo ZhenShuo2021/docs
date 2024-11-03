@@ -19,15 +19,8 @@ import TabItem from '@theme/TabItem';
 # Ubuntu 中套件管理工具的差異
 
 :::danger
-
-懶的重造輪子，基礎問題問 GPT 最快，會大量使用 GPT 整理的文字並且整理，但是有經過整理和檢驗
-
+基礎問題問 GPT 最快，會大量使用 GPT 整理的文字，但是有經過整理和檢驗。
 :::
-
-首先強調，這是一個新手向的文章。
-
-## 套件
-就是 Windows/MacOS 系統的軟體安裝，不要再扯什麼 .deb 了，會查這個的人用的到這個資訊嗎？
 
 ## 套件管理工具
 有套件就有套件管理工具，幫助你安裝套件，解決套件之間的依賴問題，常見的有三種：apt (2014), apt-get (1998) 和 dpkg (1994)。
@@ -39,7 +32,7 @@ import TabItem from '@theme/TabItem';
 - apt-get：解決 dpkg 不處理套件依賴關係
 - apt：高層工具，解決 apt-get 仍然不夠直觀，提供更友好的使用體驗
 
-看完你就可以很清楚的知道平常沒事用 apt，簡單而且不用打 get，有[特殊需求](/docs/nas/package#問-gpt-什麼時候需要使用apt-get而不是apt)可以用 apt-get，只想安裝一個套件用 dpkg，那些介紹 .deb 的除了開發人員我不相信你們一年會用到 .deb 幾次。
+可以很清楚的知道平常沒事用 apt，有特殊需求只想安裝單一個套件用 dpkg，那些介紹 .deb 的除了開發人員我不相信你們一年會用到 .deb 幾次。
 
 補充：三者底層都使用 dpkg。  
 補充：無論 apt 還是 apt-get 安裝或移除套件，它們都會更新這個共享的 dpkg 套件數據庫，在 [/var/lib/dpkg/status](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_the_dpkg_command) 管理所有套件。  
@@ -94,6 +87,16 @@ import TabItem from '@theme/TabItem';
   </TabItem>
 </Tabs>
 
+## 沙盒套件管理工具
+簡單來說就是打包一系列的套件讓他在獨立的空間運作不受其他依賴干擾，包含 Snap 和 Flatpak。你可以把他想像成 Docker，或者是一個軟體用的虛擬機。
+
+相關文章：
+
+- [【心得】Linux 出專欄啦（11）：談flatpak 等安裝格式原理，ivonblog 完全抄襲（上）](https://forum.gamer.com.tw/C.php?bsn=60030&snA=630254)
+- [Ubuntu Linux用Snap安裝軟體的優缺點](https://ivonblog.com/posts/linux-snap-pros-and-cons/)
+- [Linux系統用Flatpak安裝軟體的優缺點](https://ivonblog.com/posts/linux-flatpak-pros-and-cons/)
+
+題外話，`sudo apt install firefox` [這個笑話](https://www.reddit.com/r/linuxsucks/comments/1fh07ly/sudo_apt_install_firefox/)的由來是 Ubuntu [強制 firefox 變成 Snap 套件](https://askubuntu.com/questions/1399383/how-to-install-firefox-as-a-traditional-deb-package-without-snap-in-ubuntu-22)，然後一堆人在臭 Ubuntu。
 
 ## 延伸：curl？
 用於從命令行進行網絡請求，初期你可以把他視作一個簡單的從網路下載單一檔案的工具。
@@ -102,13 +105,6 @@ import TabItem from '@theme/TabItem';
 - -o：下載並重新命名
 - -O：下載檔案並使用原始名稱
 - -I：顯示 HTTP 回應，用於網站測試
-
-## 延伸：沙盒套件管理工具
-簡單來說就是打包一系列的套件讓他在獨立的空間運作不受其他依賴干擾，包含 Snap 和 Flatpak。
-
-你可以把他想像成 Docker，或者是一個軟體用的虛擬機。
-
-如果想知道細節可以查看 [[1]](https://forum.gamer.com.tw/C.php?bsn=60030&snA=630254) [[2]](https://ivonblog.com/posts/linux-snap-pros-and-cons/) [[3]](https://ivonblog.com/posts/linux-flatpak-pros-and-cons/)，我程度不夠所以看了無感，而且好長。
 
 ## 延伸：其他常見的 Linux 套件管理工具介紹
 補充其他 Linux 發行版的套件管理工具，雖然 Ubuntu 用不到，但掃過一眼以後，未來再查 Linux 文章就不會對一堆陌生文字感到害怕。

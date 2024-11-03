@@ -1,5 +1,5 @@
 ---
-title: 第一天學習 Docker 該知道的基礎知識
+title: Docker 基礎知識
 description: 第一天學習 Docker 該知道的基礎知識
 tags:
   - Linux
@@ -21,15 +21,15 @@ import TabItem from '@theme/TabItem';
 
 
 # 第一天學習 Docker 該知道的基礎知識
-首先警告這是一個讀演算法的人，只會寫一點程式，玩 NAS 半路出家想說自己寫個 Docker 邊玩邊學的記錄，還有一堆抱怨。
+先聲明這是一個讀演算法的人玩 NAS 半路出家想說自己寫個 Docker 邊玩邊學的記錄。
 
 ## 前言
-身為 NAS 用戶，Docker 最方便的就是怎麼搞都不會壞，不像傳統程式搞壞之後高機率有奇怪的[殘留設定](/posts/clean-linux-settings)清不掉有夠搞人，有問題就是把 mount 的東西全部 rm -rf 就清潔溜溜。不過一開始單純作為使用者使用真的不好理解，尤其是 Docker 和虛擬機的差別，拜某「看了會上癮的」的教學所賜大幅降低我理解效率，不敢相信賣課的可以把東西講成這樣，我已經是長年關注電腦軟硬體的人第一次看都搞不懂他在說什麼。
+身為 NAS 用戶，Docker 最方便的就是怎麼搞都不會壞，不像傳統程式搞壞之後高機率有奇怪的[殘留設定](/posts/clean-linux-settings)清不掉有夠搞人，有問題就是把 mount 的東西全部 rm -rf 就清潔溜溜。不過一開始單純作為使用者使用真的不好理解，尤其是 Docker 和虛擬機的差別，拜某「看了會上癮的」的教學所賜大幅降低我的理解效率，不敢相信賣課的可以把東西講成這樣，我已經是長年關注電腦軟硬體的人第一次看都搞不懂他在說什麼。
 
 這篇文章包含：
 1. Docker 介紹，說明和傳統虛擬機的差異
 2. 如何撰寫 Dockerfile 並構建自己的 Image
-3. 構建 Image 和 Matplotlib 的字體問題
+3. 解決 Matplotlib 的中文字體 (CJK) 問題，解法同時適用於 Docker 以外的環境
 4. 如何撰寫 Docker for Github Actions 完成 Python CI
 5. 常用指令小抄
 
@@ -47,12 +47,12 @@ import TabItem from '@theme/TabItem';
 
 接著馬上介紹剛剛提到的新名詞「容器」。Docker 主要組成為 
 
-- image 鏡像
-- container 容器
-- volume 卷宗
-- network 網路
+1. image 鏡像
+2. container 容器
+3. volume 卷宗
+4. network 網路
 
-整個 Docker 的組成是由 Dockerfile 作為設計圖設計這個容器該用哪些 image，再用 volume 掛載宿主資料夾，network 設定網路，最後合起來是運行時的實體、消耗記憶體和 CPU 資源的叫做 container。上面那隻鯨魚是 Docker Hub，是類似 Github 的地方，把 build 好的鏡像讓大家使用。
+這四項組合而成。Dockerfile 作為設計圖設計這個容器該用哪些 image，再用 volume 把內部儲存空間掛載到宿主機資料夾，network 設定網路，最後合起來是運行時的實體、消耗記憶體和 CPU 資源的叫做 container。上面那隻鯨魚是 Docker Hub，是類似 Github 的地方，把 build 好的鏡像讓大家使用。
 
 ![struct2.jpg](struct2.jpg)
 
@@ -71,9 +71,9 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 需要擴展應用程式時，使用 Docker 可以輕鬆啟動多個相同容器來應對負載增加。更新應用時，只需更新映像檔並重新部署容器。
 
 ## 撰寫 Dockerfile
-其實這篇文章原本不是教學，標題是「第一次嘗試寫 Dockerfile」範圍只有這裡，只是想記錄我的構建過程，但是看到某教學之後就越寫越多...
+其實這篇文章原本不是教學，標題是「第一次嘗試寫 Dockerfile」範圍只有這裡，只是想記錄我的構建過程結果越寫越多。
 
-直接開戰，我認為沒那麼難理解只是資源太分散，基礎版是 python slim，加上兩段構建，以及 `--virtual` 方式共三個版本：
+言歸正傳，我認為沒那麼難理解只是資源太分散，基礎版是 python slim，加上兩段構建，以及 `--virtual` 方式共三個版本：
 
 <Tabs>
   <TabItem value="1" label="slim (basic)">
@@ -258,14 +258,12 @@ print("Current sans-serif fonts:")
 print(plt.rcParams["font.sans-serif"])
 ```
 
-最簡單也最麻煩的設定就是字體問題，因為檔名叫 NotoSansCJK-Regular，裡面的字體不見得是 NotoSansCJK-Regular，可能是 "Noto Sans TC/JP" "Noto-Sans-TC" "Noto Sans" 等等，或者是小寫，有夠麻煩，而且就算名字對了還是照樣不顯示最火大，途中不知道試了哪個 JP 字體只能顯示中文，到底= =
+最簡單也最麻煩的設定就是字體問題，因為檔名叫 NotoSansCJK-Regular，裡面的字體不見得是 NotoSansCJK-Regular，可能是 "Noto Sans TC/JP" "Noto-Sans-TC" "Noto Sans" 等等，或者是小寫，有夠麻煩，最後終於寫對名字了結果還是口口口口最火大，途中還不知道試了哪個名字是 JP 的字體，中文可以正常顯示但是日文口口口口，到底= =
 
-還有字體下載，我也是沒想到有天我會去 [Debian 官方倉庫](https://packages.debian.org/source/sid/all/fonts-noto-cjk) 裡面找字體，因為 apk 下載會包含多個粗細和語言，但是使用一種語言其他語言的常見字都可以顯示，為了縮減容量煞費苦心阿...
+關於字體下載，我也是沒想到有天我會去 [Debian 官方倉庫](https://packages.debian.org/source/sid/all/fonts-noto-cjk) 裡面找字體，因為 apk 下載會包含多個粗細和語言，但是使用一種語言其他語言的常見字都可以顯示，為了極限縮減容量煞費苦心阿。
 
 ### Github Actions
-研究一上午的結論是 Windows 不支援，至少我先催眠自己不支援，不想再搞了。
-
-一個關鍵是找 Github [現有 Actions repo](https://github.com/philips-software/run-windows-docker-container-action)，別用什麼 choco 安裝那是傻了
+研究一上午的結論是 Windows 不支援，至少我先催眠自己不支援，不想再搞了，一個關鍵是找 Github [現有 Actions repo](https://github.com/philips-software/run-windows-docker-container-action)，別用什麼 choco 安裝那是傻了。下方是使用 ubuntu 完成的範例。
 
 ```yaml
 name: Docker Test
@@ -388,4 +386,4 @@ docker rm -v -f $(docker ps -qa)  # 刪除所有容器
 ```
 
 ## 結束！
-終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多。
+終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多，至少不會像賣課網站的課程預覽教學說我們會在 container 裡面部屬 image，有夠荒謬。

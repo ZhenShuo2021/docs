@@ -15,9 +15,9 @@ last_update:
 # 有關修改的動詞
 
 ## 起因
-目前寫 commit message 的格式是 動詞: 內容，然後發現自己永遠只會 edit/change/adjust/tune，而且也不是很清楚他們的差別，大概只知道 adjust 是略微調整，tune 是調參數，修正類型的動詞更沒概念，這邊請 GPT 補一下英文，而且有些單字會腦袋抽風突然想不起來，這篇也可以當作 cheatsheet 使用。
+寫 commit message 發現自己永遠只會 edit/change/adjust/tune，這邊請 GPT 補一下英文，而且有些單字會腦袋抽風突然想不起來，這篇當作 cheatsheet 使用。
 
-以下依照嚴重重度排列。
+下面的表格都依據修改的嚴重程度依序排列。
 
 ## 調整類型動詞
 

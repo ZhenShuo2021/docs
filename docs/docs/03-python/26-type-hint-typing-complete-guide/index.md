@@ -12,7 +12,7 @@ keywords:
   - typing
   - type hint
 last_update:
-  date: 2024-10-30T04:44:33+08:00
+  date: 2024-11-03T18:00:33+08:00
   author: zsl0621
 ---
 
@@ -21,14 +21,14 @@ import TabItem from '@theme/TabItem';
 
 # Type Hint 教學：從入門到進階的 Python 型別註釋
 
-型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「讓使用者馬上知道該函式應該輸入哪種類型的變數」** ，不用點進函式閱讀程式碼；並且 **「整合 IDE，在程式撰寫時就可以警告」** ，不用等到執行才知道使用錯誤。
+型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」** ，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」** ，不用等到執行才知道使用錯誤。
 
-本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者搜尋後覺得最好的資源作為初階介紹，講的非常好，不必再看其他文章：
+本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者整理後覺得最好的資源，講的非常好，不必再看其他文章：
 
 - [【python】Type Hint入门与初探，好好的python写什么类型标注？](https://www.youtube.com/watch?v=HYE85bqNoGw)
 - [【python】Type Hint的进阶知识，这下总该有你没学过的内容了吧？](https://www.youtube.com/watch?v=6rgBwA7TRfE)
 
-如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例，並且不要看任何其他中文文章以節省各位的時間。
+如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例，請不要看任何其他中文文章以節省各位的時間，因為真的很拖時間又不完整。
 
 
 ## 基礎關鍵字
@@ -41,11 +41,14 @@ import TabItem from '@theme/TabItem';
 - Literal: 限制只能使用指定輸入
 - Callable: 可以呼叫的對象，使用方式是 Callable[[input_type1, input_type2], output_type]
 - Iterable: 可以迭代的對象（該對象存在 \_\_iter\_\_ 方法，例如 list）
+- Final: 最終結果，不應該被覆寫
+
+
 
 ## 中階關鍵字
 
 ### TypedDict
-用於限制字典的 key-value pair 的變數類型，就是軟限制版本的 @dataclass。  
+用於限制字典的 key-value pair 的變數類型，就是軟限制版本的 dataclass。  
 
 [Python 类型体操训练（二）-- 中级篇](https://bruceyuan.com/post/python-type-challenge-intermediate.html#typeddict-%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
 
@@ -85,6 +88,16 @@ age_wrong: Age = "25"  # 錯誤：Age 應為 int
 print(get_user_age(user_id_wrong, age_wrong))  # 錯誤：int 和 UserId 是不同類型變數
 ```
 
+### overload/override
+用於提示 mypy 輸入輸出型別的多載的裝飾器，和 C++ 真正意義上的多載不同，只用於提示 mypy/IDE 而已。overload 用於函式或方法之間，override 用於繼承之間。
+
+寫一寫有時候會忘記這些終究只是提示，[就像這篇文章一樣](https://stackoverflow.com/questions/57222412/cannot-guess-why-overloaded-function-implementation-does-not-accept-all-possible)，請記得 type hint 完全不影響 Python 實際運作。
+
+
+### 不常用關鍵字
+- Annotated: 用於[附註變數](https://stackoverflow.com/questions/71898644/how-to-use-python-typing-annotated)，但是截至 2024/11 VS code 沒有整合此功能。
+- Self: 回傳類別本身。
+- typeguard: 用於 [type narrowing](https://rednafi.com/python/typeguard_vs_typeis/)。
 
 
 ## 高級關鍵字
@@ -92,7 +105,7 @@ print(get_user_age(user_id_wrong, age_wrong))  # 錯誤：int 和 UserId 是不�
 
 
 ### Protocol
-檢查該類別是否都實作相同的方法，軟性限制需要實作相同方法，和抽象方法 (@abstractmethod) 的差異是抽象方法是硬性限制，前者還是可以執行（畢竟只是 hint，後者無法執行）。
+檢查該類別是否都實作相同的方法，軟性限制需要實作相同方法，和抽象方法 (abstractmethod) 的差異是抽象方法是硬性限制，前者還是可以執行（畢竟只是 hint，後者無法執行）。
 
 > 符合 Python 鴨子型別的 typing，長得像就好，其他隨便你
 
@@ -204,10 +217,103 @@ print(result)   # [1, 2, 3, 'hello']
 
 TypeVar 也有參數，使用方式為
 
+##### bound
 ```py
 T = TypeVar("T", int, str)  # 限制只能使用 int/str
 T = TypeVar("T", int, str, bound=MyClass)  # 限制只能使用 int/str 和 MyClass 的子類別
 ```
+
+##### covariant
+設定使否使用協變，協變代表允許子類型替代父類型
+
+```py
+T_co = TypeVar('T_co', covariant=True)
+```
+
+##### contravariant
+設定使否使用逆變，逆變代表允許父類型替代子類型
+```py
+T_co = TypeVar('T_co', contravariant=True)
+```
+
+<details>
+<summary>由於協變逆變筆者也是第一次接觸，所以請語言模型生成了一個範例</summary>
+
+> ChatGPT 4o#2024/11
+
+協變與逆變在型別系統中決定了如何處理繼承關係中的類型約束，特別在泛型和繼承類別中的參數傳遞上起著至關重要的作用。Python 透過 `typing` 模組支持協變（covariant）與逆變（contravariant），特別用於類型參數的方向性控制，使我們能更靈活地進行類型檢查和靜態分析。這裡提供一個清晰的範例，展示設定協變與逆變如何影響代碼的行為和安全性。
+
+<h5>協變與逆變的概念</h5>
+1. **協變（Covariant）**：允許子類型替代父類型，例如，`List[Dog]` 可以視為 `List[Animal]`。
+2. **逆變（Contravariant）**：允許父類型替代子類型，例如，一個接受 `Animal` 的函數可以用來處理 `Dog`。
+3. **不變（Invariant）**：完全相同類型，無法替代。
+
+<h5>範例概述</h5>
+假設我們有一個 `Animal` 類別和它的子類 `Dog`。`Animal` 是所有動物的基類，`Dog` 是 `Animal` 的子類。這裡展示協變與逆變的設定如何影響類別之間的兼容性。
+
+<h5>1. 基本設置</h5>
+首先，定義基類和子類：
+
+```python
+from typing import TypeVar, Generic, Protocol
+
+class Animal:
+    def speak(self) -> str:
+        return "Generic animal sound"
+
+class Dog(Animal):
+    def speak(self) -> str:
+        return "Woof"
+```
+
+<h5>2. 使用協變的範例</h5>
+假設我們有一個 `Cage` 類別，用來裝動物，並希望設置它為協變類型，這樣可以接受 `Animal` 或任何 `Animal` 的子類。
+
+```python
+# 協變型別變數
+T_co = TypeVar("T_co", bound=Animal, covariant=True)
+
+class Cage(Generic[T_co]):
+    def __init__(self, animal: T_co):
+        self.animal = animal
+
+    def get_animal(self) -> T_co:
+        return self.animal
+```
+
+這樣設計使 `Cage[Dog]` 被視為 `Cage[Animal]` 的一個子類，因此可以安全地傳遞 `Dog`：
+
+```python
+dog_cage: Cage[Animal] = Cage(Dog())  # 這是允許的，因為 Cage 是協變的
+print(dog_cage.get_animal().speak())  # 輸出 "Woof"
+```
+
+<h5>3. 使用逆變的範例</h5>
+假設我們有一個 `Trainer` 類別，它可以訓練 `Animal` 類別或任何 `Animal` 的子類。為了允許更泛化的訓練對象，我們設置 `Trainer` 類別的型別變數為逆變。
+
+```python
+# 逆變型別變數
+T_contra = TypeVar("T_contra", bound=Animal, contravariant=True)
+
+class Trainer(Generic[T_contra]):
+    def train(self, animal: T_contra) -> str:
+        return f"Training {animal.speak()}"
+```
+
+這樣設計使得 `Trainer[Animal]` 可以被用於 `Dog`，但不能相反。這允許我們將更廣義的 `Animal` 訓練員用於特定類型的動物。
+
+```python
+trainer: Trainer[Dog] = Trainer[Animal]()  # 允許，因為 Trainer 是逆變的
+print(trainer.train(Dog()))  # 輸出 "Training Woof"
+```
+
+<h5>小結</h5>
+- **協變（covariant）**：允許更具體的類別被用在廣義類型的位置，通常適用於輸出情境（例如 `get_animal`）。
+- **逆變（contravariant）**：允許更廣義的類別被用在具體類型的位置，通常適用於輸入情境（例如 `train`）。
+
+此範例展示了協變和逆變在泛型類型設計中對型別約束的控制：協變允許子類的替代，而逆變允許父類的替代。
+</details>
+
 
 #### Generic
 Python 中的泛型，用於標示尚未決定的型別，實例化該「類別」後就可以限制只能使用相同的型別。
@@ -235,7 +341,7 @@ print(box.items)
 
 
 ## **實戰泛型：複寫抽象方法**
-前面都是使用「設定型別 -> 實例化變數」作為範例方便快速理解，這裡我們考慮一個實際情況：當我們使用 **父類別設定模版**，但是 **子類別的實作輸出卻不同型別**。
+前面都是使用「設定型別 -> 實例化變數」作為範例方便快速理解，這裡我們考慮一個實際情況：當我們使用 <u>**父類別設定模版**</u>，但是 <u>**子類別的實作輸出卻不同型別**</u>。
 
 以下程式碼中，我們想要限制 `LinkType` 是某幾種限定類別的參數，使用抽象方法並且讓子類別繼承父類別，子類別可以選擇父類別中的任何一種 Link 作為變數型別。第一次嘗試時沒想這麼多，直接宣告
 
@@ -251,36 +357,27 @@ ImageLink: TypeAlias = tuple[str, str]
 LinkType = TypeVar("LinkType", AlbumLink, ImageLink)
 
 
-class ScrapingStrategy(ABC):
+class BaseScraper(ABC):
     """Abstract base class for different scraping strategies."""
 
     @abstractmethod
-    def process_page_links(
-        self,
-        page_links: list[str],
-        # highlight-next-line
-    ) -> list[LinkType]:
+    # highlight-next-line
+    def process_page_links(self, page_links: list[str]) -> list[LinkType]:
         """Process links found on the page."""
 
 
-class AlbumListStrategy(ScrapingStrategy):
-    def process_page_links(
-        self,
-        page_links: list[str],
-        # highlight-next-line
-    ) -> list[AlbumLink]:
+class AlbumScraper(ScrapingStrategy):
+    # highlight-next-line
+    def process_page_links(self, page_links: list[str]) -> list[AlbumLink]:
         page_result = []
         for link in page_links:
             page_result.append(link)
         return page_result
 
 
-class AlbumImageStrategy(ScrapingStrategy):
-    def process_page_links(
-        self,
-        page_links: list[str],
-        # highlight-next-line
-    ) -> list[ImageLink]:
+class ImageScraper(ScrapingStrategy):
+    # highlight-next-line
+    def process_page_links(self, page_links: list[str]) -> list[ImageLink]:
         page_result = []
         for link in page_links:
             page_result.append((link, "after_some_process"))
@@ -319,23 +416,17 @@ LinkType = TypeVar("LinkType", AlbumLink, ImageLink)
 
 
 # highlight-next-line
-class ScrapingStrategy(ABC, Generic[LinkType]):
+class BaseScraper(Generic[LinkType], ABC):
     """Abstract base class for different scraping strategies."""
 
     @abstractmethod
-    def process_page_links(
-        self,
-        page_links: list[str],
-    ) -> list[LinkType]:
+    def process_page_links(self, page_links: list[str]) -> list[LinkType]:
         """Process links found on the page."""
 
 
 # highlight-next-line
-class AlbumListStrategy(ScrapingStrategy[AlbumLink]):
-    def process_page_links(
-        self,
-        page_links: list[str],
-    ) -> list[AlbumLink]:
+class AlbumScraper(BaseScraper[AlbumLink]):
+    def process_page_links(self, page_links: list[str]) -> list[AlbumLink]:
         page_result = []
         for link in page_links:
             page_result.append(link)
@@ -343,11 +434,8 @@ class AlbumListStrategy(ScrapingStrategy[AlbumLink]):
 
 
 # highlight-next-line
-class AlbumImageStrategy(ScrapingStrategy[ImageLink]):
-    def process_page_links(
-        self,
-        page_links: list[str],
-    ) -> list[ImageLink]:
+class ImageScraper(BaseScraper[ImageLinkAndALT]):
+    def process_page_links(self, page_links: list[str]) -> list[ImageLink]:
         page_result = []
         for link in page_links:
             page_result.append((link, "after_some_process"))
@@ -371,82 +459,41 @@ Success: no issues found in 1 source file
 
 ### 還有其他方法嗎？
 
-當我們想到一個解決方法後，下一步就是問自己有沒有更好的解決方法，不過現在有語言模型，所以這是語言模型的回答：
+當我們想到一個解決方法後，下一步就是問自己有沒有更好的解決方法，這裡筆者自行檢討了幾種不同的 type hint 方式：
 
-:::tip 問題（prompt）
-1. 使用generic是最好方式嗎？
-2. 有沒有更好方式解決？
-3. override/overload可以解決這個問題嗎？
-:::
+1. Generic: 原本的 Generic 提供了繼承的功能，這是其他方式做不到的。
+2. Protocol: 只提供類似 ABC 抽象類別的功能，並沒有針對輸出輸入型別限制，功能完全不同。
+3. Union: 更鬆散的 type hint，使用輸出的變數會被 IDE 提醒型別不一致。
+4. Override: 可以用，但是不符合直覺，邏輯上 abstractmethod 的子類應該遵守父類定義，可是子類的實現卻又 override 父類。
+5. Overload: 用途不同，在同一個 scope 中有多個同名函式或方法才使用此裝飾器
 
-> Claude 3.5 sonnet#2024/10
+綜合以上幾點，直接使用 Generic 在此情境中是最佳解，而且使用 override 仍需要在父類繼承 Generic，所以直接使用 Generic 是更直觀且方便的方式。
 
-1. 使用 Generic 是否最佳？
-- 在這個案例中，Generic 確實是最佳解決方案
-- 原因：
-  1. Type Safety：提供編譯時期的型別檢查
-  2. Code Reuse：允許型別安全的程式碼重用
-  3. Interface Consistency：確保 inheritance hierarchy 中的型別一致性
+:::info 請 Claude 3.5 Sonnet#2024/11 做的總結：
 
-2. 其他可能的解決方案：
+結論：
 
-```python
-# Solution 1: Protocol (Structural Subtyping)
-from typing import Protocol
+**Override 的問題：**
+1. 他沒寫，缺點就是上面寫的不符合直覺，邏輯上 abstractmethod 的子類應該遵守父類定義，可是子類的實現卻又 override 父類。
 
-class ScrapingProtocol(Protocol):
-    def process_page_links(self, page_links: list[str], 
-                          page_result: list[Any]) -> None: ...
-
-# Solution 2: Type Union
-class ScrapingStrategy:
-    def process_page_links(self, page_links: list[str],
-                          page_result: list[Union[AlbumLink, ImageLink]]) -> None:
-        pass
-```
-
-但這些替代方案的缺點：
-- Protocol：失去特定型別的安全性
-- Union：無法保證型別的特定性，可能混用不同型別
-
-3. Override/Overload 是否可行：
-
-```python
-# Using Overload - Not a good solution
-from typing import overload
-
-class ScrapingStrategy:
-    @overload
-    def process_page_links(self, page_links: list[str],
-                          page_result: list[AlbumLink]) -> None: ...
-    
-    @overload
-    def process_page_links(self, page_links: list[str],
-                          page_result: list[ImageLink]) -> None: ...
-```
-
-Overload 的問題：
-1. Static Type Safety：
-   - Overload 只提供型別提示，不提供實際的型別約束
-   - 無法強制子類別遵守特定的型別規範
-
-2. Code Organization：
+**Overload 的問題：**
+1. Code Organization：
    - 需要為每種可能的型別組合寫一個 overload
    - 維護成本高，且容易出錯
 
-3. Design Intent：
+2. Design Intent：
    - Overload 主要用於同一個函數處理不同型別參數的情況
    - 不適合用於表達 class hierarchy 中的型別關係
 
-結論：
-- Generic 是此案例的最佳解決方案
-- 原因：
+**Generic 是此案例的最佳解決方案**
   1. Type Safety：提供完整的型別安全性
   2. Design Clarity：清楚表達設計意圖
   3. Maintainability：容易維護和擴展
   4. Compile-time Checking：提供編譯時期的型別檢查
 
-使用 Generic 能最好地表達："這是一個可以處理不同型別的策略，但每個具體策略實現都需要指定並遵守其處理的特定型別"。
+使用 Generic 能最好地表達：「這是一個可以處理不同型別的策略，但每個具體策略實現都需要指定並遵守其處理的特定型別」。
+:::
+
 
 ## 名詞解析
 
@@ -466,11 +513,13 @@ Overload 的問題：
 
 本章節紀錄 Python 各個版本新增的 type hint 功能，方便快速查找
 
-- 3.8: 新增 `Protocol`
+- 3.8: 新增 `Protocol`。
 - 3.9: 內建 `list/set/tuple/dict`，不再需要從 typing 載入，和原本 typing 版本的功能一模一樣。
 - 3.10: `Union` 關鍵字可以用管道符號 | 代替。
+- 3.10: 預設使用 `from __future__ import annotations`，此功能允許延遲型別提示，允許定義類別時使用類別自身作為型別提示。
 - 3.12: `Generic` 新增了語法 class MyClass[T]，舊版語法是 class MyClass(Generic[T])。
-- 3.12: `TypeAlias` 支援語法[^1] type Vector = list[float]，舊版語法是 Vector: TypeAlias = list[float]
+- 3.12: `TypeAlias` 支援語法[^1] type Vector = list[float]，舊版語法是 Vector: TypeAlias = list[float]。
+- 3.12: 新增 `Override`。
 - 3.14: typing 中的 `List/Set/Tuple/Dict` 將被標記為 deprecated。
 
 [^1]: 筆者認為舊版語法和 Python 原本語法一致，不需多記一種比較好讀。

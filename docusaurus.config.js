@@ -155,12 +155,12 @@ module.exports = {
           position: "left",
           label: "備忘錄📝",
         },
-        {
-          href: 'https://blog.zsl0621.cc/',
-          position: 'right',
-          className: 'header-blog-link',
-          'aria-label': 'Personal blog',
-        },
+        // {
+        //   href: 'https://blog.zsl0621.cc/',
+        //   position: 'right',
+        //   className: 'header-blog-link',
+        //   'aria-label': 'Personal blog',
+        // },
         {
           href: 'https://github.com/ZhenShuo2021',
           position: 'right',

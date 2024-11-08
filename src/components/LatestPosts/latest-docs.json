@@ -1,5 +1,35 @@
 [
   {
+    "title": "False-Sharing 閱讀筆記和實測",
+    "permalink": "/docs/python/false-sharing-in-python/",
+    "description": "Python 中的 False-Sharing 閱讀筆記和實測",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Numba",
+        "permalink": "/docs/tags/numba"
+      },
+      {
+        "inline": true,
+        "label": "Performance",
+        "permalink": "/docs/tags/performance"
+      }
+    ],
+    "date": 1731115020000,
+    "yearMonth": "2024 年 11 月",
+    "day": "09"
+  },
+  {
     "title": "初嘗策略模式",
     "permalink": "/memo/python/first-attempt-strategy-pattern/",
     "description": "第一次撰寫策略模式的紀錄",
@@ -203,40 +233,5 @@
     "date": 1729180800000,
     "yearMonth": "2024 年 10 月",
     "day": "18"
-  },
-  {
-    "title": "Numba 效能深入解析",
-    "permalink": "/docs/python/numba-performance-benchmark-svml-signal-processing/",
-    "description": "Numba 效能深入解析：矩陣計算與訊號還原演算法",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1728662400000,
-    "yearMonth": "2024 年 10 月",
-    "day": "12"
   }
 ]

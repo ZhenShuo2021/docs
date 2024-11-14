@@ -1,5 +1,30 @@
 [
   {
+    "title": "Python 中的多工處理原理介紹",
+    "permalink": "/docs/python/python-multitasking-threading-processing-coroutine/",
+    "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/docs/tags/multitasking"
+      }
+    ],
+    "date": 1731607500000,
+    "yearMonth": "2024 年 11 月",
+    "day": "15"
+  },
+  {
     "title": "False-Sharing 閱讀筆記和實測",
     "permalink": "/docs/python/false-sharing-in-python/",
     "description": "Python 中的 False-Sharing 閱讀筆記和實測",
@@ -101,7 +126,7 @@
   },
   {
     "title": "Python 中的多工處理原理介紹",
-    "permalink": "/docs/python/python-multitasking-threading-processing-coroutine/",
+    "permalink": "/docs/python/python-multitasking-threading-processing-coroutine copy/",
     "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
     "tags": [
       {
@@ -198,40 +223,5 @@
     "date": 1729362093000,
     "yearMonth": "2024 年 10 月",
     "day": "20"
-  },
-  {
-    "title": "Numba 教學：加速 Python 科學計算",
-    "permalink": "/docs/python/numba-tutorial-accelerate-python-computing/",
-    "description": "最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/docs/tags/教學"
-      }
-    ],
-    "date": 1729180800000,
-    "yearMonth": "2024 年 10 月",
-    "day": "18"
   }
 ]

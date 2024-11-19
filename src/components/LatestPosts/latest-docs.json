@@ -1,23 +1,58 @@
 [
   {
-    "title": "Python 虛擬環境管理套件完整比較",
-    "permalink": "/docs/python/virtual-environment-management-packages-comparison/",
-    "description": "Python 虛擬環境管理套件完整比較",
+    "title": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "permalink": "/memo/python/pynacl-usage/",
+    "description": "PyNaCl 套件使用紀錄以及基本密碼學概念",
     "tags": [
       {
         "inline": true,
         "label": "Programming",
-        "permalink": "/docs/tags/programming"
+        "permalink": "/memo/tags/programming"
       },
       {
         "inline": true,
         "label": "Python",
-        "permalink": "/docs/tags/python"
+        "permalink": "/memo/tags/python"
       },
       {
         "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/docs/tags/虛擬環境"
+        "label": "PyNaCl",
+        "permalink": "/memo/tags/py-na-cl"
+      },
+      {
+        "inline": true,
+        "label": "密碼學",
+        "permalink": "/memo/tags/密碼學"
+      }
+    ],
+    "date": 1732038540000,
+    "yearMonth": "2024 年 11 月",
+    "day": "20"
+  },
+  {
+    "title": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "permalink": "/memo/python/pynacl-usage/",
+    "description": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "PyNaCl",
+        "permalink": "/memo/tags/py-na-cl"
+      },
+      {
+        "inline": true,
+        "label": "密碼學",
+        "permalink": "/memo/tags/密碼學"
       }
     ],
     "date": 1732018080000,
@@ -223,20 +258,5 @@
     "date": 1730423460000,
     "yearMonth": "2024 年 11 月",
     "day": "01"
-  },
-  {
-    "title": "關於這個區域",
-    "permalink": "/memo/intro/",
-    "description": "這裡是 zsl0621 的個人文檔庫。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Docusaurus",
-        "permalink": "/memo/tags/docusaurus"
-      }
-    ],
-    "date": 1730217600000,
-    "yearMonth": "2024 年 10 月",
-    "day": "30"
   }
 ]

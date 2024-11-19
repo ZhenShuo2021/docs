@@ -20,9 +20,9 @@
         "permalink": "/docs/tags/multitasking"
       }
     ],
-    "date": 1731637200000,
+    "date": 1731997410000,
     "yearMonth": "2024 年 11 月",
-    "day": "15"
+    "day": "19"
   },
   {
     "title": "Python 中的多工處理原理介紹",
@@ -45,7 +45,52 @@
         "permalink": "/docs/tags/multitasking"
       }
     ],
-    "date": 1731607500000,
+    "date": 1731997380000,
+    "yearMonth": "2024 年 11 月",
+    "day": "19"
+  },
+  {
+    "title": "初嘗 Python 工作流自動化",
+    "permalink": "/memo/python/first-attempt-python-workflow-automation/",
+    "description": "初嘗 Python 工作流自動化",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": 1731997350000,
+    "yearMonth": "2024 年 11 月",
+    "day": "19"
+  },
+  {
+    "title": "Python 中的異步操作 - 協程",
+    "permalink": "/docs/python/async-basic/",
+    "description": "Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/docs/tags/multitasking"
+      }
+    ],
+    "date": 1731637200000,
     "yearMonth": "2024 年 11 月",
     "day": "15"
   },
@@ -130,26 +175,6 @@
     "day": "03"
   },
   {
-    "title": "初嘗 Python 工作流自動化",
-    "permalink": "/memo/python/first-attempt-python-workflow-automation/",
-    "description": "初嘗 Python 工作流自動化",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/memo/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
-      }
-    ],
-    "date": 1730480133000,
-    "yearMonth": "2024 年 11 月",
-    "day": "02"
-  },
-  {
     "title": "Python 中的多工處理原理介紹",
     "permalink": "/docs/python/python-multitasking-threading-processing-coroutine copy/",
     "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
@@ -208,25 +233,5 @@
     "date": 1730141052000,
     "yearMonth": "2024 年 10 月",
     "day": "29"
-  },
-  {
-    "title": "解決 GPG 無法提交的錯誤",
-    "permalink": "/docs/git/miscs/gpg-failed-to-sign-the-data/",
-    "description": "解決 GPG 無法提交的錯誤",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1729367767000,
-    "yearMonth": "2024 年 10 月",
-    "day": "20"
   }
 ]

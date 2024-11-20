@@ -1,31 +1,26 @@
 [
   {
-    "title": "PyNaCl 套件使用紀錄以及基本密碼學概念",
-    "permalink": "/memo/python/pynacl-usage/",
-    "description": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "title": "Python 虛擬環境管理和依賴解析套件完整比較",
+    "permalink": "/docs/python/virtual-environment-management-comparison-2024/",
+    "description": "Python 虛擬環境管理和依賴解析套件完整比較",
     "tags": [
       {
         "inline": true,
         "label": "Programming",
-        "permalink": "/memo/tags/programming"
+        "permalink": "/docs/tags/programming"
       },
       {
         "inline": true,
         "label": "Python",
-        "permalink": "/memo/tags/python"
+        "permalink": "/docs/tags/python"
       },
       {
         "inline": true,
-        "label": "PyNaCl",
-        "permalink": "/memo/tags/py-na-cl"
-      },
-      {
-        "inline": true,
-        "label": "密碼學",
-        "permalink": "/memo/tags/密碼學"
+        "label": "虛擬環境",
+        "permalink": "/docs/tags/虛擬環境"
       }
     ],
-    "date": 1732038540000,
+    "date": 1732076160000,
     "yearMonth": "2024 年 11 月",
     "day": "20"
   },
@@ -55,9 +50,9 @@
         "permalink": "/memo/tags/密碼學"
       }
     ],
-    "date": 1732018080000,
+    "date": 1732038540000,
     "yearMonth": "2024 年 11 月",
-    "day": "19"
+    "day": "20"
   },
   {
     "title": "Python 中的異步操作 - 協程",
@@ -128,31 +123,6 @@
     "date": 1731997350000,
     "yearMonth": "2024 年 11 月",
     "day": "19"
-  },
-  {
-    "title": "Python 中的異步操作 - 協程",
-    "permalink": "/docs/python/async-basic/",
-    "description": "Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "multitasking",
-        "permalink": "/docs/tags/multitasking"
-      }
-    ],
-    "date": 1731637200000,
-    "yearMonth": "2024 年 11 月",
-    "day": "15"
   },
   {
     "title": "False-Sharing 閱讀筆記和實測",
@@ -235,28 +205,38 @@
     "day": "03"
   },
   {
-    "title": "Python 中的多工處理原理介紹",
-    "permalink": "/docs/python/python-multitasking-threading-processing-coroutine copy/",
-    "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
+    "title": "關於這個區域",
+    "permalink": "/memo/intro/",
+    "description": "這裡是 zsl0621 的個人文檔庫。",
     "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/memo/tags/docusaurus"
+      }
+    ],
+    "date": 1730217600000,
+    "yearMonth": "2024 年 10 月",
+    "day": "30"
+  },
+  {
+    "title": "慣例式提交",
+    "permalink": "/docs/git/conventional-commits/",
+    "description": "寫好慣例式提交，讓提交訊息一目了然",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
       {
         "inline": true,
         "label": "Programming",
         "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "multitasking",
-        "permalink": "/docs/tags/multitasking"
       }
     ],
-    "date": 1730423460000,
-    "yearMonth": "2024 年 11 月",
-    "day": "01"
+    "date": 1730141052000,
+    "yearMonth": "2024 年 10 月",
+    "day": "29"
   }
 ]

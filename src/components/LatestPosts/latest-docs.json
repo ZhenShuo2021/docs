@@ -1,5 +1,25 @@
 [
   {
+    "title": "初嘗非同步操作 asyncio",
+    "permalink": "/memo/python/first-attempt-python-asyncio/",
+    "description": "初嘗 Python 非同步操作 asyncio",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": 1732214550000,
+    "yearMonth": "2024 年 11 月",
+    "day": "22"
+  },
+  {
     "title": "Python 虛擬環境管理和依賴解析套件完整比較",
     "permalink": "/docs/python/virtual-environment-management-comparison-2024/",
     "description": "Python 虛擬環境管理和依賴解析套件完整比較",
@@ -218,25 +238,5 @@
     "date": 1730217600000,
     "yearMonth": "2024 年 10 月",
     "day": "30"
-  },
-  {
-    "title": "慣例式提交",
-    "permalink": "/docs/git/conventional-commits/",
-    "description": "寫好慣例式提交，讓提交訊息一目了然",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1730141052000,
-    "yearMonth": "2024 年 10 月",
-    "day": "29"
   }
 ]

@@ -509,12 +509,19 @@ Success: no issues found in 1 source file
 > 
 > If you do not know the representation of a data type and are not allowed to rely upon its representation, then the data type is abstract.
 
+## 相關工具
+
+雖然只有兩行但是很重要，所以獨立一個段落。
+
+如果要最大化發揮 type hint 功效則需要結合 [mypy/pylint 等套件](https://www.trackawesomelist.com/typeddjango/awesome-python-typing/readme/#static-type-checkers) 使用，建議直接整合 pre-commit hooks 使用，請參考文章 [初嘗 Python 工作流自動化](/memo/python/first-attempt-python-workflow-automation)。
+
 ## 版本紀錄
 
 本章節紀錄 Python 各個版本新增的 type hint 功能，方便快速查找
 
 - 3.8: 新增 `Protocol`。
-- 3.9: 內建 `list/set/tuple/dict`，不再需要從 typing 載入，和原本 typing 版本的功能一模一樣。
+- 3.9: 內建 `list/set/tuple/dict`，不再需要從 typing 載入，還有很多 collections [不再建議從 typing 載入](https://stackoverflow.com/questions/65120501/typing-any-in-python-3-9-and-pep-585-type-hinting-generics-in-standard-collect)。
+- 3.9: 新增 `Annotated` 功能。
 - 3.10: `Union` 關鍵字可以用管道符號 | 代替。
 - 3.10: 預設使用 `from __future__ import annotations`，此功能允許延遲型別提示，允許定義類別時使用類別自身作為型別提示。
 - 3.12: `Generic` 新增了語法 class MyClass[T]，舊版語法是 class MyClass(Generic[T])。
@@ -522,16 +529,14 @@ Success: no issues found in 1 source file
 - 3.12: 新增 `Override`。
 - 3.14: typing 中的 `List/Set/Tuple/Dict` 將被標記為 deprecated。
 
-[^1]: 筆者認為舊版語法和 Python 原本語法一致，不需多記一種比較好讀。
+[^1]: 筆者認為舊版語法和 Python 原本語法一致，不需多記一種比較好讀，這見仁見智。
 
 
 ## 結語
-其實原本只想寫 Generic，但是想想還是稍微整理一下資訊，結果就是最想寫的反而變成最後一項了。
-
-本文貢獻除了整理真正有用的資訊，也解釋了沒什麼人講過的 Generic。
-
-使用 typing 時需要自行衡量標注的完整程度和程式開發的方便程度，寫的太完整會導致開發中需要不斷處理各種型別，失去 Python 快速開發的意義。
+其實原本只想寫 Generic，但是想想還是稍微整理一下資訊，結果就是最想寫的反而變成最後一項了，本文除了整理真正有用的資訊，也解釋了沒什麼人講過的 Generic。使用 type hint 時需要自行衡量標注的完整程度和程式開發的方便程度，寫的太完整會導致開發中需要不斷處理各種型別，失去 Python 快速開發的意義。
 
 ## 參考資料
 
-[用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html)
+- [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html)  
+- [the maintainer of pyright closes valid issues for no reason and lashes out at users](https://docs.basedpyright.com/latest/) 超好笑，我從來沒在 Github 上看過[兩百個倒讚](https://github.com/microsoft/pyright/issues/8065#issuecomment-2146352290)  
+

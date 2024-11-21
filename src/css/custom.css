@@ -111,7 +111,7 @@ blockquote {
 }
 
 html {
-  font-family: "Noto Sans TC", sans-serif;
+  /* font-family: "Noto Sans TC", sans-serif; */
   font-weight: normal;
 }
 
@@ -141,14 +141,14 @@ html[data-theme="dark"] {
   --docusaurus-highlighted-code-line-bg: rgba(128, 128, 128, 0.3);
 }
 
-html h1,
+/* html h1,
 html h2,
 html h3,
 html h4,
 html h5,
 html h6 {
   font-family: "Noto Sans TC", sans-serif;
-}
+} */
 
 html[data-theme="dark"] h1,
 html[data-theme="dark"] h2,
@@ -290,7 +290,7 @@ html[data-theme="dark"] .footer_eye {
 
 /* 文章格式 */
 article>header>h1 {
-  font-family: "Noto Sans TC", sans-serif;
+  /* font-family: "Noto Sans TC", sans-serif; */
   font-weight: 900;
   font-size: 1em !important;
 }
@@ -302,7 +302,7 @@ article>header>h2 {
 }
 
 .markdown {
-  font-family: "Noto Sans TC", sans-serif;
+  /* font-family: "Noto Sans TC", sans-serif; */
 }
 
 .markdown>h1 {
@@ -462,7 +462,7 @@ article>header>h2 {
   text-decoration: none;
   transition: 0.6s;
   grid-area: title;
-  font-family: "Noto Sans TC", sans-serif;
+  /* font-family: "Noto Sans TC", sans-serif; */
 }
 
 .post__list-item .post__list:hover {
@@ -513,7 +513,7 @@ kbd {
   border-radius: 3px;
   border: 1px solid #ccc;
   color: rgb(51, 51, 51);
-  font-family: "Arial Black", Impact;
+  /* font-family: "Arial Black", Impact; */
   display: inline-block;
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
   background-color: rgb(247, 247, 247);
@@ -524,14 +524,14 @@ kbd {
 }
 
 code {
-  font-family: "Noto Sans TC", sans-serif;
+  /* font-family: "Noto Sans TC", sans-serif; */
   font-size: initial;
   vertical-align: initial;
   padding: 0px 4px;
 }
 
 div[class^="admonitionHeading_"] {
-  font-family: "Noto Sans TC" !important;
+  /* font-family: "Noto Sans TC" !important; */
   font-size: 1.2em !important;
   font-weight: 700 !important;
 }

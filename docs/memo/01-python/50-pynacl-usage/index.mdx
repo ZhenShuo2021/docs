@@ -1,6 +1,6 @@
 ---
-title: PyNaCl 套件使用紀錄以及基本密碼學概念
-description:  PyNaCl 套件使用紀錄以及基本密碼學概念
+title: PyNaCl 加密套件使用紀錄
+description:  PyNaCl 使用紀錄以及基本密碼學概念
 tags:
   - Programming
   - Python
@@ -17,11 +17,9 @@ last_update:
 ---
 
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import ReactPlayer from "react-player";
 
-# PyNaCl 套件使用紀錄以及基本密碼學概念
+# PyNaCl 使用紀錄以及基本密碼學概念
 
 這篇不是教學文章！！！想看正經密碼學教學請另尋他路。
 
@@ -67,7 +65,7 @@ plaintext = box.decrypt(encrypted)   # 使用相同的箱子解密
 ### 非對稱加密
 此部分包含官方文檔的 [Public Key Encryption](https://pynacl.readthedocs.io/en/latest/public/) 全部內容。
 
-在非對稱加密中，首先伺服器和客戶端都會生成一對兩隻公鑰和私鑰，公鑰是任何人都能知道的，私鑰則需要安全保管。這兩把金鑰的特色是「公鑰加密的訊息只有私鑰能解密」，透過這個特性可以衍生出兩種用途：
+在非對稱加密中，首先伺服器和客戶端都各自生成一對兩隻公私鑰，公鑰是任何人都能知道的，私鑰則需要安全保管。這兩把金鑰的特色是「公鑰加密的訊息只有私鑰能解密」，透過這個特性可以衍生出兩種用途：
 
 1. 加密訊息
 2. 數位簽章
@@ -129,7 +127,7 @@ print(plaintext.decode('utf-8'))
 https://pynacl.readthedocs.io/en/latest/signing/
 
 ### 雜湊
-雜湊用於確認訊息完整性，良好的雜湊函式對於任意兩種位元輸入的輸出永遠不會相同。雜湊是不可逆的，用於驗證而不是保存資料。
+雜湊用於確認訊息完整性，良好的雜湊函式對於任意兩種不同的輸入其輸出永遠不會相同。雜湊是不可逆的，用於驗證而不是保存資料。
 
 PyNaCl 套件也包含雜湊函式，除了常見的 sha 還有進階的 blake2b 都支援。Hash 可以用於四種情況：
 

@@ -98,6 +98,8 @@ These guides are not absolute rules, you should remember that the final purpose 
 ## Basic Knowledge (Essential)
 You should never skip this part.
 
+[Clean Code 實戰之 PHP 良好實踐](https://kylinyu.win/php_best_practice) A clean code guide from beginner to advanced  
+
 [【Code Review】把&当and用可是不行！测试写成这样也有点离谱哦！](https://www.youtube.com/watch?v=ERosfjjY40Y&list=PLSo-C2L8kdSNr5yUJYhyDArnM4FU9iG1S)  
 A beginner-friendly code review demonstrating basic code optimization techniques.
 

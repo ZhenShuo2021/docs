@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
 3. <u>程式碼格式化工具 Formatter</u>: 自動格式化程式碼，讓所有程式碼維持相同格式。
 4. <u>單元測試 Unittest</u>: 測試你的程式碼是否在各種邊界情況中正常運作。
 5. <u>覆蓋率測試 Coverage</u>: 檢查有哪些程式碼沒有被單元測試覆蓋。
-6. <u>安全檢查</u>: 例如有沒有[放到秘密](https://github.com/pre-commit/pre-commit-hooks/blob/main/pre_commit_hooks/detect_aws_credentials.py)。
+6. <u>安全檢查</u>: 檢查有沒有[提交隱私訊息](https://github.com/pre-commit/pre-commit-hooks/blob/main/pre_commit_hooks/detect_aws_credentials.py)。
 
 經過一段時間的研究，最後我選擇的是 mypy (type check)，ruff (linter+formatter)，pytest (unittest)，沒測試覆蓋率 (因為測試只寫一個測試不想自暴其短)。
 

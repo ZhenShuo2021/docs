@@ -1,21 +1,26 @@
 [
   {
-    "title": "初嘗非同步操作 asyncio",
-    "permalink": "/memo/python/first-attempt-python-asyncio/",
-    "description": "初嘗 Python 非同步操作 asyncio",
+    "title": "在獨立子線程中執行事件迴圈 asyncio",
+    "permalink": "/docs/python/run-asyncio-in-sub-thread/",
+    "description": "在獨立子線程中執行事件迴圈 asyncio",
     "tags": [
       {
         "inline": true,
         "label": "Programming",
-        "permalink": "/memo/tags/programming"
+        "permalink": "/docs/tags/programming"
       },
       {
         "inline": true,
         "label": "Python",
-        "permalink": "/memo/tags/python"
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "asyncio",
+        "permalink": "/docs/tags/asyncio"
       }
     ],
-    "date": 1732214550000,
+    "date": 1732272390000,
     "yearMonth": "2024 年 11 月",
     "day": "22"
   },
@@ -45,9 +50,9 @@
     "day": "20"
   },
   {
-    "title": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "title": "Pyreverse 指令小抄和測試範例",
     "permalink": "/memo/python/pyreverse-usage/",
-    "description": "PyNaCl 套件使用紀錄以及基本密碼學概念",
+    "description": "Pyreverse 指令小抄和測試範例",
     "tags": [
       {
         "inline": true,
@@ -61,13 +66,8 @@
       },
       {
         "inline": true,
-        "label": "PyNaCl",
-        "permalink": "/memo/tags/py-na-cl"
-      },
-      {
-        "inline": true,
-        "label": "密碼學",
-        "permalink": "/memo/tags/密碼學"
+        "label": "Pyreverse",
+        "permalink": "/memo/tags/pyreverse"
       }
     ],
     "date": 1732038540000,

@@ -1,5 +1,5 @@
 ---
-title: "[實戰] 使用 Rebase 重構提交"
+title: "[微進階] 使用 Rebase 重構提交"
 author: zsl0621
 description: 最快最清楚的搞懂 git rebase。
 tags:

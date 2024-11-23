@@ -1,5 +1,5 @@
 ---
-title: 幫 Git 上標籤
+title: 標籤
 author: zsl0621
 description: 幫 Git 上標籤
 tags:

@@ -21,14 +21,14 @@ import TabItem from '@theme/TabItem';
 
 # Type Hint 教學：從入門到進階的 Python 型別註釋
 
-型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」** ，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」** ，不用等到執行才知道使用錯誤。
+型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」**，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」** ，不用等到執行才知道使用錯誤。
 
 本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者整理後覺得最好的資源，講的非常好，不必再看其他文章：
 
 - [【python】Type Hint入门与初探，好好的python写什么类型标注？](https://www.youtube.com/watch?v=HYE85bqNoGw)
 - [【python】Type Hint的进阶知识，这下总该有你没学过的内容了吧？](https://www.youtube.com/watch?v=6rgBwA7TRfE)
 
-如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例，請不要看任何其他中文文章以節省各位的時間，因為真的很拖時間又不完整。
+如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例，建議看這三個就好，截至截稿當下其他中文文章品質對比這幾項資源都有很大的落差，不建議閱讀。
 
 
 ## 基礎關鍵字
@@ -95,7 +95,7 @@ print(get_user_age(user_id_wrong, age_wrong))  # 錯誤：int 和 UserId 是不�
 
 
 ### 不常用關鍵字
-- Annotated: 用於[附註變數](https://stackoverflow.com/questions/71898644/how-to-use-python-typing-annotated)，但是截至 2024/11 VS code 沒有整合此功能。
+- Annotated: 用於[附註變數](https://stackoverflow.com/questions/71898644/how-to-use-python-typing-annotated)。
 - Self: 回傳類別本身。
 - typeguard: 用於 [type narrowing](https://rednafi.com/python/typeguard_vs_typeis/)。
 

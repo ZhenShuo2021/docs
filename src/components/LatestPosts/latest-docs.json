@@ -1,8 +1,8 @@
 [
   {
-    "title": "在獨立子線程中執行事件迴圈 asyncio",
+    "title": "在獨立子線程中執行非同步操作",
     "permalink": "/docs/python/run-asyncio-in-sub-thread/",
-    "description": "在獨立子線程中執行事件迴圈 asyncio",
+    "description": "在獨立子線程中執行非同步操作",
     "tags": [
       {
         "inline": true,
@@ -20,9 +20,9 @@
         "permalink": "/docs/tags/asyncio"
       }
     ],
-    "date": 1732272390000,
+    "date": 1732325250000,
     "yearMonth": "2024 年 11 月",
-    "day": "22"
+    "day": "23"
   },
   {
     "title": "Python 虛擬環境管理和依賴解析套件完整比較",

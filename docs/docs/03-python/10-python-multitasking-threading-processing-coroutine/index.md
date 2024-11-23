@@ -146,9 +146,10 @@ Python 中的多進程主要是 `multiprocessing` 和 `ProcessPoolExecutor` 模�
 這個錯誤認知會造成我們對協程對應的程式設計邏輯錯誤，對問題的本質產生誤解，浪費時間在錯誤的方向上除錯。如果要試圖用一句話概括協程，我們可以說是「單一執行緒內執行多個任務的輕量級並發方式，通過非阻塞方式切換來提高效率」，但絕對不是線程。
 :::
 
-[^note]: 此處專指 Python，Golang 的協程確實是輕量級線程。線程的定義是操作系統中最小的執行單位，每個線程有自己的 stack、register 和 program counter，而筆者定義能不能算是線程的一種是依據該異步操作是否透過事件迴圈調度，如果透過事件迴圈就**絕對不是輕量級線程**。因為事件迴圈調度的協程並非真正的並行執行，而僅是靠協作式切換模擬出並發執行，[不具備獨立的 stack 和 register](https://stackoverflow.com/questions/70339355/are-python-coroutines-stackless-or-stackful)。
+[^note]: 此處專指 Python，Golang 的協程確實是輕量級線程。線程的定義是操作系統中最小的執行單位，每個線程有自己的 stack、register 和 program counter，所以透過事件迴圈就**絕對不是輕量級線程**，因為事件迴圈調度的協程並非真正的並行執行，而僅是靠協作式切換模擬出並發執行，[不具備獨立的 stack 和 register](https://stackoverflow.com/questions/70339355/are-python-coroutines-stackless-or-stackful)。
 
-- 文章閱讀：[異步技術：徹底理解Async、Await與Event Loop](https://medium.com/@ackerley19/%E7%95%B0%E6%AD%A5%E6%8A%80%E8%A1%93-%E5%BE%B9%E5%BA%95%E7%90%86%E8%A7%A3async-await%E8%88%87event-loop-3943a4ec9814)
+> 文章閱讀：這幾篇真的寫的很好，建議大家點進去看
+- [異步技術：徹底理解Async、Await與Event Loop](https://medium.com/@ackerley19/%E7%95%B0%E6%AD%A5%E6%8A%80%E8%A1%93-%E5%BE%B9%E5%BA%95%E7%90%86%E8%A7%A3async-await%E8%88%87event-loop-3943a4ec9814)
 - [【python】asyncio的理解与入门，搞不明白协程？看这个视频就够了。](https://www.youtube.com/watch?v=brYsDi-JajI)
 - [【python】await机制详解。再来个硬核内容，把并行和依赖背后的原理全给你讲明白](https://www.youtube.com/watch?v=K0BjgYZbgfE)
 
@@ -194,6 +195,6 @@ Python 中的多進程主要是 `multiprocessing` 和 `ProcessPoolExecutor` 模�
 
 3. 有 GIL 的存在下的 multithreading 存在意義，很少文章提到自動切換線程，所以當讀者深入思考就會發現其矛盾，本文對此加強解釋。
 
-4. 快速且正確的解釋協程，其核心是一個事件迴圈不斷監視各個協程任務，遇到 `await` 時將 CPU 時間交換給下一個協程，並且說明錯誤觀念，還不少文章寫他是輕量級線程。
+4. 快速且正確的解釋協程，其核心是一個事件迴圈不斷監視各個協程任務，遇到 `await` 時將 CPU 時間交換給下一個協程。也釐清錯誤觀念，不少文章寫他是輕量級線程。
 
 其實這些問題都是筆者自學時的疑惑，理解後決定寫成一篇文章。

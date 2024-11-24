@@ -44,16 +44,20 @@ blockquote {
   font-style: italic;
 }
 
-/* left side menu */
-.clean-btn,
+/* left side top level menu */
+button.clean-btn.menu__caret,
 .menu__caret {
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
+  padding-top: 0.11rem;
+  padding-bottom: 0.11rem;
 }
 
 .menu__link {
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
+  /* height: 1.5rem; */
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.9rem;
 }
 
 /* github icon */
@@ -124,7 +128,45 @@ blockquote {
   --content-background-color: #fafafa;
 
   --progress-bar-background-color: #ff0000;
+
+  /* 左側側邊欄的寬度 */
+  --doc-sidebar-width: 16rem !important;
+
 }
+
+
+.col--6 {
+  --ifm-col-width: 100% !important; /* 一行顯示 3 張卡片 */
+}
+
+.theme-doc-toc-desktop {
+  margin-left: 20px;
+  /* Adjust this value to move the TOC */
+}
+
+
+/* 文章區域到左右兩側距離 */
+/* .theme-doc-sidebar-container {
+  margin-right: 40px;
+} */
+
+article {
+  margin-left: 75px;
+  margin-right: 60px;
+}
+
+@media (max-width: 768px) {
+  article {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+/* 到最左邊的距離 */
+/* .docs-doc-page {
+  margin-left: 20px;
+} */
+
 
 html {
   /* font-family: "Noto Sans TC", sans-serif; */

@@ -1,6 +1,7 @@
 ---
 title: Python 中的多工處理原理介紹
 description:  Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算
+sidebar_label: 多工種類和原理
 tags:
   - Programming
   - Python

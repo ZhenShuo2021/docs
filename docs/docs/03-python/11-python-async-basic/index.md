@@ -1,6 +1,7 @@
 ---
 title: Python 中的異步操作 - 協程
 description:  Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。
+sidebar_label: 異步操作 - 協程
 tags:
   - Programming
   - Python

@@ -1,5 +1,55 @@
 [
   {
+    "title": "UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具",
+    "permalink": "/docs/python/python-uv-complete-guide/",
+    "description": "UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/docs/tags/虛擬環境"
+      }
+    ],
+    "date": 1732440000000,
+    "yearMonth": "2024 年 11 月",
+    "day": "24"
+  },
+  {
+    "title": "Python 虛擬環境管理和依賴解析套件完整比較",
+    "permalink": "/docs/python/virtual-environment-management-comparison/",
+    "description": "Python 虛擬環境管理和依賴解析套件完整比較",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/docs/tags/虛擬環境"
+      }
+    ],
+    "date": 1732430280000,
+    "yearMonth": "2024 年 11 月",
+    "day": "24"
+  },
+  {
     "title": "在獨立子線程中執行非同步操作",
     "permalink": "/docs/python/run-asyncio-in-sub-thread/",
     "description": "在獨立子線程中執行非同步操作",
@@ -23,31 +73,6 @@
     "date": 1732325250000,
     "yearMonth": "2024 年 11 月",
     "day": "23"
-  },
-  {
-    "title": "Python 虛擬環境管理和依賴解析套件完整比較",
-    "permalink": "/docs/python/virtual-environment-management-comparison-2024/",
-    "description": "Python 虛擬環境管理和依賴解析套件完整比較",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/docs/tags/虛擬環境"
-      }
-    ],
-    "date": 1732076160000,
-    "yearMonth": "2024 年 11 月",
-    "day": "20"
   },
   {
     "title": "Pyreverse 指令小抄和測試範例",
@@ -223,20 +248,5 @@
     "date": 1730628033000,
     "yearMonth": "2024 年 11 月",
     "day": "03"
-  },
-  {
-    "title": "關於這個區域",
-    "permalink": "/memo/intro/",
-    "description": "這裡是 zsl0621 的個人文檔庫。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Docusaurus",
-        "permalink": "/memo/tags/docusaurus"
-      }
-    ],
-    "date": 1730217600000,
-    "yearMonth": "2024 年 10 月",
-    "day": "30"
   }
 ]

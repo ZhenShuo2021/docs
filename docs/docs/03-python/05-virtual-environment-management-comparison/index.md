@@ -1,6 +1,7 @@
 ---
 title: Python 虛擬環境管理和依賴解析套件完整比較
 description: Python 虛擬環境管理和依賴解析套件完整比較
+sidebar_label: 虛擬環境管理套件比較
 tags:
   - Programming
   - Python

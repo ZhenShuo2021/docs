@@ -1,6 +1,7 @@
 ---
 title: UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具
 description: UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具
+sidebar_label: UV 虛擬環境管理套件教學
 tags:
   - Programming
   - Python

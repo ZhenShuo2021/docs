@@ -1,6 +1,7 @@
 ---
 title: Numba 教學：加速 Python 科學計算
 description: 最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。
+sidebar_label: Numba 教學
 tags:
   - Programming
   - Python

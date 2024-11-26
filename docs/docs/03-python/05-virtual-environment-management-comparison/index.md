@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-24T14:38:00+08:00
+  date: 2024-11-26T14:20:00+08:00
   author: zsl0621
 ---
 
@@ -62,7 +62,7 @@ venv 是內建於 Python 的管理工具，是基於 virtualenv 的管理工具�
 
 venv 只能用於建立虛擬環境，沒有任何依賴解析管理功能，一般是使用 pip 完成依賴解析管理。
 
-[^1]: virtualenv 唯一的優點只有支援不同 Python 版本的功能，然而他需要結合 Pyenv 才能使用，他本身不能管理 Python 版本。不結合沒優點，結合了有更好套件 pyenv-virtualenv，取交集後等於純 virtualenv 完全沒有優點，還寫一篇 virtualenv 教學不是好心帶彎路嗎，都已經 2024 了網路上誰再教 virtualenv 的筆者建議直接用 uBlacklist 把他[整個網域 ban 了](https://www.eallion.com/ublacklist-subscription-compilation/)，寫垃圾文章浪費大家時間。
+[^1]: virtualenv 唯一的優點只有支援不同 Python 版本的功能，然而他需要結合 Pyenv 才能使用，他本身不能管理 Python 版本。不結合沒優點，結合了有更好套件 pyenv-virtualenv，取交集後等於純 virtualenv 完全沒有優點，還寫一篇 virtualenv 教學不是好心帶彎路嗎，都已經 2024 了網路上誰再教 virtualenv 的筆者建議直接用 uBlacklist 把他[整個網域 ban 了](https://www.eallion.com/ublacklist-subscription-compilation/)。
 
 
 ### Pyenv
@@ -111,22 +111,22 @@ pipenv 整合環境管理和依賴管理，使用 pipfile 和 pipfile.lock 管�
 uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 1. 由 rust 撰寫，標榜快速，比 Poetry 快十倍以上
-2. 支援 uv.lock 鎖定套件版本
-3. 支援 Python 版本管理，取代 pyenv
-4. 支援全域套件安裝，取代 pipx
-5. 支援 pyproject.toml
+2. 使用 PubGrub 演算法[解析套件](https://docs.astral.sh/uv/reference/resolver-internals/)
+3. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
+4. **<u>完美取代 pyenv</u>**：支援 Python 版本管理
+5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
-把特點二和三加起來就是我們的最終目標了，既支援 lock 檔案管理套件，又支援 Python 版本管理，也沒有 pipenv 速度緩慢且更新停滯的問題，~~關於 uv 打包發布套件的文章資料滿少的，如果確定完全不需要打包套件~~，目前虛擬環境管理工具首選就是他了。
+把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，既支援 lockfile 管理套件，又支援 Python 版本管理，也沒有 pipenv 速度緩慢且更新停滯的問題，~~關於 uv 打包發布套件的文章資料滿少的，如果確定完全不需要打包套件~~，目前虛擬環境管理工具首選就是他了。
 
-為何選擇 uv？原因是「一個工具完整取代 pyenv/pipx，又幾乎包含 poetry 的功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
+為何選擇 uv？我會給出這個結論：「一個工具完整取代 pyenv/pipx，幾乎包含 poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
 身為新穎又備受矚目的套件，目前的更新速度非常快，[兩個月就把問題解決了](https://www.loopwerk.io/articles/2024/python-uv-revisited/)。
 
 :::tip 文章更新
 實際使用後發現使用體驗非常流暢。
 
-和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不需再使用 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），不需要 pipx 管理全局套件，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，做了和 pip 類似的接口方便以往的使用者輕鬆上手，再加上[超快的安裝](https://astral.sh/blog/uv-unified-python-packaging)和解析速度錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需使用 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），不需要 pipx 管理全局套件，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，做了和 pip 類似的接口方便以往的使用者輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 有兩個小缺點，第一是使用 rust 撰寫，所以 Python 開發者不好進行貢獻，第二是太新，連英文都沒有幾篇文章說明如何使用，不過別擔心筆者寫了一個簡易使用較學，從安裝到發布套件一應俱全。
 :::

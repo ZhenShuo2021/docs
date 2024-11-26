@@ -168,30 +168,33 @@ uv sync --refresh
 ### 開發套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies
 
-設定開發套件，此區域的套件不會被發布，可以使用 `--dev <pkg>` 或者 `--group` 可以幫設定套件群組，例如分為 lint 和 test 等等。
+設定開發套件，此區域的套件不會被發布，可以使用 `--dev <pkg>` 新增，或者 `--group` 可以幫設定套件群組。
 
 
 ```toml
-# 新版 toml 的設定
+# toml 的設定：新版語法
 [dependency-groups]
 dev = ["pytest"]
 
-# 舊版 toml 的設定
+# toml 的設定：舊版語法
 [tool.uv]
 dev-dependencies = ["pytest"]
-
-# 在命令行中使用這個指令進行新增和同步
-uv add --group lint ruff
 ```
 
-使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，如果需要新增群組則需在 pyproject.toml 中新增 default-groups。有了 groups 後我們就可以非常輕鬆的管理工具，例如使用 `uv run --no-group <foo-group> <your-commands>` 就可以在沒有指定 group 的環境中執行指令，`uv sync` 也同理。
+使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，修改 pyproject.toml 中的 default-groups 則可以設定 `uv  sync` 時同步的目標套件。有了 groups 後我們可以輕鬆的管理工具，例如使用 `uv run --no-group <foo-group> <your-commands>` 就可以在指定沒有 foo-group 的環境中執行指令。
 
 ```toml
+# 設定 uv sync 只會同步 dev/foo 群組
 [tool.uv]
 default-groups = ["dev", "foo"]
-```
 
-套件群組請參考[文檔](https://docs.astral.sh/uv/concepts/projects/dependencies/#default-groups)。
+# 在命令行中使用這個指令把 ruff 套件新增到 lint 群組
+uv add --group lint ruff
+
+# toml 中的對應的更新
+[dependency-groups]
+lint = ["ruff>=0.8.0"]
+```
 
 ### 可選套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies
@@ -199,13 +202,12 @@ https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies
 幫專案增加可選組件（可選組件：舉例來說，像是 httpx 的 http2 功能是可選）。
 
 ```toml
-[project.optional-dependencies]
-# 新增可選繪圖套件
-plot = [
-  "matplotlib>=3.6.3"
-]
-
+# 在命令行中使用這個指令，新增 matplotlib 為可選套件
 uv add matplotlib --optional plot
+
+# toml 中的對應的更新
+[project.optional-dependencies]
+plot = ["matplotlib>=3.6.3"]
 ```
 
 ### 重設環境中所有套件
@@ -239,16 +241,17 @@ https://docs.astral.sh/uv/reference/cli/#uv-run
 
 有了 `uv run` 之後我們連虛擬環境都不需要進入。在每次 `uv run` 運行前他都會同步 pyproject.toml 中的套件再運行，除了自動同步功能以外也支援各種選項，例如我們可以使用 `--with-requirements` 設定這次執行要搭配哪些 requirements.txt，使用 `--no-sync` 可以關閉運行前的同步功能，使用 `--only-group` 設定只使用哪些群組的套件執行，最重要的是 `--python` 功能，允許我們指定使用不同的 Python 版本執行。
 
-以下是一個基本範例，範例中先印出 pyproject.toml 指定的版本，再確認目前虛擬環境的版本，最後使用 `--python` 參數指定使用其他版本的 Python，非常方便。
+下方是一個基本範例，範例中先印出 pyproject.toml 指定的版本，再確認目前虛擬環境的版本，最後使用 `--python` 參數指定使用其他版本的 Python，非常方便。
 
 ![uv-isolated](uv-isolated.webp "uv-isolated")
 
+如果某個地方需要特定 Python 版本，但是那裡又不想用 uv 管理，可以用取巧的方式達成，使用 `uv run --python 3.11 python -m venv .venv` 叫出 3.11 版本建立虛擬環境。
 
 ## 🔥 pyproject.toml 範例 🔥
 既然 uv 的一站式體驗這麼好，那本文也提供一站式體驗，連 `pyproject.toml` 基礎範例都放上來提供參考，複製貼上後只需要使用 `uv sync` 就完成了，超級快。
 
 ```toml
-# 假如拿到一個使用 uv 設定專案，架構應該如下
+# 假如拿到一個使用 uv 設定的專案架構如下
 [project]
 name = "your-project-name"
 version = "0.1.0"
@@ -286,7 +289,7 @@ network = [
 # hello = "my_package:main_function"
 ```
 
-以已經設定好的 toml 來說，uv 可以輕鬆完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝，我們先看如果使用以往的 pyenv + poetry 組合需要使用這麼繁瑣的指令：
+以已經設定好的 toml 來說，uv 可以輕鬆完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝。我們先看如果使用以往的 pyenv + poetry 組合需要使用這麼繁瑣的指令：
 
 ```sh
 # 下載和設定版本
@@ -305,7 +308,7 @@ poetry shell
 poetry show
 ```
 
-uv 用戶看到這些指令心理先開始笑，因為 uv 只要一行，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
+uv 用戶這時候已經去茶水間滑手機了，因為 uv 只要一行，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
 
 ```sh
 # 完成自動安裝 pyproject.toml 中的 Python 版本、建立虛擬環境、安裝開發和生產套件
@@ -350,14 +353,14 @@ uv build --no-sources
 ```
 
 ### 發布套件，以 test.pypi 為例
-需要指定 build 路徑，預設在 `dist` 中。使用時輸入帳號是 `__token__`，密碼則是 pypi 提供的 token，注意此指令還在實驗階段隨時可能變動。
+需要指定 build 路徑，預設在 dist 資料夾中。使用時輸入的帳號是 `__token__`，密碼則是 pypi 提供的 token，注意此指令還在實驗階段隨時可能變動。
 
 ```sh
 uv publish --publish-url https://test.pypi.org/legacy/ dist/*
 ```
 
 ### 整合 Github CI
-一般來說我們不會每次發布都慢慢打 build publish，會使用自動化流程完成套件發布，直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 [tag 或 release](https://stackoverflow.com/questions/61891328/trigger-github-action-only-on-new-tags) 時才會啟動，並且需要[手動雙重驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
+一般來說我們不會每次發布都打 build publish，而是使用自動化流程完成套件發布，下方直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 [tag 或 release](https://stackoverflow.com/questions/61891328/trigger-github-action-only-on-new-tags) 時才會啟動，並且需要[手動雙重驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
 
 
 ```yaml
@@ -410,7 +413,7 @@ jobs:
 ## 使用 `uv tool` 取代 `pipx`
 https://docs.astral.sh/uv/guides/tools/
 
-此功能用於取代 pipx，將提供命令行執行的工具全局安裝，例如我一開始只是想測試 uv 時也是用 pipx 安裝的。uv tool 特別的地方是沒有安裝也可以執行，會把套件安裝在一個臨時的虛擬環境中。
+此功能用於取代 pipx，把提供命令行執行的工具安裝在全局環境，例如我一開始只是想測試 uv 時也是用 pipx 安裝的。uv tool 特別的地方是沒有安裝也可以執行，會把套件安裝在一個臨時的虛擬環境中。
 
 使用範例參考官方文檔
 

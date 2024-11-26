@@ -24,7 +24,7 @@ last_update:
 1. 由 rust 撰寫，標榜快速，比 Poetry 快十倍以上
 2. 使用 PubGrub 演算法[解析套件](https://docs.astral.sh/uv/reference/resolver-internals/)
 3. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
-4. **<u>完美取代 pyenv</u>**：支援 Python 版本管理
+4. **<u>完美取代 pyenv</u>**：支援 Python 版本管理[^global]
 5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
@@ -33,6 +33,9 @@ last_update:
 身為新穎又備受矚目的套件，目前的更新速度非常快，[兩個月就把問題解決了](https://www.loopwerk.io/articles/2024/python-uv-revisited/)。
 
 為何選擇 uv？我會說：「一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
+
+[^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)。
+
 
 ## TL;DR
 如果沒有要發布套件也沒有複雜的開發管理，只使用日常七騎士就可以使用 uv 完美取代舊有工具，不用看完整篇文章。

@@ -125,7 +125,18 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 身為新穎又備受矚目的套件，目前的更新速度非常快，[兩個月就把問題解決了](https://www.loopwerk.io/articles/2024/python-uv-revisited/)。
 
-> 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿。
+> 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿，放上圖片讓大家看到底有多粗暴，有人直接飛天了
+
+<a href="https://star-history.com/#astral-sh/uv&pypa/hatch&pdm-project/pdm&python-poetry/poetry&pypa/pipenv&conda/conda&pyenv/pyenv-virtualenv&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
+ </picture>
+</a>
+
+<br/>
+<br/>
 
 [^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)。
 

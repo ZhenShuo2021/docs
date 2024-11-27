@@ -123,7 +123,7 @@ Python 中的多進程主要是 `multiprocessing` 和 `ProcessPoolExecutor` 模�
 
 > TL;DR: 協程就是一個人在<u>**等待**</u>某項工作（如等待文件下載）時，先<u>**切換**</u>去處理其他工作，線程和進程則是多個人同時工作[^diff]。
 
-[^diff]: 註：Python 中的線程被 GIL 鎖住雖然有很多然但是一次只有一人工作。
+[^diff]: 註：Python 中的線程被 GIL 鎖住，雖然有很多人但是一次只有一人工作。
 
 協程 (coroutine) 和前面的觀念不一樣，本段落僅提供一個快速的概覽。協程對比線程和進程<u>**完全不同概念，無法類比**</u>，由「程式本身」管理，是一種允許在單一線程內實現多任務異步執行的程式「物件」，後兩者是是作業系統管理「執行單元」，由「作業系統」[控制](https://discuss.python.org/t/python-context-switching-how-is-it-done/8635)。
 

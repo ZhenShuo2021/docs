@@ -44,7 +44,9 @@ import TabItem from '@theme/TabItem';
 - Iterable: 可以迭代的對象（該對象存在 \_\_iter\_\_ 方法，例如 list）
 - Final: 最終結果，不應該被覆寫
 
+> 偵錯方式
 
+mypy 提供 `reveal_type` 和 `reveal_locals` 兩種方法偵錯，使用時不需 import 直接用然後 mypy example.py 即可，詳情請見[這篇文章](https://adamj.eu/tech/2021/05/14/python-type-hints-how-to-debug-types-with-reveal-type/)。
 
 ## 中階關鍵字
 

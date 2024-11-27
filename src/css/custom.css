@@ -16,16 +16,20 @@ h3, h4, h5, h6 {
   font-size: 1.5rem;
 }
 
-
-/* inline code */
-:not(pre)>code {
+/* inline code 一般情況*/
+code {
   color: var(--ifm-color-primary);
   background-color: rgba(209, 209, 209, 0.28);
   border: none;
   padding: 2px 6px;
   border-radius: 6px;
+  font-size: 0.8em;
+}
+
+/* inline code 在h/pre以外的情況 */
+:not(pre):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
   font-family: monospace;
-  font-size: 0.9rem;
+  font-size: 1em;
   font-weight: 500;
 }
 
@@ -591,13 +595,6 @@ kbd {
   -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-}
-
-code {
-  /* font-family: "Noto Sans TC", sans-serif; */
-  font-size: initial;
-  vertical-align: initial;
-  padding: 0px 4px;
 }
 
 div[class^="admonitionHeading_"] {

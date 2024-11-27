@@ -11,9 +11,14 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-26T14:21:00+08:00
+  date: 2024-11-27T2:21:00+08:00
   author: zsl0621
+first_publish:
+  date: 2024-11-19T14:22:30+08:00
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具
 本篇文章介紹 uv 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請觀看[上一篇文章](/docs/python/virtual-environment-management-comparison)。
@@ -22,17 +27,19 @@ last_update:
 以一句話形容 uv，那就是完整且高效的一站式體驗。uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 1. 由 rust 撰寫，標榜快速，比 Poetry 快十倍以上
-2. 使用 PubGrub 演算法[解析套件](https://docs.astral.sh/uv/reference/resolver-internals/)
-3. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
-4. **<u>完美取代 pyenv</u>**：支援 Python 版本管理[^global]
+2. 使用 PubGrub 演算法[解析套件依賴關係](https://docs.astral.sh/uv/reference/resolver-internals/)
+3. **<u>取代 pyenv</u>**：支援 Python 版本管理[^global]
+4. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
 5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
-把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，既支援 lockfile 管理套件，又支援 Python 版本管理，也沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選。使用體驗非常流暢，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需使用 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了和 pip 類似的接口方便以往的使用者輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了和 pip 的接口方便用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+
+為何選擇 uv？我會說：「一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
 身為新穎又備受矚目的套件，目前的更新速度非常快，[兩個月就把問題解決了](https://www.loopwerk.io/articles/2024/python-uv-revisited/)。
 
-為何選擇 uv？我會說：「一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
+> 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿。
 
 [^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)。
 
@@ -65,6 +72,30 @@ uv sync
 uv run hello.py
 ```
 
+<details>
+<summary>pip 的接口</summary>
+
+uv add/remove 會寫入到 pyproject.toml，如果無論如何也不想使用 pyproject.toml，`uv pip` 提供了對應以往 pip 的接口：
+
+```sh
+# 安裝
+uv pip install
+
+# 從文件安裝
+uv pip install -r requirements.txt
+
+# 移除
+uv pip uninstall
+
+# 寫出版本資訊
+uv pip freeze > requirements.txt
+
+# 更新全部版本@unix
+uv pip freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 uv pip install -U
+```
+
+但是既然都用 uv 了應該用 add/remove 方式比較好，而且文章列出的所有功能都無法兼容這種方法安裝的套件，所以把這段放到折疊頁面中。
+</details>
 
 
 ## 前置作業
@@ -86,7 +117,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 https://docs.astral.sh/uv/concepts/python-versions/  
 https://docs.astral.sh/uv/guides/install-python/  
 
-選用這種工具的用戶應該都需要管理多個 Python 版本，所以先從 Python 版本管理開始說明。
+首先從 Python 版本管理開始說明。
 
 ``` sh
 # 安裝/移除指定版本
@@ -109,7 +140,7 @@ uv python find
 ### 初始化專案
 https://docs.astral.sh/uv/reference/cli/#uv-init
 
-設定好 Python 版本後就是初始化專案，使用 `app` 參數設定專案名稱，使用 `build-backend` 參數設定專案的構建後端，或是用 `uv init` 使用預設參數初始化專案。
+設定好 Python 版本後就是初始化專案，使用 `app` 參數設定專案名稱，使用 `build-backend` 參數設定專案的構建後端，也可以不輸入任何參數使用預設值初始化專案。
 
 ```sh
 uv init --app test --build-backend hatch --python 3.12
@@ -127,26 +158,28 @@ source .venv/bin/activate
 ```
 
 ## 套件管理
+套件管理和日常開發、執行腳本、設定 pyproject.toml 都在這個章節中。
+
 ### 生產套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/
 
 此處是有關套件處理相關的常用指令，熟記這些指令之後就可以替換掉 pyenv/poetry/pipx 了。
 
 ```sh
-# 把套件加入 pyproject.toml 中
+# 安裝套件並且設定到 pyproject.toml 中
 uv add
 
-# 把套件從 pyproject.toml 中移除
+# 移除套件並且從 pyproject.toml 的設定中移除
 uv remove
 
-# 列出所有套件
+# 列出所有已經安裝的套件
 uv pip list
 
 # 基於 pyproject.toml 對目前環境中的套件進行同步，包含開發者套件
 uv sync
 
 # 同步但忽略開發者套件
-uv pip sync pyproject.toml
+uv sync --no-dev
 
 # 同步虛擬環境，並且在虛擬環境中執行指令
 uv run <commands>
@@ -168,7 +201,7 @@ uv sync --refresh
 ### 開發套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies
 
-設定開發套件，此區域的套件不會被發布，可以使用 `--dev <pkg>` 新增，或者 `--group` 可以幫設定套件群組。
+設定開發套件，此區域的套件不會被構建和發布，使用 `--dev <pkg>` 新增，還可以用 `--group` 幫開發套件設定套件群組方便管理。
 
 
 ```toml
@@ -181,10 +214,10 @@ dev = ["pytest"]
 dev-dependencies = ["pytest"]
 ```
 
-使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，修改 pyproject.toml 中的 default-groups 則可以設定 `uv  sync` 時同步的目標套件。有了 groups 後我們可以輕鬆的管理工具，例如使用 `uv run --no-group <foo-group> <your-commands>` 就可以在指定沒有 foo-group 的環境中執行指令。
+使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，修改 pyproject.toml 中的 default-groups 則可以設定同步的目標。有了群組功能後我們可以輕鬆的管理工具，例如使用 `uv run --no-group <foo-group> <your-commands>` 就可以在指定沒有 foo-group 的環境中執行指令。
 
 ```toml
-# 設定 uv sync 只會同步 dev/foo 群組
+# 設定 uv sync 同步時除了 dev 也同步 foo 群組
 [tool.uv]
 default-groups = ["dev", "foo"]
 
@@ -199,7 +232,7 @@ lint = ["ruff>=0.8.0"]
 ### 可選套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies
 
-幫專案增加可選組件（可選組件：舉例來說，像是 httpx 的 http2 功能是可選）。
+幫專案增加可選組件（可選組件：舉例來說，像是 httpx 的 http2 功能是可選，安裝 httpx 時不會主動安裝 http2 功能）。
 
 ```toml
 # 在命令行中使用這個指令，新增 matplotlib 為可選套件
@@ -222,7 +255,7 @@ uv pip sync requirements.txt
 # 同步toml
 uv pip sync pyproject.toml
 
-# 或者更乾淨的清除，這會刷新快取
+# 或者更乾淨重新安裝，這個指令會刷新快取
 uv sync --reinstall --no-dev
 
 # 直接清除快取檔案
@@ -239,13 +272,14 @@ https://docs.astral.sh/uv/concepts/projects/layout/
 https://docs.astral.sh/uv/guides/scripts/   
 https://docs.astral.sh/uv/reference/cli/#uv-run   
 
-有了 `uv run` 之後我們連虛擬環境都不需要進入。在每次 `uv run` 運行前他都會同步 pyproject.toml 中的套件再運行，除了自動同步功能以外也支援各種選項，例如我們可以使用 `--with-requirements` 設定這次執行要搭配哪些 requirements.txt，使用 `--no-sync` 可以關閉運行前的同步功能，使用 `--only-group` 設定只使用哪些群組的套件執行，最重要的是 `--python` 功能，允許我們指定使用不同的 Python 版本執行。
+有了 `uv run` 之後我們連虛擬環境都不用進入，每次使用 `uv run` 都會先同步 pyproject.toml 中的套件再運行。除了自動同步功能以外也支援各種選項，例如我們可以使用 `--with-requirements` 設定這次執行要搭配哪些套件執行，使用 `--no-sync` 可以關閉運行前的同步功能，使用 `--only-group` 設定只使用哪些群組的套件執行，最重要的是 `--python` 功能，允許我們指定使用不同的 Python 版本執行。
 
-下方是一個基本範例，範例中先印出 pyproject.toml 指定的版本，再確認目前虛擬環境的版本，最後使用 `--python` 參數指定使用其他版本的 Python，非常方便。
+下方是一個基本範例，範例中先確認現在使用 3.10 版本，再使用 `--python` 參數指定使用其他版本的 Python 執行，非常方便。
 
 ![uv-isolated](uv-isolated.webp "uv-isolated")
 
-如果某個地方需要特定 Python 版本，但是那裡又不想用 uv 管理，可以用取巧的方式達成，使用 `uv run --python 3.11 python -m venv .venv` 叫出 3.11 版本建立虛擬環境。
+如果有虛擬環境不想用 uv 管理，可以用 `uv run --python 3.11 python -m venv .venv` 叫 3.11 版本的 Python 來建立虛擬環境，等效於 pyenv-virtualenv 的功能，非常方便。
+
 
 ## 🔥 pyproject.toml 範例 🔥
 既然 uv 的一站式體驗這麼好，那本文也提供一站式體驗，連 `pyproject.toml` 基礎範例都放上來提供參考，複製貼上後只需要使用 `uv sync` 就完成了，超級快。
@@ -289,7 +323,20 @@ network = [
 # hello = "my_package:main_function"
 ```
 
-以已經設定好的 toml 來說，uv 可以輕鬆完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝。我們先看如果使用以往的 pyenv + poetry 組合需要使用這麼繁瑣的指令：
+假設我們要處理一個新專案，使用 uv 設定的的 toml，uv 只要一行就可以完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝：
+
+```sh
+# 一行完成下載和設定 Python、建立虛擬環境、安裝套件
+uv sync
+
+# 檢查
+uv pip list
+
+# 甚至可以連安裝都不要，clone 專案下來直接跑也會自動安裝
+uv run <任意檔案>
+```
+
+但是如果使用 Poetry，以往的 pyenv + poetry 組合則需要使用這麼繁瑣的指令，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
 
 ```sh
 # 下載和設定版本
@@ -308,18 +355,6 @@ poetry shell
 poetry show
 ```
 
-uv 用戶這時候已經去茶水間滑手機了，因為 uv 只要一行，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
-
-```sh
-# 完成自動安裝 pyproject.toml 中的 Python 版本、建立虛擬環境、安裝開發和生產套件
-uv sync
-
-# 檢查
-uv pip list
-
-# 甚至可以連安裝都不要，clone 專案下來直接跑也會自動安裝
-uv run <任意檔案>
-```
 
 ## 發布套件
 

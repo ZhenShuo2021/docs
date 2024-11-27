@@ -11,8 +11,10 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-26T14:20:00+08:00
+  date: 2024-11-27T11:50:00+08:00
   author: zsl0621
+first_publish:
+  date: 2024-11-19T14:22:30+08:00
 ---
 
 
@@ -111,24 +113,25 @@ pipenv 整合環境管理和依賴管理，使用 pipfile 和 pipfile.lock 管�
 uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 1. 由 rust 撰寫，標榜快速，比 Poetry 快十倍以上
-2. 使用 PubGrub 演算法[解析套件](https://docs.astral.sh/uv/reference/resolver-internals/)
-3. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
-4. **<u>完美取代 pyenv</u>**：支援 Python 版本管理[^global]
+2. 使用 PubGrub 演算法[解析套件依賴關係](https://docs.astral.sh/uv/reference/resolver-internals/)
+3. **<u>取代 pyenv</u>**：支援 Python 版本管理[^global]
+4. **<u>完美取代 pip/pip-tools</u>**：支援 lockfile 鎖定套件版本
 5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
-把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，既支援 lockfile 管理套件，又支援 Python 版本管理，也沒有 pipenv 速度緩慢且更新停滯的問題，~~關於 uv 打包發布套件的文章資料滿少的，如果確定完全不需要打包套件~~，目前虛擬環境管理工具首選就是他了。
+把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選。
 
 為何選擇 uv？我會給出這個結論：「一個工具完整取代 pyenv/pipx，幾乎包含 poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
 身為新穎又備受矚目的套件，目前的更新速度非常快，[兩個月就把問題解決了](https://www.loopwerk.io/articles/2024/python-uv-revisited/)。
 
+> 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿。
+
 [^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)。
 
-:::tip 文章更新
-實際使用後發現使用體驗非常流暢。
+:::tip 使用心得
 
-和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需使用 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），不需要 pipx 管理全局套件，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，做了和 pip 類似的接口方便以往的使用者輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），不需要 pipx 管理全局套件，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，做了和 pip 類似的接口方便以往的用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 有兩個小缺點，第一是使用 rust 撰寫，所以 Python 開發者不好進行貢獻，第二是太新，連英文都沒有幾篇文章說明如何使用，不過別擔心筆者寫了一個簡易使用較學，從安裝到發布套件一應俱全。
 :::
@@ -165,6 +168,8 @@ Poetry 的使用指令可以觀看這兩篇文章：簡短的 [\[note\] Python P
 hatch 由於其自身的特殊性（沒有 lock 檔案，沒有內建虛擬環境管理，主要用於跨平台而不是環境管理和依賴解析）所以沒得比較，Poetry 對比強勢登場的 uv 在功能上更為相似。
 
 在這個部落格中寫了四篇關於 uv 的[文章](https://www.loopwerk.io/articles/tag/uv/)，我們可以看到 uv 的發展之快以及齊全的功能，該作者四篇文章一路從 uv 還不夠好寫到全面遷移 uv，並且在他自己的 dotfiles 裡面[把 pyenv 和 poetry 都移除了](https://github.com/search?q=repo%3Akevinrenskers%2Fdotfiles+uv&type=commits)，可見 uv 有多強大。
+
+兩者的選擇和開頭說的一樣，需要更成熟穩定且經過多數用戶驗證的工具，選擇 Poetry，想擁有一站式的良好使用體驗選擇 uv，只是 uv 仍然在早期階段有些細節還需要優化。
 :::
 
 ### PDM/hatch

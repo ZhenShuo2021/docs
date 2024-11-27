@@ -4,6 +4,18 @@
 * work well for content-centric websites.
 */
 
+h1 {
+  font-size: 2.6rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3, h4, h5, h6 {
+  font-size: 1.5rem;
+}
+
 
 /* inline code */
 :not(pre)>code {
@@ -13,7 +25,7 @@
   padding: 2px 6px;
   border-radius: 6px;
   font-family: monospace;
-  font-size: 1.05em !important;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 

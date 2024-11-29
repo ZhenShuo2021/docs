@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-27T2:21:00+08:00
+  date: 2024-11-29T16:42:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -279,7 +279,6 @@ https://docs.astral.sh/uv/configuration/files/#configuring-the-pip-interface
 `uv add` 用於正式專案套件，和 `uv remove` 成對使用，會修改 pyproject.toml；`uv pip` 則是臨時測試，不會寫入 pyproject.toml。
 
 ### 強大的 uv run 功能
-https://docs.astral.sh/uv/concepts/projects/layout/  
 https://docs.astral.sh/uv/guides/scripts/   
 https://docs.astral.sh/uv/reference/cli/#uv-run   
 
@@ -406,8 +405,14 @@ uv publish --publish-url https://test.pypi.org/legacy/ dist/*
 ```
 
 ### 整合 Github CI
-一般來說我們不會每次發布都打 build publish，而是使用自動化流程完成套件發布，下方直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 [tag 或 release](https://stackoverflow.com/questions/61891328/trigger-github-action-only-on-new-tags) 時才會啟動，並且需要[手動雙重驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
+一般來說我們不會每次發布都打 build publish，而是使用自動化流程完成套件發布，下方直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定不使用已經被建議棄用的 token 方式，而是遵照官方的**最佳實踐**使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 tag 名稱是 `vN.N.N.N` 或 `vN.N.N` 時以及發布 release 時才會啟動，並且建議開啟[手動雙重驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
 
+開啟的方式是進入專案首頁後
+
+1. 點擊上方 Code/Issues 那排最右邊的 Settings
+2. 點擊左側列表的 Environments
+3. 如果成功設定會有一個環境名稱是 `publish_pypi`
+4. 勾選 Required reviewers 並且設定人員，最多六名。
 
 ```yaml
 name: PyPI Publish
@@ -418,6 +423,7 @@ on:
 
   push:
     tags:
+      - 'v*.*.*.*'
       - 'v*.*.*'
 
 jobs:

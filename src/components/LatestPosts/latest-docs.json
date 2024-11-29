@@ -1,5 +1,60 @@
 [
   {
+    "title": "UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具",
+    "permalink": "/docs/python/python-uv-complete-guide/",
+    "description": "UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/docs/tags/虛擬環境"
+      }
+    ],
+    "date": 1732869720000,
+    "yearMonth": "2024 年 11 月",
+    "day": "29"
+  },
+  {
+    "title": "PEP 更新紀錄",
+    "permalink": "/memo/python/PEP-history/",
+    "description": "PEP 更新紀錄",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "PEP",
+        "permalink": "/memo/tags/pep"
+      },
+      {
+        "inline": true,
+        "label": "cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      }
+    ],
+    "date": 1732868400000,
+    "yearMonth": "2024 年 11 月",
+    "day": "29"
+  },
+  {
     "title": "Python 虛擬環境管理和依賴解析套件完整比較",
     "permalink": "/docs/python/virtual-environment-management-comparison/",
     "description": "Python 虛擬環境管理和依賴解析套件完整比較",
@@ -21,31 +76,6 @@
       }
     ],
     "date": 1732679400000,
-    "yearMonth": "2024 年 11 月",
-    "day": "27"
-  },
-  {
-    "title": "UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具",
-    "permalink": "/docs/python/python-uv-complete-guide/",
-    "description": "UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/docs/tags/虛擬環境"
-      }
-    ],
-    "date": 1732645260000,
     "yearMonth": "2024 年 11 月",
     "day": "27"
   },
@@ -216,36 +246,6 @@
       }
     ],
     "date": 1730628513000,
-    "yearMonth": "2024 年 11 月",
-    "day": "03"
-  },
-  {
-    "title": "Python Type Hint 教學",
-    "permalink": "/docs/python/type-hint-typing-complete-guide/",
-    "description": "Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "typing",
-        "permalink": "/docs/tags/typing"
-      },
-      {
-        "inline": true,
-        "label": "type hint",
-        "permalink": "/docs/tags/type-hint"
-      }
-    ],
-    "date": 1730628033000,
     "yearMonth": "2024 年 11 月",
     "day": "03"
   }

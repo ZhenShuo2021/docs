@@ -48,7 +48,7 @@ first_publish:
 10. [uv](https://github.com/astral-sh/uv) (2024, 26.7k stars)
 
 :::info 先說結論
-迷你專案使用內建的 venv + pip 就夠了，其餘<u>**一律從 Poetry 和 uv 中二選一**</u>，取決於你喜歡更成熟的架構還是需要稍微自己摸索但是更好的整體使用體驗。
+迷你專案使用內建的 venv + pip 就夠了，其餘<u>**一律從 Poetry 和 uv 中二選一**</u>，取決於你喜歡更成熟已經經過時間驗證的架構，還是需要稍微自己摸索但是更好的整體使用體驗。
 :::
 
 :::tip 直接選最好
@@ -71,7 +71,7 @@ venv 只能用於建立虛擬環境，沒有任何依賴解析管理功能，一
 
 專注於 Python 版本管理的套件。
 
-pyenv 不包含各個套件之間的環境管理，主要解決多個不同 Python 版本之間管理和切換的問題，不包含虛擬環境管理和套件依賴解析，需要和其他管理套件協同工作：他只是拼圖的其中一塊而已，但是把自己的這塊做好。
+pyenv 專注於管理多個不同 Python 版本以及負責切換版本，不包含任何額外功能，需要和其他管理套件協同工作：他只是拼圖的其中一塊而已，但是把自己的這塊做好。
 
 pyenv 不支援 Windows，需要使用 [pyenv-win](https://github.com/pyenv-win/pyenv-win)。
 
@@ -85,13 +85,13 @@ pyenv 的插件，結合 virtualenv 後變成既有 Python 版本管理又有套
 
 pyenv-vitrualenv 筆者沒有到非常熟悉，但是 Conda 筆者用的可多了，使用體驗可以總結為兩個字：快逃。
 
-Conda 整合 Python 版本管理、虛擬環境管理和套件依賴解析，本身完美整合 Spyder IDE（自家贊助），安裝完馬上能直接使用 IDE 整合虛擬環境不需任何設定。聽起來很棒，但問題是套件依賴怎麼裝怎麼崩潰，即使是全新環境也一樣。
+Conda 整合 Python 版本管理、虛擬環境管理和套件依賴解析，完美整合自家贊助的 Spyder IDE，安裝完 Spyder 後能直接使用虛擬環境不需任何設定。聽起來很棒，但 Conda 有一個致命問題是套件怎麼裝怎麼崩潰，即使是全新環境也一樣。
 
-Conda 使用自己的套件依賴解析而不是 pip，所以混用會出問題，你說為甚麼要混用？因為內建的永遠出現衝突問題，就拿筆者最常使用的套件 Tensorflow/Matplotlib/Numba 三個來說，三個都依賴 Numpy，三個都是知名套件，但是三個一起裝就是 boom 爆炸，筆者當時甚至研究出先使用 Conda 安裝 A，再使用 pip 安裝 B，最後再用 Conda 安裝 C 才能成功安裝，任何改變都會出錯。平常最好祈禱自己不要手癢想更新，更新就是套件再重裝一次。
+Conda 使用自己的套件依賴解析器而不是 pip，所以混用會出問題，你說為甚麼要混用？因為內建的永遠出現衝突問題，就拿筆者最常使用的套件 Tensorflow/Matplotlib/Numba 三個來說，三個都依賴 Numpy，三個都是知名套件，但是三個一起裝就是 boom 爆炸，筆者當時甚至研究出先使用 Conda 安裝 A，再使用 pip 安裝 B，最後再用 Conda 安裝 C 才能成功安裝，任何改變都會出錯。平常最好祈禱自己不要手癢想更新，更新就是套件再重裝一次。
 
 使用體驗爛透了，沒有第二句話，就算 IDE 安裝再快都沒有除錯依賴花得時間還久，程式肥大已經是瑕不掩瑕，處理依賴有得你受[^2]。
 
-[^2]: Conda 庫打包成二進制所以安裝比較快。另外即使使用 miniconda 也沒有多小，一樣大，但都不是主要問題，他的套件管理爛到不行，筆者用了兩年都沒改善，平常還得祈禱不會用到新套件否則研究出來的安裝順序又要再摸索一次，不要問我為甚麼知道，我已經對付他兩年了。
+[^2]: Conda 庫打包成二進制所以安裝比一般的 pip 快。另外即使使用 miniconda 程式還是一樣肥大，但肥大不是主要問題，問題是他的套件管理爛到不行，筆者用了兩年都沒改善，平常還得祈禱不會用到新套件，否則研究出來的安裝順序又要再摸索一次，不要問我為甚麼知道，我已經對付他兩年了。
 
 ### pipenv
 
@@ -142,7 +142,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 :::tip 使用心得
 
-和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），不需要 pipx 管理全局套件，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，做了和 pip 類似的接口方便以往的用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），除此之外還支援安裝全局套件以取代 pipx，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，還做了和 pip 類似的接口方便以往的用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 有兩個小缺點，第一是使用 rust 撰寫，所以 Python 開發者不好進行貢獻，第二是太新，連英文都沒有幾篇文章說明如何使用，不過別擔心筆者寫了一個簡易使用較學，從安裝到發布套件一應俱全。
 :::
@@ -169,16 +169,16 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 - 內建虛擬環境管理
 - 和 uv 並列開發社群最活躍的套件
 
-Poetry 最大的優勢是支援 pyproject.toml，可以設定從開發到發布的所有項目，使用自行開發的依賴解析器，支援 poetry.lock 完成依賴鎖定管理，背景使用 pip 讓兼容過往工具，兼容 setup.py，看起來很美好，而且真的很美好。對比 pipenv 有更快的套件下載和更簡易的指令操作，以及更好的開發環境（整合各種開發工具的設定）；對比 uv 則原生支援套件打包發布。使用體驗上，用戶人數足夠多，相關資訊比 PDM/hatch 更充足，cli 提示做得很不錯，以往筆者用過的工具都需要不斷切換視窗上網搜尋指令，使用 Poetry 可以明顯感受到頻率降低很多，唯一美中不足的是不包含 Python 版本管理，需要結合 pyenv 使用。
+Poetry 最大的優勢是支援 pyproject.toml，可以設定從開發到發布的所有項目，使用自行開發的依賴解析器，支援 poetry.lock 完成依賴鎖定管理，背景使用 pip 讓兼容過往工具，看起來很美好，而且真的很美好。對比 pipenv 有更快的套件下載和更簡易的指令操作，以及更好的開發環境（整合各種開發工具的設定）；對比 uv 則原生支援套件打包發布。使用體驗上，用戶人數足夠多，相關資訊比 PDM/hatch 更充足，cli 提示做得很不錯，以往筆者用過的工具都需要不斷切換視窗搜尋指令，使用 Poetry 可以明顯感受到頻率降低很多，唯一美中不足的是不包含 Python 版本管理，需要結合 pyenv 使用。
 
 > 網路上會說 Poetry 不支援 PEP 621，其實已計畫將於 [2.0 版本](https://github.com/orgs/python-poetry/discussions/5833)開始支援。
 
 Poetry 的使用指令可以觀看這兩篇文章：簡短的 [\[note\] Python Poetry](https://pjchender.dev/python/note-python-poetry/) 和更豐富的 [Pyenv + Poetry 相關指令](https://hackmd.io/@OpenAIDocuments/ByIK7hTEa)，新手用戶不用管太多只要會 `poetry init` + `poetry add` 就可以了。
 
 :::tip 和 uv 比較
-hatch 由於其自身的特殊性（沒有 lock 檔案，沒有內建虛擬環境管理，主要用於跨平台而不是環境管理和依賴解析）所以沒得比較，Poetry 對比強勢登場的 uv 在功能上更為相似。
+hatch 由於其自身的特殊性（沒有 lock 檔案，沒有內建虛擬環境管理，主要用於跨平台而不是虛擬環境管理和依賴解析）所以沒得比較，對比 uv 在功能上則更為相似。
 
-在這個部落格中寫了四篇關於 uv 的[文章](https://www.loopwerk.io/articles/tag/uv/)，我們可以看到 uv 的發展之快以及齊全的功能，該作者四篇文章一路從 uv 還不夠好寫到全面遷移 uv，並且在他自己的 dotfiles 裡面[把 pyenv 和 poetry 都移除了](https://github.com/search?q=repo%3Akevinrenskers%2Fdotfiles+uv&type=commits)，可見 uv 有多強大。
+在這個部落格中寫了四篇關於 uv 的[文章](https://www.loopwerk.io/articles/tag/uv/)，我們可以看到 uv 的發展之快以及齊全的功能。該作者原本使用 poetry，四篇文章一路從 uv 還不夠好寫到全面遷移 uv，並且在他自己的 dotfiles 裡面[把 pyenv 和 poetry 都移除了](https://github.com/search?q=repo%3Akevinrenskers%2Fdotfiles+uv&type=commits)，可見 uv 有多強大。
 
 兩者的選擇和開頭說的一樣，需要更成熟穩定且經過多數用戶驗證的工具，選擇 Poetry，想擁有一站式的良好使用體驗選擇 uv，只是 uv 仍然在早期階段有些細節還需要優化。
 :::
@@ -189,7 +189,7 @@ hatch 由於其自身的特殊性（沒有 lock 檔案，沒有內建虛擬環�
 
 - hatch: 專注在開發的工具
   1. 旨在建立跨平台間能具有相同環境和操作的套件（例如解決 Windows 不支援 Pyenv）
-  2. 不支援 lock 鎖定套件版本（[未來會支持](https://github.com/pypa/hatch/issues/749)）
+  2. 不支援 lock 鎖定套件版本（[未來會支援](https://github.com/pypa/hatch/issues/749)）
   3. 允許一個專案使用多個環境
   4. 優秀的[開發版本管理](https://myapollo.com.tw/post/python-hatch/)
 

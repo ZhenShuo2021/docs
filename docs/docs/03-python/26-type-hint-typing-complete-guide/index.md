@@ -45,8 +45,8 @@ import TabItem from '@theme/TabItem';
 - Final: 最終結果，不應該被覆寫
 
 > 偵錯方式
-
-mypy 提供 `reveal_type` 和 `reveal_locals` 兩種方法偵錯，使用時不需 import 直接用然後 mypy example.py 即可，詳情請見[這篇文章](https://adamj.eu/tech/2021/05/14/python-type-hints-how-to-debug-types-with-reveal-type/)。
+> 
+> mypy 提供 `reveal_type` 和 `reveal_locals` 兩種方法偵錯，使用時不需 import 直接用然後 mypy example.py 即可，詳情請見[這篇文章](https://adamj.eu/tech/2021/05/14/python-type-hints-how-to-debug-types-with-reveal-type/)。
 
 ## 中階關鍵字
 
@@ -346,7 +346,7 @@ print(box.items)
 ## **實戰泛型：複寫抽象方法**
 前面都是使用「設定型別 -> 實例化變數」作為範例方便快速理解，這裡我們考慮一個實際情況：當我們使用 <u>**父類別設定模版**</u>，但是 <u>**子類別的實作輸出卻不同型別**</u>。
 
-以下程式碼中，我們想要限制 `LinkType` 是某幾種限定類別的參數，使用抽象方法並且讓子類別繼承父類別，子類別可以選擇父類別中的任何一種 Link 作為變數型別。第一次嘗試時沒想這麼多，直接宣告
+以下程式碼中，我們想要限制 `LinkType` 是某幾種特定的型別，使用抽象方法並且讓子類別繼承父類別，子類別可以選擇父類別中的任何一種 Link 作為變數型別。第一次嘗試時沒想這麼多，直接宣告
 
 1. 父類別使用 `LinkType` 限制子類別的變數型別
 2. 子類別輸出為 `AlbumLink` `ImageLink` ，與父類別型別不同
@@ -361,17 +361,16 @@ LinkType = TypeVar("LinkType", AlbumLink, ImageLink)
 
 
 class BaseScraper(ABC):
-    """Abstract base class for different scraping strategies."""
-
     @abstractmethod
     # highlight-next-line
     def process_page_links(self, page_links: list[str]) -> list[LinkType]:
-        """Process links found on the page."""
+        """在父類別中使用包含兩種型別的型別變數LinkType"""
 
 
 class AlbumScraper(ScrapingStrategy):
     # highlight-next-line
     def process_page_links(self, page_links: list[str]) -> list[AlbumLink]:
+        """第一個子類別會輸出其中一種型別"""
         page_result = []
         for link in page_links:
             page_result.append(link)
@@ -381,6 +380,7 @@ class AlbumScraper(ScrapingStrategy):
 class ImageScraper(ScrapingStrategy):
     # highlight-next-line
     def process_page_links(self, page_links: list[str]) -> list[ImageLink]:
+        """第二個子類別輸出另外一種型別"""
         page_result = []
         for link in page_links:
             page_result.append((link, "after_some_process"))
@@ -405,7 +405,7 @@ error: Return type "list[tuple[str, str]]" of "process_page_links" incompatible 
 """
 ```
 
-這個錯誤的原因有兩個。第一，父類別沒有使用 Generic，導致 `page_result` 的 type hint 的 scope 只存在於該 method 而不是整個 class，mypy 無法透過繼承追蹤型別，所以警告我們出現 override 錯誤；第二，當我們將 `Generic[LinkType]` 加入父類別後再執行檢查會成功，不過此時如果我們使用更嚴格的 --strict 參數進行檢查，會出現 `error: Missing type parameters for generic type "ScrapingStrategy"  [type-arg]`，此時再將選擇子類別應該使用哪種 `AlbumLink` 或是 `ImageLink` 即可解決問題。
+這個錯誤的原因有兩個。第一，父類別沒有使用 Generic，導致 `page_result` 的 type hint 的 scope 只存在於該 method 而不是整個 class，mypy 無法透過繼承追蹤型別，所以警告我們出現 override 錯誤；第二，當我們將 `Generic[LinkType]` 加入父類別後再執行檢查會成功，不過此時如果我們使用更嚴格的 --strict 參數進行檢查，會出現 `error: Missing type parameters for generic type "ScrapingStrategy"  [type-arg]`，解決此問題的方式是在繼承時指定使用哪種型別即可解決問題。
 
 修正結果如下，只需在 class 繼承時額外指定該 class 的 type。
 
@@ -477,7 +477,7 @@ Success: no issues found in 1 source file
 結論：
 
 **Override 的問題：**
-1. 他沒寫，缺點就是上面寫的不符合直覺，邏輯上 abstractmethod 的子類應該遵守父類定義，可是子類的實現卻又 override 父類。
+1. AI 直接沒寫這段所以我自己寫，缺點就是上面寫的不符合直覺，邏輯上 abstractmethod 的子類應該遵守父類定義，可是子類的實現卻又 override 父類。
 
 **Overload 的問題：**
 1. Code Organization：
@@ -522,21 +522,19 @@ Success: no issues found in 1 source file
 
 本章節紀錄 Python 各個版本新增的 type hint 功能，方便快速查找
 
-- 3.8: 新增 `Protocol`。
-- 3.9: 內建 `list/set/tuple/dict`，不再需要從 typing 載入，還有很多 collections [不再建議從 typing 載入](https://stackoverflow.com/questions/65120501/typing-any-in-python-3-9-and-pep-585-type-hinting-generics-in-standard-collect)。
-- 3.9: 新增 `Annotated` 功能。
-- 3.10: `Union` 關鍵字可以用管道符號 | 代替。
-- 3.10: 預設使用 `from __future__ import annotations`，此功能允許延遲型別提示，允許定義類別時使用類別自身作為型別提示。
-- 3.12: `Generic` 新增了語法 class MyClass[T]，舊版語法是 class MyClass(Generic[T])。
-- 3.12: `TypeAlias` 支援語法[^1] type Vector = list[float]，舊版語法是 Vector: TypeAlias = list[float]。
-- 3.12: 新增 `Override`。
-- 3.14: typing 中的 `List/Set/Tuple/Dict` 將被標記為 deprecated。
-
-[^1]: 筆者認為舊版語法和 Python 原本語法一致，不需多記一種比較好讀，這見仁見智。
+- 3.8: 新增 `Protocol`
+- 3.9: 內建 `list/set/tuple/dict`，不再需要從 typing 載入，還有很多 collections [不再建議從 typing 載入](https://stackoverflow.com/questions/65120501/typing-any-in-python-3-9-and-pep-585-type-hinting-generics-in-standard-collect)
+- 3.9: 新增 `Annotated` 功能
+- 3.10: `Union` 關鍵字可以用管道符號 | 代替
+- 3.10: 預設使用 `from __future__ import annotations`，此功能允許延遲型別提示，允許定義類別時使用類別自身作為型別提示
+- 3.12: `Generic` 新增了語法 class MyClass[T]，舊版語法是 class MyClass(Generic[T])
+- 3.12: `TypeAlias` 支援語法 type Vector = list[float]，舊版語法是 Vector: TypeAlias = list[float]
+- 3.12: 新增 `Override`
+- 3.14: typing 中的 `List/Set/Tuple/Dict` 將被標記為 deprecated
 
 
 ## 結語
-其實原本只想寫 Generic，但是想想還是稍微整理一下資訊，結果就是最想寫的反而變成最後一項了，本文除了整理真正有用的資訊，也解釋了沒什麼人講過的 Generic。使用 type hint 時需要自行衡量標注的完整程度和程式開發的方便程度，寫的太完整會導致開發中需要不斷處理各種型別，失去 Python 快速開發的意義。
+其實原本只想寫 Generic，但是想想還是稍微整理一下資訊，結果就是最想寫的反而變成最後一段了。本文除了整理真正有用的資訊，也解釋了沒什麼人講過的 Generic。使用 type hint 時需要自行衡量標注的完整程度和程式開發的方便程度，寫的太完整會導致開發中需要不斷處理各種型別，失去 Python 快速開發的意義。
 
 ## 參考資料
 

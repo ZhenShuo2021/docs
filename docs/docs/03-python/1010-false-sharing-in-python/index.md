@@ -15,8 +15,10 @@ keywords:
   - Accelerate
   - Performance
 last_update:
-  date: 2024-11-09T01:17:00
+  date: 2024-12-01T23:38:00+08:00
   author: zsl0621
+first_publish:
+  date: 2024-11-09T01:17:00
 ---
 
 import Tabs from '@theme/Tabs';
@@ -33,15 +35,15 @@ import TabItem from '@theme/TabItem';
 ## False-Sharing 成因
 其原因來自於 CPU 快取特性是一次讀取一整行，當兩個核心訪問不同的快取時，如果它們在同一行 cacheline 中，即使他們並不共用 CPU 仍然會強制同步不同核心的快取，在同步過程中造成的效能損失就是 false-sharing。
 
-## 閱讀筆記（解決方式）
+## 解決方式
 
 在 [Speed up C++ — false sharing](https://medium.com/@techhara/speed-up-c-false-sharing-44b56fffe02b) 這篇文章中為每個線程創建了私有的 `local_sum`，解決 false sharing 後速度快了約 5 倍。
 
 另外，在 [The Performance Implications of False Sharing](https://coffeebeforearch.github.io/2019/12/28/false-sharing-tutorial.html) 這篇文章中則是使用 `alignas` 來完成 padding，並且從組合語言/benchmark/L1 cache hit rate 三種層面來討論 false sharing。在 false sharing 時，編譯結果顯示 99% 的時間都在競爭鎖 `lock   incl   (%rdx)` 上，benchmark 結果顯示正確使用後速度有約 1.3 倍速度提升，以 L1 Cache hit rate 來說，快取失誤率從 40% 下降至 3%。
 
-## 效能
+## 效能測試
 
-寫了以下腳本測試
+寫了以下腳本測試，測試從記憶體取出值，計算 `(current * 0.95 + 0.1) % 100`，然後放回記憶體中
 
 ```py
 import time
@@ -78,12 +80,14 @@ def run_single_process(n_iterations):
     return end - start
 
 
+# 沒有使用 padded，引發 false-sharing
 def bad_worker(shared_data, worker_id, n_iterations):
     for _ in range(n_iterations):
         current = shared_data[worker_id]
         shared_data[worker_id] = (current * 0.95 + 0.1) % 100
 
 
+# 使用 padded 解決 false-sharing
 def good_worker(shared_data, worker_id, n_iterations):
     padded_index = worker_id * PADDING_SIZE
     for _ in range(n_iterations):
@@ -91,12 +95,15 @@ def good_worker(shared_data, worker_id, n_iterations):
         shared_data[padded_index] = (current * 0.95 + 0.1) % 100
 
 
+# 每個 worker 使用 scalar 進行計算，比較完全沒有矩陣問題的計算速度
+# 他是一個特例，因為他連陣列都沒有
 def isolated_worker(val, n_iterations):
     for _ in range(n_iterations):
         current = val.value
         val.value = (current * 0.95 + 0.1) % 100
 
 
+# 測試 Numba 沒有使用 padded
 @njit("void(float64[:], int16)", parallel=True)
 def numba_bad_worker(shared_data, n_iterations):
     for i in prange(shared_data.shape[0]):
@@ -105,6 +112,7 @@ def numba_bad_worker(shared_data, n_iterations):
             shared_data[i] = (current * 0.95 + 0.1) % 100
 
 
+# 測試 Numba 使用 padded
 @njit("void(float64[:], int16, int16)", parallel=True)
 def numba_good_worker(shared_data, n_iterations, cache_line_size):
     for i in prange(shared_data.shape[0] // cache_line_size):
@@ -116,18 +124,21 @@ def numba_good_worker(shared_data, n_iterations, cache_line_size):
 
 def run_test(n_workers, n_iterations, use_padding=False, use_isolated=False):
     if use_isolated:
-        shared_data = [Value(ctypes.c_double, 0.0, lock=False) for _ in range(n_workers)]
+        # 每個進程使用獨立的常數，multiprocessing.Value 
         worker_func = isolated_worker
+        shared_data = [Value(ctypes.c_double, 0.0, lock=False) for _ in range(n_workers)]
         args_func = [(shared_data[i], n_iterations) for i in range(n_workers)]
     elif use_padding:
+        # 使用 padding
+        worker_func = good_worker
         shared_data = Array(ctypes.c_double, n_workers * PADDING_SIZE, lock=False)
         initialize_shared_data(shared_data, n_workers, use_padding=True)
-        worker_func = good_worker
         args_func = [(shared_data, i, n_iterations) for i in range(n_workers)]
     else:
+        # 不使用 padding，會產生 false-sharing
+        worker_func = bad_worker
         shared_data = Array(ctypes.c_double, n_workers, lock=False)
         initialize_shared_data(shared_data, n_workers, use_padding=False)
-        worker_func = bad_worker
         args_func = [(shared_data, i, n_iterations) for i in range(n_workers)]
 
     procs = [Process(target=worker_func, args=args) for args in args_func]
@@ -223,7 +234,7 @@ if __name__ == "__main__":
     plt.show()
 ```
 
-接下來是測試結果，三章圖依序是 `PADDING_SIZE = [4, 8, 16]` 的計算時間，使用長條圖的原因是折線圖變化太小看不出來差距。可以看到當 `PADDING_SIZE` 從 4 -> 8 的時候，使用 padding 的方式對比 false-sharing 的效能從原本的基本相同變成快了 ~15%，這個效能差距在把 `PADDING_SIZE` 設定成 8 -> 16 後又沒有進一步優化了，足以顯示 false-sharing 的存在以及使用的正確性。其餘的兩個測試 isolated 和 Numba 分別代表每個執行緒使用獨立的 Array 以及使用 [Numba 套件加速](/docs/python/numba-tutorial-accelerate-python-computing)，看了這個速度差異就知道為啥沒人在 Python 中討論 false-sharing 了吧，在 Python 中效能是個假議題，false-sharing 雖存在但不需要用 Python 解決他，簡單加一行裝飾器都比想破頭還有用。
+接下來是測試結果，三章圖依序是 `PADDING_SIZE = [4, 8, 16]` 的計算時間，使用長條圖的原因是折線圖變化太小看不出來差距。可以看到當 `PADDING_SIZE` 從 4 -> 8 的時候，使用 padding 的方式對比 false-sharing 的效能從原本的基本相同變成快了 ~15%，這個效能差距在把 `PADDING_SIZE` 設定成 8 -> 16 後又沒有進一步優化了，足以顯示 false-sharing 的存在以及使用的正確性。isolated 代表每個執行緒使用獨立的 Array，Numba 則是使用 [Numba 套件加速](/docs/python/numba-tutorial-accelerate-python-computing)，看了這個速度差異就知道為啥沒人在 Python 中討論 false-sharing 了，在 Python 中效能是個假議題，false-sharing 雖存在但不需要用 Python 解決他，簡單加一行裝飾器都比想破頭還有用。
 
 > use padding=4, still incurs false-sharing
 

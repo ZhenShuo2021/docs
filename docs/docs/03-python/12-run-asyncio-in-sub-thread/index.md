@@ -24,7 +24,7 @@ last_update:
 ## 程式碼說明
 設計思路是把函式和參數打包後丟給事件迴圈運行，用一個單獨的線程用於執行事件迴圈，再把任務註冊到這個事件迴圈。
 
-首先先建立一個 dataclass 用於把要執行函式以及函式輸入打包
+首先先建立一個 dataclass 用於把要執行函式的以及函式輸入打包
 
 ```py
 @dataclass
@@ -38,7 +38,7 @@ class Task:
         self.kwargs = self.kwargs or {}
 ```
 
-接下來就是建立負責管理事件迴圈和線程的類別，首先初始化如下，項目有點多。
+接下來就是建立負責管理事件迴圈和線程的類別，初始化如下，項目有點多。
 
 - max_workers 用於限制最高並發數量
 - is_running 是程式旗標，標記線程是否還在運行
@@ -66,9 +66,9 @@ class AsyncService:
 
 接下來我們介紹程式架構：
 
-- `submit_task` 和 `submit_tasks` 作為外部接口把任務放進 task_queue 中
-- 每次 `submit_task` 呼叫 `_ensure_thread_active` 確認子線程是否存活
-- 子線程執行 `_start_event_loop`，他會呼叫 `_schedule_tasks`
+- `add_task` 和 `add_tasks` 作為外部接口把任務放進 task_queue 中
+- 每次 `add_task` 呼叫 `_ensure_thread_active` 確認子線程是否存活
+- 子線程執行 `_start_event_loop`，這個函式會呼叫 `_schedule_tasks`，並且使用 try-finally 語法管理事件迴圈的關閉
 - `_schedule_tasks` 是一個無限迴圈，用於從 task_queue 中取出任務，使用 asyncio.create_task 註冊到事件迴圈
 - `_run_task` 把輸入函式解包並且 await 執行，再把輸出結果放進 results 字典
 
@@ -95,7 +95,7 @@ async def _run_task(self, task: Task) -> Any:
                 self.results[task.task_id] = None
 ```
 
-接下來介紹呼叫 `_run_task` 的 `_schedule_tasks`，前者真正執行任務，後者管理任務，是一個中間人的角色，負責從 task_queue 中取出任務註冊到事件迴圈中，並且放到 current_tasks 這個列表中準備執行。
+剛才介紹完 `_run_task`，接下來介紹呼叫 `_run_task` 的 `_schedule_tasks`，前者真正執行任務，後者管理任務，是一個中間人的角色，負責從 task_queue 中取出任務註冊到事件迴圈中，並且放到 current_tasks 這個列表中準備執行。
 
 ```py
 async def _schedule_tasks(self) -> None:
@@ -158,14 +158,14 @@ class AsyncService:
 
         # 儲存任務和結果的資料結構
         self.task_queue: queue.Queue[Task] = queue.Queue()
-        self.results: Dict[str, Any] = {}
         self.current_tasks: list[asyncio.Task[Any]] = []
+        self.results: Dict[str, Any] = {}
 
-    def submit_task(self, task: Task) -> None:
+    def add_task(self, task: Task) -> None:
         self.task_queue.put(task)
         self._ensure_thread_active()
 
-    def submit_tasks(self, tasks: list[Task]) -> None:
+    def add_tasks(self, tasks: list[Task]) -> None:
         for task in tasks:
             self.task_queue.put(task)
         self._ensure_thread_active()
@@ -234,7 +234,7 @@ class AsyncService:
                 f"Task {task.func.__name__} with args {task.args} and kwargs {task.kwargs} start running!"
             )
             try:
-                result = await task.func(*task.args, **task.kwargs)
+                result = await task.func(*task.args, **task.kwargs)  # type: ignore
                 with self._lock:
                     self.results[task.task_id] = result
                 return result
@@ -257,10 +257,10 @@ def test() -> None:
 
     manager = AsyncService(logger, max_workers=5)
 
-    # 提交第一批任務，使用新的add_tasks方法
+    # 新增第一批任務
     for group in task_groups[:-1]:
         tasks = [Task(task[1], io_task, task) for task in group]
-        manager.submit_tasks(tasks)
+        manager.add_tasks(tasks)
 
     print(NOT_BLOCK_MSG)
 
@@ -281,9 +281,9 @@ def test() -> None:
         for result in results:
             print(result)
 
-    # 在thread關閉後提交第二批任務
+    # 在thread關閉後新增第二批任務
     tasks = [Task(task[1], io_task, task) for task in task_groups[-1]]
-    manager.submit_tasks(tasks)
+    manager.add_tasks(tasks)
     manager.shutdown()
     results = manager.fetch_results()
     for result in results:
@@ -295,14 +295,14 @@ if __name__ == "__main__":
     test()
 ```
 
-放了一個簡單範例 `test`，實際運行是 11 秒，讀者可以自行計算秒數驗證是否和理論相符。
+`test` 函式是一個簡單的使用範例，實際運行是 11 秒，讀者可以自行計算秒數驗證是否和理論相符。
 
 ## 自我檢討和心得
-搜尋資料時看到有人建議撰寫主程式是非同步，然後把同步語法放到子線程中執行會比較好，寫的時候不太認同，真的用函式的時候就認同了，因為即使已經包裝成只要 `submit_task` 和輸入 `Task` 就可以使用還是不太方便。
+搜尋資料時看到有人建議撰寫主程式是非同步，然後把同步語法放到子線程中執行會比較好，寫的時候不太認同，真的用函式的時候就認同了，因為即使已經包裝成只要呼叫 `add_task` 和輸入 `Task`，實際使用時還是不太方便。
 
-第二個是層層包裹的語句造成理解不易，使用 `submit_task` 加入任務後會經過 `_ensure_thread_active` 確認線程是否存活並且建立線程，線程裡面要使用 `_start_event_loop` 建立事件迴圈，再使用 `_schedule_tasks` 把事件註冊到迴圈中，最後用 `_run_task` 把 `Task` dataclass 解包並且執行。這呼應第一個問題：如果去掉在子線程執行事件迴圈這件事，就可以刪掉前兩個方法，簡化為只需要註冊和運行而已。會這樣寫的原因除了自己想練習以外，也是因為前陣子寫了一個「把任務丟到子線程中執行」，所以用同樣想法寫了事件迴圈版本，結果比想像中的麻煩多了。不過都是試了才知道，畢竟網路上又沒這種文章。
+第二個是層層包裹的語句造成理解不易，使用 `add_task` 加入任務後會經過 `_ensure_thread_active` 確認線程是否存活並且建立線程，線程裡面要使用 `_start_event_loop` 建立事件迴圈，再使用 `_schedule_tasks` 把事件註冊到迴圈中，最後用 `_run_task` 把 `Task` dataclass 解包並且執行。這呼應第一個問題：如果去掉在子線程執行事件迴圈這件事，就可以刪掉前兩個方法，簡化為只需要註冊和運行而已。會這樣寫的原因除了自己想練習以外，也是因為前陣子寫了一個「把任務丟到子線程中執行」，所以用同樣想法寫了事件迴圈版本，結果比想像中的麻煩多了。不過都是試了才知道，畢竟網路上又沒這種文章。
 
-第三是子線程中包含多個事件迴圈的運行管理，但筆者還沒到那個程度，所以 no comment。
+第三是子線程中包含多個事件迴圈的運行管理，但筆者還沒到那個程度，以這個架構繼續延伸的話應該是輸入時加上 loop id 選擇要使用哪個迴圈。
 
 第四有關記憶體效率，`task_queue` 和 `current_tasks` 疊床架屋，`task_queue` 用於暫存還沒執行的任務，`current_tasks` 存放已經從 `task_queue` 取出準備要執行的任務，要兩個物件管理有點浪費資源，有 semaphore 應該就不需要這兩個東西。附帶一提 `results` 不使用 queue 的原因是用戶可能會想根據 task_id 取得結果，但是 queue 只能從頭尾取值達不到這項要求。
 
@@ -328,7 +328,7 @@ class AsyncService:
         # 儲存結果
         self.results: Dict[str, Any] = {}
 
-    def submit_task(self, task: Task) -> None:
+    def add_task(self, task: Task) -> None:
         self._ensure_thread_active()
 
         with self._lock:
@@ -336,9 +336,9 @@ class AsyncService:
             assert self.loop is not None
             asyncio.run_coroutine_threadsafe(self._schedule_tasks(task), self.loop)
 
-    def submit_tasks(self, tasks: list[Task]) -> None:
+    def add_tasks(self, tasks: list[Task]) -> None:
         for task in tasks:
-            self.submit_task(task)
+            self.add_task(task)
 
     def fetch_result(self, task_id: str) -> Optional[Any]:
         with self._lock:
@@ -410,11 +410,11 @@ class AsyncService:
 ### 討論：死鎖問題
 藉此機會練習多線程的問題，剛改成這個版本時沒有使用 `threading.Event` 會產生死鎖，以下分析死鎖產生原因：
 
-1. 在 `add_task` 時馬上呼叫 `_ensure_thread_active`，得到鎖，建立線程並且啟動，釋放鎖，return
-2. 回到 `add_task`，取得鎖，執行 `run_coroutine_threadsafe`，但是 `_start_event_loop` 中還沒建立 self.loop 的工作尚未完成，引發 NoneTypeError
+1. 在 `add_task` 時馬上呼叫 `_ensure_thread_active`，得到鎖，建立並且啟動線程，釋放鎖，return，同一時間子線程正在執行 `_start_event_loop`
+2. 回到 `add_task`，取得鎖，執行 `run_coroutine_threadsafe`，但是 `_start_event_loop` 中建立 self.loop 的工作尚未完成，引發 NoneTypeError
 3. 鎖釋放失敗，下一次 `add_task` 又要求鎖，造成死鎖（這也會造成 `run_coroutine_threadsafe` 本身的鎖產生死鎖）
 
-加上 Event 則確保 self.loop 成功建立，避免死鎖問題。這裡和網路教學相反的是是由子線程使用 Event 告訴主線程可以繼續了，網路教學通常是由主線程輸入 Event 告訴子線程開始工作。
+加上 Event 則確保 self.loop 成功建立，在 `asyncio.set_event_loop` 完成之後才發送 `set` 訊號告訴主線程可以繼續工作，避免死鎖問題。這裡和網路教學相反的是是由子線程告訴主線程可以繼續了，網路教學通常是由主線程輸入 Event 告訴子線程開始工作。
 
 ```py
 # 一開始沒有鎖的版本，方便讀者比較

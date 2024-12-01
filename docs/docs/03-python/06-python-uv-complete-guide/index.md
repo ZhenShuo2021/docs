@@ -309,14 +309,36 @@ default-groups = ["dev", "foo"]
 ```toml
 # 假如拿到一個使用 uv 設定的專案架構如下
 [project]
-name = "your-project-name"
-version = "0.1.0"
+name = "your-project-name"  # 必填
+version = "0.1.0"  # 必填
 description = "project description"
+authors = [{ name = "your-name", email = "your-email@example.com" }]
+maintainers = [{name = "your-name", email = "your-email@example.com"}]
+urls.repository = "your-repo-url"
+urls.homepage = "your-project-site"
+license = {text = "MIT License"}  # 也可以用檔案 license = { file = "LICENSE" }
 readme = "README.md"
+# 發布到 PyPI 的關鍵字和搜尋分類，可選
+keywords = [
+    "xxx-toolkit",
+]
+classifiers = [
+    "Topic :: Multimedia",
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "License :: OSI Approved :: MIT License",
+]
+
+# 宣告依賴關係
 requires-python = ">=3.10"
 dependencies = ["beautifulsoup4>=4.12.3", "requests>=2.32.3"]
 
-
+# 開發群組
 [dependency-groups]
 dev = [
     "mypy>=1.13.0",
@@ -326,6 +348,7 @@ dev = [
     "isort>=5.13.2",
 ]
 
+# 可選群組
 [project.optional-dependencies]
 network = [
     "httpx[http2]>=0.27.2",

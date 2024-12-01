@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-01T16:08:00+08:00
+  date: 2024-12-02T00:54:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
-把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了和 pip 的接口方便用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了 pip 的接口方便用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 為何選擇 uv？我會說：「一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
@@ -149,14 +149,15 @@ uv python find
 ```
 
 ### 初始化專案
-https://docs.astral.sh/uv/reference/cli/#uv-init
+https://docs.astral.sh/uv/concepts/projects/init/   
 
-設定好 Python 版本後就是初始化專案，使用 `app` 參數設定專案名稱，使用 `build-backend` 參數設定專案的構建後端，也可以不輸入任何參數使用預設值初始化專案。
+設定好 Python 版本後就是初始化專案，使用 `app` 參數設定專案名稱，使用 `build-backend` 參數設定專案的構建後端，也可以不輸入任何參數使用預設值初始化專案[^init]。
 
 ```sh
 uv init --app test --build-backend hatch --python 3.12
 ```
 
+[^init]: 其實還有 `--package`/`--lib` 選項可以建立預設專案架構，看是套件還是函式庫，不過會用到的人都有能力獨立閱讀文檔了。另外，如果你的專案需要使用 rust/C/C++ 等外部函式庫，請參照[官方文檔](https://docs.astral.sh/uv/concepts/projects/init/#projects-with-extension-modules)說明。
 
 ### 建立虛擬環境
 https://docs.astral.sh/uv/pip/environments/ 
@@ -271,7 +272,7 @@ https://docs.astral.sh/uv/reference/cli/#uv-run
 
 經過上面的設定我們知道 uv 可以設定開發套件和開發群組，結合這些功能可以讓日常的開發輕鬆許多。
 
-有了 `uv run` 之後我們連虛擬環境都不用進入，我們每次執行 `uv run` 時 uv 都會先同步 pyproject.toml 中的套件再運行以確保運行環境統一。這只是眾多優點的其中一個，他除了自動同步功能以外也支援各種選項，例如我們可以
+有了 `uv run` 之後我們連虛擬環境都不用進入就可以直接執行腳本，除此之外，每次執行 `uv run` 時 uv 都會先同步 pyproject.toml 中的套件再運行以確保運行環境統一。這只是眾多優點的其中一個，他除了自動同步功能以外也支援各種選項，例如我們可以
 
 1. 使用 `--with <pkg>` 臨時測試某些套件而不需安裝   
 2. 使用 `--group` `--only-group` `--all-groups` `--no-group` 設定執行時包括哪些開發群組的套件   
@@ -283,11 +284,13 @@ https://docs.astral.sh/uv/reference/cli/#uv-run
 8. 使用 `--no-sync` 可以關閉運行前的同步功能  
 9. 使用 `--no-dev` 忽略開發套件運行   
 
-光看這些選項可能沒什麼感覺，我們稍微討論一下在實際開發中這些選項提供了多大的方便性。想像需要臨時測試一個套件的情境，以前要先 pip install 安裝，然後執行腳本，事後還要從環境中移除，但是現在這三個步驟直接被濃縮成一個 `--with <pkg>` 了，類似的情境也發生在想要搭配可選套件進行測試，現在只要使用 `--extra` 選項就可以自動包含該群組的套件，甚至使用 `--find-links` 連安裝包都可以使用；或者是臨時想要在一個乾淨的環境執行，現在只需要 `--isolated` 就取代掉以前需要三四步指令才能完成的設定；`--python` 選項乍看之下是提供測試不同 Python 版本使用，但是我們可以把他當作 pyenv 來用，使用 `uv run --python 3.11 python -m venv .venv` 叫 3.11 版本的 Python 來建立虛擬環境，等效於 pyenv-virtualenv 的功能，非常方便。
+光看這些選項可能沒什麼感覺，我們稍微討論一下在實際開發中這些選項提供了多大的方便性。想像需要臨時測試一個套件的情境，以前要先 pip install 安裝，然後執行腳本，事後還要從環境中移除，但是現在這三個步驟直接被濃縮成一個 `--with <pkg>` 了，類似的情境也發生在想要搭配可選套件進行測試，現在只要使用 `--extra` 選項就可以自動包含該群組的套件，甚至使用 `--find-links` 連安裝包都可以使用；或者是臨時想要在一個乾淨的環境執行，現在只需要 `--isolated` 就取代掉以前需要三四步指令才能完成的設定；`--python` 選項乍看之下是提供測試不同 Python 版本使用，但是我們可以把他當作 pyenv 來用，使用 `uv run --python 3.12 python -m venv .venv` 叫 3.12 版本的 Python 來建立虛擬環境[^pyenv]，等效於 pyenv-virtualenv 的功能，非常方便。
 
 以往這些指令都要在不同的套件搭配各自的參數完成，現在只需要放在一個列表（就像是這個段落）就可以涵蓋數個不同開發場景的指令組合，提供非常強大的開發便利性，經過一段時間的使用後我認為 `uv run` 這個功能相較於速度這個特色才是他最吸引人的地方。
 
 附帶一提這些參數大多數也都適用於 uv sync 等指令。
+
+[^pyenv]: 也可以使用簡短版本的 `uv venv --python 3.12` 完成。
 
 ### 結合 Jupyter
 https://docs.astral.sh/uv/guides/integration/jupyter/
@@ -320,6 +323,7 @@ license = {text = "MIT License"}  # 也可以用檔案 license = { file = "LICEN
 readme = "README.md"
 # 發布到 PyPI 的關鍵字和搜尋分類，可選
 keywords = [
+    "xxx",
     "xxx-toolkit",
 ]
 classifiers = [
@@ -368,7 +372,7 @@ network = [
 # hello = "my_package:main_function"
 ```
 
-假設我們要處理一個新專案，使用 uv 設定的的 toml，uv 只要一行就可以完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝：
+假設我們要處理一個新專案，這個專案使用 uv 設定 pyproject.toml，我們只要一行就可以完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝：
 
 ```sh
 # 一行完成下載和設定 Python、建立虛擬環境、安裝套件
@@ -381,7 +385,7 @@ uv pip list
 uv run <任意檔案>
 ```
 
-但是如果使用以往的 pyenv + Poetry 組合則需要使用這麼繁瑣的指令，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
+但是如果專案使用 Poetry，我們會需要使用 pyenv + Poetry 組合，需要使用如下方所示這麼繁瑣的指令才能完成一樣的任務，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
 
 ```sh
 # 下載和設定版本
@@ -525,6 +529,6 @@ uv tool install --with <extra-package> <tool-package>
 ## 結束！
 本文介紹了從安裝到平常使用，到 pyproject.toml/.pre-commit-config.yaml 抄作業，到發布套件，以及取代 pipx 全部介紹。由於這個工具很新隨時會變動，網路上資訊也少，如果有問題麻煩告知我再修正。
 
-整體下來最心動的就是不需要 pyenv/pipx，也不用記 Poetry 有關 Python 解釋器的指令，全部都濃縮在 uv 一個套件中，加上執行速度快，更新很勤勞（2024/11 看下來每天都有 10 個 commit，嚇死人），社群狀態很健康 (競爭對手 [PDM is a one-man-show, like Hatch](https://chriswarrick.com/blog/2024/01/15/python-packaging-one-year-later/))，一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快，難怪竄升速度這麼誇張。
+整體下來最心動的就是 `uv run` 的強大功能，以及不需要 pyenv/pipx，也不用記 Poetry 有關 Python 解釋器的指令，這麼多功能全部都濃縮在 uv 一個套件中，加上執行速度快，更新很勤勞（2024/11 看下來每天都有 10 個 commit，嚇死人），社群狀態很健康 (競爭對手 [PDM is a one-man-show, like Hatch](https://chriswarrick.com/blog/2024/01/15/python-packaging-one-year-later/))，一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快，難怪竄升速度這麼誇張。
 
 筆者一向不喜歡寫這種純指令的文章，理由是網路已經充斥一堆類似文章了沒必要又一篇浪費讀者作者雙方時間，但是本文是全中文圈第一個完整介紹操作的文章所以沒這問題。

@@ -10,45 +10,8 @@ const remarkParse = require("remark-parse");
 const stringify = require("rehype-stringify");
 const remark2rehype = require("remark-rehype");
 
-// import { rehypeExtendedTable } from 'rehype-extended-table';
-
 import { themes as prismThemes } from 'prism-react-renderer';
 
-// require("dotenv").config();
-
-function unwrapCategory(items) {
-  const newItems = [];
-
-  items.forEach((item) => {
-    const isDoc = item.type === "doc";
-    const isCategory = item.type === "category";
-    const hasOnlyOneDocItem = isCategory && item.items.length === 1 && item.items[0].type === "doc";
-    if (isDoc) {
-      newItems.push(item);
-      return;
-    }
-
-    if (hasOnlyOneDocItem) {
-      newItems.push(item.items[0]);
-      return;
-    }
-
-    item.items = unwrapCategory(item.items);
-    newItems.push(item);
-  });
-
-  return newItems;
-}
-
-export default {
-  markdown: {
-    mdx1Compat: {
-      comments: true,
-      admonitions: true,
-      headingIds: true,
-    },
-  },
-};
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -144,13 +107,13 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "intro/intro",  // 更新路徑
+          docId: "about/docs",  // 更新路徑
           position: "left",
           label: "文件庫📚",
         },
         {
           type: "doc",
-          docId: "intro/memo",
+          docId: "about/memo",
           docsPluginId: "memo", // 指定使用 memo plugin
           position: "left",
           label: "備忘錄📝",
@@ -180,8 +143,19 @@ module.exports = {
       ],
     },
     footer: {
-      style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()}. Built with Docusaurus.`,
+      // logo: {
+      //   alt: 'Meta Open Source Logo',
+      //   src: 'img/meta_oss_logo.png',
+      //   href: 'https://opensource.fb.com',
+      //   width: 160,
+      //   height: 51,
+      // },
+      // <a href="https://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank" rel="noopener noreferrer">
+      // CC BY-NC 4.0</a>  授權條款<br>
+      copyright: `
+      © ${new Date().getFullYear()} ZhenShuo2021 (zsl0621.cc). Built with Docusaurus.<br>
+      All rights reserved. 轉載或引用請註明來源。
+    `,
     },
   },
   presets: [

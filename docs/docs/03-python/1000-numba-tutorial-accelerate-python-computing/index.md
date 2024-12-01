@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 > 你能找到最好的中文教學！
 
-鑑於繁體中文資源匱乏，最近剛好又重新看了一下文檔，於是整理資訊分享給大家。本篇的目標讀者是沒學過計算機的初階用戶到中階用戶都可以讀，筆者能非常肯定的說這篇文章絕對是你能找到最好的教學。
+鑑於繁體中文資源匱乏，最近剛好又重新看了一下文檔，於是整理資訊分享給大家。本篇的目標讀者是沒學過計算機組織的初階用戶到中階用戶都可以讀，筆者能非常肯定的說這篇文章絕對是你能找到最好的教學。
 
 - **為甚麼選擇此教學**  
     >最快、最正確、最完整   
@@ -125,13 +125,13 @@ from numba import jit, prange
 @jit(nopython=True, fastmath=True, parallel=True, nogil=True)
 def numba_loop(arr):
     bias = 2
-    total = 0
+    total = 0.0
     for x in prange(len(arr)):   # Numba likes loops
         total += np.sqrt(x)      # Numba likes numpy
     return bias + total          # Numba likes broadcasting
 
 
-# Python Loop
+# Python Loop，沒有使用裝飾器
 def python_loop(arr):
     bias = 2
     total = 0.0
@@ -147,7 +147,7 @@ def numba_arr(arr):
     return bias + np.sum(np.sqrt(arr))
 
 
-# Python Vector
+# Python Vector，沒有使用裝飾器
 def python_arr(arr):
     bias = 2
     return bias + np.sum(np.sqrt(arr))
@@ -232,7 +232,7 @@ print("Are the outputs equal?", np.isclose(result_numba_arr, result_python_arr))
 <br/>
 
 ### 進一步優化效能
-基礎使用章節已經涵蓋[官方文檔中的所有效能優化技巧](https://numba.readthedocs.io/en/stable/user/performance-tips.html#intel-svml)，這裡補充一些進階的優化方式。
+基礎使用章節已經涵蓋[官方文檔](https://numba.readthedocs.io/en/stable/user/performance-tips.html#intel-svml)中的所有效能優化技巧，這裡補充進階的優化方式。
 
 1. 使用 Numba 反而變慢
     - 別忘了扣掉首次執行需要消耗的編譯時間。
@@ -251,9 +251,9 @@ print("Are the outputs equal?", np.isclose(result_numba_arr, result_python_arr))
 ### fastmath
 筆者在這裡簡單的討論一下 fastmath 選項。
 
-雖然 fastmath 在文檔中沒有說到的是他和 SVML 掛勾，但筆者以此 [Github issue](https://github.com/numba/numba/issues/5562#issuecomment-614034210) 進行測試，如果顯示機器碼 `movabsq $__svml_atan24` 代表安裝成功，此時我們將 fastmath 關閉後發現向量化失敗，偵錯訊息顯示 `LV: Found FP op with unsafe algebra.`。
+雖然 fastmath 在文檔中只說他放寬了 IEEE 754 的精度限制，沒有說到的是他和 SVML 掛勾，但筆者以此 [Github issue](https://github.com/numba/numba/issues/5562#issuecomment-614034210) 進行測試，如果顯示機器碼 `movabsq $__svml_atan24` 代表安裝成功，此時我們將 fastmath 關閉後發現向量化失敗，偵錯訊息顯示 `LV: Found FP op with unsafe algebra.`。
 
-為甚麼敢說本篇是最正確的教學，對於其他文章我就問一句話， **效能測試時有裝 SVML 嗎？** 這甚至都不用設定就可以帶來極大幅度的效能提升，但是筆者從來沒看過任何文章提到過。
+為甚麼敢說本篇是最正確的教學，對於其他文章我就問一句話， **效能測試時有裝 SVML 嗎？** 這甚至都不用改程式就可以帶來極大幅度的效能提升，但是筆者從來沒看過任何文章提到過。
 
 ### 如何除錯
 Numba 官方文檔有如何除錯的教學，使用 `@jit(debug=True)`，詳情請見 [Troubleshooting and tips](https://numba.readthedocs.io/en/stable/user/troubleshoot.html)。

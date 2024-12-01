@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-29T16:42:00+08:00
+  date: 2024-12-01T16:08:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -21,7 +21,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具
-本篇文章介紹 uv 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請觀看[上一篇文章](/docs/python/virtual-environment-management-comparison)。
+本篇文章介紹 [uv](https://github.com/astral-sh/uv) 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請觀看[上一篇文章](/docs/python/virtual-environment-management-comparison)。
 
 ## 簡介
 以一句話形容 uv，那就是完整且高效的一站式體驗。uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
@@ -101,7 +101,7 @@ uv pip uninstall
 # 寫出版本資訊
 uv pip freeze > requirements.txt
 
-# 更新全部版本@unix
+# 更新全部版本@Unix
 uv pip freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 uv pip install -U
 ```
 
@@ -212,32 +212,19 @@ uv sync --refresh
 ### 開發套件管理
 https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies
 
-設定開發套件，此區域的套件不會被構建和發布，使用 `--dev <pkg>` 新增，還可以用 `--group` 幫開發套件設定套件群組方便管理。
-
-
-```toml
-# toml 的設定：新版語法
-[dependency-groups]
-dev = ["pytest"]
-
-# toml 的設定：舊版語法
-[tool.uv]
-dev-dependencies = ["pytest"]
-```
-
-使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，修改 pyproject.toml 中的 default-groups 則可以設定同步的目標。有了群組功能後我們可以輕鬆的管理工具，例如使用 `uv run --no-group <foo-group> <your-commands>` 就可以在指定沒有 foo-group 的環境中執行指令。
+設定開發套件，此區域的套件不會被構建和發布，使用 `--dev <pkg>` 新增，還可以用 `--group` 幫開發套件設定套件群組方便管理。比如說我們需要 pytest 進行單元測試，只需要使用 `uv add --dev pytest` 把 pytest 新增到 dev 群組中而不會影響生產套件。下方的範例我們新增了 pytest 作為 dev 群組，以及 ruff 作為 lint 的群組。
 
 ```toml
-# 設定 uv sync 同步時除了 dev 也同步 foo 群組
-[tool.uv]
-default-groups = ["dev", "foo"]
+# 把 pytest 套件新增到 dev 群組，等同於 uv add --group dev pytest
+uv add --dev pytest
 
-# 在命令行中使用這個指令把 ruff 套件新增到 lint 群組
+# 再把 ruff 套件新增到 lint 群組
 uv add --group lint ruff
 
-# toml 中的對應的更新
+# toml 對應的更新
 [dependency-groups]
-lint = ["ruff>=0.8.0"]
+dev = ["pytest"]
+lint = ["ruff"]
 ```
 
 ### 可選套件管理
@@ -246,7 +233,7 @@ https://docs.astral.sh/uv/concepts/projects/dependencies/#optional-dependencies
 幫專案增加可選組件（可選組件：舉例來說，像是 httpx 的 http2 功能是可選，安裝 httpx 時不會主動安裝 http2 功能）。
 
 ```toml
-# 在命令行中使用這個指令，新增 matplotlib 為可選套件
+# 在命令行中使用這個指令，新增可選套件 matplotlib 到 plot 群組
 uv add matplotlib --optional plot
 
 # toml 中的對應的更新
@@ -278,18 +265,43 @@ https://docs.astral.sh/uv/configuration/files/#configuring-the-pip-interface
 
 `uv add` 用於正式專案套件，和 `uv remove` 成對使用，會修改 pyproject.toml；`uv pip` 則是臨時測試，不會寫入 pyproject.toml。
 
-### 強大的 uv run 功能
+## 日常開發：強大的 uv run 功能
 https://docs.astral.sh/uv/guides/scripts/   
 https://docs.astral.sh/uv/reference/cli/#uv-run   
 
-有了 `uv run` 之後我們連虛擬環境都不用進入，每次使用 `uv run` 都會先同步 pyproject.toml 中的套件再運行。除了自動同步功能以外也支援各種選項，例如我們可以使用 `--with-requirements` 設定這次執行要搭配哪些套件執行，使用 `--no-sync` 可以關閉運行前的同步功能，使用 `--only-group` 設定只使用哪些群組的套件執行，最重要的是 `--python` 功能，允許我們指定使用不同的 Python 版本執行。
+經過上面的設定我們知道 uv 可以設定開發套件和開發群組，結合這些功能可以讓日常的開發輕鬆許多。
 
-下方是一個基本範例，範例中先確認現在使用 3.10 版本，再使用 `--python` 參數指定使用其他版本的 Python 執行，非常方便。
+有了 `uv run` 之後我們連虛擬環境都不用進入，我們每次執行 `uv run` 時 uv 都會先同步 pyproject.toml 中的套件再運行以確保運行環境統一。這只是眾多優點的其中一個，他除了自動同步功能以外也支援各種選項，例如我們可以
 
-![uv-isolated](uv-isolated.webp "uv-isolated")
+1. 使用 `--with <pkg>` 臨時測試某些套件而不需安裝   
+2. 使用 `--group` `--only-group` `--all-groups` `--no-group` 設定執行時包括哪些開發群組的套件   
+3. 使用 `--extra` `--all-extras` `--no-extra` 指定包括哪些可選套件   
+4. 使用 `--with-requirements` 指定包括 txt 文件的套件執行    
+5. 使用 `--find-links` 可以直接包括來自 .whl/tar.gz/.zip/URL 的套件   
+6. 使用 `--python` 允許我們指定使用不同的 Python 版本執行   
+7. 使用 `--isolated` 在臨時的隔離空間獨立運行   
+8. 使用 `--no-sync` 可以關閉運行前的同步功能  
+9. 使用 `--no-dev` 忽略開發套件運行   
 
-如果有虛擬環境不想用 uv 管理，可以用 `uv run --python 3.11 python -m venv .venv` 叫 3.11 版本的 Python 來建立虛擬環境，等效於 pyenv-virtualenv 的功能，非常方便。
+光看這些選項可能沒什麼感覺，我們稍微討論一下在實際開發中這些選項提供了多大的方便性。想像需要臨時測試一個套件的情境，以前要先 pip install 安裝，然後執行腳本，事後還要從環境中移除，但是現在這三個步驟直接被濃縮成一個 `--with <pkg>` 了，類似的情境也發生在想要搭配可選套件進行測試，現在只要使用 `--extra` 選項就可以自動包含該群組的套件，甚至使用 `--find-links` 連安裝包都可以使用；或者是臨時想要在一個乾淨的環境執行，現在只需要 `--isolated` 就取代掉以前需要三四步指令才能完成的設定；`--python` 選項乍看之下是提供測試不同 Python 版本使用，但是我們可以把他當作 pyenv 來用，使用 `uv run --python 3.11 python -m venv .venv` 叫 3.11 版本的 Python 來建立虛擬環境，等效於 pyenv-virtualenv 的功能，非常方便。
 
+以往這些指令都要在不同的套件搭配各自的參數完成，現在只需要放在一個列表（就像是這個段落）就可以涵蓋數個不同開發場景的指令組合，提供非常強大的開發便利性，經過一段時間的使用後我認為 `uv run` 這個功能相較於速度這個特色才是他最吸引人的地方。
+
+附帶一提這些參數大多數也都適用於 uv sync 等指令。
+
+### 結合 Jupyter
+https://docs.astral.sh/uv/guides/integration/jupyter/
+
+筆者患有 Jupyter 設定障礙，每次設定都覺得異常痛苦所以很少用他，但是 uv 已經整合好了完全沒有這個問題，不用再去網路上看過時的教學除錯，只需要一句 `uv run --with jupyter jupyter lab` 就完成，官方文檔中有更詳細的教學說明。
+
+### 設定預設群組
+使用 `uv sync` 和 `uv run` 時預設會同步生產套件和 dev 套件，修改 pyproject.toml 中的 default-groups 則可以設定同步的目標。如果臨時不想包含這些套件可以使用 `--no-group` 參數。
+
+```toml
+# 設定 uv sync 同步時除了 dev 也同步 foo 群組
+[tool.uv]
+default-groups = ["dev", "foo"]
+```
 
 ## 🔥 pyproject.toml 範例 🔥
 既然 uv 的一站式體驗這麼好，那本文也提供一站式體驗，連 `pyproject.toml` 基礎範例都放上來提供參考，複製貼上後只需要使用 `uv sync` 就完成了，超級快。
@@ -346,7 +358,7 @@ uv pip list
 uv run <任意檔案>
 ```
 
-但是如果使用 Poetry，以往的 pyenv + poetry 組合則需要使用這麼繁瑣的指令，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
+但是如果使用以往的 pyenv + Poetry 組合則需要使用這麼繁瑣的指令，而且 Poetry 的 "etry" 有夠難打每次敲快一點就打錯。
 
 ```sh
 # 下載和設定版本
@@ -405,9 +417,9 @@ uv publish --publish-url https://test.pypi.org/legacy/ dist/*
 ```
 
 ### 整合 Github CI
-一般來說我們不會每次發布都打 build publish，而是使用自動化流程完成套件發布，下方直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定不使用已經被建議棄用的 token 方式，而是遵照官方的**最佳實踐**使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 tag 名稱是 `vN.N.N.N` 或 `vN.N.N` 時以及發布 release 時才會啟動，並且建議開啟[手動雙重驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
+一般來說我們不會每次發布都打 build publish，而是使用自動化流程完成套件發布，下方直接附上 Github Actions 方便抄作業，實測沒問題可以直接複製貼上使用。這個設定不使用已經被建議棄用的 token 方式，而是遵照官方的**最佳實踐**使用新的[可信任發行者](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)方式，在每次 tag 名稱是 `vN.N.N.N` 或 `vN.N.N` 時以及發布 release 時才會啟動，並且建議開啟[手動驗證](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)。
 
-開啟的方式是進入專案首頁後
+開啟手動驗證的方式是進入專案首頁後
 
 1. 點擊上方 Code/Issues 那排最右邊的 Settings
 2. 點擊左側列表的 Environments

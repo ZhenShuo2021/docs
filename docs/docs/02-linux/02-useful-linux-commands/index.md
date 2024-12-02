@@ -16,7 +16,7 @@ last_update:
 常用的 Linux 指令小抄
 
 ## 文件移動
-```
+```sh
 mv source/ dest/        # 搬移整個資料夾
 cp -rfp source/ dest/   # 複製並保留文件屬性
 # r: 包含子目錄
@@ -26,14 +26,23 @@ cp source/* dest        # 只搬資料夾內檔案
 ```
 
 ## 縮寫指令✨
-如我要把 `hugo new content` 縮寫成 `hnc`，則
-```
-echo "alias hnc='hugo new content'" >> ~/.bashrc && source ~/.bashrc
+如果要把 `hugo new content` 縮寫成 `hnc`
+```sh
+echo "alias hnc='hugo new content'" >> ~/.bashrc
+source ~/.bashrc
 ```
 macOS 則是改為 zshrc。
 
-## 檢視硬碟容量
+## 設定系統可執行文件搜尋路徑
+假設要把下載的可執行文件加到系統路徑中
+
+```sh
+export PATH="$PATH:/directory/to/bin/path"
 ```
+
+
+## 檢視硬碟容量
+```sh
 du /home -h | sort -nr | tail
 df -h
 sudo ncdu -x /path                 # ncdu 好用「非常多」
@@ -41,14 +50,14 @@ sudo ncdu -x /path                 # ncdu 好用「非常多」
 
 ## 檢視記憶體佔用
 列出前十大記憶體使用
-```
+```sh
 ps aux --sort=-%mem | head -n 10
 ```
 
 ## 開機自動執行
 這裡用docker-compose示範，五步驟分別是建立.service檔、reload .service、啟用、開始、查看狀態。參考資料[^1]。
 
-```
+```sh
 sudo nano /etc/systemd/system/stirling-pdf.service
 # 建立完成再執行以下指令
 sudo systemctl daemon-reload
@@ -58,7 +67,7 @@ sudo systemctl status stirling-pdf.service
 ```
 
 其中.service指令為：
-```
+```toml
 [Unit]
 Description=Docker Compose app
 Requires=docker.service
@@ -80,7 +89,7 @@ WantedBy=multi-user.target
 ```
 
 開機自動化也可以使用以下方式：
-```
+```sh
 # nano /etc/rc.local
 mount /path/mount
 exit 0

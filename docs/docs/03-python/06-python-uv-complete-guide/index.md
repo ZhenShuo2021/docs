@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-02T00:54:00+08:00
+  date: 2024-12-03T20:00:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -290,7 +290,7 @@ https://docs.astral.sh/uv/reference/cli/#uv-run
 
 附帶一提這些參數大多數也都適用於 uv sync 等指令。
 
-[^pyenv]: 也可以使用簡短版本的 `uv venv --python 3.12` 完成。
+[^pyenv]: 使用 `uv venv --python 3.12` 是透過 uv 建立虛擬環境，無法在虛擬環境中使用 `pip`。
 
 ### 結合 Jupyter
 https://docs.astral.sh/uv/guides/integration/jupyter/

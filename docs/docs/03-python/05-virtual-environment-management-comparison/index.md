@@ -138,7 +138,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 <br/>
 <br/>
 
-[^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)。
+[^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能~~還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)~~已經放進 [preview 版本](https://github.com/astral-sh/uv/releases/tag/0.5.6)中，加上 `--preview --default` 參數即可使用，目前實測還很早期，連 venv 都不能跑。
 
 :::tip 使用心得
 

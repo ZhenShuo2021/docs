@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-03T20:00:10+08:00
+  date: 2024-12-04T05:24:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -187,7 +187,12 @@ uv remove
 # 列出所有已經安裝的套件
 uv pip list
 
-# 基於 pyproject.toml 對目前環境中的套件進行同步，包含開發者套件
+# 更新 uv.lock，使用uv add時該檔案不會自動更新
+# 此檔案是詳細的套件版本鎖定檔案，用於提供可復現的運行環境
+# 加上-U可以允許原有的套件更新
+uv lock
+
+# 基於 uv.lock 對目前環境中的套件進行同步，包含開發者套件
 uv sync
 
 # 同步但忽略開發者套件
@@ -195,9 +200,6 @@ uv sync --no-dev
 
 # 同步虛擬環境，並且在虛擬環境中執行指令
 uv run <commands>
-
-# 更新 lockfile
-uv lock
 
 # 移除所有套件（只移除環境中的套件不會移除 toml 中的套件）
 uv pip freeze > unins && uv pip uninstall -r unins && rm unins
@@ -270,9 +272,7 @@ https://docs.astral.sh/uv/configuration/files/#configuring-the-pip-interface
 https://docs.astral.sh/uv/guides/scripts/   
 https://docs.astral.sh/uv/reference/cli/#uv-run   
 
-經過上面的設定我們知道 uv 可以設定開發套件和開發群組，結合這些功能可以讓日常的開發輕鬆許多。
-
-有了 `uv run` 之後我們連虛擬環境都不用進入就可以直接執行腳本，除此之外，每次執行 `uv run` 時 uv 都會先同步 pyproject.toml 中的套件再運行以確保運行環境統一。這只是眾多優點的其中一個，他除了自動同步功能以外也支援各種選項，例如我們可以
+經過上面的設定我們知道 uv 可以設定開發套件和開發群組，結合這些功能可以讓日常的開發輕鬆許多，這些輕鬆主要體現在 `uv run` 指令之上。有了 `uv run` 之後我們連虛擬環境都不用進入就可以直接執行腳本，但是他真正的特色是支援靈活的版本和依賴切換，例如我們可以
 
 1. 使用 `--with <pkg>` 臨時測試某些套件而不需安裝   
 2. 使用 `--group` `--only-group` `--all-groups` `--no-group` 設定執行時包括哪些開發群組的套件   
@@ -283,6 +283,7 @@ https://docs.astral.sh/uv/reference/cli/#uv-run
 7. 使用 `--isolated` 在臨時的隔離空間獨立運行   
 8. 使用 `--no-sync` 可以關閉運行前的同步功能  
 9. 使用 `--no-dev` 忽略開發套件運行   
+10. 使用參數包含網址時會臨時下載並且被視為腳本執行
 
 光看這些選項可能沒什麼感覺，我們稍微討論一下在實際開發中這些選項提供了多大的方便性。想像需要臨時測試一個套件的情境，以前要先 pip install 安裝，然後執行腳本，事後還要從環境中移除，但是現在這三個步驟直接被濃縮成一個 `--with <pkg>` 了，類似的情境也發生在想要搭配可選套件進行測試，現在只要使用 `--extra` 選項就可以自動包含該群組的套件，甚至使用 `--find-links` 連安裝包都可以使用；或者是臨時想要在一個乾淨的環境執行，現在只需要 `--isolated` 就取代掉以前需要三四步指令才能完成的設定；`--python` 選項乍看之下是提供測試不同 Python 版本使用，但是我們可以把他當作 pyenv 來用，使用 `uv run --python 3.12 python -m venv .venv` 叫 3.12 版本的 Python 來建立虛擬環境[^pyenv]，等效於 pyenv-virtualenv 的功能，非常方便。
 
@@ -375,7 +376,7 @@ network = [
 假設我們要處理一個新專案，這個專案使用 uv 設定 pyproject.toml，我們只要一行就可以完成 Python 版本下載和設定 + 虛擬環境建立 + 套件安裝：
 
 ```sh
-# 一行完成下載和設定 Python、建立虛擬環境、安裝套件
+# 一行完成下載和設定 Python、建立虛擬環境、安裝套件、建立uv.lock
 uv sync
 
 # 檢查
@@ -408,10 +409,10 @@ poetry show
 ## 發布套件
 
 ### 編譯 requirements.txt
-https://docs.astral.sh/uv/pip/compile/
+https://docs.astral.sh/uv/concepts/projects/sync/#exporting-the-lockfile  
 
 ```sh
-uv pip compile pyproject.toml -o requirements.txt
+uv export --no-emit-project --locked -q -o requirements.txt --no-hashes
 ```
 
 每次都要手動打太麻煩，使用 pre-commit 一勞永逸，自動檢查和匯出套件解析結果，pre-commit 的使用範例可以參考筆者寫的[文章](/memo/python/first-attempt-python-workflow-automation#pre-commit-configyaml)。
@@ -424,9 +425,17 @@ repos:
     hooks:
     - id: run-pip-compile
       name: Run pip compile
-      entry: bash -c 'uv pip compile pyproject.toml -o requirements.txt'
+      # 前三個參數分別是不使用editable，不輸出套件雜湊值，檢查lockfile是否最新，這些參數可以根據需求自行修改
+      entry: bash -c 'uv export --no-emit-project --locked --no-hashes -q -o requirements.txt'
       language: system
-      files: ^pyproject.toml$
+      # lockfile有變化才執行
+      files: ^uv.lock$
+```
+
+如果不是複雜工程，只是想要簡單的把目前環境套件匯出可以使用這個命令。除此之外[文檔](https://docs.astral.sh/uv/pip/compile/)也提供各種不同文件的編譯方式，基本上兼容所有想得到的依賴文件。
+
+```sh
+uv pip compile pyproject.toml -o requirements.txt
 ```
 
 ### 構建套件

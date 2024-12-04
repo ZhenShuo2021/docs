@@ -1,5 +1,20 @@
 [
   {
+    "title": "各種跨平台終端機整理，持續增加中",
+    "permalink": "/docs/useful-tools/terminal/",
+    "description": "各種跨平台終端機整理，持續增加中",
+    "tags": [
+      {
+        "inline": true,
+        "label": "實用工具",
+        "permalink": "/docs/tags/實用工具"
+      }
+    ],
+    "date": 1733344500000,
+    "yearMonth": "2024 年 12 月",
+    "day": "05"
+  },
+  {
     "title": "UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具",
     "permalink": "/docs/python/python-uv-complete-guide/",
     "description": "UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具",
@@ -228,25 +243,5 @@
     "date": 1731997350000,
     "yearMonth": "2024 年 11 月",
     "day": "19"
-  },
-  {
-    "title": "初嘗策略模式",
-    "permalink": "/memo/python/first-attempt-strategy-pattern/",
-    "description": "第一次撰寫策略模式的紀錄",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/memo/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
-      }
-    ],
-    "date": 1730628513000,
-    "yearMonth": "2024 年 11 月",
-    "day": "03"
   }
 ]

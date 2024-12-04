@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-11-27T11:50:00+08:00
+  date: 2024-12-04T11:50:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -142,13 +142,14 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 :::tip 使用心得
 
-和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），除此之外還支援安裝全局套件以取代 pipx，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，還做了和 pip 類似的接口方便以往的用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令（而且 Poetry 有時候還會找不到 Python 版本），除此之外還支援安裝全局套件以取代 pipx，本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布，還做了和 pip 類似的接口方便以往的用戶輕鬆上手，除此之外還有最重要的 `uv run` 功能提供了非常優秀的開發便利性，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 有兩個小缺點，第一是使用 rust 撰寫，所以 Python 開發者不好進行貢獻，第二是太新，連英文都沒有幾篇文章說明如何使用，不過別擔心筆者寫了一個簡易使用較學，從安裝到發布套件一應俱全。
 :::
 
 :::tip 開始使用 uv
-請參考筆者寫的 [uv 使用教學](/docs/python/python-uv-complete-guide)。
+- 可以參考筆者寫的 [uv 使用教學](/docs/python/python-uv-complete-guide)。  
+- 非常優秀的開發便利性？請見 uv 使用教學的[這個段落](/docs/python/python-uv-complete-guide/#uv-run)。  
 :::
 
 ## 打包以及發布工具

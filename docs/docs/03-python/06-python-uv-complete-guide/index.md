@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-04T05:24:10+08:00
+  date: 2024-12-04T17:18:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 5. **<u>完美取代 pipx</u>**：支援全域套件安裝
 6. 發展快速，發布不到一年已經有 26k 星星
 
-把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了 pip 的接口方便用戶輕鬆上手，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
+把特點 2\~4 加起來就是我們的最終目標了，有更好的套件解析演算法，不只支援 lockfile 管理套件，也支援 Python 版本管理，還沒有 pipenv 速度緩慢且更新停滯的問題，是目前虛擬環境管理工具的首選，和原本的首選 Poetry 互相比較，uv 內建的 Python 版本管理非常方便，不再需要 pyenv 多記一套指令；本體雖然不支援建構套件，但是設定完 build-system 使用 `uv build` 和 `uv publish` 一樣可以方便的構建和發布；支援安裝全域套件，完美取代 pipx 管理全域套件；做了 pip 的接口方便用戶輕鬆上手，除此之外還有最重要的 `uv run` 功能提供了[非常優秀的開發便利性](#uv-run)，再加上[超快的安裝和解析速度](https://astral.sh/blog/uv-unified-python-packaging)錦上添花，筆者認為目前虛擬環境管理工具首選就是他了。
 
 為何選擇 uv？我會說：「一個工具完整取代 pyenv/pipx，幾乎包含 Poetry 的所有功能，速度又快」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
@@ -64,10 +64,9 @@ import TabItem from '@theme/TabItem';
 # 初始化工作區
 uv init --python 3.10
 
-# 建立虛擬環境，會根據工作區設定自動下載 Python
-uv venv
-
 # 新增套件
+# 首次執行時會自動執行 uv venv 建立虛擬環境
+# uv venv 會根據工作區設定自動下載 Python
 uv add
 
 # 移除套件
@@ -76,7 +75,10 @@ uv remove
 # 檢查套件
 uv pip list
 
-# 同步套件
+# 更新套件
+uv lock -U
+
+# 根據 uv.lock 同步虛擬環境的套件
 uv sync
 
 # 執行程式
@@ -86,7 +88,7 @@ uv run hello.py
 <details>
 <summary>pip 的接口</summary>
 
-uv add/remove 會寫入到 pyproject.toml，如果無論如何也不想使用 pyproject.toml，`uv pip` 提供了對應以往 pip 的接口：
+uv add/remove 會寫入到 pyproject.toml，如果無論如何也不想使用 pyproject.toml，`uv pip` 提供了對應以往 pip 的接口，但是既然都用 uv 了應該用 add/remove 方式比較好，而且文章列出的所有功能都無法兼容這種方法安裝的套件，所以把這段放到折疊頁面中。
 
 ```sh
 # 安裝
@@ -105,7 +107,10 @@ uv pip freeze > requirements.txt
 uv pip freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 uv pip install -U
 ```
 
-但是既然都用 uv 了應該用 add/remove 方式比較好，而且文章列出的所有功能都無法兼容這種方法安裝的套件，所以把這段放到折疊頁面中。
+:::danger
+注意：<u>uv pip 不使用 pip，只是呼叫方式類似的 API 接口</u>！
+:::
+
 </details>
 
 
@@ -268,7 +273,7 @@ https://docs.astral.sh/uv/configuration/files/#configuring-the-pip-interface
 
 `uv add` 用於正式專案套件，和 `uv remove` 成對使用，會修改 pyproject.toml；`uv pip` 則是臨時測試，不會寫入 pyproject.toml。
 
-## 日常開發：強大的 uv run 功能
+## 日常開發：強大的 uv run 功能{#uv-run}
 https://docs.astral.sh/uv/guides/scripts/   
 https://docs.astral.sh/uv/reference/cli/#uv-run   
 

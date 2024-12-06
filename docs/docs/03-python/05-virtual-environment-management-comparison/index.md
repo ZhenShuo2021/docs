@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-04T11:50:00+08:00
+  date: 2024-12-07T06:49:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -127,13 +127,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 > 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿，放上圖片讓大家看到底有多粗暴，有人直接飛天了
 
-<a href="https://star-history.com/#astral-sh/uv&pypa/hatch&pdm-project/pdm&python-poetry/poetry&pypa/pipenv&conda/conda&pyenv/pyenv-virtualenv&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
- </picture>
-</a>
+![Star History Chart](https://api.star-history.com/svg?repos=pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv,astral-sh/ruff&type=Date)
 
 <br/>
 <br/>
@@ -237,6 +231,8 @@ Poetry/uv 最好，基於 80/20 法則，八成的人都應該使用他。
 
 ## 後話
 其實看星星數就知道該怎麼選了，工程師又不是笨蛋，好用的星星數量自然多。pipenv 在 2017 橫空出世試圖解決一次三個問題，看似是明日之星但是在隔一年就迅速殞落。隨之而來的是 Poetry/PDM/hatch，從現在回頭看 PDM 其基於 PEP 582 的優勢隨著該提案被拒絕已經不復存在，速度又[比 Poetry 還慢](https://astral.sh/blog/uv)，社群又小，已經無明顯優勢。hatch 網路上的中文文章可以說是幾乎為零，需要用他的估計都是大型專案。這樣回頭看就很合理了，通用工具套件 pyenv 星星最多，最全面的套件 Poetry 第二高，pipenv 在 pyenv 發布五年後登高一呼騙完讚馬上倒地，全面又高效的 uv 不到一年馬上登上第三名寶座，已經逼宮 Poetry。
+
+> 再度更新：半夜改 code 瞄了一眼 uv，他已經超越 Poetry 成為第二名，扣掉工具套件就是第一名了，真的太強。
 
 撰文整理時發現套件數量越寫越多，正好看到這篇文章：[How to improve Python packaging, or why fourteen tools are at least twelve too many](https://chriswarrick.com/blog/2023/01/15/how-to-improve-python-packaging/)，平常看到可能無感，寫的時候心理偷笑了一下，因為真的越寫越多寫不完。裡面還大罵 PyPA，因為這麼多套件都是 PyPA 相關的，不整合四散的套件，而且功能最豐富的 Poetry/PDM 反而都不是由 PyPA 維護的，最後的結尾是 `Furthermore, I consider that the PyPA must be destroyed`。
 

@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-04T17:18:10+08:00
+  date: 2024-12-07T06:50:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -41,13 +41,9 @@ import TabItem from '@theme/TabItem';
 
 > 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿，放上圖片讓大家看到底有多粗暴，有人直接飛天了
 
-<a href="https://star-history.com/#astral-sh/uv&pypa/hatch&pdm-project/pdm&python-poetry/poetry&pypa/pipenv&conda/conda&pyenv/pyenv-virtualenv&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=astral-sh/uv,pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv&type=Date" />
- </picture>
-</a>
+> 再度更新：已經超越 Poetry 成為第二名，扣掉工具套件就是第一名了，真的太強。
+
+![Star History Chart](https://api.star-history.com/svg?repos=pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv,astral-sh/ruff&type=Date)
 
 <br/>
 <br/>

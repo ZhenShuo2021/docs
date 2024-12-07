@@ -15,13 +15,13 @@ first_publish:
 
 # 各種跨平台終端機整理，持續增加中
 
-為甚麼又是整理文章？因為乾淨完整的清除比嘗試安裝更痛苦啊。本篇著重跨平台終端機所以選項沒幾個，如果不需跨平台的話可以不用讀這篇文章。
+為甚麼又是整理文章？因為乾淨完整的清除比嘗試安裝更痛苦啊。本篇著重跨平台終端機所以選項沒幾個，如果不需跨平台的話可以不用讀這篇文章，或是直接跳到[附錄](#appendix)查看實測可用的終端優化文章。
 
 <details>
 
 <summary>可以跳過的前言</summary>
 
-筆者原本使用 Mac，用過 zsh 再回去用 Windows 的真的會想砸電腦，爛到不可思議。先介紹自己的終端機使用經驗，由於 iTerm2 的 i 距離左手位置太遠不好直接呼叫（其實是第一次自己裝壞了）所以後來g使用原生終端機搭配 oh-my-zsh，這個配置其實對於首次優化終端機的我而言已經很好用了，但是回頭優化 Windows 時發現 Windows 壓根沒有 zsh，所以最開始我改用 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是一個終端機只是一個主題等於還是在用內建超爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。
+筆者原本使用 Mac，用過 zsh 再回去用 Windows 的真的會想砸電腦，爛到不可思議。先介紹自己的終端機使用經驗，由於 iTerm2 的 i 距離左手位置太遠不好直接呼叫（其實是第一次自己裝壞了）所以後來使用原生終端機搭配 oh-my-zsh，這個配置其實對於首次優化終端機的我而言已經很好用了，但是回頭優化 Windows 時發現 Windows 壓根沒有 zsh，所以最開始我改用 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是一個終端機只是一個主題等於還是在用內建超爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。
 
 </details>
 
@@ -53,20 +53,22 @@ first_publish:
 根據 [GitHub Star History](https://star-history.com/#Eugeny/tabby&alacritty/alacritty&vercel/hyper&raphamorim/rio&warpdotdev/Warp&wez/wezterm&Date) 其實應該先使用 tabby 的，雖然前期平穩但近年成長快速，不過找的時候完全忘記可以這樣判斷了所以隨便選了 Rio，純粹是因為名字才第一個選他，<u>結論是難用不推</u>，進入終端要按兩下 enter，只是改回原始終端機預設字體就直接亂碼，文檔也沒寫如何解決，折騰一小時放棄。
 
 ### Warp
-接下來一樣是隨便選，這篇文章就是被 Warp 驚豔到才有的，優點網路上很多我就不贅述，只說對我而言最有感的是手不用離開鍵盤。這個終端機特別的地方是他分區塊顯示，想像以往要複製指令和錯誤到網路上搜尋要從鍵盤移動到滑鼠，框選並且複製，現在只要 cmd + uparrow，shift + uparrow，就可以框選多個區塊進行複製，再加上現在是 GPT 時代，於是可以完成從發生問題到丟給 GPT 詢問整個流程行雲流水雙手完全不需要離開鍵盤的一套操作[^but]。
+接下來一樣是隨便選，這篇文章就是被 Warp 驚豔到才有的，優點網路上很多我就不贅述，只說對我而言最有感的是手不用離開鍵盤。這個終端機特別的地方是他分區塊顯示，想像以往要複製指令和錯誤到網路上搜尋，手要從鍵盤移動到滑鼠，使用滑鼠框選並且複製文字，使用 Warp 之後只要 cmd + uparrow，shift + uparrow 就可以框選多個區塊進行複製，再加上現在是 GPT 時代，於是可以完成從發生問題到丟給 GPT 詢問整個流程行雲流水雙手完全不需要離開鍵盤的一套操作[^but]。
 
-除此之外，他的命令輸入行也非常好用，除了支援 option + rightarrow 跳到下一個單字，還可以使用 command + leftarrow/command + A 全選完全沒有問題，也沒有 powerlevel10k 的 Enter 的問題[^bug]。
+除此之外最棒的是命令輸入行<u>**等同於直接編輯文字**</u>，接受 <kbd>Home</kbd> <kbd>End</kbd> 按鍵輸入 <u>**超 級 好 用**</u> ，在體驗到 AI 之前最有感的就是這個功能，也支援 option + rightarrow 跳到下一個單字，command + leftarrow/command + A 全選當然也完全沒問題，目前為止也還沒遇到什麼 Bug[^bug]。
 
-特色是 AI/工作區/筆記本，網路上文章很多我也還沒摸熟，Windows 的部分官網表示 coming soon。
+特色是 AI/工作區/筆記本，網路上文章很多我也還沒摸熟，Windows 的部分官網表示 coming soon，缺點是不能顯示圖片，看起來也[沒有要解決](https://github.com/warpdotdev/Warp/issues/26)的意思。
+
+主題方面，官方提供了基本的主題可以選擇，把[這個 repo](https://github.com/warpdotdev/themes) clone 到 `~/.warp/theme` 後就可使用，也可以在設定選單裡面上傳圖片他會自行生成顏色主題，再到 theme 資料夾修改 yaml 檔案。我自己搞了一小時的感想是用原生的，窩不會配色 QQ。
 
 [^but]: 不過這個 iTerm2 好像也做得到，但是他不支援跨平台。
-[^bug]: 連接一般鍵盤使用時預設 NumLock 關閉所以每次開啟終端機都要額外按一次 NumLock。
+[^bug]: 使用 powerlevel10k 使用數字鍵區域的 Enter 時預設 NumLock 關閉所以每次開啟終端機都要額外按一次 NumLock。
 
 ### Alacritty
-據說維護者是速度狂熱患者，下一個嘗試的就是他，待完成。
+據說維護者是速度狂熱患者，簡易嘗試後發現沒有和 Warp 一樣方便的文字操作功能，也不能顯示圖片，需要開源的人可以選擇這款，對筆者來說沒有誘因。
 
 ### WezTerm
-下下一個，待續。
+下一個，待續。
 
 [使用快照](https://x.com/hank_zhao/status/1801800550553686305)
 
@@ -95,8 +97,8 @@ first_publish:
 最後真的要提醒自己用 GitHub Star History 先統計好，盲猜太浪費時間。
 
 
-## 附錄: Oh-My-?sh 優化
-Posh 和 Zsh 的優化，這裡的文章都非常有用，直接複製貼上指令就完成了不用花老半天自己除錯
+## 附錄: Oh-My-?sh 優化 {#appendix}
+Posh 和 Zsh 的優化，這三篇文章在 2024/12 實測沒有問題可以直接複製貼上，不用自己除錯花老半天
 
 - [安裝新版 Oh My Posh 與插件來美化 PowerShell](https://www.kwchang0831.dev/dev-env/pwsh/oh-my-posh)
 - [如何打造一個華麗又實用的 PowerShell 命令輸入環境](https://blog.miniasp.com/post/2021/11/24/PowerShell-prompt-with-Oh-My-Posh-and-Windows-Terminal)

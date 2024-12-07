@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-07T06:50:10+08:00
+  date: 2024-12-07T21:26:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -41,9 +41,7 @@ import TabItem from '@theme/TabItem';
 
 > 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿，放上圖片讓大家看到底有多粗暴，有人直接飛天了
 
-> 再度更新：已經超越 Poetry 成為第二名，扣掉工具套件就是第一名了，真的太強。
-
-![Star History Chart](https://api.star-history.com/svg?repos=pypa/hatch,pdm-project/pdm,python-poetry/poetry,pypa/pipenv,conda/conda,pyenv/pyenv-virtualenv,astral-sh/ruff&type=Date)
+![Star History Chart](https://api.star-history.com/svg?repos=python-poetry/poetry,astral-sh/uv,pypa/pipenv,pypa/hatch,pdm-project/pdm,conda/conda,pyenv/pyenv-virtualenv&type=Date)
 
 <br/>
 <br/>
@@ -404,6 +402,53 @@ poetry env use python3.11.5
 poetry install
 poetry shell
 poetry show
+```
+
+## 🔥 Github Workflow 範例 🔥
+作業要抄就要抄的徹底，這是包含多作業系統 + 多 Python 版本的 Github Workflow 檔案，用於在 push/pull requests 時自動執行 pytest，實際測試過沒問題，也是複製貼上就能用：
+
+```yaml
+name: Test
+on: [push, pull_request]
+permissions:
+  contents: read
+
+env:
+  DAY_STATUS: "GOOD"
+
+jobs:
+  tests:
+    name: Quick Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.10', '3.13']  # uv 看不懂 3.x 代表最新版所以要手動更新
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 或是使用原本的 setup-python，接受 3.x 語法
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          python-version: ${{ matrix.python-version }}
+
+      - name: Test with python ${{ matrix.python-version }} on ${{ matrix.os }}
+        run: uv run --frozen pytest
+
+      - name: Environment variable example
+        if: runner.os == 'Linux' || runner.os == 'macOS'
+        run: uv run echo Today is a $DAY_STATUS day
 ```
 
 

@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-07T21:49:00+08:00
+  date: 2024-12-12T02:51:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -55,7 +55,6 @@ first_publish:
 筆者個人推薦 uv，懶得看文章可以直接看我寫的 [uv 使用教學](/docs/python/python-uv-complete-guide)。
 :::
 
-
 ## 比較
 
 ### venv/virtualenv
@@ -65,7 +64,6 @@ venv 是內建於 Python 的管理工具，是基於 virtualenv 的管理工具�
 venv 只能用於建立虛擬環境，沒有任何依賴解析管理功能，一般是使用 pip 完成依賴解析管理。
 
 [^1]: virtualenv 唯一的優點只有支援不同 Python 版本的功能，然而他需要結合 Pyenv 才能使用，他本身不能管理 Python 版本。不結合沒優點，結合了有更好套件 pyenv-virtualenv，取交集後等於純 virtualenv 完全沒有優點，還寫一篇 virtualenv 教學不是好心帶彎路嗎，都已經 2024 了網路上誰再教 virtualenv 的筆者建議直接用 uBlacklist 把他[整個網域 ban 了](https://www.eallion.com/ublacklist-subscription-compilation/)。
-
 
 ### Pyenv
 
@@ -108,6 +106,7 @@ pipenv 整合環境管理和依賴管理，使用 pipfile 和 pipfile.lock 管�
 都快 2025 了如果還有文章推薦 pipenv 建議送上 uBlacklist 伺候。
 
 ### uv (formerly rye)
+
 如果要以要一句話形容 uv，那就是完整且高效的一站式體驗，異軍突起的解決了上述所有問題。
 
 uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
@@ -127,7 +126,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 > 更新：發展不只是快而是超快，才一個禮拜過去他又多了一千個星星，筆者文章都還沒校完稿，放上圖片讓大家看到底有多粗暴，有人直接飛天了
 
-## Star History
+> 再度更新：2024/12/12 星星數成功超越 Poetry，確實能說是最受歡迎的管理套件了
 
 ![Star History Chart](https://api.star-history.com/svg?repos=python-poetry/poetry,astral-sh/uv,pypa/pipenv,pypa/hatch,pdm-project/pdm,conda/conda,pyenv/pyenv-virtualenv&type=Date)
 
@@ -144,11 +143,14 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 :::
 
 :::tip 開始使用 uv
+
 - 可以參考筆者寫的 [uv 使用教學](/docs/python/python-uv-complete-guide)。  
 - 非常優秀的開發便利性？請見 uv 使用教學的[這個段落](/docs/python/python-uv-complete-guide/#uv-run)。  
+
 :::
 
 ## 打包以及發布工具
+
 從這裡開始我們進入內建了打包和發布工具的工具。
 
 可以閱讀此文章 [An unbiased evaluation of environment management and packaging tools](https://alpopkes.com/posts/python/packaging_tools) 以便快速的可視化了解套件之間差異。需要注意的是該文章總共分為五個象限：虛擬環境管理、套件依賴解析、Python 版本管理、套件打包和套件發布，本文還是只討論前三者，是因為這些打包開發工具通常會包含前三者的功能而且還做的更好，所以也放入討論。
@@ -161,6 +163,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 - 內建套件發布工具解決套件發布流程複雜問題
 
 並且有以下特點：
+
 - 支援 pyproject.toml
 - 支援 poetry.lock 鎖定套件版本
 - 內建虛擬環境管理
@@ -199,13 +202,14 @@ hatch 由於其自身的特殊性（沒有 lock 檔案，沒有內建虛擬環�
 [^pdm]: [PDM is a one-man-show, like Hatch.](https://chriswarrick.com/blog/2024/01/15/python-packaging-one-year-later/)
 
 ### 其他
+
 [virtualenvwrapper](https://github.com/python-virtualenvwrapper/virtualenvwrapper) 則是基於 virtualenv 的工具，把所有環境整合在同一目錄，並且提供更多額外功能，本質上還是 virtualenv，[pyenv-virtualenvwrapper](https://github.com/pyenv/pyenv-virtualenvwrapper) 同理，但是兩者都沒更新了，不列入討論。
 
 ## 總結
 
 Poetry/uv 最好，基於 80/20 法則，八成的人都應該使用他。
 
-兩者選擇取決於你喜歡更成熟的架構還是需要稍微自己摸索但是更好的整體使用體驗。hatch 很好，但是著重於打包和版本管理，套件依賴問題需要其他工具幫忙，如果專案夠複雜可以選擇，但是需要用到的人不會來看這篇文章。Conda 如果沒有糟糕的套件依賴解析會是一個好工具，如果你的是科學開發專案並且剛好沒有依賴問題可以選擇 Conda，然後別忘了祈禱自己不要遇到依賴解析問題。pipenv 打入監獄，uBlacklist 伺候。   
+兩者選擇取決於你喜歡更成熟的架構還是需要稍微自己摸索但是更好的整體使用體驗。hatch 很好，但是著重於打包和版本管理，套件依賴問題需要其他工具幫忙，如果專案夠複雜可以選擇，但是需要用到的人不會來看這篇文章。Conda 如果沒有糟糕的套件依賴解析會是一個好工具，如果你的是科學開發專案並且剛好沒有依賴問題可以選擇 Conda，然後別忘了祈禱自己不要遇到依賴解析問題。pipenv 打入監獄，uBlacklist 伺候。
 
 總結來說
 
@@ -217,6 +221,7 @@ Poetry/uv 最好，基於 80/20 法則，八成的人都應該使用他。
 本文解決了現有網路文章缺少的選擇分析，透過完整說明功能和套件現況，讀者可以清楚知道自己應該選擇哪個虛擬環境管理套件。
 
 ## 參考文章
+
 - [Python Packaging, One Year Later: A Look Back at 2023 in Python Packaging](https://chriswarrick.com/blog/2024/01/15/python-packaging-one-year-later/)
 - [Pipenv: promises a lot, delivers very little](https://chriswarrick.com/blog/2018/07/17/pipenv-promises-a-lot-delivers-very-little/)
 - [An unbiased evaluation of environment management and packaging tools](https://alpopkes.com/posts/python/packaging_tools)
@@ -232,6 +237,7 @@ Poetry/uv 最好，基於 80/20 法則，八成的人都應該使用他。
 - [conda 發布日期](https://docs.anaconda.com/anaconda/release-notes/#anaconda-0-8-0-jul-17-2012)
 
 ## 後話
+
 其實看星星數就知道該怎麼選了，工程師又不是笨蛋，好用的星星數量自然多。pipenv 在 2017 橫空出世試圖解決一次三個問題，看似是明日之星但是在隔一年就迅速殞落。隨之而來的是 Poetry/PDM/hatch，從現在回頭看 PDM 其基於 PEP 582 的優勢隨著該提案被拒絕已經不復存在，速度又[比 Poetry 還慢](https://astral.sh/blog/uv)，社群又小，已經無明顯優勢。hatch 網路上的中文文章可以說是幾乎為零，需要用他的估計都是大型專案。這樣回頭看就很合理了，通用工具套件 pyenv 星星最多，最全面的套件 Poetry 第二高，pipenv 在 pyenv 發布五年後登高一呼騙完讚馬上倒地，全面又高效的 uv 不到一年馬上登上第三名寶座，已經逼宮 Poetry。
 
 撰文整理時發現套件數量越寫越多，正好看到這篇文章：[How to improve Python packaging, or why fourteen tools are at least twelve too many](https://chriswarrick.com/blog/2023/01/15/how-to-improve-python-packaging/)，平常看到可能無感，寫的時候心理偷笑了一下，因為真的越寫越多寫不完。裡面還大罵 PyPA，因為這麼多套件都是 PyPA 相關的，不整合四散的套件，而且功能最豐富的 Poetry/PDM 反而都不是由 PyPA 維護的，最後的結尾是 `Furthermore, I consider that the PyPA must be destroyed`。

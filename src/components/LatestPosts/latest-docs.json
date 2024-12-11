@@ -1,5 +1,30 @@
 [
   {
+    "title": "UV Python 教學，最佳虛擬環境管理工具",
+    "permalink": "/docs/python/python-uv-complete-guide/",
+    "description": "UV Python 教學，最佳虛擬環境管理工具",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/docs/tags/虛擬環境"
+      }
+    ],
+    "date": 1733943190000,
+    "yearMonth": "2024 年 12 月",
+    "day": "12"
+  },
+  {
     "title": "Python 虛擬環境管理和依賴解析套件完整比較",
     "permalink": "/docs/python/virtual-environment-management-comparison/",
     "description": "Python 虛擬環境管理和依賴解析套件完整比較",
@@ -20,38 +45,13 @@
         "permalink": "/docs/tags/虛擬環境"
       }
     ],
-    "date": 1733579340000,
+    "date": 1733943060000,
     "yearMonth": "2024 年 12 月",
-    "day": "07"
-  },
-  {
-    "title": "UV Python完整教學：從安裝到發佈套件，最佳虛擬環境管理工具",
-    "permalink": "/docs/python/python-uv-complete-guide/",
-    "description": "UV Python完整教學：從安裝到發佈套件，Python 最佳虛擬環境管理工具",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/docs/tags/虛擬環境"
-      }
-    ],
-    "date": 1733577970000,
-    "yearMonth": "2024 年 12 月",
-    "day": "07"
+    "day": "12"
   },
   {
     "title": "各種跨平台終端機整理，持續增加中",
-    "permalink": "/docs/useful-tools/terminal/",
+    "permalink": "/docs/useful-tools/cross-platform-terminal/",
     "description": "各種跨平台終端機整理，持續增加中",
     "tags": [
       {

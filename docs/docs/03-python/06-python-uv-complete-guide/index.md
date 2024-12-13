@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-12T02:53:10+08:00
+  date: 2024-12-13T16:53:10+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -20,7 +20,7 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Python UV：最佳虛擬環境管理套件，從安裝到發佈套件的完整教學
+# UV 教學，最佳 Python 虛擬環境管理工具
 
 本篇文章介紹 **[uv](https://github.com/astral-sh/uv)** 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看[上一篇文章](/docs/python/virtual-environment-management-comparison)。
 

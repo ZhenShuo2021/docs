@@ -1,23 +1,18 @@
 [
   {
-    "title": "Python 遍歷資料夾方式",
-    "permalink": "/memo/python/traversal-dir/",
-    "description": "Python 遍歷資料夾方式",
+    "title": "實用工具選輯",
+    "permalink": "/docs/useful-tools/awesome-collections/",
+    "description": "選輯",
     "tags": [
       {
         "inline": true,
-        "label": "Programming",
-        "permalink": "/memo/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
+        "label": "實用工具",
+        "permalink": "/docs/tags/實用工具"
       }
     ],
-    "date": 1734079330000,
+    "date": 1734377700000,
     "yearMonth": "2024 年 12 月",
-    "day": "13"
+    "day": "17"
   },
   {
     "title": "UV Python 教學，最佳虛擬環境管理工具",
@@ -40,9 +35,29 @@
         "permalink": "/docs/tags/虛擬環境"
       }
     ],
-    "date": 1733943190000,
+    "date": 1734079990000,
     "yearMonth": "2024 年 12 月",
-    "day": "12"
+    "day": "13"
+  },
+  {
+    "title": "Python 遍歷資料夾方式",
+    "permalink": "/memo/python/traversal-dir/",
+    "description": "Python 遍歷資料夾方式",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": 1734079330000,
+    "yearMonth": "2024 年 12 月",
+    "day": "13"
   },
   {
     "title": "Python 虛擬環境管理和依賴解析套件完整比較",
@@ -216,31 +231,6 @@
       }
     ],
     "date": 1731997410000,
-    "yearMonth": "2024 年 11 月",
-    "day": "19"
-  },
-  {
-    "title": "Python 中的多工處理原理介紹",
-    "permalink": "/docs/python/python-multitasking-threading-processing-coroutine/",
-    "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "multitasking",
-        "permalink": "/docs/tags/multitasking"
-      }
-    ],
-    "date": 1731997380000,
     "yearMonth": "2024 年 11 月",
     "day": "19"
   }

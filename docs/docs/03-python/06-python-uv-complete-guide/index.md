@@ -11,7 +11,7 @@ keywords:
   - Python
   - 虛擬環境
 last_update:
-  date: 2024-12-13T16:53:10+08:00
+  date: 2024-12-24T21:53:30+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -63,18 +63,19 @@ import TabItem from '@theme/TabItem';
 uv init --python 3.10
 
 # 新增套件
-# 首次執行時會自動執行 uv venv 建立虛擬環境
-# uv venv 會根據工作區設定自動下載 Python
-uv add
+# 首次執行 uv add 時會自動執行 uv venv 以建立虛擬環境
+# uv venv 則會根據工作區設定自動下載 Python
+uv add <pkg>
 
 # 移除套件
-uv remove
+uv remove <pkg>
 
 # 檢查套件
 uv pip list
 
-# 更新套件
-uv lock -U
+# 更新指定套件或全部套件
+uv sync -P <pkg>
+uv sync -U
 
 # 根據 uv.lock 同步虛擬環境的套件
 uv sync
@@ -213,8 +214,8 @@ uv run <commands>
 uv pip freeze > u && uv pip uninstall -r u && rm u
 
 # 升級指定套件或全部升級
-uv sync --upgrade-package <package>
-uv sync --upgrade
+uv sync -P <package>
+uv sync -U
 
 # 重新驗證套件快取，--fresh 在任何指令下都可使用
 uv sync --refresh

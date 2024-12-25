@@ -1,5 +1,25 @@
 [
   {
+    "title": "Comparing BeautifulSoup4, LXML, and Selectolax: A Simple HTML Parser Performance Test",
+    "permalink": "/docs/python/html-parser-performance-test/",
+    "description": "This evaluation compares the performance of popular HTML parser libraries in Python. The test involves extracting product names, ratings, prices, and monthly sales from a Shopee page. To simulate the handling of very large HTML files, the duplicatedivmain function duplicates the `` section 100 times, creating a significantly larger document.",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/docs/tags/python"
+      }
+    ],
+    "date": 1735098570000,
+    "yearMonth": "2024 年 12 月",
+    "day": "25"
+  },
+  {
     "title": "UV 快速手冊",
     "permalink": "/docs/python/uv-quick-guide/",
     "description": "UV 快速手冊",
@@ -208,30 +228,5 @@
     "date": 1732038540000,
     "yearMonth": "2024 年 11 月",
     "day": "20"
-  },
-  {
-    "title": "Python 中的異步操作 - 協程",
-    "permalink": "/docs/python/python-async-basic/",
-    "description": "Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "multitasking",
-        "permalink": "/docs/tags/multitasking"
-      }
-    ],
-    "date": 1731997410000,
-    "yearMonth": "2024 年 11 月",
-    "day": "19"
   }
 ]

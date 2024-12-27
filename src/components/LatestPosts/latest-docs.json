@@ -1,5 +1,30 @@
 [
   {
+    "title": "在 Github README 中嵌入影片",
+    "permalink": "/docs/git/github/github-readme-video/",
+    "description": "在 README 中嵌入影片",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/docs/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1735315410000,
+    "yearMonth": "2024 年 12 月",
+    "day": "28"
+  },
+  {
     "title": "Github 搜尋技巧",
     "permalink": "/docs/git/github/github-search/",
     "description": "Github 搜尋技巧",
@@ -198,35 +223,5 @@
     "date": 1733067480000,
     "yearMonth": "2024 年 12 月",
     "day": "01"
-  },
-  {
-    "title": "PEP 更新紀錄",
-    "permalink": "/memo/python/PEP-history/",
-    "description": "PEP 更新紀錄",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/memo/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "PEP",
-        "permalink": "/memo/tags/pep"
-      },
-      {
-        "inline": true,
-        "label": "cheatsheet",
-        "permalink": "/memo/tags/cheatsheet"
-      }
-    ],
-    "date": 1732868400000,
-    "yearMonth": "2024 年 11 月",
-    "day": "29"
   }
 ]

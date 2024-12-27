@@ -7,7 +7,7 @@ tags:
 keywords:
   - 實用工具
 last_update:
-  date: 2024-12-17T03:35:00+08:00
+  date: 2024-12-28T00:26:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-12-17T14:22:30+08:00
@@ -20,8 +20,11 @@ first_publish:
 ## Python 實用套件
 
 - pathvalidate: 處理檔案路徑的套件
+- python-fsutil: 懶人路徑套件，包含將近一百種函式選擇[^fsutil]
 - DownloadKit: 封裝 requests 的下載工具，內建自動副檔名偵測，自動重新命名  
 設定範例
+
+[^fsutil]: 注意裡面的 get_unique_name 使用 uuid 產生唯一名稱而不是常見的數字排序。
 
 ```py
 dk = DownloadKit()
@@ -35,7 +38,9 @@ dk.set.block_size("1m")
 ```
 
 - python-fire: 自動生成 CLI 介面
-- [HTTP 客戶端、網頁自動化、HTML 解析套件集合](https://blog.zsl0621.cc/posts/scrappers/)
+- [HTTP 客戶端套件集合](https://blog.zsl0621.cc/posts/scrappers/)
+- [網頁自動化套件集合](https://blog.zsl0621.cc/posts/scrappers/)
+- [HTML 解析套件套件集合](https://blog.zsl0621.cc/posts/scrappers/)
 - Ruff: 用 Rust 寫的開源 Python linter + formatter
 - uv: 用 Rust 寫的開源 Python 虛擬環境+套件+Python 版本管理
 
@@ -150,7 +155,7 @@ dk.set.block_size("1m")
 - WinGet/Chocolatey: Windows 的終端機套件管理
 - UniGetUI: Windows 上的圖形化套件管理器
 - [delta](https://github.com/dandavison/delta): 可以像是 Vscode 一樣 highlight git diff
-- [lazygit](https://github.com/jesseduffield/lazygit): Git TUI
+- [lazygit](https://github.com/jesseduffield/lazygit): Git TUI，add/patch 等區塊性操作很好用，rebase 很難用。
 
 ## 自架 Self-Host
 

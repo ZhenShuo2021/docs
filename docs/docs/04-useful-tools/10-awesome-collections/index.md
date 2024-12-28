@@ -7,7 +7,7 @@ tags:
 keywords:
   - 實用工具
 last_update:
-  date: 2024-12-28T00:26:00+08:00
+  date: 2024-12-28T15:36:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-12-17T14:22:30+08:00
@@ -148,7 +148,8 @@ dk.set.block_size("1m")
 
 ## 終端機相關
 
-- [helix](https://github.com/helix-editor/helix): 開箱即用的文字編輯器，theme onedarker ([keymap](https://docs.helix-editor.com/keymap.html), [commands](https://docs.helix-editor.com/commands.html))
+- ~~[helix](https://github.com/helix-editor/helix): 開箱即用的文字編輯器 with onedarker theme~~ [為什麼不用了][^helix]
+- [neovim](https://github.com/neovim/neovim): 改善 vim 問題的文字編輯器，請愛用 [NvChad](https://github.com/NvChad/NvChad) 完成設定
 - Warp: 附帶各種功能、支援各種工具的套件
 - [wezterm-config](https://github.com/KevinSilvester/wezterm-config): 開箱即用的 WezTerm 客製化，截至 6febb08 設定都很好。zsh 使用者要把 `config/domains.lua` 裡面的 fish 改成 zsh
 - [yazi](https://github.com/sxyazi/yazi): 超快的命令行檔案檢視器，需要用支援[圖形輸出](https://yazi-rs.github.io/docs/image-preview/)的終端才可以顯示圖片，例如 WezTerm
@@ -157,7 +158,9 @@ dk.set.block_size("1m")
 - [delta](https://github.com/dandavison/delta): 可以像是 Vscode 一樣 highlight git diff
 - [lazygit](https://github.com/jesseduffield/lazygit): Git TUI，add/patch 等區塊性操作很好用，rebase 很難用。
 
-## 自架 Self-Host
+[^helix]: 熱門度問題。Github 搜尋 [helix config](https://github.com/search?q=helix+config&type=repositories) 有 500 個 repo，neovim 則是 17k，而且還有 NvChad 這個 25k stars 的 repo 提供 out-of-the-box 的設定，那誰還要慢慢設定 neovim。helix 優點是[比較快](https://www.reddit.com/r/HelixEditor/comments/1azis06/worth_to_switch_from_nvim/)，不過就等未來用到卡了之後再改用 helix。
+
+## 自架 Self-Host{#helix}
 
 - Immich: 完全替代 Google 相簿
 - PhotoPrism: 畫廊形式的相簿

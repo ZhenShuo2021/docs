@@ -1,6 +1,6 @@
 ---
-title: 各種跨平台終端機整理，持續增加中
-description: 各種跨平台終端機整理，持續增加中
+title: 各種跨平台終端機整理
+description: 各種跨平台終端機整理
 sidebar_label: 跨平台終端機整理
 tags:
   - 實用工具
@@ -13,9 +13,9 @@ first_publish:
   date: 2024-12-05T14:22:30+08:00
 ---
 
-# 各種跨平台終端機整理，持續增加中
+# 各種跨平台終端機整理
 
-為甚麼又是整理文章？因為乾淨完整的清除比嘗試安裝更痛苦啊。本篇著重跨平台終端機所以選項沒幾個，如果不需跨平台的話可以不用讀這篇文章，或是直接跳到[附錄](#appendix)查看實測可用的終端優化文章。
+本篇著重跨平台終端機所以選項沒幾個，如果不需跨平台的話可以不用讀這篇文章，或是直接跳到[附錄](#appendix)查看實測可用的終端優化文章。
 
 <details>
 
@@ -37,6 +37,10 @@ first_publish:
 盤點我的需求，我需要終端機可以透過已經 key 到一半的指令篩選過往指令，最好有類似 vim 的用法例如跳到下一個單字，不在意開源，輕巧快速，最重要的是跨平台[^it]。
 
 [^it]: iTerm2 在跨平台部分慘遭淘汰，不然做了一輪功課感覺大家到最後還是用他。
+
+## Star History
+
+![Star History Chart](https://api.star-history.com/svg?repos=alacritty/alacritty,warpdotdev/Warp,raphamorim/rio,wez/wezterm,vercel/hyper,Eugeny/tabby&type=Date)
 
 ## 如果你不想看我的紀錄
 
@@ -74,13 +78,15 @@ first_publish:
 
 ### WezTerm
 
-下一個，待續。
+扣掉 Warp 以及被我跳過的 Tabby 最好的就是他了！
+
+主要是設定彈性很大，使用 lua 語言作為設定檔，重點是有[好看現成的設定檔](https://github.com/KevinSilvester/wezterm-config)可以拿來用，那誰不愛呢，人家都寫好圖片自動處理讓文字在背景之上能清晰顯示、隨機挑選照片了，用其他終端機找不到現成的設定檔就算可以設定很多處理不好也沒用。想要在 zsh 上使用 WezTerm 的可以參考[我的 fork](https://github.com/ZhenShuo2021/wezterm-config)，原版使用 fish 花了一段時間才找到哪裡改。
 
 [使用快照](https://x.com/hank_zhao/status/1801800550553686305)
 
 ### Tabby
 
-在使用時同時認知到所謂終端機速度，懶得打 clear 時會連按 enter 洗掉終端機，原生終端機完全沒問題，但是這個操作在 Warp 會卡頓[^plus-k]，在做功課的時候查到有人說 Tabby 肥大、用 TypeScript 寫的連我程式菜鳥看了覺得奇怪，reddit 的人也覺得 [hard pass](https://www.reddit.com/r/commandline/comments/rcs3va/tabby_a_terminal_for_the_modern_age/)，裡面也有人提到一個終端機 600MB，以後如果有嘗試會再更新這段。
+在使用時同時認知到所謂終端機速度，懶得打 clear 時會連按 enter 洗掉終端機，原生終端機完全沒問題，但是這個操作在 Warp 會卡頓才意識到效能問題[^plus-k]，在做功課的時候查到有人說 Tabby 肥大、用 TypeScript 寫的連我程式菜鳥看了覺得奇怪，reddit 的人也覺得 [hard pass](https://www.reddit.com/r/commandline/comments/rcs3va/tabby_a_terminal_for_the_modern_age/)，裡面也有人提到一個終端機 600MB，以後如果有嘗試會再更新這段。
 
 前身是 Termius 所以理所當然的內建 SSH/SFTP。
 
@@ -97,9 +103,11 @@ first_publish:
 
 ## 簡易結論
 
-如果跟我一樣要跨 Windows/Mac 的終端機就只剩下 Alacritty/Tabby/Hyper/(Warp) 可以選，Warp 尚未支援 Windows，剩下老牌又穩定成長的 Alacritty，或是使用 TypeScript 撰寫的 Tabby 二選一，Hyper 等他有更新再說否則不考慮。
+現在我要處理複雜工作就用 Warp，簡單工作使用 WezTerm。為啥不全用 Warp 呢？因為 WezTerm 好看用了心情就好。
 
-2024 的今天滿幸運的，有 uv 解決 Python 一直以來的煩惱，Warp 如果完成 Windows 版本那真的是萬幸，解決 Windows 超爛終端機問題。
+跨 Windows/Mac 的終端機只有 Alacritty/Tabby/Hyper/WezTerme/Warp 可以選，Warp 尚未支援 Windows，剩下老牌又穩定成長的 Alacritty，或是使用 TypeScript 撰寫的 Tabby 二選一，Hyper 等他有更新再說否則不考慮。
+
+2024 的今天滿幸運的，有 uv 解決 Python 一直以來的煩惱，又有 Warp 這個超強終端誕生，如果他完成 Windows 版本那真的是萬幸，解決 Windows 超爛終端機問題。
 
 最後真的要提醒自己用 GitHub Star History 先統計好，盲猜太浪費時間。
 

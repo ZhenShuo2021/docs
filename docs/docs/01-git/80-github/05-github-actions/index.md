@@ -109,7 +109,7 @@ Github Actions 由以下幾個項目組成：
 
 ### 自訂任務
 
-如果想要進行某項直覺很常見的任務例如設定 Python/Docker，千萬不要自己寫而是找現成的 Actions 使用，如果找不到有八成可能是 Github 根本不支援。以安裝 uv 為例，應該使用 [setup-uv](https://github.com/astral-sh/setup-uv/) 而不是自己寫 `curl -LsSf https://astral.sh/uv/install.sh | sh`，會遇到很多奇怪問題，而且使用現成 actions 會有很多附加功能可選。
+如果想要進行某項直覺很常見的任務例如設定 Python/Docker，千萬不要自己寫而是找現成的 Actions 使用，如果找不到有八成可能是 Github 根本不支援。以安裝 chrome 為例，應該使用 [setup-chrome](https://github.com/browser-actions/setup-chrome) 而不是自己寫 curl 會遇到很多奇怪問題，而且使用現成 actions 會有很多附加功能可選。
 
 使用最新版只需要指定大版本（例如 `actions/checkout@v4`）不需特別指定子版本號。
 

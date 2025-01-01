@@ -1,5 +1,40 @@
 [
   {
+    "title": "一鍵搞定！自動化你的 macOS 開發環境配置 | dotfiles 設定分享",
+    "permalink": "/docs/linux/macos-dotfiles-auto-setup/",
+    "description": "一鍵搞定！自動化你的 macOS 開發環境配置 | dotfiles 設定分享",
+    "tags": [
+      {
+        "inline": true,
+        "label": "實用工具",
+        "permalink": "/docs/tags/實用工具"
+      }
+    ],
+    "date": 1735756560000,
+    "yearMonth": "2025 年 01 月",
+    "day": "02"
+  },
+  {
+    "title": "Shell 和他的設定檔，以及 Dotfiles",
+    "permalink": "/docs/linux/bashrc-zshrc-zshenv/",
+    "description": "Shell 和他的設定檔，以及 Dotfiles",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/docs/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Terminal",
+        "permalink": "/docs/tags/terminal"
+      }
+    ],
+    "date": 1735472970000,
+    "yearMonth": "2024 年 12 月",
+    "day": "29"
+  },
+  {
     "title": "實用工具選輯",
     "permalink": "/docs/useful-tools/awesome-collections/",
     "description": "選輯",
@@ -178,50 +213,5 @@
     "date": 1733943060000,
     "yearMonth": "2024 年 12 月",
     "day": "12"
-  },
-  {
-    "title": "各種跨平台終端機整理，持續增加中",
-    "permalink": "/docs/useful-tools/cross-platform-terminal/",
-    "description": "各種跨平台終端機整理，持續增加中",
-    "tags": [
-      {
-        "inline": true,
-        "label": "實用工具",
-        "permalink": "/docs/tags/實用工具"
-      }
-    ],
-    "date": 1733344500000,
-    "yearMonth": "2024 年 12 月",
-    "day": "05"
-  },
-  {
-    "title": "False-Sharing 閱讀筆記和實測",
-    "permalink": "/docs/python/false-sharing-in-python/",
-    "description": "Python 中的 False-Sharing 閱讀筆記和實測",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/docs/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "Numba",
-        "permalink": "/docs/tags/numba"
-      },
-      {
-        "inline": true,
-        "label": "Performance",
-        "permalink": "/docs/tags/performance"
-      }
-    ],
-    "date": 1733067480000,
-    "yearMonth": "2024 年 12 月",
-    "day": "01"
   }
 ]

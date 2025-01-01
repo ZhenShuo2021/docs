@@ -39,8 +39,10 @@ dk.set.block_size("1m")
 
 - python-fire: 自動生成 CLI 介面
 - [HTTP 客戶端套件集合](https://blog.zsl0621.cc/posts/scrappers/)
-- [網頁自動化套件集合](https://blog.zsl0621.cc/posts/scrappers/)
 - [HTML 解析套件套件集合](https://blog.zsl0621.cc/posts/scrappers/)
+- [網頁自動化套件集合](https://blog.zsl0621.cc/posts/scrappers/)
+- PyVirtualDisplay: 模擬圖形化介面
+- setup-xvfb: 設定圖形化介面的 Github Action
 - Ruff: 用 Rust 寫的開源 Python linter + formatter
 - uv: 用 Rust 寫的開源 Python 虛擬環境+套件+Python 版本管理
 
@@ -149,16 +151,17 @@ dk.set.block_size("1m")
 ## 終端機相關
 
 - ~~[helix](https://github.com/helix-editor/helix): 開箱即用的文字編輯器 with onedarker theme~~ [為什麼不用了][^helix]
-- [neovim](https://github.com/neovim/neovim): 改善 vim 問題的文字編輯器，請愛用 [NvChad](https://github.com/NvChad/NvChad) 完成設定
+- [neovim](https://github.com/neovim/neovim): 改善 vim 問題的文字編輯器，請愛用 [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)[^kickstart] 完成設定
 - Warp: 附帶各種功能、支援各種工具的套件
 - [wezterm-config](https://github.com/KevinSilvester/wezterm-config): 開箱即用的 WezTerm 客製化，截至 6febb08 設定都很好。zsh 使用者要把 `config/domains.lua` 裡面的 fish 改成 zsh
+- font 字體: MesloLGS NF，和 [powerlevel10k](https://github.com/romkatv/powerlevel10k? tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k)相同
 - [yazi](https://github.com/sxyazi/yazi): 超快的命令行檔案檢視器，需要用支援[圖形輸出](https://yazi-rs.github.io/docs/image-preview/)的終端才可以顯示圖片，例如 WezTerm
 - WinGet/Chocolatey: Windows 的終端機套件管理
 - UniGetUI: Windows 上的圖形化套件管理器
-- [delta](https://github.com/dandavison/delta): 可以像是 Vscode 一樣 highlight git diff
-- [lazygit](https://github.com/jesseduffield/lazygit): Git TUI，add/patch 等區塊性操作很好用，rebase 很難用。
 
 [^helix]: 熱門度問題。Github 搜尋 [helix config](https://github.com/search?q=helix+config&type=repositories) 有 500 個 repo，neovim 則是 17k，而且還有 NvChad 這個 25k stars 的 repo 提供 out-of-the-box 的設定，那誰還要慢慢設定 neovim。helix 優點是[比較快](https://www.reddit.com/r/HelixEditor/comments/1azis06/worth_to_switch_from_nvim/)，不過就等未來用到卡了之後再改用 helix。
+
+[^kickstart]: 除了 NvChad 以外其餘很多設定檔在 vscode neovim-package 都會造成亂碼
 
 ## 自架 Self-Host{#helix}
 

@@ -1,47 +1,36 @@
-This site is from https://github.com/Ouch1978/ouch1978.github.io
+由 [ouch1978.github.io](https://github.com/Ouch1978/ouch1978.github.io) 修改而成，基礎使用方式請見[作者網站](https://ouch1978.github.io/)。
 
-# 簡介
+## 使用
 
-這是一個基於 [Docusaurus 3](https://docusaurus.io/) 打造的個人網站，同時啟用了文件庫和部落格的功能。
+Clone 後把所有和個人訊息改成你自己的，在原作者的網站有說設定了哪些東西，例如 git repo name, baseurl, Giscus, algolia...
 
-除此之外，也整合了 reveal-md 套件，能透過 markdown 語法產生線上投影片。
+1. 安裝: yarn install
+2. 啟用: yarn start
+3. 建立首頁文章列表: yarn start 後使用 yarn new，如果時間沒有正確顯示需要刪除 .docusaurus 資料夾刷新
 
-## 特色
+## 部屬到 Cloudflare Pages 方式
 
-- 🦖 已更新至 Docusaurus 3.1。
+1. 進入設定頁面
+   1. 登入 Cloudflare
+   2. 點選左側 Workers and Pages
+   3. 選擇建立
+   4. 選擇 Pages
+2. 設定部署網站
+   1. 選擇儲存庫
+   2. Framework Docusaurus
+   3. 組建命令 `yarn build`
+   4. 組建輸出目錄 `build`
+   5. 環境變數 `YARN_VERSION=1.22.22` 選擇和本地一樣的版本
+3. （可選）設定 custom domain，正常設定約兩分鐘內完成部屬
 
-- 📝 自訂首頁，支援顯示最新的文件庫文章和部落格文章。
+## 插入影片
 
-- 🖼️ 整合 docusaurus-plugin-image-zoom，內建圖片放大功能。
+使用 [react-player](https://github.com/cookpete/react-player) 完成，支援的影片來源和他一樣，或者放在 /static 資料夾中的影片，其 url 不需包含 static。
 
-- ↔ 整合 rehype-extended-table，支援以 Markdown 繪製不規則表格。
+```md
+import ResponsivePlayer from '@site/src/components/ResponsivePlayer';
 
-- 🔍 整合 Algoia 搜尋。
-
-- 💬 整合 giscus 留言功能。
-
-## 使用方法
-
-### 安裝相關套件
-
-```shell
-yarn install
-```
-
-### 本機執行
-
-```shell
-yarn start
-```
-
-### 產生新進文章列表
-
-```shell
-yarn new
-```
-
-### 編譯 reveal-md 投影片
-
-```shell
-yarn reveal
+<ResponsivePlayer url="https://www.youtube.com/watch?v=<VIDEO_ID>" />
+<ResponsivePlayer url="https://www.facebook.com/facebook/videos/<VIDEO_ID>/" />
+<ResponsivePlayer url="/video/<FILE_NAME>" />
 ```

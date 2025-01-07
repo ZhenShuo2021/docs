@@ -22,7 +22,7 @@ import TabItem from '@theme/TabItem';
 
 # UV 教學，最佳 Python 虛擬環境管理工具
 
-本篇文章介紹 **[uv](https://github.com/astral-sh/uv)** 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看[上一篇文章](/docs/python/virtual-environment-management-comparison)。
+本篇文章介紹 **[uv](https://github.com/astral-sh/uv)** 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看[上一篇文章](./virtual-environment-management-comparison)。
 
 ## 簡介
 

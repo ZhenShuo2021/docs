@@ -1,5 +1,45 @@
 [
   {
+    "title": "使用 git sparse-checkout 只下載部分專案以加速 clone 速度",
+    "permalink": "/docs/git/miscs/reduce-size/",
+    "description": "介紹操作大型儲存庫時如何減少容量加速 clone",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1739230705000,
+    "yearMonth": "2025 年 02 月",
+    "day": "11"
+  },
+  {
+    "title": "[進階] git rebase onto 全中文圈最完整教學",
+    "permalink": "/docs/git/rebase-onto/",
+    "description": "不要再亂教 rebase onto 了",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/docs/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/docs/tags/programming"
+      }
+    ],
+    "date": 1739116680000,
+    "yearMonth": "2025 年 02 月",
+    "day": "09"
+  },
+  {
     "title": "UV Python 教學，最佳虛擬環境管理工具",
     "permalink": "/docs/python/python-uv-complete-guide/",
     "description": "UV Python 教學，最佳虛擬環境管理工具",
@@ -85,26 +125,6 @@
     "day": "14"
   },
   {
-    "title": "[進階] 搞懂 git rebase onto",
-    "permalink": "/docs/git/rebase-onto/",
-    "description": "不要再亂教 rebase onto 了",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1736834700000,
-    "yearMonth": "2025 年 01 月",
-    "day": "14"
-  },
-  {
     "title": "[微進階] 使用 Rebase 變基提交",
     "permalink": "/docs/git/rebase/",
     "description": "最快最清楚而且最正確的搞懂變基 git rebase。",
@@ -183,30 +203,5 @@
     "date": 1736238060000,
     "yearMonth": "2025 年 01 月",
     "day": "07"
-  },
-  {
-    "title": "在本地執行 Github Actions",
-    "permalink": "/docs/git/github/run-github-actions-locally/",
-    "description": "在本地執行 Github Actions",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Github",
-        "permalink": "/docs/tags/github"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": 1736016660000,
-    "yearMonth": "2025 年 01 月",
-    "day": "05"
   }
 ]

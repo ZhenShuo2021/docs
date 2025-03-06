@@ -11794,7 +11794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.0, prop-types@npm:^15.5.10, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12111,6 +12111,17 @@ __metadata:
   peerDependencies:
     react: ">=16.6.0"
   checksum: 10c0/ee0f4cd3bd468b28af38dbbb65cae1659218153956f43c0bdd15cd8b38aaaf151deec43b93b7dd887c0ac28242a4ba7e9d01823351e78ba60ae04d5fb51defb4
+  languageName: node
+  linkType: hard
+
+"react-reveal@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "react-reveal@npm:1.2.2"
+  dependencies:
+    prop-types: "npm:^15.5.10"
+  peerDependencies:
+    react: ^15.3.0 || ^16.0.0
+  checksum: 10c0/6bc548a7e7b416e62df061aaa8f51bc2944e50e7271398ee22af4a3224b59d9247518859753d64370131f69807a7ebb2320ff4b151c375e043995afb5004247d
   languageName: node
   linkType: hard
 
@@ -14560,6 +14571,7 @@ __metadata:
     react-dom: "npm:^18.0.0"
     react-loadable: "npm:^5.5.0"
     react-player: "npm:^2.16.0"
+    react-reveal: "npm:^1.2.2"
     rehype-katex: "npm:^7.0.1"
     rehype-stringify: "npm:^10.0.1"
     remark-math: "npm:^6.0.0"

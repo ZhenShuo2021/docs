@@ -1,3 +1,4 @@
+const path = require('path');
 const presets = require('./config/presets');
 const plugins = require('./config/plugins');
 const themeConfig = require('./config/themeConfig');

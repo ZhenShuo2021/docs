@@ -1,3 +1,4 @@
+const path = require('path');
 import { themes as prismThemes } from 'prism-react-renderer';
 
 module.exports = {
@@ -9,6 +10,11 @@ module.exports = {
   tableOfContents: {
     minHeadingLevel: 2,
     maxHeadingLevel: 5,
+  },
+  prism: {
+    additionalLanguages: ["aspnet", "bash", "css", "csharp", "cshtml", "diff", "git", "java", "javascript", "json", "markup-templating", "powershell", "php", "python", "sql", "toml", "typescript", "lua"],
+    theme: prismThemes.github,
+    darkTheme: prismThemes.vsDark,
   },
   navbar: {
     title: "zsl0621@Docs",
@@ -30,6 +36,11 @@ module.exports = {
         docId: 'memo',
         sidebarId: 'memoSidebar',
         label: "備忘錄",
+      },
+      {
+        label: '近期活動',
+        to: '/portfolio',
+        position: 'left',
       },
       // {
       //   type: 'dropdown',
@@ -116,10 +127,10 @@ module.exports = {
   },
   webpack: {
     configure: (webpackConfig) => {
-      webpackConfig.module.rules.push({
-        test: /\.(webp|png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
-      });
+      webpackConfig.resolve.alias = {
+        ...webpackConfig.resolve.alias,
+        '@docs': path.resolve(__dirname, 'docs'),
+      };
       return webpackConfig;
     },
   },

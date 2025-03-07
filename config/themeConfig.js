@@ -38,7 +38,7 @@ module.exports = {
         label: "備忘錄",
       },
       {
-        label: '近期活動',
+        label: '導航',
         to: '/portfolio',
         position: 'left',
       },

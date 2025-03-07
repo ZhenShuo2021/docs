@@ -1,5 +1,26 @@
 [
   {
+    "title": "Nix 套件管理：我的失敗經驗",
+    "permalink": "/docs/linux/abandoned-nix",
+    "description": "本文原本是在補充前一篇 Ubuntu 套件管理器時臨時起意加上的，寫完後覺得把他放成一篇文章好了。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/docs/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Nix",
+        "permalink": "/docs/tags/nix"
+      }
+    ],
+    "date": "2025-03-07 21:16:30",
+    "yearMonth": "2025 年 03 月",
+    "day": "07",
+    "source": "docs"
+  },
+  {
     "title": "跨平台終端機實測大對決",
     "permalink": "/docs/useful-tools/cross-platform-terminal-comparison",
     "description": "跨平台終端機實測大對決",
@@ -141,15 +162,10 @@
     "source": "docs"
   },
   {
-    "title": "UV Python 教學，最佳虛擬環境管理工具",
+    "title": "UV Python 教學，最佳虛擬環境管理工具（上）",
     "permalink": "/docs/python/python-uv-complete-guide",
-    "description": "UV Python 教學，最佳虛擬環境管理工具",
+    "description": "UV Python 教學，最佳虛擬環境管理工具（上）",
     "tags": [
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      },
       {
         "inline": true,
         "label": "Python",
@@ -178,8 +194,8 @@
       },
       {
         "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
+        "label": "教學",
+        "permalink": "/docs/tags/教學"
       }
     ],
     "date": "2025-02-13 23:59:25",
@@ -199,32 +215,11 @@
       },
       {
         "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
+        "label": "教學",
+        "permalink": "/docs/tags/教學"
       }
     ],
     "date": "2025-02-13 23:59:00",
-    "yearMonth": "2025 年 02 月",
-    "day": "13",
-    "source": "docs"
-  },
-  {
-    "title": "Git 遠端概念和常見錯誤",
-    "permalink": "/docs/git/remote/concept-and-commands",
-    "description": "操作遠端儲存庫的指令都在這。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/docs/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "Programming",
-        "permalink": "/docs/tags/programming"
-      }
-    ],
-    "date": "2025-02-13 23:03:42",
     "yearMonth": "2025 年 02 月",
     "day": "13",
     "source": "docs"

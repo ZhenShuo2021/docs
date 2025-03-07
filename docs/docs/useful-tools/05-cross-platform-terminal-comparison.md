@@ -69,7 +69,7 @@ import EmblaCarousel from '@site/src/components/EmblaCarousel';
 
 ### Rio
 
-根據 [GitHub Star History](https://star-history.com/#Eugeny/tabby&alacritty/alacritty&vercel/hyper&raphamorim/rio&warpdotdev/Warp&wez/wezterm&Date) 其實應該先使用 tabby 的，雖然前期平穩但近年成長快速，不過找的時候完全忘記可以這樣判斷了所以隨便選了 Rio，純粹是因為名字才第一個選他，<u>結論是難用不推</u>，進入終端要按兩下 enter，只是改回原始終端機預設字體就直接亂碼，折騰一小時放棄。
+根據 [GitHub Star History](https://star-history.com/#Eugeny/tabby&alacritty/alacritty&vercel/hyper&raphamorim/rio&warpdotdev/Warp&wez/wezterm&Date) 其實應該先使用 tabby 的，不過當時完全忘記這回事所以因為名字選了 Rio，<u>結論是難用不推</u>，進入終端要按兩下 enter，只是改回原始終端機預設字體就直接亂碼，折騰一小時放棄。
 
 隔幾個月後回來更新文章又嘗試了一下，改用 MesloLGS NF 可以成功抓到字體，但是 powerlevel10k 的樣式在這個終端模擬器上顯示會有問題，如果要快可以選 Alacritty，要均衡可以選 WezTerm，網路資源贏者全拿，想不到選他的理由。
 
@@ -95,11 +95,11 @@ import image2 from './data/terminal-rio-2.webp';
 
 特色是 AI/工作區/筆記本，網路上文章很多我也還沒摸熟，缺點是不能顯示圖片，看起來也[沒有要解決](https://github.com/warpdotdev/Warp/issues/26)的意思。
 
-主題方面，官方提供了基本的主題可以選擇，把[這個 repo](https://github.com/warpdotdev/themes) clone 到 `~/.warp/theme` 後就可使用，也可以在設定選單裡面上傳圖片他會自行生成顏色主題，再到 theme 資料夾修改 yaml 檔案。自己搞了一小時的感想是用原生的，窩不會配色 QQ。
+主題方面，官方提供了基本的主題可以選擇，把 [這個 repo](https://github.com/warpdotdev/themes) clone 到 `~/.warp/theme` 後就可使用，也可以在設定選單裡面上傳圖片他會自行生成顏色主題，再到 theme 資料夾修改 yaml 檔案。自己搞了一小時的感想是用原生的，窩不會配色 QQ。
 
 > 三個月後的使用感想
 >
-> 如果你跟我一樣設定了[超多的 rc 設定檔](https://github.com/ZhenShuo2021/dotfiles)，甚至是寫了[自己的補全腳本](../linux/customize-zsh-function-and-comletion)，會發現自己完全不會想要使用這個終端機，因為他的[補全系統是個災難](https://github.com/warpdotdev/Warp/issues/3596)基本處於不可用狀態，只能用他內建的補全系統。
+> 如果你跟我一樣設定了[超多的 rc 設定檔](https://github.com/ZhenShuo2021/dotfiles)，甚至是寫了[自己的補全腳本](../linux/custom-zsh-completion)，會發現自己完全不會想要使用這個終端機，因為他的[補全系統是個災難](https://github.com/warpdotdev/Warp/issues/3596)基本上不可用，只能用他內建的補全系統。
 
 ### Alacritty
 
@@ -109,30 +109,25 @@ import image2 from './data/terminal-rio-2.webp';
 
 最好的就是他了！
 
-最大的優點是均衡，設定彈性很大速度也不慢，使用 lua 語言作為設定檔，還有[好看現成的設定檔](https://github.com/KevinSilvester/wezterm-config)可以拿來用那誰不愛呢？都有圖片自動處理讓文字在背景之上能清晰顯示、隨機挑選照片了，用其他終端機（如 Alacritty）找不到現成的設定檔，我才不想花時間讀文檔從零到一百完全手寫浪費時間，而且還沒有人家功能多和好看。想要在 zsh 上使用 WezTerm 的可以參考[我的 fork](https://github.com/ZhenShuo2021/wezterm-config)。
-
-- [使用快照 1](https://x.com/hank_zhao/status/1801800550553686305)
-- [使用快照 2](https://github.com/KevinSilvester/wezterm-config/tree/master/.github/screenshots)
+最大的優點是均衡，使用 lua 語言設定自由度很高，速度也足夠快，還有[好看現成的設定檔](https://github.com/KevinSilvester/wezterm-config)可以拿來用那誰不愛呢？都有圖片自動處理讓文字在背景之上能清晰顯示、隨機顯示圖片功能了，用其他冷門終端機（如 Alacritty）不好找現成的設定檔，我才不想花時間讀文檔從零到一百完全手寫浪費時間，自己寫的八成還沒有人家好看。想要在 zsh 上使用 WezTerm 的可以參考[我的 fork](https://github.com/ZhenShuo2021/wezterm-config)。
 
 ### Tabby
 
 在使用時同時認知到所謂終端機速度，懶得打 clear 時會連按 enter 洗掉終端機，原生終端機完全沒問題，但是這個操作在 Warp 會卡頓才意識到效能問題（後來才知道可以用 command + K/L），在做功課的時候查到有人說 Tabby 肥大、還用 TypeScript 寫的，[reddit 上](https://www.reddit.com/r/commandline/comments/rcs3va/tabby_a_terminal_for_the_modern_age/) 也在嘲諷他是*使用 TypeScript 的「現代」終端機*，更狠的直接說 hard pass，裡面也有人提到一個終端機 600MB。
 
-實際使用如同我的猜測，很漂亮而且很慢，前身是 Termius 所以理所當然的內建 SSH/SFTP，這應該是他扣掉外觀的最大優勢。
+實際使用如同我的猜測，很漂亮而且很慢，前身是 Termius 所以理所當然的內建 SSH/SFTP，這是他扣掉外觀的最大優勢。
 
 ### Wave Terminal
 
-號稱整合 AI、瀏覽器、文字編輯的跨平台終端機，太新了，在我撰文當下才發表不到一個月，是我幾個月後回來更新文章又順手刷了一下 reddit 才看到這個終端，使用 ts 前端，golang 後端，比起全部使用 ts 的 Tabby 理智多了。
+號稱整合 AI、瀏覽器、文字編輯的跨平台終端機，太新了，是我幾個月後回來更新文章又順手刷了一下 reddit 才看到這個終端，使用 ts 前端，golang 後端，比起全部使用 ts 的 Tabby 理智多了。
 
 上手體驗五分鐘的感想是，如果 Warp 最大的賣點是終端文字編輯 + AI 的話，他的賣點是多工並行 + AI。
 
-他的 Github Readme 已經寫的很清楚特色就是避免頻繁的切換視窗，因為現代開發常常要編輯文件、查看遠端伺服器、預覽文件、查看系統、上網查問題、問 AI 等等，他的目的就是解決這些問題。我個人的第一印象就是開發者絕對大量使用 [yabai](https://github.com/koekeishiya/yabai) 這個工具，yabai 就是把所有視窗平鋪在螢幕上不使用堆疊，請看下方擷圖你一定也會這麼覺得：
+現代開發常常要編輯文件、查看遠端伺服器、預覽文件、查看系統、上網查問題、問 AI 等等，官網就說了他的特色就是解決這些問題。我個人的第一印象就是開發者絕對大量使用 [yabai](https://github.com/koekeishiya/yabai) 這個工具，yabai 會把所有視窗平鋪在螢幕上不使用堆疊，請看下方擷圖你一定也會這麼覺得：
 
 ![wave-term](data/wave-term.webp "wave terminal")
 
-左側是我的本機 shell，右邊一個是我的 server，然後是內嵌的 AI、網頁功能查詢 stackoverflow、還有本機硬碟，想法很有趣，未來深度體驗後再回來更新。
-
-還在 early beta 階段，隨便測試都有很多問題，喜歡嘗鮮的人可以試試看。
+左側是我的本機 shell，再來一個是 ssh 連線到我的 server，然後是內嵌的 AI、網頁功能查詢 stackoverflow、還有本機硬碟，想法很有趣，還在 beta 階段，隨便測試都有很多問題，喜歡嘗鮮的人可以試試看。
 
 ### 遺珠之憾
 
@@ -149,14 +144,14 @@ import image2 from './data/terminal-rio-2.webp';
 
 這邊附上我的文章總結表格，剛好就是叫 wave-term 內嵌的 AI 整理的：
 
-|  名稱       | 優點                                                     | 缺點                                                        |
-|-------------|--------------------------------------------------------|-----------------------------------------------------------|
-| **Alacritty** | 速度快。                                            | 只有速度快以及能自定義這兩項優點，其餘所有優點他都沒有。               |
-| **WezTerm** | 每方面均衡，靈活的配置，筆者的最愛。                      | 沒有其他實用特別功能，就是一個中規中舉的終端機。                            |
-| **Warp**    | 出色的指令文字編輯能力，支持鍵盤快捷操作。                   | 更新頻繁，無法顯示圖片，補全系統與系統補全衝突。              |
-| **Tabby**   | 開箱即用的用戶介面，優秀的內建 SSH/SFTP。                    | 程式體積大，性能非常遲緩。                                   |
-| **Rio**     | 無                                                      | 界面複雜，使用體驗差，連設定。                      |
-| **Wave Terminal** | 解決頻繁切換窗口的需求，支持多任務操作。              | 仍處於開發階段。                                         |
+| 名稱              | 獨特賣點                     | 優點                                                     | 缺點                                           |
+|-----------------|--------------------------|------------------------------------------------------|----------------------------------------------|
+| **Alacritty**     | 速度快                     | 速度快。                                              | 只有速度快以及能自定義這兩項優點，其餘所有優點他都沒有。 |
+| **WezTerm**      | 無                         | 每方面均衡，靈活的配置，筆者的最愛。                      | 沒有其他實用特別功能，就是一個中規中矩的終端機。       |
+| **Warp**        | 優秀的命令輸入和腳本/AI功能 | 出色的指令文字編輯能力，支持鍵盤快捷操作。                   | 更新頻繁，無法顯示圖片，補全系統與系統補全衝突。    |
+| **Tabby**       | 內建 SSH/SFTP             | 開箱即用的用戶介面。                 | 程式體積大，性能非常遲緩。                     |
+| **Rio**         | 無                         | 無                                                  | 界面複雜，使用體驗差，連設定都不直觀。           |
+| **Wave Terminal** | tiling window            | 解決頻繁切換窗口的需求，支持多任務操作。                   | 仍處於開發階段。                             |
 
 ## 參考資料
 

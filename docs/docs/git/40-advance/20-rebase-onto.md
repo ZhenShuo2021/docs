@@ -5,10 +5,12 @@ author: zsl0621
 description: 不要再亂教 rebase onto 了
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-13T23:59:00+08:00
   author: zsl0621
@@ -16,19 +18,17 @@ first_publish:
   date: 2025-01-13T14:40:00+08:00
 ---
 
-本文延續 [使用變基 Rebase 合併分支](../history-manipulation/rebase) 繼續說明 onto 用法，可以視為它的完整解析版本，把口訣擴展成一板一眼的定義，目的是讓這個解釋到哪裡都通用。
-
-不像是四處可見的輕率教學，本文會說明為何網路上的說法為何錯誤，同時包含實際範例展示，並且和上一篇相同，筆者保證本文絕對正確。
+本文延續 [使用變基 Rebase 合併分支](../history-manipulation/rebase) 繼續說明 onto 用法，可以視為它的完整解析版本，完全遵照文檔說明沒有模糊地帶。本文會說明為何網路上的說法為何錯誤，同時包含實際範例展示，並且和上一篇相同，筆者保證本文絕對正確。
 
 :::info
 
-rebase 真實專案前請先用這個[迷你範例](https://github.com/ZhenShuo2021/rebase-onto-playground)測試結果是否符合預期。
+我做了一個[迷你repo](https://github.com/ZhenShuo2021/rebase-onto-playground)以便在真實操作前測試結果是否符合預期。
 
 :::
 
 ## TL;DR
 
-整篇文章的精華在這裡，`git rebase --onto A B C` 的作用是
+`git rebase --onto A B C` 的作用是
 
 1. 切換分支：首先 `git switch` 切換分支到 C
 2. 解析範圍：解析 B 與 C 的共同祖先，<u>**找到從共同祖先到 C 之間，並且忽略存在於 B 的提交**</u>[^exclude]，最後暫存這些提交
@@ -47,9 +47,9 @@ rebase 真實專案前請先用這個[迷你範例](https://github.com/ZhenShuo2
 
 :::
 
-怎麼不像是能輕鬆背誦的口訣，因為他就是這麼運作的，而且本文不是網路上那些不負責任的文章。強烈建議如果使用 --onto 參數就一次把 B C 參數也附上，因為這個指令太複雜了。
+怎麼不像是能輕鬆背誦的口訣，因為他就是這麼運作的，強烈建議如果使用 --onto 參數就一次把 B C 參數也附上，因為這個指令太複雜了，網路上說明 rebase --onto 用法的文章 99\% 都只適用於他那個情況，換了一個情境他的說明就不適用了。
 
-附帶一提，網路上有說法是<u>**「把 B\~C 之間的提交放在 A 之後」，但是請注意這個說法不完全正確**</u>，這個說法不會永遠成立，本文範例中的[修改提交所屬分支](#change_parent)展示了這個說法是錯誤的，因此特別闢謠。
+附帶一提，網路上有說法是<u>**「把 B\~C 之間的提交放在 A 之後」**</u>，這個說法是最接近正確的說法，但是不會永遠成立，本文範例中的[修改提交所屬分支](#change_parent)展示了這個說法是錯誤的，因此特別闢謠。
 
 ## 序
 
@@ -76,7 +76,7 @@ rebase 真實專案前請先用這個[迷你範例](https://github.com/ZhenShuo2
 git rebase --onto <newbase> [<upstream> [<branch>]]
 ```
 
-- [upstream](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt-ltupstreamgt): 要和目前分支比較，用於<u>**尋找共同祖先**</u>的分支或提交。如果沒有設定，預設為當前分支的 remote（`branch.<name>.remote` 和 `branch.<name>.merge`），因此文檔將這個變數命名為 upstream
+- [upstream](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt-ltupstreamgt): 要和目前分支比較，用於<u>**尋找共同祖先**</u>的分支或提交。如果沒有設定，預設為 `branch.<name>.remote` 和 `branch.<name>.merge`，因此文檔將這個變數命名為 upstream
 - [branch](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt-ltbranchgt): 設定 branch 後，在 rebase 操作前都會提前執行 `git switch <branch>`，預設為 HEAD，也就是在當前分支進行 rebase
 - [newbase](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---ontoltnewbasegt): 使用 `--onto` 時必須設定 newbase，用來指定 rebase 時生成的 commit 起點，如果不指定 `--onto`，等效於將起點設定在 `<upstream>`
 
@@ -86,22 +86,16 @@ git rebase --onto <newbase> [<upstream> [<branch>]]
 2. 找出從共同祖先到 `<branch>` 之間的提交，跳過屬於 `<upstream>` 的部分，並且暫存他們
 3. 將其重演在新基底 `<newbase>` 之後
 
-附帶一提，把 `<newbase>` 去掉後，這個說法完全兼容[前一篇文章](../history-manipulation/rebase)說的：
-
-1. 找到共同祖先
-2. 找到需要被變基的提交並且暫存他們  
-3. 將目標分支最後一個提交作為出發點，把暫存的提交逐個重演到目標分支後面
-
-可以發現這個解釋是[原有解釋](../history-manipulation/rebase#口訣)的超集 (superset) 而不是推翻原有解釋，僅是根據文檔就已經是最通用的解釋。某些文章自作聰明自創名詞解釋，結果照他的說法，在不同參數數量用法、不同分支結構下每個參數的目的都不一樣。
+附帶一提，把 `<newbase>` 去掉後，這個說法是[原有口訣](../history-manipulation/rebase#口訣)的超集 (superset) 而不是推翻原有解釋，網路文章很糟糕的一點是他們的解釋每種情境都是全新的用法。
 
 ### 用一個變數{#single_var}
 
 <details>
-<summary>這段不要看，這個指令用不到看了只會混淆自己</summary>
+<summary>這個用法不會用到</summary>
 
-我想不到什麼情況需要只用 `git rebase --onto <newbase>` 而不帶其他參數，把這個段落放進來的原因是沒寫感覺好像是作者忘記一樣，所以用折疊形式放上來，rebase onto 已經夠複雜了最好跳過這段免得搞亂自己。
+把這個段落放進來的原因是沒寫感覺好像是作者忘記一樣，所以用折疊形式放上來。
 
-將另外兩個變數的預設值套上後，指令目的變成「把 HEAD rebase 到 `<newbase>`」，基本上不會用到這個功能，在我的 [範例 repo](https://github.com/ZhenShuo2021/rebase-onto-playground) 中可以用這個指令測試：
+我想不到什麼情況需要只用 `git rebase --onto <newbase>` 而不帶其他參數，將另外兩個變數的預設值套上後，指令目的變成「把 HEAD rebase 到 `<newbase>`」，基本上不會用到這個功能，在我的 [範例 repo](https://github.com/ZhenShuo2021/rebase-onto-playground) 中可以用這個指令測試：
 
 ```sh
 git rebase --onto feat
@@ -129,8 +123,6 @@ git rebase --onto feat fix~2
 ```
 
 把指令翻譯成人話就是「將 fix 和 fix~2 比較，找到共同祖先後，以 feat 作為基底開始重演」。這裡不貼執行結果，因為截圖看了反而頭痛，自己真正使用過一次就很清楚他在做什麼了，會把 `fix~1` 和 `fix` 移動到 `feat` 後面。
-
-另外提醒多次測試時可以使用 `git reset --hard origin/<branch>` 還原變更。
 
 ### 用三個變數
 

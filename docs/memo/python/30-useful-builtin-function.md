@@ -2,10 +2,8 @@
 title: 實用的內建函式
 description: Useful Built-in Functions in Python
 tags:
-  - Programming
   - Python
 keywords:
-  - Programming
   - Python
 last_update:
   date: 2024-09-11T00:00:00+08:00

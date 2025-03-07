@@ -88,8 +88,6 @@ first_publish:
 
 - `&`：後台執行命令。
 - `:`：空操作，永遠返回成功。
-- `.`：當前目錄或執行腳本。
-- `..`：父目錄。
 - `-`：選項標記。
 - `!`：歷史命令（如 `!!` 執行上一命令）。
 - `%`：作業控制的作業 ID。
@@ -106,14 +104,7 @@ export PATH="$PATH:/User/name/hugo"
 1. PATH="...": 使用錢字號取出PATH的值之後，再接上要新增的路徑
 2. export: 把PATH變數設定成環境變數
 
-### 縮寫指令
-
-```sh
-echo "alias hnc='hugo new content'" >> ~/.bashrc
-```
-
-1. 印出這段文字
-2. 使用重定向符號加到 ~/.bashrc 的最後一行
+類似的使用還有在字串中執行指令，使用 `echo "The current path is $(pwd)"`可以呼叫 `pwd`。
 
 ### 尋找並且刪除
 
@@ -139,6 +130,10 @@ pip freeze > unins && pip uninstall -y -r unins && rm unins
 
 ```sh
 cat > output.txt << EOF
+Write
+multiple
+col
+EOF
 ```
 
 把 cat 的文字轉向到文件，設定遇到 EOF 結束，EOF 可以換成其他文字。

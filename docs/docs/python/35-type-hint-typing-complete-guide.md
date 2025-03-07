@@ -3,12 +3,10 @@ title: Python Type Hint 教學
 description: Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints
 sidebar_label: Type Hint 教學
 tags:
-  - Programming
   - Python
   - typing
   - type hint
 keywords:
-  - Programming
   - Python
   - typing
   - type hint
@@ -26,16 +24,16 @@ import TabItem from '@theme/TabItem';
 
 型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」**，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」** ，不用等到執行才知道使用錯誤。
 
-本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者整理後覺得最好的資源，講的非常好，不必再看其他文章：
+本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者整理後覺得最好的資源，講的非常好：
 
 - [【python】Type Hint入门与初探，好好的python写什么类型标注？](https://www.youtube.com/watch?v=HYE85bqNoGw)
 - [【python】Type Hint的进阶知识，这下总该有你没学过的内容了吧？](https://www.youtube.com/watch?v=6rgBwA7TRfE)
 
-如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例，建議看這三個就好，截至截稿當下其他中文文章品質對比這幾項資源都有很大的落差，不建議閱讀。
+如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例。建議看這三個就好，其他中文文章的品質比起這幾個都非常差不建議閱讀以免浪費自己的時間。
 
 ## 基礎關鍵字
 
-本章節紀錄基礎關鍵字，方便讀者快速查找
+本段落記錄基礎關鍵字，方便讀者快速查找
 
 - list/set/tuple/dict: 列表/集合/元組/字典
 - Union: 接受 Union 中的所有類型
@@ -183,7 +181,7 @@ b.URL_MAPPINGS = {"new album": "value"}  # 錯誤
 
 ### 泛型
 
-本篇重點終於來了！最開始原本只想寫這裡的不過現在反而變成可跳過章節了。連 mypy 專門做靜態檢查的套件，其官方文檔都表示 [跳過沒差以後再回來看](https://mypy.readthedocs.io/en/stable/generics.html)。
+本篇重點終於來了！最開始原本只想寫這裡的，不過現在反而變成可跳過章節了，因為連 mypy 這個專門做靜態檢查的套件都表示 [泛型跳過沒差以後再回來看](https://mypy.readthedocs.io/en/stable/generics.html)。
 
 :::tip 泛型
 
@@ -504,20 +502,6 @@ Success: no issues found in 1 source file
 
 使用 Generic 能最好地表達：「這是一個可以處理不同型別的策略，但每個具體策略實現都需要指定並遵守其處理的特定型別」。
 :::
-
-## 名詞解析
-
-經過這些努力，我們的變數會從抽象型別 (abstract type) 變成具體型別 (concrete type)。
-
-> https://course.khoury.northeastern.edu/cs5010f17/InterfacesClasses2/concrete1.html
->
->
-> Concrete and Abstract Data Types  
-> A concrete data type is a data type whose representation is known and relied upon by the programmers who use the data type.
->
-> If you know the representation of a data type and are allowed to rely upon that knowledge, then the data type is concrete.
->
-> If you do not know the representation of a data type and are not allowed to rely upon its representation, then the data type is abstract.
 
 ## 相關工具
 

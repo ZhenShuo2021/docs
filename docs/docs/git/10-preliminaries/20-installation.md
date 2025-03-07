@@ -4,10 +4,12 @@ author: zsl0621
 description: 安裝與設定。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-09-10T03:07:33+08:00
   author: zsl0621
@@ -17,11 +19,11 @@ first_publish:
 
 ## 安裝
 
-命令列介面在[官網](https://git-scm.com/downloads)選擇自己的系統安裝，就算一路 next 都可以安裝完。
+Git 可以安裝命令行 (CLI) 和圖形介面 (GUI) 兩種工具，命令行是直接輸入指令，圖形介面就是滑鼠點點點，不建議初學者使用圖形介面操作，因為會搞不清楚確切在執行的指令是什麼，而且圖形介面不可能包含所有指令。
 
-圖形介面筆者只用 VSCode 裡面的 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) 和 [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)，其餘可選項目有 [Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame) 可以看程式是誰寫的， [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 功能看起來和 Git Graph 大同小異，但是太臃腫我不喜歡而且還會要你付費升級。
+命令行介面在[官網](https://git-scm.com/downloads)選擇自己的系統安裝，就算一路 next 都可以安裝完。
 
-請先學 CLI 再學 GUI，GUI 只是輔助使用。
+圖形介面筆者只用 VSCode 裡面的 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) 和 [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory) 方便查看歷史記錄，其餘可選項目有 [Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame) 可以看程式是誰寫的，[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 和 [GitKraken](https://www.gitkraken.com/)，太臃腫而且還會要你付費升級。
 
 ## 設定
 

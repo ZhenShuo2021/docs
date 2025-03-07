@@ -5,9 +5,11 @@ tags:
   - Linux
   - Docker
   - Cheatsheet
-  - Programming
+  - 教學
+
 keywords:
-  - Programming
+  - 教學
+
   - Docker
   - Linux
 last_update:
@@ -27,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 ## 前言
 
-身為 NAS 用戶，Docker 最方便的就是怎麼搞都不會壞，不像傳統程式搞壞之後高機率有奇怪的[殘留設定](./clean-settings)清不掉有夠搞人，有問題就是把 mount 的東西全部 rm -rf 就清潔溜溜。不過一開始單純作為使用者使用真的不好理解，尤其是 Docker 和虛擬機的差別，拜某「看了會上癮的」的教學所賜大幅降低我的理解效率，不敢相信賣課的可以把東西講成這樣，我已經是長年關注電腦軟硬體的人第一次看都搞不懂他在說什麼。
+身為 NAS 用戶，Docker 最方便的就是怎麼搞都不會壞，不像傳統程式搞壞之後高機率有奇怪的[殘留設定](../linux/clean-settings)清不掉有夠搞人，有問題就是把 mount 的東西全部 rm -rf 就清潔溜溜。不過一開始單純作為使用者使用真的不好理解，尤其是 Docker 和虛擬機的差別。
 
 這篇文章包含：
 
@@ -78,14 +80,12 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 
 ## 撰寫 Dockerfile
 
-其實這篇文章原本不是教學，標題是「第一次嘗試寫 Dockerfile」範圍只有這裡，只是想記錄我的構建過程結果越寫越多。
-
-言歸正傳，我認為沒那麼難理解只是資源太分散，基礎版是 python slim，加上兩段構建，以及 `--virtual` 方式共三個版本：
+沒那麼難理解只是資源太分散，簡易版本是 python slim，還加上兩段構建版本，以及 `--virtual` 方式共三個版本：
 
 <Tabs>
   <TabItem value="1" label="slim (basic)">
 
-  ```dockerfile
+  ```Dockerfile
   FROM python:3.10-slim
   WORKDIR /app
   COPY . /app
@@ -103,7 +103,7 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 
   <TabItem value="2" label="alpine with virtual">
   
-  ```dockerfile
+  ```Dockerfile
   FROM python:3.10-alpine
   ENV PYTHONDONTWRITEBYTECODE=1
   ENV PYTHONUNBUFFERED=1
@@ -127,7 +127,7 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 
   <TabItem value="3" label="alpine with multi-stage build">
   
-  ```dockerfile
+  ```Dockerfile
   # Build stage
   FROM python:3.10-alpine AS builder
   ENV PYTHONDONTWRITEBYTECODE=1
@@ -158,15 +158,37 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
   </TabItem>
 </Tabs>
 
-解釋 basic 版本的構建指令：
+解釋 slim (basic) 版本的構建指令：
 
-- `FROM python:3.10-slim`: 基礎鏡像，我是 python 專案所以是 python，也可以是 node, ubuntu:20.04...等  
-- `ENV PYTHONDONTWRITEBYTECODE=1`: 環境變量，這裡是設定不生成 `.pyc`文件。  
-- `WORKDIR /app`: 設定工作目錄，告訴Docker在容器內的`/app`目錄中執行後續命令，如果目錄不存在，會自動創建。  
-- `COPY . .`: 將當前目錄的所有文件複製到容器內的工作目錄（`/app`）。  
-- `RUN pip install --no-cache-dir -r requirements.txt`: 安裝 Python 套件。  
-- `VOLUME ["/mnt/local_folder", "/mnt/remote_folder"]`: 設定掛載卷宗。  
-- `ENTRYPOINT ["python", "-m", "p5d"]`: 容器啟動時執行的預設指令。  
+- `FROM python:3.10-slim`: 使用輕量級的 Python 基礎鏡像，體積較小但功能齊全
+- `WORKDIR /app`: 設定工作目錄，告訴 Docker 在容器內的 `/app` 目錄中執行後續命令
+- `COPY . /app`: 將當前目錄的所有文件複製到容器內的工作目錄 (`/app`)
+- `RUN apt-get update && apt-get install -y rsync fonts-noto-cjk`: 安裝必要的系統套件，包含中日韓字體支援
+- `RUN pip install --no-cache-dir -r requirements.txt`: 安裝 Python 依賴套件，不保留快取以減少鏡像大小
+- `VOLUME ["/mnt/local_path", "/mnt/remote_path", "/app/data"]`: 設定容器掛載點，方便與宿主機交換數據
+- `ENTRYPOINT ["python", "-m", "p5d"]`: 指定容器啟動時執行的預設指令
+
+解釋 alpine with virtual 版本的構建指令：
+
+- `FROM python:3.10-alpine`: 使用超輕量級的 Alpine Linux 減少鏡像體積
+- `ENV PYTHONDONTWRITEBYTECODE=1`: 設定 Python 不生成 `.pyc` 檔案，減少鏡像體積
+- `ENV PYTHONUNBUFFERED=1`: 設定 Python 標準輸出不緩衝，便於即時查看日誌
+- `RUN apk add --no-cache fontconfig libstdc++ rsync`: 安裝必要的常駐套件
+- `RUN apk add --virtual .build-deps build-base curl`: 使用 `--virtual` 標記創建臨時套件組，方便後續一併移除
+- 下載並安裝中日韓字體，完成構建後刪除臨時套件，有效減少最終鏡像體積
+- `VOLUME` 和 `ENTRYPOINT` 與基本版本類似，提供掛載點和啟動指令
+
+解釋 alpine with multi-stage build 版本的構建指令：
+
+- 使用多階段構建策略，分為 `builder` 和 `final` 兩個階段
+- **Builder 階段**:
+  - 安裝構建必要的套件和依賴
+  - 下載字體資源
+  - 安裝 Python 依賴
+- **Final 階段**:
+  - 只從 builder 階段複製必要的文件，包括應用代碼、Python 套件和字體
+  - 只安裝運行時必要的輕量級套件
+  - 最終鏡像不包含構建工具，體積更小且更安全
 
 很簡單吧，另外每個命令至少都會使用[一層或多層](https://www.google.com/search?q=docker+layer&oq=docker+layer)的映像檔，所以相似命令盡量用 && 合併。
 
@@ -184,21 +206,23 @@ Docker 容器比傳統虛擬機輕量，因為它們共享主機的作業系統�
 | 方式                 | 大小          |
 |--------------------|--------------|
 | slim 安裝字體包      | 402MB        |
-| alpine 沒刪除        | 462MB        |
+| alpine 沒刪除額外工具 | 462MB        |
 | alpine `--virtual`   | 245MB        |
 | 多階段構建減少容量   | 226MB        |
 
-可以看到什麼都不管，直接使用 slim 檔案來到誇張的 402MB，alpine 雖然本體小，但是加上編譯工具反而變大。用另外兩種方式進一步優化之後可降低將近 50% 容量。進入容器內部觀察，發現 /usr/local/lib/python3.10 就佔據 190 MB，該資料夾中都是小檔案最大只有 1MB，相較本身電腦開發端的 .venv 資料夾約為 130MB 約多出 60MB。本以為優化空間也差不多了，但是參考其他專案鏡像發現專業專案的 python 資料夾還更小所以一定有優化空間，目前已知最大問題是 matplotlib 和他需求的 numpy 兩個都是容量怪物。
+可以看到什麼都不管，直接使用 slim 檔案來到誇張的 402MB，而 alpine 雖然本體小，但是加上必要的編譯工具容量反而變大。用另外兩種方式進一步優化之後可降低將近 50% 容量。進入容器內部觀察，發現 /usr/local/lib/python3.10 就佔據 190 MB，該資料夾中都是小檔案最大只有 1MB，相較本身電腦開發端的 .venv 資料夾約為 130MB 約多出 60MB。
+
+本以為優化空間也差不多了，但是參考其他專案鏡像發現專業專案的 python 資料夾還更小所以一定有優化空間，目前已知最大問題是 matplotlib 和他需求的 numpy 兩個都是容量怪物。
 
 ## 構建和執行指令
 
-構建
+構建名為 p5d 的 Docker 映像，使用當前目錄下的 Dockerfile。  
 
 ```sh
 docker build -t p5d . 
 ```
 
-執行 p5d
+執行 p5d，容器，掛載本地路徑與容器內路徑，並以互動模式運行
 
 ```sh
 docker run --rm -v /Users/leo/Pictures/downloads拷貝3/:/mnt/local_path \
@@ -216,7 +240,7 @@ docker run --rm -v /Users/leo/local_folder:/mnt/local_folder \
 p5d:test python -m unittest discover -s tests -p "*.py"
 ```
 
-進入容器查看，由於沒有固定存在的程式所以容器會馬上退出，所以指令要改成這樣
+進入容器查看，由於容器沒有持續運行的程式，啟動後會立即退出，因此改用 `/bin/bash` 作為入口進入容器內部檢查。  
 
 ```sh
 docker run -v /Users/leo/Pictures/downloads拷貝3/:/mnt/local_path \
@@ -270,7 +294,7 @@ print("Current sans-serif fonts:")
 print(plt.rcParams["font.sans-serif"])
 ```
 
-最簡單也最麻煩的設定就是字體問題，因為檔名叫 NotoSansCJK-Regular，裡面的字體不見得是 NotoSansCJK-Regular，可能是 "Noto Sans TC/JP" "Noto-Sans-TC" "Noto Sans" 等等，或者是小寫，有夠麻煩，最後終於寫對名字了結果還是口口口口最火大，途中還不知道試了哪個名字是 JP 的字體，中文可以正常顯示但是日文口口口口，到底= =
+最簡單也最麻煩的設定就是字體問題，因為檔名叫 NotoSansCJK-Regular，裡面的字體不見得是 NotoSansCJK-Regular，可能是 "Noto Sans TC/JP" "Noto-Sans-TC" "Noto Sans" 等等，或者是小寫，有夠麻煩，途中還不知道試了哪個名字是 JP 的字體，中文可以正常顯示但是日文口口口口，到底= =
 
 關於字體下載，我也是沒想到有天我會去 [Debian 官方倉庫](https://packages.debian.org/source/sid/all/fonts-noto-cjk) 裡面找字體，因為 apk 下載會包含多個粗細和語言，但是使用一種語言其他語言的常見字都可以顯示，為了極限縮減容量煞費苦心阿。
 
@@ -326,9 +350,9 @@ jobs:
         rm -rf test_remote_folder
 ```
 
-## 補充相似工具
+## 多容器管理工具
 
-> 補充相似的容器化工具，這些工具如果有碰過 NAS 的人全都知道，但我懶的寫了叫 GPT 生，我叫他學我的口氣寫提示詞叫他只講重點不知道有沒有像。
+> 補充相似的多容器管理工具，這些工具如果有碰過 NAS 的人全都知道，但我懶的寫了叫 GPT 生，我叫他學我的口氣寫提示詞叫他只講重點不知道有沒有像。
 
 不過隨著需求增加，單純的 Docker 容器還是會有一些限制。像是當你要管理一大堆容器的時候，你就會發現「手動一個個啟動」變得不太實際了。而且，有時候我們需要確保服務**永遠運行**，一旦容器掛了自動重啟，甚至還有自動擴展容器的需求。這時候我們就需要進階的工具來幫我們搞定多容器和叢集的管理。
 
@@ -410,4 +434,4 @@ docker rm -v -f $(docker ps -qa)  # 刪除所有容器
 
 ## 結束
 
-終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多，至少不會像賣課網站的課程預覽教學說我們會在 container 裡面部屬 image，有夠荒謬。
+終於寫完，把讀 Docker 過程中所有東西記錄下來再變成文章沒想到可以寫這麼多。還有好像可以對自己有自信一點，原來半路出家東摸西摸也可以比大多數文章懂的還多，至少不會像賣課網站的課程預覽教學說我們會在 container 裡面部屬 image，有夠荒謬（就是在說[看了會上癮的 Docker 新手入門篇](https://www.youtube.com/watch?v=U14zuDZrZKQ)，拜他所賜，看了他的教學後大幅降低我的理解效率，不敢相信賣課的可以把東西講成這樣）。

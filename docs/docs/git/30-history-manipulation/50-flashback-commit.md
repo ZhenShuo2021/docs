@@ -3,10 +3,12 @@ title: 如何回到過去進行修正與新增功能
 description: 如何在 Git 中回到過去進行修正與新增功能
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-12T01:33:27+08:00
   author: zsl0621

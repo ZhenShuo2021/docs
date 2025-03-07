@@ -2,10 +2,8 @@
 title: 寫出優雅程式
 description: How to Write Clean Code
 tags:
-  - Programming
   - Python
 keywords:
-  - Programming
   - Python
 last_update:
   date: 2024-10-01T00:00:00+08:00

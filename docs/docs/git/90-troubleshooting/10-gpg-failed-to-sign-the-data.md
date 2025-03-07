@@ -3,10 +3,12 @@ title: 解決 GPG 無法提交的錯誤
 description: 解決 GPG 無法提交的錯誤
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-10-20T03:56:07+08:00
   author: zsl0621

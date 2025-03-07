@@ -3,10 +3,12 @@ title: 關於修改的動詞小抄
 description: 這是一堂英文課
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-01-11T19:50:07+08:00
   author: zsl0621

@@ -3,11 +3,9 @@ title: 在獨立子線程中執行非同步操作
 description: 在獨立子線程中執行非同步操作
 sidebar_label: 在子線程中運行事件迴圈
 tags:
-  - Programming
   - Python
   - asyncio
 keywords:
-  - Programming
   - Python
   - asyncio
 last_update:

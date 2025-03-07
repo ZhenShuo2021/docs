@@ -2,11 +2,11 @@
 title: 新竹市加水站地圖
 sidebar_label: 新竹市加水站地圖
 tags:
-  - Programming
   - Python
+  - folium
 keywords:
-  - Programming
   - Python
+  - folium
 last_update:
   date: 2025-02-07T15:26:00+08:00
   author: zsl0621

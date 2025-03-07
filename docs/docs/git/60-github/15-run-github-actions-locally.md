@@ -5,11 +5,13 @@ sidebar_label: 在本地執行 Github Actions
 tags:
   - Git
   - Github
-  - Programming
+  - 教學
+
 keywords:
   - Git
   - Github
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-01-05T02:51:00+08:00
   author: zsl0621
@@ -19,7 +21,7 @@ first_publish:
 
 # 在本地執行 Github Actions
 
-承接 [Github Actions 自動化 CI/CD](./github-actions)，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法設定或是節省 Actions 額度。首先需要安裝 [act](https://nektosact.com/installation/index.html) 套件以及 docker，並且手動打開 docker 才能執行。
+延續上一篇文章 [Github Actions 自動化 CI/CD](./github-actions)，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法設定或是節省 Actions 額度。首先需要安裝 [act](https://nektosact.com/installation/index.html) 套件以及 docker，並且手動打開 docker 才能執行，他不會自己打開。
 
 ## 安裝
 

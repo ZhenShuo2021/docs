@@ -3,10 +3,12 @@ title: 使用 Force if Includes 安全的強制推送
 description: 使用 force-if-includes 安全的進行強制推送
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-13T20:44:00+08:00
   author: zsl0621
@@ -14,7 +16,7 @@ first_publish:
   date: 2025-02-12T00:44:00+08:00
 ---
 
-本文主要來自 [When should I use "git push --force-if-includes"](https://stackoverflow.com/questions/65837109/when-should-i-use-git-push-force-if-includes)，經過消化理解後重新編排。
+本文資訊主要來自 [When should I use "git push --force-if-includes"](https://stackoverflow.com/questions/65837109/when-should-i-use-git-push-force-if-includes)。
 
 ## TL;DR
 
@@ -35,12 +37,12 @@ git push --force-if-includes --force-with-lease[=<refname>] [<repo> [<refspec>�
 
 ### 應該使用 --force-if-includes 嗎？
 
-作者建議不要使用，原因是
+原文作者建議不要使用，原因是
 
 1. 他認為是否能在所有情況下成功攔截錯誤仍有待驗證。
 2. 他認為工作原理類似於 `git rebase --fork-point`，而 `--fork-point` 並非在所有情況下都能可靠運作。
 
-並且給出作者本人強制推送的工作流程，也就是手動檢查：
+下方指令是原文作者強制推送的工作流程，也就是手動檢查：
 
 ```sh
 # 檢查
@@ -56,13 +58,13 @@ git show <remote>/<name>   # inspect their most recent commit
 git push --force-with-lease <remote> <name>
 ```
 
-他的說明非常詳細但是不推薦的原因沒有仔細解釋，而我的看法是可以嘗試使用。
+他的說明非常詳細但是不推薦的原因沒有仔細解釋，而筆者自己的看法是可以嘗試使用。
 
 <br />
 
 ### --force-if-includes 檢查了什麼？
 
-原文作者建議不要用，但到底該不該用由用戶自行判斷，這裡我們說明此選項做了什麼事。他不是一個全新的邏輯或功能，而是延伸了 `--force-with-lease`，額外檢查「遠端最新提交是否存在於本地目標分支的 reflog 紀錄中」，以確保被推送的分支確實整合過這個提交。
+這不是一個全新的邏輯或功能，而是延伸了 `--force-with-lease`，額外檢查「遠端最新提交是否存在於本地目標分支的 reflog 紀錄中」，以確保被推送的分支確實整合過這個提交。
 
 <br />
 
@@ -76,7 +78,7 @@ git push --force-with-lease <remote> <name>
 
 ### 深入 --force-with-lease
 
-在介紹更嚴格的檢查手段之前，也就是 `--force-if-includes`，我們先搞清楚 `--force-with-lease` 的全部設定，語法如下：
+我們先搞清楚 `--force-with-lease` 的全部設定，語法如下：
 
 ```sh
 # 語法
@@ -119,9 +121,11 @@ git push --force-with-lease origin main
 
 如果 `--force-with-lease[=<refname>[:<expect-remote-hash>]]` 兩個參數都提供則 `--force-if-includes` 會變成 no-op。
 
-## 這樣也可以一篇文章喔
+這東西 2020 就有了結果到現在 2025 繁體中文資訊等於零。你別說 force-if-includes，連 `refname` 和 `expect` 都沒人講過他們的用途，看 stackoverflow 的原文跟讀論文沒兩樣，有夠長...
 
-因為沒人寫，這東西 2020 就有了結果到現在 2025 繁體中文資訊等於零。你別說 force-if-includes，連 `refname` 和 `expect` 都沒人講過他們的用途。不然再來點乾貨，不知道大家有沒有想過 lease 這什麼奇怪名字到底是在租什麼，命名原因是
+## 有趣小知識
+
+不知道大家有沒有想過 lease 這個奇怪名字到底是在租什麼，命名由來是
 
 1. 想像使用 fetch 等同於獲得 ref 的租約
 2. 租了這個 refs 代表其屬於自己，可以隨意使用

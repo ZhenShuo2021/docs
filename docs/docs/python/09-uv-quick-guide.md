@@ -3,11 +3,9 @@ title: UV 快速手冊
 description: UV 快速手冊
 sidebar_label: UV 快速手冊
 tags:
-  - Programming
   - Python
   - 虛擬環境
 keywords:
-  - Programming
   - Python
   - 虛擬環境
 last_update:
@@ -22,7 +20,7 @@ import TabItem from '@theme/TabItem';
 
 # UV 快速手冊
 
-覺得[前一篇文章](./python-uv-complete-guide/)太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看[虛擬環境管理套件比較](./virtual-environment-management-comparison)。
+覺得[Python UV 教學](./python-uv-complete-guide/)太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看[虛擬環境管理套件比較](./virtual-environment-management-comparison)。
 
 ## uv pip/uv add 差別
 
@@ -75,4 +73,4 @@ uv 會在當前目錄或其父目錄中搜尋專案。若無法找到專案，uv
 
 ## 結束
 
-本文僅作為一個快速手冊讓初學者快速掌握使用方式，詳細指令請參考[前一篇文章](./virtual-environment-management-comparison)。
+本文僅作為一個快速手冊讓初學者快速掌握使用方式，詳細指令請參考[Python UV 教學](./python-uv-complete-guide/)。

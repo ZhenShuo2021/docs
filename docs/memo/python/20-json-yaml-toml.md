@@ -3,12 +3,10 @@ title: JSON、YAML、TOML 簡易說明
 description: JSON、YAML、TOML 資料格式簡易說明
 sidebar_label: JSON/YAML/TOML
 tags:
-  - Programming
   - Python
   - yaml
   - toml
 keywords:
-  - Programming
   - Python
   - yaml
   - toml
@@ -47,9 +45,9 @@ import TabItem from '@theme/TabItem';
 
 ## 格式範例
 
-YAML 誕生的目的是為了人類高可讀性，然而他不規範的縮排讓筆者本身覺得他可讀性比 JSON 還不如，例如 [pre-commit](https://pre-commit.com/#2-add-a-pre-commit-configuration) 這種格式也是合法的，並且因為沒有括弧所以在複雜設定時就考驗你的眼力，你要往上對齊找到現在在哪個列表或字典中，而不是 JSON 可以用括弧瞬間定位，或者 TOML 每個項目的標題就直接寫清楚了。除了可讀性問題 [The yaml document from hell](https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell) 還有更多抱怨。
+YAML 誕生的目的是為了人類高可讀性，然而他不規範的縮排讓筆者本身覺得他可讀性比 JSON 還不如，例如 [pre-commit](https://pre-commit.com/#2-add-a-pre-commit-configuration) 這種格式也是合法的，並且因為沒有括弧所以在複雜設定時就考驗你的眼力，你要往上對齊找到現在在哪個列表或字典中，而不是 JSON 可以用括弧瞬間定位，或者 TOML 每個項目的標題就直接寫清楚了，對我來說 YAML 唯一好用的就是簡單且長的設定，如果包含多種結構會瞬間變得比 JSON 還難讀。除了可讀性問題 [The yaml document from hell](https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell) 還有更多抱怨。
 
-下方範例可以作為 cheatsheet 使用，對照原始資料結構一目了然知道應該如何設定。可以看到 YAML 有夠傻，這到底在寫啥。
+下方範例可以作為 cheatsheet 使用，對照原始資料結構一目了然知道應該如何設定。
 
 <Tabs>
   <TabItem value="python_dict" label="Python Dictionary" default>
@@ -208,6 +206,8 @@ simple_string: Hello, world
   </TabItem>
 </Tabs>
 
+YAML 的解讀方式大概是看到 `-` 就代表要開始列表了，如果連續每行都有 `-` 代表這是列表的 0, 1, 2, ... 個元素，如果只有一個 `-` 隔了幾個才看到下一個 `-`，就代表這是包含多個字典的列表。
+
 ## 如何選擇
 
 如果要儲存大型數據結構，在這三者選擇毫無疑問就是使用 JSON，其他兩個是給人類讀的。
@@ -217,7 +217,7 @@ simple_string: Hello, world
 - **TOML**：語法簡單，小型配置檔案的首選
 - **高效能**：高效能還用文字格式是不是搞錯了什麼？
 
-這樣看似使用 YAML 和 TOML 作為需要手動配置的文件格式是好選擇，然而有一些問題需要注意，首先是 YAML 利用縮排解析資料結構非常反人類，回想那些 bug 是空白鍵的痛苦就知道了；TOML 的缺點說大不大說小不小，分別有以下幾個：
+這樣看似使用 YAML 和 TOML 作為需要手動配置的文件格式是好選擇，然而有一些問題需要注意，首先是 YAML 利用縮排解析資料結構非常反人類，稍微複雜一點的配置解讀難度就指數提高（回想當時在伺服器上用 nano 改 YAML 根本是要了我的命）；TOML 的缺點說大不大說小不小，分別有以下幾個：
 
 1. 字典第一層的一定要寫在 TOML 最上面，無法保持原有位置
 2. 在複雜配置可讀性就大幅降低（至少對我來說）

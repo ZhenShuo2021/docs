@@ -5,10 +5,12 @@ sidebar_label: 使用互動式變基任意修改提交歷史
 description: 最快最清楚而且最正確的搞懂變基 git rebase。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-01-12T23:40:00+08:00
   author: zsl0621

@@ -4,10 +4,12 @@ sidebar_label: 關鍵字、符號和基本組成
 description: 這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-09-10T17:51:07+08:00
   author: zsl0621
@@ -79,11 +81,11 @@ index 58e6b10..4fab7e0 100644
 
 ### 中階
 
-Git 是快照系統不是差異系統，只是可以顯示差異並且作為壓縮的手段。
+Git 是快照系統不是差異系統，只是具備顯示差異的功能，並且將差異作為壓縮儲存空間的手段。
 
 Git 是分散式系統，每個人都有一份完全相同的鏡像，遠端儲存庫只是同步手段而不是集中管理版本。
 
-Git 是分散式鏡像系統，所以你的 reflog 紀錄不會被推送到遠端，不然每個人的 reflog 都不一樣怎麼搞？所以[這篇文章錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)。
+Git 是分散式鏡像系統，所以你的 reflog 記錄不會被推送到遠端，不然每個人的 reflog 都不一樣怎麼搞？所以[這篇文章錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)。
 
 ### 進階
 
@@ -108,41 +110,47 @@ Git 是分散式鏡像系統，所以你的 reflog 紀錄不會被推送到遠�
 
 ## 更進階：blob, tree, tag, commit, refs{#basics}
 
-這些扣掉 refs 以外其他四個是 Git 的基本構成，超級不重要，對你的人生沒有任何幫助。
+扣掉 refs 其他四個是 Git 的基本構成，超級不重要，對你的人生沒有任何幫助。
 
-檔案在 Git 中是一個 blob 物件，blob 物件僅包含檔案的內容，不包含檔案名稱或任何其他元數據；tree 紀錄檔案位置和目錄結構，紀錄 blob 和其他子 tree；refs 用來指向特定 hash 的人類可讀名稱，如 `refs/heads/main` 指向 main 分支的最新提交，或者標籤，或者遠端分支；tag 物件用於標記特定的 commit，commit 物件主要功能是紀錄元資料，例如作者、編碼、tree、hash、前一個 commit 的 hash、提交訊息等等。把所有單位串連起來，commit 指向 tree，tree 指向 sub-tree 和 blob。
+檔案在 Git 中是一個 blob 物件
 
-這樣短短幾行已經是網路上的一整篇文章了，到底為什麼要寫那麼長，我看了很久才理解，理解完感受到這個知識一點也不重要。如果還是看不懂可以閱讀[加速几十倍 git clone 速度的 --depth 1，它的后遗症怎么解决？](https://blog.csdn.net/qiwoo_weekly/article/details/128710769)，雖然不是專門在講 Git 結構但是比網路上那些文筆糟糕的文章清楚多了。
+- blob 物件僅包含檔案的內容，不包含檔案名稱或任何其他元數據
+- tree 記錄檔案位置和目錄結構，記錄 blob 和其他子 tree
+- tag 物件用於標記特定的 commit
+- commit 物件主要功能是記錄元資料，例如作者、編碼、tree、hash、前一個 commit 的 hash、提交訊息等等
+- refs 用來指向特定 hash 的人類可讀名稱，如 `refs/heads/main` 指向 main 分支的最新提交，或者標籤，或者遠端分支。
+
+把所有單位串連起來，**commit 指向 tree，tree 指向 sub-tree 和 blob**。這樣短短幾行已經是網路上的一整篇文章了，到底為什麼要寫那麼長，我看了很久才理解，理解完感受到這個知識一點也不重要。如果還是看不懂可以閱讀[加速几十倍 git clone 速度的 --depth 1，它的后遗症怎么解决？](https://blog.csdn.net/qiwoo_weekly/article/details/128710769)，雖然不是專門在講 Git 結構但是比網路上那些文筆糟糕的文章清楚多了。
 
 如果你喜歡語言模型列表式的說明，會變成這樣：
 
 1. Blob (二進位大型物件)
 
-- 只儲存檔案的實際內容。不包含檔名或其他中繼資料
-- 可以理解為檔案的純內容快照
+   - 只儲存檔案的實際內容。不包含檔名或其他中繼資料
+   - 可以理解為檔案的純內容快照
 
 2. Tree (樹狀結構)
 
-- 記錄整個目錄結構，包含檔案位置資訊
-- 指向所屬的 blob 物件和指向其他子目錄的 tree 物件
-- 類似檔案系統的目錄結構
+   - 記錄整個目錄結構，包含檔案位置資訊
+   - 指向所屬的 blob 物件和指向其他子目錄的 tree 物件
+   - 類似檔案系統的目錄結構
 
 3. Tag Object (標籤物件)
 
-- 用來標記特定的 commit
-- 通常用於版本發布
+   - 用來標記特定的 commit
+   - 通常用於版本發布
 
 4. Commit Object (提交物件)
 
-- 指向一個 tree 物件，這個 tree 物件再指向其他 sub-tree 和 blob，最終形成一個完整的版本快照
+    - 指向一個 tree 物件，這個 tree 物件再指向其他 sub-tree 和 blob，最終形成一個完整的版本快照
 
 5. Refs (參照)
 
-- 唯一用途就是提供人類可讀的名稱，並指向 commit hash，不是必要組成結構
-- 常見的例子:
-  - `refs/heads/main` 指向 main 分支最新的 commit
-  - 標籤名稱指向特定的標籤物件
-  - 遠端分支的參照
+   - 唯一用途就是提供人類可讀的名稱，並指向 commit hash，不是必要組成結構
+   - 常見的例子:
+     - `refs/heads/main` 指向 main 分支最新的 commit
+     - 標籤名稱指向特定的標籤物件
+     - 遠端分支的參照
 
 物件之間的關係是：  
 commit → tree → (sub-trees + blobs)  

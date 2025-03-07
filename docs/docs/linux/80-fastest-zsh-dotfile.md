@@ -79,7 +79,7 @@ brew install font-jetbrains-mono-nerd-font
 1. omz, Zim, Zinit 到底在做什麼？
 2. 為什麼內建終端機用的好好的要改用 iTerm2？
 
-omz 這些是 <u>**Zsh 插件管理器**</u>，用途是簡化 shell 插件載入的步驟，iTerm2 則用於替換內建終端機，提供分頁、tmux 和 true color 等等內建終端機沒有的功能（不過內建終端現在應該只剩下 true color 和顯示圖片功能不支援）。知道目的後下一步就要討論應該<u>**如何選擇終端和插件管理器**</u>。終端機的部分跳過直接講結論，筆者建議用 WezTerm 並且直接在 Github 搜尋別人的設定檔，或是使用開箱即用的 Warp/Tabby，其餘不推薦，詳細討論請看專文 [各種跨平台終端機實測](../useful-tools/cross-platform-terminal)。
+omz 這些是 <u>**Zsh 插件管理器**</u>，用途是簡化 shell 插件載入的步驟，iTerm2 則用於替換內建終端機，提供分頁、tmux 和 true color 等等內建終端機沒有的功能（不過內建終端現在應該只剩下 true color 和顯示圖片功能不支援）。知道目的後下一步就要討論應該<u>**如何選擇終端和插件管理器**</u>。終端機的部分跳過直接講結論，筆者建議用 WezTerm 並且直接在 Github 搜尋別人的設定檔，或是使用開箱即用的 Warp/Tabby，其餘不推薦，詳細討論請看專文 [各種跨平台終端機實測](../useful-tools/cross-platform-terminal-comparison)。
 
 WezTerm 設定檔可以使用筆者自己[稍微改良過的](https://github.com/ZhenShuo2021/wezterm-config)，或者是 KevinSilvester 的[原版設定](https://github.com/KevinSilvester/wezterm-config)，提醒一下原版設定需要把預設 shell 從 fish 改為 zsh。
 
@@ -121,23 +121,34 @@ Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者
 
 這是特例，99.9\% 都是使用工具自帶的補全函式不需要自己寫，這裡只是想順便推廣筆者的文章 [撰寫 ZSH 自定義函式以及補全函式](https://blog.zsl0621.cc/posts/customize-zsh-function-and-comletion/)。
 
+以防你不會設定補全系統，這裡說明如何設定順便種樹，因為就沒有一篇文章能好好說明 Zsh 補全系統是怎麼運作的，結論很簡單，資源很難找：
+
+1. 插件 `zsh-syntax-highlighting` `zsh-autosuggestions` 應該在最後才載入
+2. 設定 fpath
+3. 設定 zstyle
+4. 執行 compinit
+5. 設定 zstyle（如果有其餘的 zstyle 必須在 compinit 後執行的話）
+6. 執行 functions requires compdef
+
+用人話解釋，這兩個插件開發者自己說他的插件應該在最後才被載入，fpath 是 Zsh 才有的路徑，用於設定補全腳本和函數的路徑（而不是腳本或程式，這兩個的路徑是 PATH）；zstyle 有很多功能，最顯而易見的就是設定補全的樣式；接著 compinit 啟用補全系統，再執行需要依賴補全系統的指令。
+
 ## 為何選擇這份設定檔
 
-1. 是真的快，幾乎達到速度上限，而且是嚴謹的測試不像網路上的搞笑演員拿 time 指令跑 10 次就說這叫做速度測試
-2. 不用搞 gnu stow，不用像 dotbot 一樣需要額外安裝，沒有複雜的語法，一行指令自動安裝
-3. 內建實用插件，不多不少剛剛好
-4. 極簡風格，不搞花花綠綠的分散注意力
-5. 你的終端機已經完整設定，一個字都不用打就已經是人家一整篇文章的設定
-6. 你的 zshrc 已經最佳設定，是筆者過濾百篇文章的結晶
-7. 管理方便，從安裝到設定都在同一 repo
-8. 完整註解，保證看得懂每個設定
-9. 設定正確，正確使用延遲載入，自動補全正確啟用，連 zsh-z 都可以補全
-10. 功能齊全，從語法上色、別名、key-binding、Git 插件一應俱全
-11. 多項內建指令，如 hnc/c/gpg_test/gpg_reload/find-ext/switch_en ...
-12. 所有常見問題都已解決
-13. 乾淨的家目錄，能改到 .cache .config 的系統檔案全部改位置
-14. 參考 Github 前 20 大 dotfiles 完成，結合他們全部優點，不用再想東想西現在就是最好的設定
-15. 參考 shell 插件開發者 agkozak 的 shell 設定，筆者就問一般人自己瞎搞能比開發者本身設定的更好嗎？
+1. ⚡ **是真的快**，幾乎達到速度上限，而且是嚴謹的測試，不像網路上的搞笑演員拿 `time` 指令跑 10 次就說這叫做速度測試。  
+2. 🛠️ **不用搞 gnu stow**，不用像 dotbot 一樣需要額外安裝，沒有複雜的語法，一行指令自動安裝。  
+3. 🔌 **內建實用插件**，不多不少剛剛好。  
+4. 🎨 **極簡風格**，不搞花花綠綠的分散注意力。  
+5. 🚀 **你的終端機已經完整設定**，一個字都不用打就已經是人家一整篇文章的設定。  
+6. 🏆 **你的 zshrc 已經最佳設定**，是筆者過濾百篇文章的結晶。  
+7. 📂 **管理方便**，從安裝到設定都在同一 repo。  
+8. 📖 **完整註解**，保證看得懂每個設定。  
+9. ✅ **設定正確**，正確使用延遲載入，自動補全正確啟用，連 `zsh-z` 都可以補全。  
+10. 🔥 **功能齊全**，從語法上色、別名、key-binding、Git 插件一應俱全。  
+11. 🏗️ **多項內建指令**，如 `hnc/c/gpg_test/gpg_reload/find-ext/switch_en` ...  
+12. 🛡️ **所有常見問題都已解決**。  
+13. 🧹 **乾淨的家目錄**，能改到 `.cache` `.config` 的系統檔案全部改位置。  
+14. 🌍 **參考 GitHub 前 20 大 dotfiles** 完成，結合他們全部優點，不用再想東想西，現在就是最好的設定。  
+15. 👨‍💻 **參考 shell 插件開發者 agkozak 的 shell 設定**，筆者就問，一般人自己瞎搞能比開發者本身設定的更好嗎？  
 
 網路上的中文文章一堆設定錯誤，沒有啟用延遲載入（尤其是使用 Zinit 這個強調延遲載入的插件管理器還不使用延遲載入，[如何選擇](#choose-zsh-plugin-manager)章節列出的兩個測試都顯示 Zinit light mode 之慢，這些文章也是滿搞笑的）、補全設定錯誤，筆者甚至能把正確拿來當賣點，如果按照其他中文文章設定高機率有某些功能設定錯誤。
 
@@ -292,18 +303,7 @@ eval "$(uv generate-shell-completion zsh)"
 
 接著回頭講設定部分，讀者可能看過 [Ubuntu 安裝 Zsh + Oh My Zsh + Powerlevel10k 與各種插件](https://www.kwchang0831.dev/dev-env/ubuntu/oh-my-zsh)，才安裝兩三個插件對初學者來說已經滿頭大汗了，這不是文章的問題而是 omz 才有的問題，現在輕鬆的複製貼上就等同於已經安裝 10 個插件，並且使用 eval 指令設定好 brew，大量的 zstyle 設定檔，還有完整的自動補全系統，雖然是自己寫的但是自己看了都覺得相見恨晚，這些要設定完成而且正確我讀了上百篇文章並且還要排除大量錯誤資訊。
 
-從 pyenv 往後的行數順序不可變動，他們有載入先後順序要求，pyenv 需要在 compinit 前設定好，而 uv 需要 compinit 後才會有的 compdef 才能執行，如果不是 Python 開發者可以移除 pyenv 和 uv，但這是一個很好的範例用於展示補全系統的先後順序，如果你是 Python 開發者那麼筆者強烈建議使用 uv，請參考筆者的文章 [Python UV 教學，最佳虛擬環境管理工具](../python/python-uv-complete-guide)。
-
-以防你不會設定補全系統，這裡說明如何設定順便種樹，因為就沒有一篇文章能好好說明 Zsh 補全系統是怎麼運作的，結論很簡單，資源很難找：
-
-1. 插件 `zsh-syntax-highlighting` `zsh-autosuggestions` 應該在最後才載入
-2. 設定 fpath
-3. 設定 zstyle
-4. 執行 compinit
-5. 設定 zstyle（如果有其餘的 zstyle 必須在 compinit 後執行的話）
-6. 執行 functions requires compdef
-
-用人話解釋，這兩個插件開發者自己說他的插件應該在最後才被載入，fpath 是 Zsh 才有的路徑，用於設定補全腳本和函數的路徑（而不是腳本或程式，這兩個的路徑是 PATH）；zstyle 有很多功能，最顯而易見的就是設定補全的樣式；接著 compinit 啟用補全系統，再執行需要依賴補全系統的指令。
+從 pyenv 往後的行數順序不可變動，他們有載入先後順序要求：pyenv 需要在 compinit 前設定好，而 uv 需要 compinit 後才會有的 compdef 才能執行，如果不是 Python 開發者可以移除 pyenv 和 uv，這是一個用於展示補全系統先後順序的範例，如果你是 Python 開發者那麼筆者強烈建議使用 uv，請參考筆者的文章 [Python UV 教學，最佳虛擬環境管理工具](../python/python-uv-complete-guide)。
 
 ### 安裝其餘工具
 
@@ -317,7 +317,7 @@ eval "$(uv generate-shell-completion zsh)"
 
 ```sh
 brew tap homebrew/cask-fonts
-brew install font-jetbrains-mono-nerd-font
+brew install --cask font-meslo-for-powerlevel10k
 brew install --cask wezterm
 ```
 
@@ -328,6 +328,8 @@ WezTerm 是可以顯示圖片和 true color 的跨平台終端機，iTerm2 沒�
 ```sh
 git clone https://github.com/ZhenShuo2021/wezterm-config.git ~/.config/wezterm --depth=1
 ```
+
+clone 後就完成設定，開啟 wezterm 就可立即使用！
 
 ## 速度實測
 
@@ -356,12 +358,12 @@ git clone https://github.com/ZhenShuo2021/wezterm-config.git ~/.config/wezterm -
 
 如果使用筆者的 dotfile，裡面甚至幫你寫好了兩個 profiling 指令：簡易測試的 `zsh_prof_zprof` 和追蹤所有指令呼叫的 `zsh_prof_xtrace`，不過現在也用不太到，除了換掉 p10k 以外已經沒辦法再更快了。
 
-如果使用筆者的 dotfile，你甚至可以透過 git 標籤得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet 想轉換也是一秒完成的事。
+如果使用筆者的 dotfile，你甚至可以透過 git 標籤得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet，遷移到其他插件管理器也是一秒完成的事。
 
 ![dotfiles-bench](data/dotfiles-benchmark.svg "dotfiles-bench")
 
-你說奇怪，為什麼數據和 [repo](https://github.com/ZhenShuo2021/dotfiles) 上面的不一樣呢，因為 repo 上面的所有測試項目都公平的使用 zsh-defer 加速，但是綜觀整個網路根本沒幾個人會這樣設定，也就是說上圖才是絕大多數人終端機的開啟速度（絕大多數人的比例絕對超過 99\%，在 Github 上面搜 zshrc 就知道了），repo 上面的圖表則是每個插件管理器都使用 zsh-defer 大幅優化載入速度的結果。
+你說奇怪，為什麼數據和 [repo](https://github.com/ZhenShuo2021/dotfiles) 上面的不一樣呢，因為 repo 上面的所有測試項目都公平的使用 zsh-defer 加速，但是綜觀整個網路根本沒幾個人會這樣設定，也就是說上圖才是大部分終端機的開啟速度（大部分的比例絕對超過 99\%，在 Github 上面搜 zshrc 就知道了，這個比例在繁體中文圈可能會變成 99.95\%），repo 上面的圖表則是每個插件管理器都使用 zsh-defer 大幅優化載入速度的結果。
 
-並且請注意，這個測試是包含 alias/setopt/`brew shellenv`/補全系統/uv 補全系統/fpath 和 PATH 等等所有設定一起測試的真實使用環境，是更反應現實情況的實際載入延遲。
+並且請注意，這個測試是包含 `alias`/`setopt`/`brew shellenv`/`補全系統`/`uv 補全系統`/`fpath` 和 `PATH` 等等所有設定一起測試的真實使用環境，是更反應現實情況的實際載入延遲。
 
 [^test-method]: 測試執行於 M1 MacBook Pro 8G RAM，zsh-bench 使用預設值，測試總共載入的插件有 powerlevel10k, zsh-defer, zsh-syntax-highlighting, zsh-autosuggestions, zsh-completions, zsh-z, zsh-history-substring-search, extract, git，每個測試都確保 brew/docker/docker-compose/yarn/npm 的指令補全必須正常運作。hyperfine 使用 `hyperfine --runs 100 --warmup 3 'zsh -i -c exit 0'` 測試，請注意 hyperfine 測試是超級簡化的測試[沒有特別意義](https://github.com/romkatv/zsh-bench?tab=readme-ov-file#how-not-to-benchmark)，他只告訴你執行這行指令的平均時間，不代表真正的體感時間。

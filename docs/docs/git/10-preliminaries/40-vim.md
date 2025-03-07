@@ -4,10 +4,12 @@ author: zsl0621
 description: 講人話的 Vim 文字編輯器教學。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-09-10T03:07:33+08:00
   author: zsl0621
@@ -15,7 +17,7 @@ first_publish:
   date: 2024-09-10T03:07:33+08:00
 ---
 
-為何要學 Vim？因為編輯 Git 文件時預設使用 Vim。你可以跳過這篇文章需要時再回來看，Vim 要用到熟練的時間成本絕對遠大於 Git，一開始只要能修改文件和儲存就夠了。
+為何要學 Vim？因為編輯 Git 文件時預設使用 Vim。初學者請跳過這篇文章，需要時再回來看，Vim 要用到熟練的時間成本遠遠大於 Git 的數倍以上，一開始只要能修改文件和儲存就夠了。
 
 ## 不用腦袋的教學
 

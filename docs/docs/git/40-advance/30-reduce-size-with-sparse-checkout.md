@@ -4,10 +4,12 @@ description: 介紹操作大型儲存庫時如何減少容量加速 Clone
 sidebar_label: 使用 Sparse Checkout 加速 Clone
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-11T07:38:25+08:00
   author: zsl0621
@@ -70,7 +72,7 @@ git checkout
 !*.png           排除所有png檔
 ```
 
-可以看到第一行 `/*` 加上後面的語法就等同於 gitignore 的邏輯，是黑名單的概念；至於 cone 模式的語法則是簡單把白名單的加入資料夾，他也只能新增資料夾無法設定排除。
+可以看到第一行 `/*` 加上後面的語法就等同於 gitignore 的邏輯，是黑名單的概念；至於 cone 模式的語法則是簡單把白名單的加入資料夾，在 cone 模式之下只能新增要 checkout 的資料夾無法排除。
 
 <br />
 <br />
@@ -121,11 +123,13 @@ git fetch --depth=1 origin <remote-branch-name>:<local-branch-name>
 git checkout <local-branch-name>
 ```
 
+指定分支對應的遠端就可以進行 checkout。
+
 這個問題問語言模型是沒用的，因為問題不是 sparse-checkout 而是出在 depth=1 上，知乎的方式寫的又臭又長，手動指定分支不就好了，或者設定深度 1000 不會明顯變慢也免得設定分支的麻煩。
 
 ### no-cone 模式一定是黑名單嗎
 
-因為其運作方式比較適合黑名單所以用黑明單解釋，順便和白名單對照方便記憶。黑名單的靈感來源是官方文檔就是把他當黑名單用。
+不一定，只是因為其運作方式比較適合黑名單所以用黑明單解釋，順便和白名單對照方便記憶。黑名單的靈感來源是官方文檔就是把他當黑名單用。
 
 ### sparse-index 是什麼？
 
@@ -186,7 +190,7 @@ time git clone -q --filter=blob:none --no-checkout --depth=1 --sparse $REPO "$(b
 
 欸不是說不能排除目錄嗎？這是撰文途中意外試到的一個小 bug，他只能排除所有子目錄，並且如果使用 `git sparse-checkout set '!/notes/*/'` 會報錯，所以請知悉<u>**這是 bug 不是 feature，只能排除所有子目錄不能排除指定目錄**</u>！！！
 
-> 附帶一提，為什麼被測試的指令跟情境一有微妙的差別呢，因為自己寫一寫發現用那三種指令就夠了不用再去搞其他組合。情境一的三種指令依照儲存庫情況進行選擇，總之就只有這三種好用，有仔細看到這段的人又多學了一招。
+> 附帶一提，為什麼被測試的指令跟情境一有微妙的差別呢，因為我忘了，然後我懶的改。
 
 ## 參考資料
 

@@ -2,13 +2,12 @@
 title: 初嘗 Python 工作流自動化
 description: 初嘗 Python 工作流自動化
 tags:
-  - Programming
   - Python
-keywords:
-  - Programming
-  - Python
-  - pyproject
   - pre-commit
+keywords:
+  - Python
+  - pre-commit
+  - pyproject
   - ruff
   - isort
   - mypy
@@ -38,12 +37,12 @@ import TabItem from '@theme/TabItem';
 
 目前我已知的工作流自動化包含了以下幾點：
 
-1. <u>靜態型別檢查 Type Checking</u>: 檢查變數型別有沒有使用錯誤。
-2. <u>程式碼風格檢查 Linter</u>: 檢查程式碼是否違反 PEP 中的建議，也可以自行設定使用哪種風格。
-3. <u>程式碼格式化工具 Formatter</u>: 自動格式化程式碼，讓所有程式碼維持相同格式。
-4. <u>單元測試 Unittest</u>: 測試你的程式碼是否在各種邊界情況中正常運作。
-5. <u>覆蓋率測試 Coverage</u>: 檢查有哪些程式碼沒有被單元測試覆蓋。
-6. <u>安全檢查</u>: 檢查有沒有[提交隱私訊息](https://github.com/pre-commit/pre-commit-hooks/blob/main/pre_commit_hooks/detect_aws_credentials.py)。
+1. **靜態型別檢查 Type Checking**: 檢查變數型別有沒有使用錯誤。  
+2. **程式碼風格檢查 Linter**: 檢查程式碼是否違反 PEP 中的建議，也可以自行設定使用哪種風格。  
+3. **程式碼格式化工具 Formatter**: 自動格式化程式碼，讓所有程式碼維持相同格式。  
+4. **單元測試 Unittest**: 測試你的程式碼是否在各種邊界情況中正常運作。  
+5. **覆蓋率測試 Coverage**: 檢查有哪些程式碼沒有被單元測試覆蓋。  
+6. **安全檢查**: 檢查有沒有[提交隱私訊息](https://github.com/pre-commit/pre-commit-hooks/blob/main/pre_commit_hooks/detect_aws_credentials.py)。  
 
 經過一段時間的研究，最後我選擇的是 mypy (type check)，ruff (linter+formatter)，pytest (unittest)，沒測試覆蓋率 (因為測試只寫一個測試不想自暴其短)。
 

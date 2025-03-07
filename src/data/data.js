@@ -1,6 +1,6 @@
-import imageGit from "../../../docs/docs/git/10-preliminaries/data/areas_upscayl.webp";
-import imageShell from "./defaultBackground/shell.webp";
-import imageProgramming from "./defaultBackground/program.webp";
+import imageGit from "../../docs/docs/git/10-preliminaries/data/areas_upscayl.webp";
+import imageShell from "../pages/portfolio/defaultBackground/shell.webp";
+import imageProgramming from "../pages/portfolio/defaultBackground/program.webp";
 
 export const articles = [
   // 完整範例，最少要填入 link，其餘會自動尋找

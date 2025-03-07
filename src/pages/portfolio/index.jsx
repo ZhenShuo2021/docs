@@ -3,11 +3,11 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import ThemedImage from "@theme/ThemedImage";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import BackToTopButton from "@theme/BackToTopButton";
 
 import styles from "./portfolio.module.css";
-import { useDocsData, initFloatingElements, scrollToSection, getDisplayedContent } from "./utils";
+import { useDocsData, initFloatingElements, getDisplayedContent } from "../../hooks/portfolioUtils";
+import { useSlideEffect, useScrollEffect } from "../../hooks/portfolio";
 
 // import defaultImage from "../../../docs/docs/git/10-preliminaries/data/branch.webp";
 const defaultImage = "https://picsum.photos/900/675?grayscale";
@@ -57,34 +57,21 @@ const Card = React.memo(({ item, type }) => (
 ));
 
 export default function Portfolio() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("articles"); // Default to articles view
-  const { siteConfig } = useDocusaurusContext();
   const docsMap = useDocsData();
   const heroBackgroundRef = useRef(null);
-  const contentContainerRef = useRef(null);
+
+  const {
+    activeSection,
+    isInitialized,
+    isFirstRender,
+    contentHeight,
+    contentContainerRef,
+    articlesWrapperRef,
+    projectsWrapperRef,
+    switchSection
+  } = useSlideEffect(styles);
 
   const { displayedArticles, displayedProjects } = getDisplayedContent(docsMap);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Function to switch between articles and projects with slide animation
-  const switchSection = (section) => {
-    if (section === activeSection) return;
-    
-    setActiveSection(section);
-    
-    // Apply the appropriate slide animation class
-    if (contentContainerRef.current) {
-      contentContainerRef.current.className = `${styles.contentContainer} ${
-        section === "articles" ? styles.slideFromLeft : styles.slideFromRight
-      }`;
-    }
-  };
 
   return (
     <Layout title="近期動態" description="最近的文章和專案">
@@ -100,18 +87,18 @@ export default function Portfolio() {
               <div className={styles.hero}>
                 <div className={styles.heroContent}>
                   <h1 className={styles.mainTitle}>
-                    <span className={styles.titleHighlight}>近期活動</span>
+                    <span className={styles.titleHighlight}>近期動態</span>
                   </h1>
                   <h3 className={styles.subTitle}>最近的文章和專案</h3>
                   <div className={styles.heroActions}>
-                    <button 
-                      className={`${styles.heroButton} ${activeSection === "articles" ? styles.activeButton : ""}`} 
+                    <button
+                      className={`${styles.heroButton} ${activeSection === "articles" ? styles.activeButton : ""}`}
                       onClick={() => switchSection("articles")}
                     >
                       查看文章
                     </button>
-                    <button 
-                      className={`${styles.heroButton} ${activeSection === "projects" ? styles.activeButton : ""}`} 
+                    <button
+                      className={`${styles.heroButton} ${activeSection === "projects" ? styles.activeButton : ""}`}
                       onClick={() => switchSection("projects")}
                     >
                       瀏覽專案
@@ -122,8 +109,24 @@ export default function Portfolio() {
               </div>
 
               <div className={styles.portfolioContainer}>
-                <div ref={contentContainerRef} className={styles.contentContainer}>
-                  <div className={`${styles.sectionWrapper} ${activeSection === "articles" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}>
+                <div
+                  ref={contentContainerRef}
+                  className={`${styles.contentContainer} ${
+                    !isFirstRender ? (activeSection === "articles" ? styles.slideFromLeft : styles.slideFromRight) :
+                    styles.noTransition}`}
+                  style={{
+                    ...(!isInitialized ? { transition: 'none' } : {}),
+                    overflow: 'hidden',
+                    position: 'relative',
+                    width: '100%',
+                    height: contentHeight
+                  }}
+                >
+                  <div
+                    ref={articlesWrapperRef}
+                    className={`${styles.sectionWrapper} ${activeSection === "articles" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}
+                    style={isFirstRender ? { transition: 'none' } : {}}
+                  >
                     <section id="articles" className={styles.section}>
                       <h2 className={styles.sectionTitle}>✍️ 文章</h2>
                       <div className={styles.grid}>
@@ -133,8 +136,12 @@ export default function Portfolio() {
                       </div>
                     </section>
                   </div>
-                  
-                  <div className={`${styles.sectionWrapper} ${activeSection === "projects" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}>
+
+                  <div
+                    ref={projectsWrapperRef}
+                    className={`${styles.sectionWrapper} ${activeSection === "projects" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}
+                    style={isFirstRender ? { transition: 'none' } : {}}
+                  >
                     <section id="projects" className={styles.section}>
                       <h2 className={styles.sectionTitle}>🚀 專案</h2>
                       <div className={styles.grid}>

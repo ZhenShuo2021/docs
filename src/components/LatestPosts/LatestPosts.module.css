@@ -67,3 +67,23 @@
   text-align: center;
   margin-top: -0.2em;
 }
+
+/* 標籤 */
+.post__tags-container {
+  white-space: nowrap;
+  overflow: auto;
+  padding-bottom: 12px;
+  color: var(--ifm-color-primary);
+  margin-top: 1.5em;
+}
+
+.post__tags {
+  background: var(--ifm-color-primary);
+  padding: 6px 10px;
+  color: #ffffff;
+}
+
+.post__tags:hover {
+  color: #ffffff;
+  text-decoration: none;
+}

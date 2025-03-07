@@ -24,7 +24,7 @@ function Post({ title, permalink, tags, yearMonth, day }) {
             .map(({ label, permalink: tagPermalink }, index) => (
               <Link
                 key={tagPermalink}
-                className={`post__tags ${index < tags.length ? 'margin-right--sm' : ''}`}
+                className={`${styles.post__tags} ${index < tags.length ? 'margin-right--sm' : ''}`}
                 to={tagPermalink}
                 style={{
                   fontSize: '0.75em',

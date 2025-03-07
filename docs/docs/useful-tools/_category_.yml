@@ -3,6 +3,3 @@ label: 實用工具
 collapsible: true
 collapsed: true
 className: red
-link:
-  type: generated-index
-  title: Python

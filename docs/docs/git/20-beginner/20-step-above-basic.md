@@ -4,10 +4,12 @@ author: zsl0621
 description: 挑選日常常用指令集合，囊括 99% 的日常使用問題。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-09-10T16:15:33+08:00
   author: zsl0621
@@ -159,11 +161,11 @@ git reset --soft HEAD^
 
 ### 情境：放棄未提交的修改
 
-更生動的描述：寫到一半發現自己寫的 code 是垃圾，直接回到上一次提交。
+結束測試性的修改後，直接回到上一次提交。
 
 ```sh
 # 等同於 git restore -SW .
-git reset --hard
+git reset --hard HEAD
 ```
 
 ### 情境：提交了多個小變更，想整理成一個提交
@@ -176,7 +178,7 @@ git reset HEAD~3
 
 ### 情境：補充說明
 
-reset 不常用的原因是這些情境都能被更方便的互動式變基 (interactive rebase) 取代，最常用的應該只有從遠端還原，如果你想彎道超車直接學互動式變基可以閱讀我寫的文章：[[微進階] 使用 Rebase 變基提交](../history-manipulation/interactive-rebase)。
+reset 指令不常用，原因是這些情境都能被更方便的互動式變基 (interactive rebase) 取代，最常用的應該只有從遠端還原。
 
 :::info
 
@@ -195,7 +197,7 @@ reset 不常用的原因是這些情境都能被更方便的互動式變基 (int
 
 ## 任意修改 git rebase
 
-git rebase 實際上是對分支進行操作，原本應該放在後續文章，但是單純進行這裡要講的互動式變基 (interactive rebase) 時你完全感受不到分支操作，而他的功能之強大值得放在這裡，請見我寫的教學 [互動式變基 Interactive Rebase](../history-manipulation/interactive-rebase)，請先只看這個段落，初學者看完整篇文章應該會懵。
+git rebase 實際上是對分支進行操作，原本應該放在後續文章，但是單純進行這裡要講的互動式變基 (interactive rebase) 時你完全感受不到分支操作，而他的功能之強大值得放在這裡，請見我寫的教學 [使用互動式變基 Interactive Rebase 任意修改提交歷史](../history-manipulation/interactive-rebase)。
 
 注意 rebase 本質也是在修改提交歷史，而修改提交歷史永遠只該用於個人分支。
 

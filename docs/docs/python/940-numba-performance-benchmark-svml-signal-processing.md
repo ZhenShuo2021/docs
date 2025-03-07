@@ -1,14 +1,12 @@
 ---
-title: Numba 效能深入解析
-description: Numba 效能深入解析：矩陣計算與訊號還原演算法
+title: Numba 效能深入實測
+description: Numba 效能深入實測：矩陣計算與訊號還原演算法
 tags:
-  - Programming
   - Python
   - Numba
   - Performance
   - 教學
 keywords:
-  - Programming
   - Python
   - Numba
   - Numpy
@@ -26,7 +24,7 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Numba 效能深入解析：矩陣計算與訊號還原演算法
+# Numba 效能深入實測：矩陣計算與訊號還原演算法
 
 這篇文章我們將使用三種不同的計算場景評估 Numba 的效能表現，目的在全方面的評估 Numba 的實際效能。為了避免了其他文章常見的問題<u>效能測試的結論只適用於該場景</u>，筆者選擇的測試涵蓋了常見的科學與數值計算情境：
 
@@ -52,7 +50,7 @@ $$
 \sum_{i=1}^{n} \left( \sin(x_i)^2 + \cos(x_i)^2 \right)
 $$
 
-我知道平方相加是一，這是一個示範範例，透過簡單的計算避免不必要的因素影響我們對這些裝飾器的認知。此測試和文檔範例相同，只多加了 summation 模擬常見的 reduction 操作。比較項目總共有
+我知道平方相加是一，這是一個示範範例，透過簡單的計算讓我們對性能提升有直觀的了解。此測試和文檔範例相同，只多加了 summation 模擬常見的 reduction 操作。比較項目總共有
 
 - njit: 基本 Numba 設定 `@njit`
 - njit_parallel: 開啟自動平行化功能 `@njit(parallel=True)`
@@ -81,7 +79,7 @@ $$
 
 ## Case2: 訊號還原
 
-我們以訊號還原測試測試 Numba 能帶來多少的性能提升，本章節包含開頭提到的矩陣相乘和訊號還原演算法兩種測試，其中訊號還原是稀疏訊號處理，使用 OMP 演算法。
+前面是簡單的測試，這裡測試真實世界常見的演算法，以訊號還原任務測試 Numba 能帶來多少的性能提升，本章節包含開頭提到的矩陣相乘和訊號還原演算法兩種測試，其中訊號還原是稀疏訊號處理，使用 OMP 演算法。
 
 簡單說明稀疏訊號處理和 OMP 演算法，稀疏訊號處理和一般的 $\mathbf{y} = \mathbf{S}\mathbf{x} + \mathbf{n}$ 問題一模一樣，都是想辦法從接收訊號 $\mathbf{y}$ 還原原始訊號 $\mathbf{x}$。唯二的差別是 $\mathbf{y}$ 的維度遠小於 $\mathbf{x}$ 的維度，導致其為一個未定的矩陣問題，以及輸入訊號零值非常多，想辦法使用這個特徵還原訊號。
 

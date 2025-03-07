@@ -4,10 +4,12 @@ author: zsl0621
 description: 使用 Git Worktree 簡化分支切換步驟以提升工作效率
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-01-14T20:41:33+08:00
   author: zsl0621
@@ -33,9 +35,9 @@ first_publish:
 
 ## 觀念說明
 
-Git worktree 允許你<u>**在新資料夾中 checkout 指定分支，該資料夾中的所有操作都由原 Git 專案追蹤，即使這個新資料夾不在原專案的目錄下**</u>[^dir]。
+Git worktree 允許你<u>**在新資料夾中 checkout 指定分支，該資料夾中的所有操作都由原 Git 專案追蹤，即使這個新資料夾不在原專案的目錄下**</u>。
 
-[^dir]: 其實不強迫放在專案資料夾以外，但是這樣你的專案底下就會出現新增的 worktree，而且他不會像 gitignore 設定的目錄一樣被排除。
+> 新資料夾不強迫放在專案資料夾以外，但是這樣你的專案底下就會出現新增的 worktree，會看到資料夾顯示 untracked。
 
 ## TL;DR
 

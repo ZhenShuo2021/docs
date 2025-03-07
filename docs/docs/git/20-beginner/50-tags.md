@@ -4,10 +4,12 @@ author: zsl0621
 description: 幫提交上標籤
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-10-20T02:21:33+08:00
   author: zsl0621
@@ -23,12 +25,16 @@ first_publish:
 
 ## 常用指令
 
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+
 | 功能 | 本地指令 | 遠端指令 |
 |---|---|---|
 | 列出 | `git tag` | `git ls-remote --tags origin` |
 | 建立 | `git tag -a v1.0.0 -m "messages"` | `git push origin v1.0.0` |  
 | 刪除 | `git tag -d v1.0.0` | `git push origin --delete v1.0.0` |  
 | 推送 | `git push origin v1.0.0` |  |  
+
+</div>
 
 ```bash
 # 上標籤並且簽名、加上訊息、指定 hash
@@ -50,7 +56,7 @@ git tag -l --format='%(contents)' <tag name>
 git tag <tag name> <tag name>^{} -f -m "<new message>"
 ```
 
-列出標籤的指令雜亂且複雜保證記不起來，建議直接用 alias 完成。僅適用 ZSH，Bash 改一下應該能用，Windows 搞了半小時還是失敗我放棄。在 .zshrc 加入這行：
+列出標籤的指令雜亂又複雜保證記不起來，建議直接用 alias 完成。僅適用 ZSH，Bash 改一下應該能用，Windows 搞了半小時還是失敗我放棄。在 .zshrc 加入這行：
 
 ```sh
 alias 'gtl'='gtl(){ git tag --sort=-v:refname -n999 --format="[%(objectname:short) %(refname:short)] %(contents:lines=999)%0a" --list "${1}*" }; noglob gtl'

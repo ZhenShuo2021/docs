@@ -4,10 +4,12 @@ author: zsl0621
 description: 基礎分支操作，讓你用最快速度上手 Git。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-01-16T14:38:33+08:00
   author: zsl0621
@@ -145,7 +147,7 @@ git merge 有預設模式是 fast-forward，用於在兩者的提交完全相同
 
 ## 任意修改提交歷史 git rebase -i
 
-互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見我寫的文章：[[微進階] 使用 Rebase 變基提交](../history-manipulation/interactive-rebase)。
+互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見我寫的文章：[使用互動式變基任意修改提交歷史](../history-manipulation/interactive-rebase)。
 
 :::danger
 
@@ -153,7 +155,7 @@ git rebase -i 會修改歷史，再次強調修改提交歷史 **永遠只該用
 
 :::
 
-> [如何解決合併衝突？](../preliminaries/keyword#進階)
+變基時可能會遇到衝突，解決方式請見[如何解決合併衝突](../preliminaries/keyword#進階)。
 
 ## 恢復 git revert
 

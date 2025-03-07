@@ -2,17 +2,24 @@
 title: "Comparing BeautifulSoup4, LXML, and Selectolax: A Simple HTML Parser Performance Test"
 sidebar_label: HTML 解析器效能測試
 tags:
-  - Programming
   - Python
+  - HTML parser
 keywords:
-  - Programming
   - Python
+  - HTML parser
 last_update:
   date: 2024-12-25T11:49:30+08:00
   author: zsl0621
 first_publish:
   date: 2024-12-24T21:53:30+08:00
 ---
+
+#
+
+- [English](#EN)
+- [中文](#CN)
+
+## Comparing BeautifulSoup4, LXML, and Selectolax: A Simple HTML Parser Performance Test{#EN}
 
 This evaluation compares the performance of popular HTML parser libraries in Python. The test involves extracting product names, ratings, prices, and monthly sales from a Shopee page. To simulate the handling of very large HTML files, the `duplicate_div_main` function duplicates the `<div id="main">` section 100 times, creating a significantly larger document.
 
@@ -56,7 +63,7 @@ Selectolax offers approximately 4 times the speed of lxml but comes with limitat
 
 > Note: [html5-parser](https://github.com/kovidgoyal/html5-parser) was excluded due to its limited popularity and maintenance status.
 
-# HTML 解析器效能測試：BeautifulSoup4、LXML 和 Selectolax
+## HTML 解析器效能測試：BeautifulSoup4、LXML 和 Selectolax{#CN}
 
 :::info
 寫完原文英文版本後懶得翻譯，所以叫 ChatGPT 翻成中文。

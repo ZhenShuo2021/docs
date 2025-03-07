@@ -4,10 +4,12 @@ author: zsl0621
 description: 寫好慣例式提交，讓提交訊息一目了然
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2024-10-29T02:44:12+08:00
   author: zsl0621

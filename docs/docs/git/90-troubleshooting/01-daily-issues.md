@@ -4,10 +4,12 @@ sidebar_label: 各種日常問題
 description: 介紹 Git 常見的本地和遠端問題，包含清除reflog記錄、正確使用rebase、git mv、以及如何加速clone等進階技巧。還解釋了常見錯誤誤導，並提供正確的 Git 操作方法。
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-12T23:19:00+08:00
   author: zsl0621
@@ -34,6 +36,8 @@ first_publish:
 此用法相對來說比較複雜，但是複雜的原因不是指令本身而是網路上沒有正確的教學，請見[搞懂 Rebase Onto](../advance/rebase-onto)。
 
 筆者沒有說大話嚇唬人，真的所有中文文章的解釋都是錯的，撰文時唯一能找到的正確文章是在搜尋結果第五頁 [Git合并那些事——神奇的Rebase](https://morningspace.github.io/tech/git-merge-stories-6/)，前面四頁的文章不是沒提到 onto 就是講錯，如果不是因為要寫「正確的」教學筆者才沒耐心每篇都點進去看，還要在一堆錯誤裡面找出怎麼用才正確。
+
+> 謎之音：正確還有必要強調喔，不是阿，網路上就一大堆「錯誤的」教學。
 
 <br />
 
@@ -69,7 +73,7 @@ refs 只是幫助人類記憶的名稱，只紀錄提交 hash 讓你直接用 re
 
 reset 實際在做的就是清除提交，最荒謬的是賣課網說[不要被名詞誤導](https://gitbook.tw/chapters/using-git/reset-commit)結果他的說法才是在誤導別人。
 
-他的文章都只介紹表面這我沒意見，本來就簡易介紹課才賣的多，結果偏偏這裡說明這個指令底層實際上在移動 HEAD，講的沒錯但是這樣說反而更讓讀者搞不懂，所以他又補充說明 git reset 比較像 goto，問題就出在這個自創名詞，請問 goto 到過往的提交能 goto 回到原本的提交嗎？不能嘛，那這個解釋不就有漏洞了嗎？reset 實際在做的就是清除提交，搞自創名詞拜託先想清楚能不能被合理解釋。
+他的文章都只介紹表面這我沒意見，本來就簡易介紹課才賣的多，結果偏偏這裡說明這個指令底層實際上在移動 HEAD，講的沒錯但是這樣說也不是很清楚，所以他又補充說明 git reset 比較像 goto，**問題就出在這個自創名詞**，請問 goto 到過往的提交能 goto 回到原本的提交嗎？不能嘛，那這個解釋不就有漏洞了嗎？reset 實際在做的就是清除提交，搞自創名詞拜託先想清楚能不能被合理解釋。
 
 <br />
 
@@ -107,7 +111,7 @@ git gc --aggressive --prune=now
 
 執行 `git clone` 後，Git 會自動檢出 (checkout) 一個預設的本地分支，並將其設定為追蹤分支（Tracking Branch），該分支會與對應的遠端追蹤分支建立追蹤關係。例如 `git clone` 後預設檢出的 `main` 分支，會追蹤 `origin/main` 這個遠端追蹤分支，而 `origin/main` 也可稱為 `main` 分支的上游分支（Upstream Branch）。
 
-所謂口語上的遠端分支就是在遠端中的本地分支，和遠端追蹤分支是不同的概念
+所謂口語上的遠端分支就是在遠端中的本地分支，和遠端追蹤分支是不同的概念。
 
 <br />
 
@@ -115,17 +119,13 @@ git gc --aggressive --prune=now
 
 有兩種可能，遠端分支設定錯誤或者遠端提交歷史比本地還要新。
 
-比本地還新的話就使用 `git pull --rebase`，如果設定跑掉就用[設定遠端分支](#設定遠端分支)，如果想要覆蓋就使用[安全的強制推送](#安全的強制推送)。
+比本地還新的話就使用 `git pull --rebase`，如果設定跑掉就用[設定遠端分支](#fix-remote-branch)，如果想要覆蓋就使用[安全的強制推送](#安全的強制推送)。
 
 <br />
 
-#### 設定遠端分支
+#### 還是無法推送，設定遠端分支{#fix-remote-branch}
 
-請見 Git 遠端指令的 [找不到遠端的處理方式](../remote/concept-and-commands#remote-debug) 段落。
-
-> 照著做完後還是無法設定遠端分支
-
-一般來說上面的方式就可以了，但是如果還是不給你設定，例如這個情況：
+請見 Git 遠端指令的 [找不到遠端的處理方式](../remote/concept-and-commands#remote-debug) 段落，如果照著做完後還是無法設定遠端分支，例如這個情況：
 
 ```sh
 git branch -u origin/custom
@@ -184,7 +184,7 @@ git push <遠端名稱> <指定提交>:<遠端分支名稱>
 
 請見我的文章[使用 Git Sparse Checkout 只下載部分專案以加速 Clone 速度](../advance/reduce-size-with-sparse-checkout)。
 
-其實 [The Will Will Web](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts) 就寫的很詳細，但是我覺得不夠清楚而且指令有些更新，所以統整更新資訊以及實測結果圖表寫成文章。
+其實 [The Will Will Web](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts) 就寫的很詳細，但是我覺得小缺點是詳是但不夠清楚，而且指令有部分更新，所以統整更新資訊寫成文章。
 
 ## End
 

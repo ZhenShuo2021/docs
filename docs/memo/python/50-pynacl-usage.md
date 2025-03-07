@@ -2,12 +2,10 @@
 title: PyNaCl 加密套件使用紀錄
 description:  PyNaCl 使用紀錄以及基本密碼學概念
 tags:
-  - Programming
   - Python
   - PyNaCl
   - 密碼學
 keywords:
-  - Programming
   - Python
   - PyNaCl
   - 密碼學

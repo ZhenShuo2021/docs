@@ -1,5 +1,5 @@
 ---
-title: 常用 Linux 指令
+title: 常用指令
 description: 常用的 Linux 指令小抄
 tags:
   - Linux
@@ -38,7 +38,7 @@ echo "alias hnc='hugo new content'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-macOS 則是改為 zshrc。
+macOS 使用 zsh，所以改為 zshrc。
 
 ## 設定系統可執行文件搜尋路徑
 
@@ -55,6 +55,8 @@ du /home -h | sort -nr | tail
 df -h
 sudo ncdu -x /path                 # ncdu 好用「非常多」
 ```
+
+也可使用 gdu 作為 ncdu 替代品，速度更快。
 
 ## 檢視記憶體佔用
 
@@ -125,7 +127,7 @@ exit 0
 # 0 0: dump備份和fsck檢查
 ```
 
-逗號後面可選但[兩個零](https://rain.tips/2024/02/06/%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8%EF%BC%9A%E5%AF%A6%E7%8F%BEubuntu%E7%92%B0%E5%A2%83%E4%B8%AD%E9%AB%98%E6%95%88%E7%9A%84%E7%A1%AC%E7%A2%9F%E5%85%B1%E4%BA%AB/)還是要保留。證書格式為：
+逗號後面可選但[兩個零](https://rain.tips/2024/02/06/%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8%EF%BC%9A%E5%AF%A6%E7%8F%BEubuntu%E7%92%B0%E5%A2%83%E4%B8%AD%E9%AB%98%E6%95%88%E7%9A%84%E7%A1%AC%E7%A2%9F%E5%85%B1%E4%BA%AB/)要保留，分別代表避免 dump 備份還有避免 fsck 檢查。證書格式為：
 
 ```sh
 username=遠端SMB帳戶
@@ -136,7 +138,7 @@ password=密碼
 
 ```shell
 # 生成密鑰，接著會要你輸入密碼，如果不需要可以直接enter
-ssh-keygen -t ed25519 -f ~/.ssh/{file_name}
+ssh-keygen -t ed25519 -f ~/.ssh/id_rsa
 
 # 修改設定檔，貼上以下區塊
 vim ~/.ssh/config
@@ -144,7 +146,7 @@ vim ~/.ssh/config
 Host {alias name}
   HostName {server IP}
   User {user name}
-  IdentityFile ~/.ssh/{file_name}
+  IdentityFile ~/.ssh/id_rsa
 # =================
 
 # 上傳公鑰到伺服器
@@ -156,6 +158,8 @@ ssh {alias name}
 
 - -t: algorithm
 - -f: file
+
+一般來說名稱使用 id_rsa 就可以了，要不要在不同服務使用不同 ssh 看你個人，我分過一次發現完全記不起來哪個是哪個，最後還是統一用同一把金鑰。
 
 ## 列出系統時間
 

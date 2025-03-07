@@ -2,11 +2,9 @@
 title: Pyreverse 指令小抄和測試範例
 description:  Pyreverse 指令小抄和測試範例
 tags:
-  - Programming
   - Python
   - Pyreverse
 keywords:
-  - Programming
   - Python
   - Pyreverse
 last_update:

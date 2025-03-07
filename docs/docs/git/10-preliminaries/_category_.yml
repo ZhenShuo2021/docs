@@ -3,6 +3,6 @@ label: 一、序章
 collapsible: true # make the category collapsible
 collapsed: true # keep the category open by default
 className: red
-link:
-  type: generated-index
-  title: Git 教學 - 序章
+# link:
+#   type: generated-index
+#   title: Git 教學 - 序章

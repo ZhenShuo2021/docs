@@ -2,18 +2,16 @@
 title: False-Sharing 閱讀筆記和實測
 description: Python 中的 False-Sharing 閱讀筆記和實測
 tags:
-  - Programming
   - Python
   - Numba
   - Performance
 keywords:
-  - Programming
   - Python
   - Numba
+  - Performance
   - Numpy
   - Speed-Up
   - Accelerate
-  - Performance
 last_update:
   date: 2024-12-01T23:38:00+08:00
   author: zsl0621
@@ -38,9 +36,11 @@ import TabItem from '@theme/TabItem';
 
 ## 解決方式
 
-在 [Speed up C++ — false sharing](https://medium.com/@techhara/speed-up-c-false-sharing-44b56fffe02b) 這篇文章中為每個線程創建了私有的 `local_sum`，解決 false sharing 後速度快了約 5 倍。
+先上解決方式，比我的測試更有意義。
 
-另外，在 [The Performance Implications of False Sharing](https://coffeebeforearch.github.io/2019/12/28/false-sharing-tutorial.html) 這篇文章中則是使用 `alignas` 來完成 padding，並且從組合語言/benchmark/L1 cache hit rate 三種層面來討論 false sharing。在 false sharing 時，編譯結果顯示 99% 的時間都在競爭鎖 `lock   incl   (%rdx)` 上，benchmark 結果顯示正確使用後速度有約 1.3 倍速度提升，以 L1 Cache hit rate 來說，快取失誤率從 40% 下降至 3%。
+1. 在 [Speed up C++ — false sharing](https://medium.com/@techhara/speed-up-c-false-sharing-44b56fffe02b) 這篇文章中為每個線程創建了私有的 `local_sum`，解決 false sharing 後速度快了約 5 倍。
+
+2. 在 [The Performance Implications of False Sharing](https://coffeebeforearch.github.io/2019/12/28/false-sharing-tutorial.html) 這篇文章中則是使用 `alignas` 來完成 padding，並且從組合語言/benchmark/L1 cache hit rate 三種層面來討論 false sharing。在 false sharing 時，編譯結果顯示 99% 的時間都在競爭鎖 `lock   incl   (%rdx)` 上，benchmark 結果顯示正確使用後速度有約 1.3 倍速度提升，以 L1 Cache hit rate 來說，快取失誤率從 40% 下降至 3%。
 
 ## 效能測試
 

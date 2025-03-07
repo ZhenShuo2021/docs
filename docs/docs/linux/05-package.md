@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 中套件管理工具的差異
+title: Ubuntu 的套件管理工具
 description: 介紹 Ubuntu 中套件管理工具 apt apt-get dpkg snap flatpak 差異
 tags:
   - NAS
@@ -18,34 +18,19 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Ubuntu 中套件管理工具的差異
+有套件就有套件管理工具，幫助你安裝套件，解決套件之間的依賴問題，在 Ubuntu (Debian 系) 常見的有三種：dpkg (1994), apt-get (1998) 和 apt (2014)，每個管理工具都是為了解決舊版的問題。
 
-:::danger
-基礎問題問 GPT 最快，會大量使用 GPT 整理的文字，但是有經過整理和檢驗。
-:::
+- dpkg: 最早的管理工具，解決早期 Linux 系統缺乏統一的軟件包管理機制
+- apt-get: 解決 dpkg 不處理套件依賴關係
+- apt: 高層工具，解決 apt-get 仍然不夠直觀，提供更友好的使用體驗
 
-## 套件管理工具
+兩個新工具（apt 和 apt-get）實際上都依賴 dpkg 運作。可以很清楚地知道，日常使用中 apt 更方便，而當你需要直接處理 .deb 文件（例如手動安裝單個套件且不關心依賴關係）時，才會使用 dpkg。無論 apt 還是 apt-get 安裝或移除套件，它們都會更新這個共享的 dpkg 套件數據庫，在 [/var/lib/dpkg/status](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_the_dpkg_command) 管理所有套件。  
 
-有套件就有套件管理工具，幫助你安裝套件，解決套件之間的依賴問題，常見的有三種：apt (2014), apt-get (1998) 和 dpkg (1994)。
+### 什麼時候需要使用 apt-get 而不是 apt
 
-### 問 GPT: 說明這三個包管理工具分別想解決前人的哪些問題
->
-> 說明這三個包管理工具分別想解決前人的哪些問題，因為一定是有問題才要推出新工具
-
-- dpkg：解決早期 Linux 系統缺乏統一的軟件包管理機制
-- apt-get：解決 dpkg 不處理套件依賴關係
-- apt：高層工具，解決 apt-get 仍然不夠直觀，提供更友好的使用體驗
-
-可以很清楚的知道平常沒事用 apt，有特殊需求只想安裝單一個套件用 dpkg，那些介紹 .deb 的除了開發人員我不相信你們一年會用到 .deb 幾次。
-
-補充：三者底層都使用 dpkg。  
-補充：無論 apt 還是 apt-get 安裝或移除套件，它們都會更新這個共享的 dpkg 套件數據庫，在 [/var/lib/dpkg/status](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_the_dpkg_command) 管理所有套件。  
-
-### 問 GPT: 什麼時候需要使用apt-get而不是apt
->
 > 日常使用應該是apt最方便，那什麼時候需要使用apt-get而不是apt？
 
-1. 腳本和自動化：apt-get 更穩定，適合在腳本或自動化環境中使用。因為 apt-get 的輸出格式在長期內保持一致，不會發生大的變化，這使得它更適合寫在系統管理腳本中。
+1. 腳本和自動化：apt-get 相對來說更穩定，適合在腳本或自動化環境中使用。因為 apt-get 的輸出格式在長期內保持一致，不會發生大的變化，這使得它更適合寫在系統管理腳本中。
 2. 高精細控制：apt 沒有 apt-get 的全部指令，需要細部調整時需用 apt-get，例如 [build-dep](https://www.cnblogs.com/tongongV/p/10927648.html)。
 3. 不穩定或實驗性系統：使用不穩定或實驗性系統時，apt-get 可能更可靠，因為它的設計更加保守，命令更穩定，適合處理更加複雜的包管理。
 
@@ -103,16 +88,6 @@ import TabItem from '@theme/TabItem';
 - [Linux系統用Flatpak安裝軟體的優缺點](https://ivonblog.com/posts/linux-flatpak-pros-and-cons/)
 
 題外話，`sudo apt install firefox` [這個笑話](https://www.reddit.com/r/linuxsucks/comments/1fh07ly/sudo_apt_install_firefox/)的由來是 Ubuntu [強制 firefox 變成 Snap 套件](https://askubuntu.com/questions/1399383/how-to-install-firefox-as-a-traditional-deb-package-without-snap-in-ubuntu-22)，然後一堆人在臭 Ubuntu。
-
-## 延伸：curl？
-
-用於從命令行進行網絡請求，初期你可以把他視作一個簡單的從網路下載單一檔案的工具。
-
-使用方法：`curl -o <filename.txt> https://example.com/file.txt`， filename.txt 可寫可不寫，
-
-- -o：下載並重新命名
-- -O：下載檔案並使用原始名稱
-- -I：顯示 HTTP 回應，用於網站測試
 
 ## 延伸：其他常見的 Linux 套件管理工具介紹
 

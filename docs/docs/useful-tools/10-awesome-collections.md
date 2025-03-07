@@ -20,13 +20,11 @@ first_publish:
 ## Python 實用套件
 
 - pathvalidate: 處理檔案路徑的套件
-- python-fsutil: 懶人路徑套件，包含將近一百種函式選擇[^fsutil]
+- python-fsutil: 懶人路徑套件，包含將近一百種函式選擇（注意裡面的 get_unique_name 使用 uuid 產生唯一名稱而不是常見的數字排序）
 - msgspec: 高效能的 JSON 序列化套件，[介紹文章](https://blog.ferstar.org/post/issue-62/)
 - memray: 記憶體 profiler，[介紹文章](https://blog.ferstar.org/post/issue-63/)
 - DownloadKit: 封裝 requests 的下載工具，內建自動副檔名偵測，自動重新命名  
 設定範例
-
-[^fsutil]: 注意裡面的 get_unique_name 使用 uuid 產生唯一名稱而不是常見的數字排序。
 
 ```py
 dk = DownloadKit()
@@ -153,7 +151,7 @@ dk.set.block_size("1m")
 ## 終端機相關
 
 - ~~[helix](https://github.com/helix-editor/helix): 開箱即用的文字編輯器 with onedarker theme~~ [為什麼不用了][^helix]
-- [neovim](https://github.com/neovim/neovim): 改善 vim 問題的文字編輯器，請愛用 [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)[^kickstart] 完成設定
+- [neovim](https://github.com/neovim/neovim): 改善 vim 問題的文字編輯器，請愛用 [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 完成設定
 - Warp: 附帶各種功能、支援各種工具的套件
 - [wezterm-config](https://github.com/KevinSilvester/wezterm-config): 開箱即用的 WezTerm 客製化，截至 6febb08 設定都很好。zsh 使用者要把 `config/domains.lua` 裡面的 fish 改成 zsh
 - font 字體: MesloLGS NF，和 [powerlevel10k](https://github.com/romkatv/powerlevel10k? tab=readme-ov-file#meslo-nerd-font-patched-for-powerlevel10k)相同
@@ -161,15 +159,14 @@ dk.set.block_size("1m")
 - WinGet/Chocolatey: Windows 的終端機套件管理
 - UniGetUI: Windows 上的圖形化套件管理器
 
-[^helix]: 熱門度問題。Github 搜尋 [helix config](https://github.com/search?q=helix+config&type=repositories) 有 500 個 repo，neovim 則是 17k，而且還有 NvChad 這個 25k stars 的 repo 提供 out-of-the-box 的設定，那誰還要慢慢設定 neovim。helix 優點是[比較快](https://www.reddit.com/r/HelixEditor/comments/1azis06/worth_to_switch_from_nvim/)，不過就等未來用到卡了之後再改用 helix。
-
-[^kickstart]: 除了 NvChad 以外其餘很多設定檔在 vscode neovim-package 都會造成亂碼
+[^helix]: 因為 helix 資源數量少太多了。Github 搜尋 [helix config](https://github.com/search?q=helix+config&type=repositories) 有 500 個 repo，neovim 則是高達 17k，甚至有 NvChad 這個 25k stars 的 repo 提供 out-of-the-box 的設定，那誰還要慢慢設定 neovim。helix 優點是[比較快](https://www.reddit.com/r/HelixEditor/comments/1azis06/worth_to_switch_from_nvim/)，不過就等未來用到卡了之後再改用 helix。
 
 ## 自架 Self-Host{#helix}
 
 - Immich: 完全替代 Google 相簿
 - PhotoPrism: 畫廊形式的相簿
-- [filebrowser](https://github.com/filebrowser/filebrowser): 簡單易用輕量的個人雲端，包含帳號功能
+- ~~[filebrowser](https://github.com/filebrowser/filebrowser): 簡單易用輕量的個人雲端，包含帳號功能~~ 爛透了有夠難用
+- cloudreve: 個人雲端，對我就是不想用 NextCloud
 - Stirling PDF: PDF 全能工具
 - Lanraragi: 漫畫伺服器
 - Stash: 影片伺服器

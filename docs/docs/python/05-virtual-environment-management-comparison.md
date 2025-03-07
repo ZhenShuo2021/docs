@@ -3,11 +3,9 @@ title: Python 虛擬環境管理和依賴解析套件完整比較
 description: Python 虛擬環境管理和依賴解析套件完整比較
 sidebar_label: 虛擬環境管理套件比較
 tags:
-  - Programming
   - Python
   - 虛擬環境
 keywords:
-  - Programming
   - Python
   - 虛擬環境
 last_update:
@@ -30,7 +28,7 @@ first_publish:
 
 要比較虛擬環境套件，我們首先要知道他的用途，並且說明比較基準。
 
-虛擬環境套件用於隔離多個專案之間的環境，比如說一個需要 urllib==2.31，另一個需要 1.26，就會引發衝突，這是環境隔離用途。除了隔離環境，同一專案當中高層套件對底層套件版本的依賴解析，以及套件對於 Python 版本的依賴都是作為一個虛擬環境管理套件需要被關注的重點，於是本文選擇這三項作為重點比較項目：<u>**「套件依賴解析、Python 版本管理、專案環境隔離」**</u>，其餘效能、IDE 整合等問題不在本文探討範圍中。
+虛擬環境套件用於隔離多個專案之間的環境，比如說一個專案需要 urllib==2.31 另一個專案需要 1.26，這就會引發衝突，此為環境隔離用途。除了隔離環境，同一專案當中高層套件對底層套件版本的依賴解析，以及套件對於 Python 版本的依賴都是作為一個虛擬環境管理套件需要被關注的重點，於是本文選擇這三項作為重點比較項目：<u>**「套件依賴解析、Python 版本管理、專案環境隔離」**</u>，其餘效能、IDE 整合等問題不在本文探討範圍中。
 
 ## 虛擬環境管理套件
 
@@ -63,7 +61,7 @@ venv 是內建於 Python 的管理工具，是基於 virtualenv 的管理工具�
 
 venv 只能用於建立虛擬環境，沒有任何依賴解析管理功能，一般是使用 pip 完成依賴解析管理。
 
-[^1]: virtualenv 唯一的優點只有支援不同 Python 版本的功能，然而他需要結合 Pyenv 才能使用，他本身不能管理 Python 版本。不結合沒優點，結合了有更好套件 pyenv-virtualenv，取交集後等於純 virtualenv 完全沒有優點，還寫一篇 virtualenv 教學不是好心帶彎路嗎，都已經 2024 了網路上誰再教 virtualenv 的筆者建議直接用 uBlacklist 把他[整個網域 ban 了](https://www.eallion.com/ublacklist-subscription-compilation/)。
+[^1]: virtualenv 唯一的優點只有支援不同 Python 版本的功能，然而他需要結合 Pyenv 才能使用，他本身不能管理 Python 版本。不結合沒優點，結合了有更好套件 pyenv-virtualenv，取交集後等於純 virtualenv 完全沒有優點，還寫一篇 virtualenv 教學不是好心帶彎路嗎，都已經 2024 了網路上誰再教 virtualenv 的筆者建議直接用 uBlacklist 把他[整個網域 ban 了](https://www.eallion.com/ublacklist-subscription-compilation/)，功課都不做就急著上網誤導別人。
 
 ### Pyenv
 
@@ -83,13 +81,11 @@ pyenv 的插件，結合 virtualenv 後變成既有 Python 版本管理又有套
 
 pyenv-vitrualenv 筆者沒有到非常熟悉，但是 Conda 筆者用的可多了，使用體驗可以總結為兩個字：快逃。
 
-Conda 整合 Python 版本管理、虛擬環境管理和套件依賴解析，完美整合自家贊助的 Spyder IDE，安裝完 Spyder 後能直接使用虛擬環境不需任何設定。聽起來很棒，但 Conda 有一個致命問題是套件怎麼裝怎麼崩潰，即使是全新環境也一樣。
+Conda 整合 Python 版本管理、虛擬環境管理和套件依賴解析，完美整合自家贊助的 Spyder IDE，安裝完 Spyder 後能直接使用虛擬環境不需任何設定，還把套件打包二進制安裝速度更快。聽起來很棒，但 Conda 有一個致命問題是套件怎麼裝怎麼崩潰，即使是全新環境也一樣。
 
 Conda 使用自己的套件依賴解析器而不是 pip，所以混用會出問題，你說為甚麼要混用？因為內建的永遠出現衝突問題，就拿筆者最常使用的套件 Tensorflow/Matplotlib/Numba 三個來說，三個都依賴 Numpy，三個都是知名套件，但是三個一起裝就是 boom 爆炸，筆者當時甚至研究出先使用 Conda 安裝 A，再使用 pip 安裝 B，最後再用 Conda 安裝 C 才能成功安裝，任何改變都會出錯。平常最好祈禱自己不要手癢想更新，更新就是套件再重裝一次。
 
-使用體驗爛透了，沒有第二句話，就算 IDE 安裝再快都沒有除錯依賴花得時間還久，程式肥大已經是瑕不掩瑕，處理依賴有得你受[^2]。
-
-[^2]: Conda 庫打包成二進制所以安裝比一般的 pip 快。另外即使使用 miniconda 程式還是一樣肥大，但肥大不是主要問題，問題是他的套件管理爛到不行，筆者用了兩年都沒改善，平常還得祈禱不會用到新套件，否則研究出來的安裝順序又要再摸索一次，不要問我為甚麼知道，我已經對付他兩年了。
+使用體驗爛透了，沒有第二句話，就算 IDE 安裝再快都沒有除錯依賴花得時間還久，程式肥大已經是瑕不掩瑕，處理依賴有得你受。
 
 ### pipenv
 
@@ -99,15 +95,15 @@ Conda 使用自己的套件依賴解析器而不是 pip，所以混用會出問�
 - 開發/生產環境分離
 - 使用自行開發的依賴解析器
 
-pipenv 整合環境管理和依賴管理，使用 pipfile 和 pipfile.lock 管理，並且支援 `--dev` 選項隔離開發用套件，如此豐富的功能整合看起來很美好，但是實際上[不美好🚨](https://note.koko.guru/posts/using-poetry-manage-python-package-environments)。本套件筆者並未使用過所以上網做了一下功課，看到此篇文章：[Pipenv: promises a lot, delivers very little](https://chriswarrick.com/blog/2018/07/17/pipenv-promises-a-lot-delivers-very-little/)，整整四千字的心得大罵 pipenv，所以我們大概可以知道該如何選擇，其主要問題包含效能、指令操作繁瑣、僅支持特定的工作流程、不支援跨目錄工作，而且更新停滯。
+pipenv 整合環境管理和依賴管理，使用 pipfile 和 pipfile.lock 管理，並且支援 `--dev` 選項隔離開發用套件，如此豐富的功能整合看起來很美好，但是實際上[不美好🚨](https://note.koko.guru/posts/using-poetry-manage-python-package-environments)。本套件筆者並未使用過所以上網做了一下功課，看到此篇文章：[Pipenv: promises a lot, delivers very little](https://chriswarrick.com/blog/2018/07/17/pipenv-promises-a-lot-delivers-very-little/)，整整四千字的心得大罵 pipenv，罵人能罵到四千字也是不容易，所以我們大概可以知道該如何選擇，其主要問題包含效能、指令操作繁瑣、僅支持特定的工作流程、不支援跨目錄工作，而且更新停滯。
 
 對於一個 2017 年才發布的套件，在 2018 年就被罵不更新，2020 年該文章作者還繼續追蹤但是情況依舊。查看其 [Github release](https://github.com/pypa/pipenv/releases)，整個 2023 從二月之後就沒更新了，如此緩慢的更新不建議使用。
 
-都快 2025 了如果還有文章推薦 pipenv 建議送上 uBlacklist 伺候。
+都快 2025 了如果還有文章推薦 pipenv 建議同樣送上 uBlacklist 伺候。
 
 ### uv (formerly rye)
 
-如果要以要一句話形容 uv，那就是完整且高效的一站式體驗，異軍突起的解決了上述所有問題。
+如果要以要一句話形容 uv，那就是完整且高效的一站式體驗，解決了上述所有問題。
 
 uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
@@ -157,7 +153,7 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 
 ### Poetry
 
-雖然文章開頭說「新工具的出現就是要解決舊有工具的痛點」，但前面好像都沒什麼提到，因為不是缺少功能就是有問題沒得比。Poetry 的出現主要解決了以下問題：
+雖然文章開頭說「新工具的出現就是要解決舊有工具的痛點」，但前面好像都沒什麼提到，因為不是缺少功能就是問題很大根本沒得比。Poetry 的出現主要解決了以下問題：
 
 - 使用高度成熟的依賴解析器解決依賴解析問題
 - 內建套件發布工具解決套件發布流程複雜問題

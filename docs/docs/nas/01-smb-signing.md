@@ -47,7 +47,7 @@ sudo testparm -s
 - **inherit owner = yes**：（可選）設定檔案和目錄繼承父目錄的擁有者。
 - **inherit permissions = yes**：（可選）設定檔案和目錄繼承父目錄的權限設置。
 
-不建議把加密和簽名功能設為 required 因為 macOS 使用簽名速度會非常慢。
+不建議把加密和簽名功能設為 required，因為 macOS 使用簽名速度會非常慢。
 
 ### 設定簽名和加密功能
 

@@ -5,10 +5,12 @@ author: zsl0621
 description: 使用 cherry-pick 揀選指定提交
 tags:
   - Git
-  - Programming
+  - 教學
+
 keywords:
   - Git
-  - Programming
+  - 教學
+
 last_update:
   date: 2025-02-12T00:44:00+08:00
   author: zsl0621

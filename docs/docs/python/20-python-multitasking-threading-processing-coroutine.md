@@ -3,11 +3,9 @@ title: Python 中的多工處理原理介紹
 description:  Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算
 sidebar_label: 多工種類和原理
 tags:
-  - Programming
   - Python
   - multitasking
 keywords:
-  - Programming
   - Python
   - multitasking
 last_update:
@@ -23,7 +21,7 @@ import TabItem from '@theme/TabItem';
 
 # Python 中的多工處理原理介紹
 
-這篇文章整理 Python 中各種多工處理方式，啟發自網路上錯誤且分散的資訊，<u>**著重在原理而不是語法**</u>，目的在提供一個全局的視角，方便選擇自己的任務適合哪種方式加速，藉此解決程式碼寫完了，可以動，但實際上用錯了的問題。筆者希望本文是 <u>**清晰、快速、正確、完整**</u> 的介紹文章，不過沒人能保證自己絕對正確，所以如果有任何錯誤煩請回報。
+整理 Python 中各種多工處理方式，本文是 <u>**清晰、快速、正確、完整**</u> 的介紹文章，啟發自網路上錯誤且分散的資訊，<u>**著重在原理而不是語法**</u>，目的在提供一個全局的視角，方便選擇自己的任務適合哪種方式加速，藉此解決程式碼寫完了，可以動，但實際上用錯了的問題。
 
 ## 先備知識
 
@@ -98,7 +96,7 @@ import TabItem from '@theme/TabItem';
 - [【python】听说Python的多线程是假的？它真的没有存在的价值么？](https://www.youtube.com/watch?v=1Bk3IpNsvIU)
 - [【python】听说因为有GIL，多线程连锁都不需要了？](https://www.youtube.com/watch?v=qQt7G5qhRS8)
 
-（這人不是隨便哪個阿貓阿狗出來亂拍影片的，是微軟工程師）
+（這人不是隨便哪個阿貓阿狗出來亂拍影片的，是 Python core dev，微軟工程師）
 
 ## 多工處理方式
 
@@ -128,11 +126,13 @@ Python 中的多進程主要是 `multiprocessing` 和 `ProcessPoolExecutor` 模�
 本段落專門指 Python 中的協程，否則根據異步定義：「不需要等待操作完成就可以繼續執行下一步的執行方式」連 callback function 都算是異步，並且每種語言的協程也不同，所以把範疇限制在 Python 的協程中 （關鍵字：asyncio）。
 :::
 
+<br/>
+
 > TL;DR: 協程就是一個人在<u>**等待**</u>某項工作（如等待文件下載）時，先<u>**切換**</u>去處理其他工作，線程和進程則是多個人同時工作[^diff]。
 
 [^diff]: 註：Python 中的線程被 GIL 鎖住，雖然有很多人但是一次只有一人工作。
 
-協程 (coroutine) 和前面的觀念不一樣，本段落僅提供一個快速的概覽。協程對比線程和進程<u>**完全不同概念，無法類比**</u>，由「程式本身」管理，是一種允許在單一線程內實現多任務異步執行的程式「物件」，後兩者是是作業系統管理「執行單元」，由「作業系統」[控制](https://discuss.python.org/t/python-context-switching-how-is-it-done/8635)。
+協程 (coroutine) 和前面的觀念不一樣，本段落僅提供快速的概覽。協程對比線程和進程<u>**完全不同概念，無法類比**</u>，協程由「程式本身」管理，是一種允許在單一線程內實現多任務異步執行的程式「物件」，後兩者是是作業系統管理「執行單元」，[由「作業系統」控制](https://discuss.python.org/t/python-context-switching-how-is-it-done/8635)。
 
 協程使用協作式多工（cooperative multitasking），由程式碼<u>**主動**</u>讓出控制權，而<u>**不需要作業系統的上下文切換**</u>，因此開銷更小。反之，多進程和多線程是搶佔式多工 (preemptive multitasking)，他們切換是不情不願，是被作業系統強制踢出換人工作。
 

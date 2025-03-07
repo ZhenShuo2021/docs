@@ -14,7 +14,7 @@ first_publish:
   date: 2025-02-15T02:46:46+08:00
 ---
 
-廢話不多說直接上範例。
+先上冷知識，Google 搜尋 `_path_files` 限制中文，我是全中文圈唯一一個寫這個的人，廢話結束直接上範例。
 
 ## 範例一：hugo new content
 
@@ -44,7 +44,7 @@ _hnc() {
 _hnc
 ```
 
-如果你的 zshrc 沒設定過補全記得加上這幾行以啟用
+_path_files 是用於補全檔案名稱的指令，第一個 `-/` 表示只補全目錄，`-W` 告訴他從該路徑開始補全，`-F` 設定過濾條件。如果你的 zshrc 沒設定過補全記得加上這幾行以啟用
 
 ```sh
 # 把路徑加入 fpath
@@ -77,9 +77,12 @@ https://github.com/ZhenShuo2021/dotfiles/blob/9a4886d96df1dc76601bcf9a4450403197
 https://github.com/ZhenShuo2021/dotfiles/blob/9a4886d96df1dc76601bcf9a4450403197f0014b/home/private_dot_config/zsh/fpath/_c
 ```
 
-雖然有 [zsh-completions-howto.org](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org) 可以看，但是我的英文欠佳，他那篇文章我實在抓不到重點，所以 `_describe` 和 `_alternative` 我其實是看 brew site-functions 學他怎麼寫的。
+這兩個函式的用途是：
 
-brew 把所有的補全檔案放在 `/opt/homebrew/share/zsh/site-functions` 裡面，查看 `_brew` 檔案裡面就有用到這兩個函式就這樣依樣畫葫蘆寫出來了。
+- `_describe`: 把陣列傳遞給補全函式
+- `_alternative`: 幫補全結果上標籤，例如 `'favorite:Favorite:_favorite_list'` 代表補全 `favorite` 項目，顯示分類名稱是 `Favorite`，以 `_favorite_list` 函式完成補全。
+
+可以看這篇文章 [zsh-completions-howto.org](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org) 有更多資訊，但是我的英文欠佳，他那篇文章我實在抓不到重點，所以 `_describe` 和 `_alternative` 我其實是看 brew site-functions 學他怎麼寫的，在 `/opt/homebrew/share/zsh/site-functions/_brew` 裡面就有用到這兩個函式，就這樣依樣畫葫蘆寫出來了。
 
 ## 美化補全
 
@@ -140,15 +143,15 @@ zstyle ':completion:*' list-separator ' ➤ '
 
 ## 加速載入
 
-補全系統載入速度很慢會讓你的終端第一次啟動時卡住約 0.2 秒，這是系統的問題不是我的腳本問題，建議使用 [zsh-defer](https://github.com/romkatv/zsh-defer) 延遲載入他，這樣你既有補全系統，又有速度幾乎完全一樣的終端載入速度。
+補全系統載入速度很慢會讓你的終端第一次啟動時卡住約 0.2 秒，這是 `compinit` 問題不是我的腳本問題，建議使用 [zsh-defer](https://github.com/romkatv/zsh-defer) 延遲載入他，這樣你既有補全系統，又有速度幾乎完全一樣的終端載入速度。
 
-再次推銷，如果你的終端機很慢可以用[我的 dotfiles 設定檔](https://github.com/ZhenShuo2021/dotfiles)，不會有任何設定檔的載入速度能比我的快。
+再次推銷，如果你的終端機很慢可以用[我的 dotfiles 設定檔](/docs/linux/fastest-zsh-dotfile)，不會有任何設定檔的載入速度能比我的快，設定檔的 repo 在[這裡](https://github.com/ZhenShuo2021/dotfiles)。
 
 ## 苦難
 
 俗話說的好，授人以漁不如直接給他魚，為了這個簡單的自動補全從頭到尾花了兩週，實際耗時超過四小時，我不希望有人受到一樣的折磨...腳本不難難在找不到資訊，搜尋有關 `zsh completion ignore` 完全找不到相關文章，大部分搜尋結果都是 ZSH 插件的使用而不是自己寫一個補全腳本，最後是偶然發現除了 `_path` 函式以外還有類似的 `_path_files` 函式，怕自己用錯所以上網查 `zsh _path_files _files` 才跳出來[這篇文章](https://unix.stackexchange.com/questions/14434/path-files-and-compadd-ignore-files-parameter)在講 filter，哭啊我的兩個禮拜。
 
-我又是繁體中文第一個寫有關於 ZSH 自動補全的人了，如果你搜尋 `zsh _files` 然後限制所有中文網頁會得到精美的 101 項搜尋結果，扣掉無關的、AI 生成的，搜尋結果數量會掉到更精美的個位數，繁體中文不用講搜尋結果=0。
+我是整個繁體中文圈第一個寫有自動補全的人，如果你搜尋 `zsh _path_files` 然後限制所有中文網頁會得到精美的 10 項搜尋結果，全世界沒半個中文用戶寫這過東西。
 
 ## 參考
 

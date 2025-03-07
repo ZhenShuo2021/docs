@@ -23,6 +23,55 @@
   position: relative;
 }
 
+/* Content Container for Sliding Animation */
+.contentContainer {
+  position: relative;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Section Wrapper Styling */
+.sectionWrapper {
+  width: 100%;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.5s ease-in-out;
+}
+
+.activeSectionWrapper {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  z-index: 10;
+}
+
+.inactiveSectionWrapper {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* Slide Animation Classes */
+.slideFromLeft .sectionWrapper:first-child {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slideFromLeft .sectionWrapper:last-child {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slideFromRight .sectionWrapper:first-child {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slideFromRight .sectionWrapper:last-child {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -37,7 +86,7 @@
   transition: height 0.3s ease, padding 0.3s ease;
   border-radius: 6px 6px 6px 6px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, var(--ifm-color-primary-light), var(--ifm-color-primary-lightest));
+  background: var(--ifm-color-primary-darker);
 }
 
 .heroContent {
@@ -112,7 +161,7 @@
 .subTitle {
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
-  font-weight: 300;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -145,6 +194,12 @@
 
 .heroButton:active {
   transform: translateY(-1px);
+}
+
+/* Active button styling */
+.activeButton {
+  background-color: white;
+  color: var(--ifm-color-primary-dark);
 }
 
 /* Section Styling */
@@ -285,12 +340,8 @@ html[data-theme='dark'] .card {
   border-color: var(--ifm-color-emphasis-300);
 }
 
-html[data-theme='dark'] .cardPlaceholder {
-  background: linear-gradient(135deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary));
-}
-
 html[data-theme='dark'] .hero {
-  background: linear-gradient(135deg, var(--ifm-color-primary-darker), var(--ifm-color-primary-darkest));
+  background: linear-gradient(135deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary-darkest));
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 

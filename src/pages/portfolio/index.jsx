@@ -58,9 +58,11 @@ const Card = React.memo(({ item, type }) => (
 
 export default function Portfolio() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("articles"); // Default to articles view
   const { siteConfig } = useDocusaurusContext();
   const docsMap = useDocsData();
   const heroBackgroundRef = useRef(null);
+  const contentContainerRef = useRef(null);
 
   const { displayedArticles, displayedProjects } = getDisplayedContent(docsMap);
 
@@ -70,8 +72,22 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Function to switch between articles and projects with slide animation
+  const switchSection = (section) => {
+    if (section === activeSection) return;
+    
+    setActiveSection(section);
+    
+    // Apply the appropriate slide animation class
+    if (contentContainerRef.current) {
+      contentContainerRef.current.className = `${styles.contentContainer} ${
+        section === "articles" ? styles.slideFromLeft : styles.slideFromRight
+      }`;
+    }
+  };
+
   return (
-    <Layout title="近期活動" description="文章與專案的近期活動">
+    <Layout title="近期動態" description="最近的文章和專案">
       <BrowserOnly>
         {() => {
           useEffect(() => {
@@ -88,10 +104,16 @@ export default function Portfolio() {
                   </h1>
                   <h3 className={styles.subTitle}>最近的文章和專案</h3>
                   <div className={styles.heroActions}>
-                    <button className={styles.heroButton} onClick={() => scrollToSection("articles")}>
+                    <button 
+                      className={`${styles.heroButton} ${activeSection === "articles" ? styles.activeButton : ""}`} 
+                      onClick={() => switchSection("articles")}
+                    >
                       查看文章
                     </button>
-                    <button className={styles.heroButton} onClick={() => scrollToSection("projects")}>
+                    <button 
+                      className={`${styles.heroButton} ${activeSection === "projects" ? styles.activeButton : ""}`} 
+                      onClick={() => switchSection("projects")}
+                    >
                       瀏覽專案
                     </button>
                   </div>
@@ -100,22 +122,29 @@ export default function Portfolio() {
               </div>
 
               <div className={styles.portfolioContainer}>
-                <section id="articles" className={styles.section}>
-                  <h2 className={styles.sectionTitle}>✍️ 文章</h2>
-                  <div className={styles.grid}>
-                    {displayedArticles.map((article, index) => (
-                      <Card key={`article-${index}`} item={article} type="文章" />
-                    ))}
+                <div ref={contentContainerRef} className={styles.contentContainer}>
+                  <div className={`${styles.sectionWrapper} ${activeSection === "articles" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}>
+                    <section id="articles" className={styles.section}>
+                      <h2 className={styles.sectionTitle}>✍️ 文章</h2>
+                      <div className={styles.grid}>
+                        {displayedArticles.map((article, index) => (
+                          <Card key={`article-${index}`} item={article} type="文章" />
+                        ))}
+                      </div>
+                    </section>
                   </div>
-                </section>
-                <section id="projects" className={styles.section}>
-                  <h2 className={styles.sectionTitle}>🚀 專案</h2>
-                  <div className={styles.grid}>
-                    {displayedProjects.map((project, index) => (
-                      <Card key={`project-${index}`} item={project} type="專案" />
-                    ))}
+                  
+                  <div className={`${styles.sectionWrapper} ${activeSection === "projects" ? styles.activeSectionWrapper : styles.inactiveSectionWrapper}`}>
+                    <section id="projects" className={styles.section}>
+                      <h2 className={styles.sectionTitle}>🚀 專案</h2>
+                      <div className={styles.grid}>
+                        {displayedProjects.map((project, index) => (
+                          <Card key={`project-${index}`} item={project} type="專案" />
+                        ))}
+                      </div>
+                    </section>
                   </div>
-                </section>
+                </div>
               </div>
               <BackToTopButton />
             </>

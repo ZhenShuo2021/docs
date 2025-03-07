@@ -1,0 +1,288 @@
+import { useState, useEffect, useRef } from "react";
+
+export function useSlideEffect(styles) {
+  const [activeSection, setActiveSection] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  const [contentHeight, setContentHeight] = useState("auto");
+  const [slideDirection, setSlideDirection] = useState("");
+
+  const contentContainerRef = useRef(null);
+  const sectionWrapperRefs = useRef([]);
+
+  useEffect(() => {
+    const updateContentHeight = () => {
+      if (sectionWrapperRefs.current[activeSection]) {
+        setContentHeight(
+          `${sectionWrapperRefs.current[activeSection].scrollHeight}px`
+        );
+      }
+    };
+
+    updateContentHeight();
+    const timer = setTimeout(updateContentHeight, 100);
+    return () => clearTimeout(timer);
+  }, [activeSection]);
+
+  useEffect(() => {
+    if (isFirstRender) {
+      setTimeout(() => {
+        setIsFirstRender(false);
+        enableTransitions();
+        setIsInitialized(true);
+      }, 100);
+    }
+  }, [isFirstRender, activeSection]);
+
+  const enableTransitions = () => {
+    if (contentContainerRef.current) {
+      contentContainerRef.current.style.transition = "";
+    }
+
+    sectionWrapperRefs.current.forEach((ref) => {
+      if (ref) {
+        ref.style.transition = "";
+      }
+    });
+  };
+
+  const switchSection = (index) => {
+    if (index === activeSection) return;
+
+    const direction = index < activeSection ? "left" : "right";
+    setSlideDirection(direction);
+
+    requestAnimationFrame(() => {
+      if (contentContainerRef.current) {
+        contentContainerRef.current.style.transition = "none";
+        contentContainerRef.current.classList.remove(
+          styles.slideFromLeft,
+          styles.slideFromRight
+        );
+
+        void contentContainerRef.current.offsetWidth;
+
+        contentContainerRef.current.style.transition = "";
+        contentContainerRef.current.classList.add(
+          direction === "left" ? styles.slideFromLeft : styles.slideFromRight
+        );
+      }
+
+      positionSections(index);
+      setActiveSection(index);
+    });
+  };
+
+  const positionSections = (nextActiveIndex) => {
+    sectionWrapperRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+      
+      if (index === nextActiveIndex) {
+        ref.style.transform = "translateX(0)";
+        ref.style.opacity = "1";
+        ref.style.zIndex = "10";
+      } else if (index < nextActiveIndex) {
+        ref.style.transform = "translateX(-100%)";
+        ref.style.opacity = "0";
+        ref.style.zIndex = "1";
+      } else {
+        ref.style.transform = "translateX(100%)";
+        ref.style.opacity = "0";
+        ref.style.zIndex = "1";
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isInitialized) {
+      positionSections(activeSection);
+    }
+  }, [isInitialized]);
+
+  return {
+    activeSection,
+    isInitialized,
+    isFirstRender,
+    contentHeight,
+    contentContainerRef,
+    sectionWrapperRefs,
+    switchSection,
+    slideDirection,
+  };
+}
+
+export function initFloatingElements(heroBackgroundRef, bgElementClass) {
+  const heroBackground = heroBackgroundRef.current;
+  if (!heroBackground) return;
+
+  const elementCount = Math.floor(Math.random() * 4) + 4;
+  const elements = [];
+
+  const heroArea = heroBackground.clientWidth * heroBackground.clientHeight;
+  let currentOccupiedArea = 0;
+  const minAreaPercentage = 0.2;
+  const maxAreaPercentage = 0.25;
+  const isMobile = window.innerWidth <= 768;
+
+  class FloatingElement {
+    constructor(element, allElements) {
+      this.element = element;
+
+      if (isMobile) {
+        this.size = Math.random() * 80 + 60;
+      } else {
+        this.size = Math.random() * 150 + 80;
+      }
+
+      this.speedX =
+        (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1);
+      this.speedY =
+        (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1);
+      this.mass = this.size;
+
+      this.element.style.width = `${this.size}px`;
+      this.element.style.height = `${this.size}px`;
+
+      let attempts = 0;
+      do {
+        this.x = Math.random() * (heroBackground.clientWidth - this.size);
+        this.y = Math.random() * (heroBackground.clientHeight - this.size);
+        attempts++;
+      } while (this.isOverlapping(allElements) && attempts < 100);
+
+      this.element.style.left = `${this.x}px`;
+      this.element.style.top = `${this.y}px`;
+    }
+
+    isOverlapping(allElements) {
+      for (const other of allElements) {
+        if (other === this) continue;
+        const dx = this.x + this.size / 2 - (other.x + other.size / 2);
+        const dy = this.y + this.size / 2 - (other.y + other.size / 2);
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < (this.size + other.size) / 2) return true;
+      }
+      return false;
+    }
+
+    move() {
+      let newX = this.x + this.speedX;
+      let newY = this.y + this.speedY;
+
+      if (newX <= 0 || newX + this.size >= heroBackground.clientWidth) {
+        this.speedX = -this.speedX;
+        newX = Math.max(
+          0,
+          Math.min(newX, heroBackground.clientWidth - this.size)
+        );
+      }
+      if (newY <= 0 || newY + this.size >= heroBackground.clientHeight) {
+        this.speedY = -this.speedY;
+        newY = Math.max(
+          0,
+          Math.min(newY, heroBackground.clientHeight - this.size)
+        );
+      }
+
+      this.x = newX;
+      this.y = newY;
+      this.element.style.left = `${newX}px`;
+      this.element.style.top = `${newY}px`;
+    }
+
+    checkCollision(other) {
+      const dx = other.x + other.size / 2 - (this.x + this.size / 2);
+      const dy = other.y + other.size / 2 - (this.y + this.size / 2);
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const minDistance = (this.size + other.size) / 2;
+
+      if (distance < minDistance) {
+        const nx = dx / distance;
+        const ny = dy / distance;
+
+        const relativeVx = this.speedX - other.speedX;
+        const relativeVy = this.speedY - other.speedY;
+
+        const impulse =
+          (2 * (relativeVx * nx + relativeVy * ny)) / (this.mass + other.mass);
+
+        this.speedX -= impulse * other.mass * nx;
+        this.speedY -= impulse * other.mass * ny;
+        other.speedX += impulse * this.mass * nx;
+        other.speedY += impulse * this.mass * ny;
+
+        const overlap = minDistance - distance;
+        const correction = overlap / 2;
+        this.x -= nx * correction;
+        this.y -= ny * correction;
+        other.x += nx * correction;
+        other.y += ny * correction;
+
+        this.x = Math.max(
+          0,
+          Math.min(this.x, heroBackground.clientWidth - this.size)
+        );
+        this.y = Math.max(
+          0,
+          Math.min(this.y, heroBackground.clientHeight - this.size)
+        );
+        other.x = Math.max(
+          0,
+          Math.min(other.x, heroBackground.clientWidth - other.size)
+        );
+        other.y = Math.max(
+          0,
+          Math.min(other.y, heroBackground.clientHeight - other.size)
+        );
+
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
+        other.element.style.left = `${other.x}px`;
+        other.element.style.top = `${other.y}px`;
+      }
+    }
+  }
+
+  for (let i = 0; i < elementCount; i++) {
+    const div = document.createElement("div");
+    div.className = bgElementClass;
+    heroBackground.appendChild(div);
+
+    const tempElement = new FloatingElement(div, elements);
+    const elementArea = Math.PI * Math.pow(tempElement.size / 2, 2);
+    const newTotalArea = currentOccupiedArea + elementArea;
+    const newAreaPercentage = newTotalArea / heroArea;
+
+    if (
+      newAreaPercentage <= maxAreaPercentage ||
+      (i === elementCount - 1 && newAreaPercentage > maxAreaPercentage)
+    ) {
+      elements.push(tempElement);
+      currentOccupiedArea = newTotalArea;
+    } else {
+      heroBackground.removeChild(div);
+      break;
+    }
+
+    if (currentOccupiedArea / heroArea >= minAreaPercentage) {
+      break;
+    }
+  }
+
+  let animationFrame;
+  const animate = () => {
+    elements.forEach((el) => el.move());
+    for (let i = 0; i < elements.length; i++) {
+      for (let j = i + 1; j < elements.length; j++) {
+        elements[i].checkCollision(elements[j]);
+      }
+    }
+    animationFrame = requestAnimationFrame(animate);
+  };
+
+  animationFrame = requestAnimationFrame(animate);
+
+  return () => {
+    cancelAnimationFrame(animationFrame);
+  };
+}

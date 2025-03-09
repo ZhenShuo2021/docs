@@ -23,7 +23,7 @@ function HeroSection({ activeSection, switchSection, heroBackgroundRef }) {
     <div className={styles.hero}>
       <div className={styles.heroContent}>
         <h1 className={styles.mainTitle}>
-          <span className={styles.titleHighlight}>近期動態</span>
+          <span className={styles.titleHighlight}>導航</span>
         </h1>
         <h3 className={styles.subTitle}>最近的文章和專案</h3>
         <div className={styles.heroActions}>
@@ -111,7 +111,7 @@ export function Portfolio() {
   } = useSlideEffect(styles);
 
   return (
-    <Layout title="近期動態" description="最近的文章和專案">
+    <Layout title="導航" description="最近的文章和專案">
       <BrowserOnly>
         {() => (
           <>

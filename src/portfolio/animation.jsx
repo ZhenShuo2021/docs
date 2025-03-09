@@ -1,257 +1,220 @@
 import { useState, useEffect, useRef } from "react";
 
 export function useSlideEffect(styles) {
-  const [activeSection, setActiveSection] = useState(0);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isFirstRender, setIsFirstRender] = useState(true);
-  const [contentHeight, setContentHeight] = useState("auto");
-  const [slideDirection, setSlideDirection] = useState("");
-  // 拖拽相關狀態
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [translateX, setTranslateX] = useState(0);
-  // 檢測是否為移動裝置
-  const [isMobile, setIsMobile] = useState(false);
+  const [state, setState] = useState({
+    activeSection: 0,
+    isInitialized: false,
+    isFirstRender: true,  // Add this to track first render
+    contentHeight: "auto",
+    slideDirection: "",
+    touch: { isDragging: false, startX: 0, startY: 0, translateX: 0, isHorizontal: false, directionLocked: false },
+    isMobile: false
+  });
+  
+  const refs = {
+    contentContainer: useRef(null),
+    sectionWrappers: useRef([])
+  };
+  
+  const updateState = (newState) => setState(prev => ({ ...prev, ...newState }));
+  
+  // Update content height with a more reliable approach
+  const updateContentHeight = () => {
+    if (refs.sectionWrappers.current[state.activeSection]) {
+      const height = refs.sectionWrappers.current[state.activeSection].scrollHeight;
+      updateState({ contentHeight: `${height}px` });
+    }
+  };
 
-  const contentContainerRef = useRef(null);
-  const sectionWrapperRefs = useRef([]);
-
-  // 計算總頁數
-  const totalSections = sectionWrapperRefs.current.length;
-
-  // 檢測是否為移動裝置
+  // Initial setup
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
+    const checkMobile = () => updateState({ isMobile: window.innerWidth <= 768 });
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
+    // Increase initial delay to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      enableTransitions();
+      updateContentHeight(); // Calculate height first
+      positionSections(state.activeSection);
+      updateState({ isInitialized: true, isFirstRender: false });
+    }, 300); // Increased from 100ms to 300ms
+    
     return () => {
       window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
     };
   }, []);
-
+  
+  // Recalculate height when active section changes
   useEffect(() => {
-    const updateContentHeight = () => {
-      if (sectionWrapperRefs.current[activeSection]) {
-        setContentHeight(
-          `${sectionWrapperRefs.current[activeSection].scrollHeight}px`
-        );
+    if (state.isInitialized) {
+      updateContentHeight();
+    }
+  }, [state.activeSection, state.isInitialized]);
+  
+  // Add window resize handler to update heights
+  useEffect(() => {
+    const handleResize = () => {
+      if (state.isInitialized) {
+        updateContentHeight();
       }
     };
-
-    updateContentHeight();
-    const timer = setTimeout(updateContentHeight, 100);
-    return () => clearTimeout(timer);
-  }, [activeSection]);
-
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [state.isInitialized]);
+  
+  const totalSections = refs.sectionWrappers.current.length;
+  
   useEffect(() => {
-    if (isFirstRender) {
-      setTimeout(() => {
-        setIsFirstRender(false);
-        enableTransitions();
-        setIsInitialized(true);
-      }, 100);
-    }
-  }, [isFirstRender]);
-
-  // 啟用過渡動畫
-  const enableTransitions = () => {
-    if (contentContainerRef.current) {
-      contentContainerRef.current.style.transition = "";
-    }
-    sectionWrapperRefs.current.forEach((ref) => {
-      if (ref) ref.style.transition = "";
-    });
-  };
-
-  // 處理滑動開始 - 只在移動裝置上啟用
-  const handleDragStart = (e) => {
-    if (!isMobile) return;
+    const container = refs.contentContainer.current;
+    if (!container || !state.isMobile) return;
     
-    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-    setIsDragging(true);
-    setStartX(clientX);
-    
-    sectionWrapperRefs.current.forEach((ref) => {
-      if (ref) ref.style.transition = 'none';
-    });
-  };
-
-  // 處理滑動移動 - 只在移動裝置上啟用
-  const handleDragMove = (e) => {
-    if (!isMobile || !isDragging || !totalSections) return;
-    
-    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-    const diffX = clientX - startX;
-    setTranslateX(diffX);
-
-    sectionWrapperRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-      
-      if (index === activeSection) {
-        ref.style.transform = `translateX(${diffX}px)`;
-      } 
-      // 處理邊緣情況的特殊效果
-      else if (activeSection === 0 && index === totalSections - 1 && diffX > 0) {
-        // 最左側往左滑，顯示最右側
-        ref.style.transform = `translateX(calc(-100% + ${diffX}px))`;
-      } 
-      else if (activeSection === totalSections - 1 && index === 0 && diffX < 0) {
-        // 最右側往右滑，顯示最左側
-        ref.style.transform = `translateX(calc(100% + ${diffX}px))`;
-      }
-      else if (index < activeSection) {
-        ref.style.transform = `translateX(calc(-100% + ${diffX}px))`;
-      } 
-      else {
-        ref.style.transform = `translateX(calc(100% + ${diffX}px))`;
-      }
-    });
-  };
-
-  // 處理滑動結束 - 只在移動裝置上啟用
-  const handleDragEnd = () => {
-    if (!isMobile || !isDragging || !totalSections) return;
-    
-    setIsDragging(false);
-    enableTransitions();
-
-    const threshold = 50; // 滑動閾值
-    let newIndex = activeSection;
-    
-    // 處理左右邊緣的循環滑動
-    if (translateX > threshold) {
-      // 向右滑動
-      if (activeSection > 0) {
-        newIndex = activeSection - 1;
-      } else {
-        // 最左側，循環到最右側
-        newIndex = totalSections - 1;
-      }
-      setSlideDirection("left");
-    } else if (translateX < -threshold) {
-      // 向左滑動
-      if (activeSection < totalSections - 1) {
-        newIndex = activeSection + 1;
-      } else {
-        // 最右側，循環到最左側
-        newIndex = 0;
-      }
-      setSlideDirection("right");
-    }
-
-    setActiveSection(newIndex);
-    setTranslateX(0);
-    
-    // 延遲執行位置更新，確保動畫效果正確
-    setTimeout(() => {
-      positionSections(newIndex);
-    }, 50);
-  };
-
-  // 定位各區塊
-  const positionSections = (nextActiveIndex) => {
-    sectionWrapperRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-      
-      if (index === nextActiveIndex) {
-        ref.style.transform = "translateX(0)";
-        ref.style.opacity = "1";
-        ref.style.zIndex = "10";
-      } else if (index < nextActiveIndex) {
-        ref.style.transform = "translateX(-100%)";
-        ref.style.opacity = "0";
-        ref.style.zIndex = "1";
-      } else {
-        ref.style.transform = "translateX(100%)";
-        ref.style.opacity = "0";
-        ref.style.zIndex = "1";
-      }
-    });
-  };
-
-  const switchSection = (index) => {
-    if (index === activeSection || !totalSections) return;
-
-    const direction = index < activeSection ? "left" : "right";
-    setSlideDirection(direction);
-
-    // 處理邊緣情況的特殊效果
-    let useSpecialEffect = false;
-    if ((activeSection === 0 && index === totalSections - 1) || 
-        (activeSection === totalSections - 1 && index === 0)) {
-      useSpecialEffect = true;
-    }
-
-    requestAnimationFrame(() => {
-      if (contentContainerRef.current) {
-        contentContainerRef.current.style.transition = "none";
-        contentContainerRef.current.classList.remove(
-          styles.slideFromLeft,
-          styles.slideFromRight
-        );
-
-        void contentContainerRef.current.offsetWidth;
-
-        contentContainerRef.current.style.transition = "";
+    const handlers = {
+      start: (e) => {
+        const touch = e.touches[0];
+        updateState({ 
+          touch: { 
+            ...state.touch, 
+            isDragging: true, 
+            startX: touch.clientX, 
+            startY: touch.clientY, 
+            translateX: 0, 
+            isHorizontal: false, 
+            directionLocked: false 
+          } 
+        });
         
-        // 處理循環滑動的特殊效果
-        if (useSpecialEffect) {
-          // 最左側到最右側 或 最右側到最左側
-          if (activeSection === 0 && index === totalSections - 1) {
-            contentContainerRef.current.classList.add(styles.slideFromLeft);
-          } else {
-            contentContainerRef.current.classList.add(styles.slideFromRight);
+        refs.sectionWrappers.current.forEach(ref => { if (ref) ref.style.transition = 'none'; });
+      },
+      
+      move: (e) => {
+        const { isDragging, startX, startY, directionLocked, isHorizontal } = state.touch;
+        if (!isDragging || !totalSections) return;
+        
+        const touch = e.touches[0];
+        const diffX = touch.clientX - startX;
+        const diffY = touch.clientY - startY;
+        
+        if (!directionLocked) {
+          const isHorizontalSwipe = Math.abs(diffX) > 25 && Math.abs(diffX) > Math.abs(diffY) * 1.5; // 水平閾值 25px
+          const isVerticalSwipe = Math.abs(diffY) > 10; // 垂直閾值 10px
+          
+          if (isHorizontalSwipe || isVerticalSwipe) {
+            updateState({ touch: { ...state.touch, isHorizontal: isHorizontalSwipe, directionLocked: true } });
+            if (isHorizontalSwipe) e.preventDefault();
           }
+        } else if (isHorizontal) {
+          e.preventDefault();
+          updateState({ touch: { ...state.touch, translateX: diffX } });
+          
+          refs.sectionWrappers.current.forEach((ref, index) => {
+            if (!ref) return;
+            
+            ref.style.transform = index === state.activeSection ? `translateX(${diffX}px)` :
+              (state.activeSection === 0 && index === totalSections - 1 && diffX > 0) ? `translateX(calc(-100% + ${diffX}px))` :
+              (state.activeSection === totalSections - 1 && index === 0 && diffX < 0) ? `translateX(calc(100% + ${diffX}px))` :
+              (index < state.activeSection) ? `translateX(calc(-100% + ${diffX}px))` : `translateX(calc(100% + ${diffX}px))`;
+          });
+        }
+      },
+      
+      end: () => {
+        const { isDragging, translateX, isHorizontal } = state.touch;
+        if (!isDragging || !totalSections) return;
+        
+        updateState({ touch: { ...state.touch, isDragging: false } });
+        enableTransitions();
+        
+        if (isHorizontal) {
+          const threshold = 100; // 滑動閾值 100px
+          let newIndex = state.activeSection;
+          let newDirection = "";
+          
+          if (translateX > threshold) {
+            newIndex = state.activeSection > 0 ? state.activeSection - 1 : totalSections - 1;
+            newDirection = "left";
+          } else if (translateX < -threshold) {
+            newIndex = state.activeSection < totalSections - 1 ? state.activeSection + 1 : 0;
+            newDirection = "right";
+          }
+          
+          updateState({ activeSection: newIndex, slideDirection: newDirection });
+          setTimeout(() => positionSections(newIndex), 50);
         } else {
-          contentContainerRef.current.classList.add(
-            direction === "left" ? styles.slideFromLeft : styles.slideFromRight
-          );
+          positionSections(state.activeSection);
         }
       }
-
-      positionSections(index);
-      setActiveSection(index);
+    };
+    
+    container.addEventListener('touchstart', handlers.start, { passive: false });
+    container.addEventListener('touchmove', handlers.move, { passive: false });
+    container.addEventListener('touchend', handlers.end, { passive: false });
+    
+    return () => {
+      container.removeEventListener('touchstart', handlers.start);
+      container.removeEventListener('touchmove', handlers.move);
+      container.removeEventListener('touchend', handlers.end);
+    };
+  }, [state, totalSections]);
+  
+  const enableTransitions = () => {
+    if (refs.contentContainer.current) refs.contentContainer.current.style.transition = "";
+    refs.sectionWrappers.current.forEach(ref => { if (ref) ref.style.transition = ""; });
+  };
+  
+  const positionSections = (nextActiveIndex) => {
+    refs.sectionWrappers.current.forEach((ref, index) => {
+      if (!ref) return;
+      
+      const isActive = index === nextActiveIndex;
+      Object.assign(ref.style, {
+        transform: isActive ? "translateX(0)" : (index < nextActiveIndex ? "translateX(-100%)" : "translateX(100%)"),
+        opacity: isActive ? "1" : "0",
+        zIndex: isActive ? "10" : "1"
+      });
     });
   };
-
-  useEffect(() => {
-    if (isInitialized) {
-      positionSections(activeSection);
-    }
-  }, [isInitialized]);
-
-  // 添加事件監聽 - 只為移動裝置添加觸摸事件
-  useEffect(() => {
-    const container = contentContainerRef.current;
-    if (!container) return;
-
-    // 只為移動裝置添加觸摸事件
-    container.addEventListener('touchstart', handleDragStart);
-    container.addEventListener('touchmove', handleDragMove);
-    container.addEventListener('touchend', handleDragEnd);
-
-    return () => {
-      container.removeEventListener('touchstart', handleDragStart);
-      container.removeEventListener('touchmove', handleDragMove);
-      container.removeEventListener('touchend', handleDragEnd);
-    };
-  }, [isDragging, startX, translateX, activeSection, totalSections, isMobile]);
-
+  
+  const switchSection = (index) => {
+    if (index === state.activeSection || !totalSections) return;
+    
+    const direction = index < state.activeSection ? "left" : "right";
+    const isEdgeCase = (state.activeSection === 0 && index === totalSections - 1) || 
+                       (state.activeSection === totalSections - 1 && index === 0);
+    
+    requestAnimationFrame(() => {
+      const container = refs.contentContainer.current;
+      if (container) {
+        container.style.transition = "none";
+        container.classList.remove(styles.slideFromLeft, styles.slideFromRight);
+        void container.offsetWidth;
+        container.style.transition = "";
+        
+        container.classList.add(
+          isEdgeCase 
+            ? (state.activeSection === 0 ? styles.slideFromLeft : styles.slideFromRight)
+            : (direction === "left" ? styles.slideFromLeft : styles.slideFromRight)
+        );
+      }
+      
+      positionSections(index);
+      updateState({ activeSection: index, slideDirection: direction });
+    });
+  };
+  
   return {
-    activeSection,
-    isInitialized,
-    isFirstRender,
-    contentHeight,
-    contentContainerRef,
-    sectionWrapperRefs,
+    activeSection: state.activeSection,
+    isInitialized: state.isInitialized,
+    isFirstRender: state.isFirstRender,  // Return this so it can be used in Portfolio component
+    contentHeight: state.contentHeight,
+    contentContainerRef: refs.contentContainer,
+    sectionWrapperRefs: refs.sectionWrappers,
     switchSection,
-    slideDirection,
-    isDragging,
-    translateX,
+    slideDirection: state.slideDirection,
+    isDragging: state.touch.isDragging,
+    translateX: state.touch.translateX
   };
 }
 

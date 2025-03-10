@@ -14,7 +14,7 @@ first_publish:
   date: 2025-02-15T02:46:46+08:00
 ---
 
-接著直接上範例。
+直接上範例。
 
 ## 範例一：hugo new content
 

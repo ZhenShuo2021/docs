@@ -98,10 +98,10 @@ h3, h4, h5, h6 {
   margin-right: 40px;
 } */
 
-article {
+/* article {
   margin-left: 45px;
   margin-right: 25px;
-}
+} */
 
 @media (max-width: 768px) {
   article {
@@ -120,35 +120,27 @@ article {
 }
 
 /* 文章底部翻頁 */
-.pagination-nav__link {
-  background: linear-gradient(
-    90deg,
-    var(--ifm-color-primary-light) 11.3%,
-    var(--ifm-color-primary) 161.54%
-  );
-  color: white;
-  border: none;
+.pagination-nav .pagination-nav__link {
+  display: inline-flex;
+  justify-content: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--ifm-color-primary);
+  opacity: 0.8;
+  border-radius: 5px;
+  border-color: transparent;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.pagination-nav__link:hover {
-  color: white;
+.pagination-nav .pagination-nav__link .pagination-nav__sublabel {
+  display: none;
 }
 
-.pagination-nav__item:hover .pagination-nav__link {
-  border: none;
+.pagination-nav .pagination-nav__link:active {
+  background-color: var(--ifm-color-primary-darker);
 }
 
-.pagination-nav__item--next > .pagination-nav__link {
-  background: linear-gradient(
-    90deg,
-    var(--ifm-color-primary) 11.3%,
-    var(--ifm-color-primary-light) 161.54%
-  );
-}
-
-.pagination-nav__sublabel {
-  color: white;
-}
 
 /* -------------------------------------------------------------------------- */
 /*                                 inline code                                */

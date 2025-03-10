@@ -34,7 +34,8 @@ export const articlesMeta = [
     image: imageShell,
   },
   {
-    link: "/docs/python/virtual-environment-management-comparison",
+    link: "/python/virtual-environment-management-comparison",
+    description: "網路教學文章劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該選擇這個套件嗎？本文告訴你該怎麼選擇。",
     image: imageProgramming,
   },
   { link: "/docs/python/python-uv-complete-guide", image: imageProgramming },

@@ -25,6 +25,11 @@ const paths = [
     filesPattern: "site-docs-*.json",
     sourceType: "git"
   },
+  {
+    path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForPython",
+    filesPattern: "site-docs-*.json",
+    sourceType: "git"
+  },
 ];
 
 // 輸出的 JSON 位置

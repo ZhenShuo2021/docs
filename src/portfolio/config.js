@@ -19,33 +19,32 @@ export const articlesMeta = [
   //   image: "https://picsum.photos/600/300?random=7",
   // },
   {
-    link: "/docs/useful-tools/cross-platform-terminal-comparison",
+    link: "/memo/useful-tools/cross-platform-terminal-comparison",
     image: imageShell,
   },
   {
     description: "應該是繁體中文唯一一篇帶你寫自動補全的文章",
-    link: "/docs/linux/custom-zsh-completion",
+    link: "/memo/linux/custom-zsh-completion",
     image: imageShell,
   },
   {
     title: "0.03 秒啟動極速 Zsh",
     description: "一鍵安裝快到誇張的 zsh 設定檔！",
-    link: "/docs/linux/fastest-zsh-dotfile",
+    link: "/memo/linux/fastest-zsh-dotfile",
     image: imageShell,
   },
   {
     link: "/python/virtual-environment-management-comparison",
-    description: "網路教學文章劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該選擇這個套件嗎？本文告訴你該怎麼選擇。",
     image: imageProgramming,
   },
-  { link: "/docs/python/python-uv-complete-guide", image: imageProgramming },
+  { link: "/python/python-uv-complete-guide", image: imageProgramming },
   {
     description: "最快、最正確、最完整的 Numba 教學",
-    link: "/docs/python/numba-tutorial-accelerate-python-computing",
+    link: "/python/numba-tutorial-accelerate-python-computing",
     image: imageProgramming,
   },
   {
-    link: "/docs/python/numba-performance-benchmark-svml-signal-processing",
+    link: "/python/numba-performance-benchmark-svml-signal-processing",
     image: imageProgramming,
   },
   {

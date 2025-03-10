@@ -2,6 +2,7 @@ import Link from '@docusaurus/Link';
 import styles from "./LatestPosts.module.css";
 
 import latestPostsList from './latest-posts.json';
+latestPostsList.length = Math.min(latestPostsList.length, 10);
 
 function Post({ title, permalink, tags, yearMonth, day }) {
   return (

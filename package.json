@@ -7,7 +7,7 @@
     "docusaurus": "docusaurus",
     "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
     "start": "cross-env TZ=Asia/Taipei URL=http://localhost BASE_URL=/ yarn new && docusaurus start -p 8080",
-    "build": "cross-env TZ=Asia/Taipei URL=https://docs.zsl0621.cc BASE_URL=/ docusaurus build",
+    "build": "cross-env TZ=Asia/Taipei URL=https://docs.zsl0621.cc BASE_URL=/ docusaurus build && cp src/components/LatestPosts/latest-posts.json ./build/site-urls.json",
     "swizzle": "cross-env URL=http://localhost BASE_URL=/ docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -42,6 +42,7 @@
     "rehype-stringify": "^10.0.1",
     "remark-math": "^6.0.0",
     "search-insights": "^2.17.3",
+    "string-similarity": "^4.0.4",
     "url-loader": "^4.1.1"
   },
   "resolutions": {
@@ -62,6 +63,7 @@
   "devDependencies": {
     "@docusaurus/tsconfig": "^3.7.0",
     "@types/react": "^19.0.10",
+    "@types/string-similarity": "^4",
     "cross-env": "^7.0.3",
     "glob": "^11.0.1",
     "typescript": "^5.7.3",

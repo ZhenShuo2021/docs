@@ -68,7 +68,7 @@ ps aux --sort=-%mem | head -n 10
 
 ## 開機自動執行
 
-這裡用docker-compose示範，五步驟分別是建立.service檔、reload .service、啟用、開始、查看狀態。參考資料[^1]。
+這裡用docker-compose示範，五步驟分別是建立.service檔、reload .service、啟用、開始、查看狀態。
 
 ```sh
 sudo nano /etc/systemd/system/stirling-pdf.service
@@ -114,7 +114,7 @@ exit 0
 
 ## SMB 掛載
 
-在 `etc/fstab` 最下方新增：
+在 `/etc/fstab` 最下方新增：
 
 ```sh
 # 格式

@@ -38,9 +38,33 @@ vim.g.clipboard = {
 }
 ```
 
-設定完成。
+如果你使用的是 WezTerm 終端貼上會有問題，請使用此版本
 
-可能有刪除速度緩慢的問題，請追蹤[此 issue](https://github.com/neovim/neovim/issues/11804)查看進度，我個人在 TrueNAS 和 Ubuntu Server 上都沒遇到。如果遇到 Windows Terminal 貼上問題請見 [穿透 wsl 和 ssh, 新版本 neovim 跨设备任意复制，copy anywhere!](https://www.sxrhhh.top/blog/2024/06/06/neovim-copy-anywhere/)。
+```lua
+vim.o.clipboard = "unnamedplus"
+
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
+```
+
+如果遇到刪除速度緩慢的問題，請追蹤[此 issue](https://github.com/neovim/neovim/issues/11804)查看進度。如果有 Windows Terminal 貼上問題請見 [穿透 wsl 和 ssh, 新版本 neovim 跨设备任意复制，copy anywhere!](https://www.sxrhhh.top/blog/2024/06/06/neovim-copy-anywhere/)。
 
 - [feat(clipboard): add OSC 52 clipboard support #25872](https://github.com/neovim/neovim/pull/25872)
 - [Neovim: Provider](https://neovim.io/doc/user/provider.html#_clipboard-integration)
+- [How to use OSC 52 clipboard for copy only? · neovim/neovim · Discussion #28010 · GitHub](https://github.com/neovim/neovim/discussions/28010#discussioncomment-9877494)

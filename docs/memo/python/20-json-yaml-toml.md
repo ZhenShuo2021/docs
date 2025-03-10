@@ -1,6 +1,5 @@
 ---
 title: JSON、YAML、TOML 簡易說明
-description: JSON、YAML、TOML 資料格式簡易說明
 sidebar_label: JSON/YAML/TOML
 tags:
   - Python

@@ -1,15 +1,12 @@
 ---
 title: 基礎操作
 author: zsl0621
-description: 挑選日常常用指令集合，囊括 99% 的日常使用問題。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-09-10T16:15:33+08:00
   author: zsl0621

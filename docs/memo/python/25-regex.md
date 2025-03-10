@@ -1,6 +1,5 @@
 ---
 title: 正則表達式
-description: Python 正則表達式 Regex
 tags:
   - Python
   - Regex

@@ -1,6 +1,5 @@
 ---
 title: 修復 NextCloud X-OC-Mtime 錯誤
-description: 修復 NextCloud X-OC-Mtime 錯誤
 sidebar_label: 修復 NextCloud X-OC-Mtime
 tags:
   - NAS

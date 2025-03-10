@@ -1,6 +1,5 @@
 ---
 title: Python 遍歷資料夾方式
-description: Python 遍歷資料夾方式
 sidebar_label: 遍歷資料夾方式
 tags:
   - Python

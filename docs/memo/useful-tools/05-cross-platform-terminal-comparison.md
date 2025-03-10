@@ -1,6 +1,5 @@
 ---
 title: 跨平台終端機實測大對決
-description: 跨平台終端機實測大對決
 sidebar_label: 跨平台終端機實測大對決
 tags:
   - 實用工具

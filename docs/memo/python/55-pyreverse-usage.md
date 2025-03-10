@@ -1,6 +1,5 @@
 ---
 title: Pyreverse 指令小抄和測試範例
-description:  Pyreverse 指令小抄和測試範例
 tags:
   - Python
   - Pyreverse

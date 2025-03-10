@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 
 # Python 中的 False-Sharing
 
-前一篇文章提到了 false-sharing，但是 Python 中好像沒看到有人在談這個問題，畢竟會討論效能的人本身就不會用 Python 寫程式，又看到[暗黑執行緒的文章](https://blog.darkthread.net/blog/false-sharing-demo-with-jquery-animation/)說
+[前一篇文章](numba-performance-benchmark-svml-signal-processing)提到了 false-sharing，但是 Python 中好像沒看到有人在談這個問題，畢竟會討論效能的人本身就不會用 Python 寫程式，又看到[暗黑執行緒的文章](https://blog.darkthread.net/blog/false-sharing-demo-with-jquery-animation/)說
 
 > 是台積電才要關心的事，如果你是 Samsung、hTC、Nokia，暫時可以不用煩惱怎麼對付它.
 

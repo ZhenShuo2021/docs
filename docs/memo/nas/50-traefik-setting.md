@@ -1,6 +1,5 @@
 ---
 title: 設定 Traefik 反向代理
-description: 如何在 NAS 中設定 Traefik 反向代理 Docker 服務安全的讓服務連上外網
 tags:
   - NAS
   - Linux

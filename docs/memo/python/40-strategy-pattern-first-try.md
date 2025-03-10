@@ -1,6 +1,5 @@
 ---
 title: 初嘗策略模式
-description: 第一次撰寫策略模式的紀錄
 tags:
   - Programming
   - Python

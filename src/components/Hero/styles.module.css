@@ -29,6 +29,15 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+.herowave h4 {
+  position: relative;
+  z-index: 1;
+  font-size: calc(1.5vw + 1vh + 1vmin);
+  margin: 4px 12px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .herowave p {
   position: relative;
   z-index: 1;

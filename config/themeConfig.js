@@ -17,80 +17,65 @@ module.exports = {
     darkTheme: prismThemes.vsDark,
   },
   navbar: {
-    title: "zsl0621@Docs",
+    // title: "zsl0621@Docs",
     logo: {
-      alt: "Site Logo",
-      src: "img/favicon.svg",
+      alt: "zsl0621@Docs",
+      src: "img/logo_circle.webp",
     },
     items: [
       {
         type: 'doc',
-        position: 'left',
         docsPluginId: 'pluginForGit',
         docId: 'git-hello-page',
         sidebarId: 'gitSidebar',
         label: "Git",
-      },
-      {
-        type: 'docSidebar',
-        position: 'left',
-        sidebarId: 'docsSidebar',
-        label: "文檔庫",
+        position: 'right',
       },
       {
         type: 'doc',
-        position: 'left',
-        docsPluginId: 'pluginForMemo',
-        docId: 'memo',
-        sidebarId: 'memoSidebar',
-        label: "備忘錄",
+        docsPluginId: 'pluginForPython',
+        docId: 'python-hello-page',
+        sidebarId: 'pythonSidebar',
+        label: "Python",
+        position: 'right',
       },
+      // {
+      //   type: 'docSidebar',
+      //   position: 'left',
+      //   sidebarId: 'docsSidebar',
+      //   label: "文檔庫",
+      // },
       {
-        label: '導航',
-        to: '/portfolio',
-        position: 'left',
+        type: 'doc',
+        docsPluginId: 'pluginForMemo',
+        docId: 'about',
+        sidebarId: 'memoSidebar',
+        label: "筆記",
+        position: 'right',
       },
       // {
       //   type: 'dropdown',
-      //   label: 'Quick Links',
-      //   position: 'left',
+      //   label: '更多',
+      //   position: 'right',
       //   items: [
       //     {
-      //       label: '搞懂 Rebase Onto',
-      //       to: '/docs/git/advance/rebase-onto',
+      //       label: '筆記',
+      //       to: '/memo/about',
+      //       // href: 'https://www.zsl0621.cc/',
       //     },
       //     {
-      //       label: 'Git Sparse Checkout',
-      //       to: '/docs/git/advance/reduce-size-with-sparse-checkout',
-      //     },
-      //     {
-      //       label: '新竹市加水站地圖',
-      //       to: '/memo/python/water-stations-map',
-      //     },
-      //     {
-      //       label: 'Numba 教學',
-      //       to: '/docs/python/numba-tutorial-accelerate-python-computing',
-      //     },
-      //     {
-      //       label: 'ZSH 補全函式',
-      //       to: '/docs/linux/customize-zsh-function-and-comletion',
-      //     },
-      //     {
-      //       label: '極速 Zsh',
-      //       to: '/docs/linux/fastest-zsh-dotfile',
-      //     },
-      //     {
-      //       label: '終端機實測',
-      //       to: '/docs/useful-tools/cross-platform-terminal-comparison',
-      //     },
-      //     {
-      //       label: '部落格',
-      //       href: 'https://www.zsl0621.cc/',
+      //       label: 'Github',
+      //       href: 'https://github.com/ZhenShuo2021/',
       //     },
       //   ],
       // },
 
 
+      {
+        label: '導航',
+        to: '/portfolio',
+        position: 'right',
+      },
       {
         href: 'https://github.com/ZhenShuo2021',
         position: 'right',
@@ -109,10 +94,12 @@ module.exports = {
     // CC BY-NC 4.0</a>  授權條款<br>
     ,
   },
-  metadata: [
-    { name: 'robots', content: 'max-image-preview:large' },
-    { name: 'og:type', content: 'article' },
-  ],
+  docs: {
+    sidebar: {
+      hideable: true,
+      autoCollapseCategories: true,
+    },
+  },
   algolia: {
     appId: 'DSU91EEXY7',
     apiKey: 'd6be4daef0ab4a655727096c8a3a6000',

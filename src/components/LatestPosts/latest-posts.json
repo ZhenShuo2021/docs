@@ -1,186 +1,186 @@
 [
   {
     "title": "Nix 套件管理：我的失敗經驗",
-    "permalink": "/docs/linux/abandoned-nix",
+    "permalink": "/memo/linux/abandoned-nix",
     "description": "Nix 是非常特別的套件管理系統，而且不只是 NixOS 能用，macOS 也能將其作為套件管理器。筆者曾經嘗試使用但最後放棄了，這篇是我的使用心得和整理。",
     "tags": [
       {
         "inline": true,
         "label": "Linux",
-        "permalink": "/docs/tags/linux"
+        "permalink": "/memo/tags/linux"
       },
       {
         "inline": true,
         "label": "Nix",
-        "permalink": "/docs/tags/nix"
+        "permalink": "/memo/tags/nix"
       }
     ],
     "date": "2025-03-07 21:16:30",
     "yearMonth": "2025 年 03 月",
     "day": "07",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "跨平台終端機實測大對決",
-    "permalink": "/docs/useful-tools/cross-platform-terminal-comparison",
+    "permalink": "/memo/useful-tools/cross-platform-terminal-comparison",
     "description": "跨平台終端機實測大對決",
     "tags": [
       {
         "inline": true,
         "label": "實用工具",
-        "permalink": "/docs/tags/實用工具"
+        "permalink": "/memo/tags/實用工具"
       },
       {
         "inline": true,
         "label": "Terminal Emulator",
-        "permalink": "/docs/tags/terminal-emulator"
+        "permalink": "/memo/tags/terminal-emulator"
       },
       {
         "inline": true,
         "label": "終端機",
-        "permalink": "/docs/tags/終端機"
+        "permalink": "/memo/tags/終端機"
       }
     ],
     "date": "2025-03-04 23:52:00",
     "yearMonth": "2025 年 03 月",
     "day": "04",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "撰寫 ZSH 補全函式",
-    "permalink": "/docs/linux/custom-zsh-completion",
+    "permalink": "/memo/linux/custom-zsh-completion",
     "description": "使用 _path_files 函式完成自動補全，舉例來說，將 `hugo new content` 簡寫為 `hnc` 並且支援補全，第一步先建立一個檔案名稱為 hnc 的腳本放在 fpath 裡面，不能用 alias，alias 不給補全，腳本如下：...",
     "tags": [
       {
         "inline": true,
         "label": "Linux",
-        "permalink": "/docs/tags/linux"
+        "permalink": "/memo/tags/linux"
       },
       {
         "inline": true,
         "label": "ZSH",
-        "permalink": "/docs/tags/zsh"
+        "permalink": "/memo/tags/zsh"
       }
     ],
     "date": "2025-03-04 22:20:46",
     "yearMonth": "2025 年 03 月",
     "day": "04",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "TrueNas SMB 簽名及加密設定",
-    "permalink": "/docs/nas/smb-signing",
+    "permalink": "/memo/nas/smb-signing",
     "description": "TrueNAS 預設沒有開啟 SMB 簽名及加密，新版又取消了 auxiliary parameters 欄位，所以不要懷疑自己找不到，搞老半天就這個能用。",
     "tags": [
       {
         "inline": true,
         "label": "NAS",
-        "permalink": "/docs/tags/nas"
+        "permalink": "/memo/tags/nas"
       },
       {
         "inline": true,
         "label": "Linux",
-        "permalink": "/docs/tags/linux"
+        "permalink": "/memo/tags/linux"
       },
       {
         "inline": true,
         "label": "ZFS",
-        "permalink": "/docs/tags/zfs"
+        "permalink": "/memo/tags/zfs"
       }
     ],
     "date": "2025-03-04 14:40:10",
     "yearMonth": "2025 年 03 月",
     "day": "04",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "在 Neovim 中設定 OSC52 實現跨 ssh 複製",
-    "permalink": "/docs/others/neovim-osc52-ssh-copy",
+    "permalink": "/memo/others/neovim-osc52-ssh-copy",
     "description": "在 Neovim 中設定 OSC52 實現跨 ssh 複製",
     "tags": [
       {
         "inline": true,
         "label": "實用工具",
-        "permalink": "/docs/tags/實用工具"
+        "permalink": "/memo/tags/實用工具"
       },
       {
         "inline": true,
         "label": "Neovim",
-        "permalink": "/docs/tags/neovim"
+        "permalink": "/memo/tags/neovim"
       }
     ],
     "date": "2025-03-01 22:19:00",
     "yearMonth": "2025 年 03 月",
     "day": "01",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
-    "permalink": "/docs/linux/fastest-zsh-dotfile",
+    "permalink": "/memo/linux/fastest-zsh-dotfile",
     "description": "0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
     "tags": [
       {
         "inline": true,
         "label": "Zsh",
-        "permalink": "/docs/tags/zsh"
+        "permalink": "/memo/tags/zsh"
       },
       {
         "inline": true,
         "label": "Performance",
-        "permalink": "/docs/tags/performance"
+        "permalink": "/memo/tags/performance"
       }
     ],
     "date": "2025-03-01 20:43:04",
     "yearMonth": "2025 年 03 月",
     "day": "01",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "修復 NextCloud X-OC-Mtime 錯誤",
-    "permalink": "/docs/nas/nextcloud-X-OC-Mtime",
+    "permalink": "/memo/nas/nextcloud-X-OC-Mtime",
     "description": "修復 NextCloud X-OC-Mtime 錯誤",
     "tags": [
       {
         "inline": true,
         "label": "NAS",
-        "permalink": "/docs/tags/nas"
+        "permalink": "/memo/tags/nas"
       },
       {
         "inline": true,
         "label": "NextCloud",
-        "permalink": "/docs/tags/next-cloud"
+        "permalink": "/memo/tags/next-cloud"
       },
       {
         "inline": true,
         "label": "X-OC-Mtime",
-        "permalink": "/docs/tags/x-oc-mtime"
+        "permalink": "/memo/tags/x-oc-mtime"
       }
     ],
     "date": "2025-02-27 16:34:00",
     "yearMonth": "2025 年 02 月",
     "day": "27",
-    "source": "docs"
+    "source": "memo"
   },
   {
     "title": "UV Python 教學，最佳虛擬環境管理工具（上）",
-    "permalink": "/docs/python/python-uv-complete-guide",
+    "permalink": "/python/python-uv-complete-guide",
     "description": "UV Python 教學，最佳虛擬環境管理工具（上）",
     "tags": [
       {
         "inline": true,
         "label": "Python",
-        "permalink": "/docs/tags/python"
+        "permalink": "/python/tags/python"
       },
       {
         "inline": true,
         "label": "虛擬環境",
-        "permalink": "/docs/tags/虛擬環境"
+        "permalink": "/python/tags/虛擬環境"
       }
     ],
     "date": "2025-02-15 10:04:00",
     "yearMonth": "2025 年 02 月",
     "day": "15",
-    "source": "docs"
+    "source": "git"
   },
   {
     "title": "使用變基 Rebase 合併分支",

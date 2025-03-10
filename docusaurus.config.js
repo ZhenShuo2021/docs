@@ -10,7 +10,7 @@ module.exports = {
   url: "https://docs.zsl0621.cc",
   baseUrl: "/",
   organizationName: "ZhenShuo2021", // Usually your GitHub org/user name.
-  projectName: "zsl0621@Docs", // Usually your repo name.
+  projectName: "docs", // Usually your repo name.
   themes: ['docusaurus-theme-github-codeblock', '@docusaurus/theme-mermaid'],
   markdown: { mermaid: true },
   i18n: { defaultLocale: 'zh-TW', locales: ['zh-TW'] },

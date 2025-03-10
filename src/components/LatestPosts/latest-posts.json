@@ -2,7 +2,7 @@
   {
     "title": "Nix 套件管理：我的失敗經驗",
     "permalink": "/docs/linux/abandoned-nix",
-    "description": "本文原本是在補充前一篇 Ubuntu 套件管理器時臨時起意加上的，寫完後覺得把他放成一篇文章好了。",
+    "description": "Nix 是非常特別的套件管理系統，而且不只是 NixOS 能用，macOS 也能將其作為套件管理器。筆者曾經嘗試使用但最後放棄了，這篇是我的使用心得和整理。",
     "tags": [
       {
         "inline": true,
@@ -115,9 +115,9 @@
     "source": "docs"
   },
   {
-    "title": "0.04 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
+    "title": "0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
     "permalink": "/docs/linux/fastest-zsh-dotfile",
-    "description": "0.04 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
+    "description": "0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
     "tags": [
       {
         "inline": true,

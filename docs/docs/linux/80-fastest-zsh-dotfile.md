@@ -1,6 +1,6 @@
 ---
-title: 0.04 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
-description: 0.04 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
+title: 0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
+description: 0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
 sidebar_label: 啟動極速 Zsh
 tags:
   - Zsh
@@ -26,10 +26,10 @@ first_publish:
 
 import ResponsivePlayer from '@site/src/components/ResponsivePlayer';
 
-# 0.04 秒啟動極速 Zsh
+# 0.03 秒啟動極速 Zsh
 
 ⚡️ 有多快？  
-> 0.042 秒的首次命令延遲，0.1 秒的 prompt 延遲，比 Oh-My-Zsh 快 14 倍，比 Zinit 快 4 倍，比 Zim 快 2.5 倍。
+> 0.031 秒的首次離開延遲，0.1 秒的 prompt 延遲，比 Oh-My-Zsh 快 14 倍，比 Zinit 快 4 倍，比 Zim 快 2.5 倍。
 
 🌐 跨平台適用
 > 測試 macOS/Ubuntu/TrueNas (Debian) 都正常運作。
@@ -54,21 +54,22 @@ import ResponsivePlayer from '@site/src/components/ResponsivePlayer';
 `ASK=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZhenShuo2021/dotfiles/main/remote_install.sh) -k -v"`
 2. 第一個問題 `Minimum install (only install zsh plugins, T/F)` 按下 T
 
-3. 如果沒安裝過 nerd font 再加上這兩行指令安裝：
+3. 最後安裝支援完整顯示功能的終端機和字體：
 
 ```sh
 brew tap homebrew/cask-fonts
-brew install font-jetbrains-mono-nerd-font
+brew install --cask font-meslo-for-powerlevel10k
+brew install --cask wezterm
 ```
 
-4. 重新啟動終端機並且等待插件自動安裝完成[^vscode]
+4. 使用 `exec zsh` 刷新，並且等待插件自動安裝完成[^vscode]
 5. 輕鬆完成所有設定
 
-現在你已經得到筆者閱讀超過百篇以上文章的精華，並且大量借鑑（抄襲）兩位資深開發者的設定檔，分別是 [narze](https://github.com/narze/dotfiles) 以及 zsh-z 和 zcomet 開發者 [agkozak](https://github.com/agkozak/dotfiles) 的設定檔，這樣還要看網路上的文章一個一個指令慢慢貼上嗎？或者是很多半路出家的文章，搞了半天發現文章內容不是最佳設定甚至錯誤？這裡一行解決而且由於是直接抄襲設定檔所以不會有錯誤的問題。
+現在你已經得到筆者閱讀超過百篇以上文章的精華，並且大量借鑑（抄襲）兩位資深開發者的設定檔，分別是 [narze](https://github.com/narze/dotfiles) 以及 zsh-z 和 zcomet 開發者 [agkozak](https://github.com/agkozak/dotfiles) 的設定檔，這樣還要看網路上的文章一個一個指令慢慢貼上嗎？或者是很多半路出家的文章，搞了半天發現文章內容不是最佳設定甚至錯誤？這裡一行解決而且設定正確沒有錯誤。
 
 安裝後終端機改用 WezTerm 以兼容全彩顯示、圖片和完整的文字效果，修改主題樣式請執行 `p10k configure`，只要記得修改樣式的最後一個問題 `Apply changes to ~/.zshrc?` 選擇 No。
 
-如果有幫助到你的話請給我[一顆星星](https://github.com/ZhenShuo2021/dotfiles)，我會非常感激。
+如果有幫助到你的話別忘了[給我一顆星星](https://github.com/ZhenShuo2021/dotfiles)。
 
 [^vscode]: VSCode 如果遇到終端機顯示異常則需要修改字體，按下 `Ctrl+Shift+p` 輸入 `User Settings (JSON)`，貼上 `"terminal.integrated.fontFamily": "MesloLGS NF",`
 
@@ -113,13 +114,13 @@ Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者
 
 排除這些問題後，最後筆者找到的插件管理器就是 zcomet，快速且易於設定。
 
-### 補全是什麼
+### 指令補全是什麼
 
 輸入指令後按下 <kbd>Tab</kbd> 幫你自動列出可選指令，這是終端三大救贖之一，沒有這個不知道指令要打到什麼時候，範例大概是這個樣子的，這是筆者自己撰寫的函式 `c`，用於前往最愛資料夾，並且使用補全的範例：
 
 ![comp](data/dotfiles-demo-completion.webp "zsh-completion")
 
-這是特例，99.9\% 都是使用工具自帶的補全函式不需要自己寫，這裡只是想順便推廣筆者的文章 [撰寫 ZSH 自定義函式以及補全函式](https://blog.zsl0621.cc/posts/customize-zsh-function-and-comletion/)。
+這是特例，99.9\% 都是使用工具自帶的補全函式不需要自己寫，這裡是想順便推廣筆者的文章 [撰寫 ZSH 自定義函式以及補全函式](custom-zsh-completion)。
 
 以防你不會設定補全系統，這裡說明如何設定順便種樹，因為就沒有一篇文章能好好說明 Zsh 補全系統是怎麼運作的，結論很簡單，資源很難找：
 
@@ -130,27 +131,32 @@ Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者
 5. 設定 zstyle（如果有其餘的 zstyle 必須在 compinit 後執行的話）
 6. 執行 functions requires compdef
 
-用人話解釋，這兩個插件開發者自己說他的插件應該在最後才被載入，fpath 是 Zsh 才有的路徑，用於設定補全腳本和函數的路徑（而不是腳本或程式，這兩個的路徑是 PATH）；zstyle 有很多功能，最顯而易見的就是設定補全的樣式；接著 compinit 啟用補全系統，再執行需要依賴補全系統的指令。
+用人話解釋，這兩個插件開發者自己說他的插件應該在最後才被載入；fpath 是 Zsh 才有的路徑，用於設定補全腳本和函數的路徑（而不是腳本或程式，這兩個的路徑是 PATH）；zstyle 有很多功能，最顯而易見的就是設定補全的樣式；接著 compinit 啟用補全系統，再執行需要依賴補全系統的指令。
 
 ## 為何選擇這份設定檔
 
-1. ⚡ **是真的快**，幾乎達到速度上限，而且是嚴謹的測試，不像網路上的搞笑演員拿 `time` 指令跑 10 次就說這叫做速度測試。  
-2. 🛠️ **不用搞 gnu stow**，不用像 dotbot 一樣需要額外安裝，沒有複雜的語法，一行指令自動安裝。  
-3. 🔌 **內建實用插件**，不多不少剛剛好。  
-4. 🎨 **極簡風格**，不搞花花綠綠的分散注意力。  
-5. 🚀 **你的終端機已經完整設定**，一個字都不用打就已經是人家一整篇文章的設定。  
-6. 🏆 **你的 zshrc 已經最佳設定**，是筆者過濾百篇文章的結晶。  
-7. 📂 **管理方便**，從安裝到設定都在同一 repo。  
-8. 📖 **完整註解**，保證看得懂每個設定。  
-9. ✅ **設定正確**，正確使用延遲載入，自動補全正確啟用，連 `zsh-z` 都可以補全。  
-10. 🔥 **功能齊全**，從語法上色、別名、key-binding、Git 插件一應俱全。  
-11. 🏗️ **多項內建指令**，如 `hnc/c/gpg_test/gpg_reload/find-ext/switch_en` ...  
-12. 🛡️ **所有常見問題都已解決**。  
-13. 🧹 **乾淨的家目錄**，能改到 `.cache` `.config` 的系統檔案全部改位置。  
-14. 🌍 **參考 GitHub 前 20 大 dotfiles** 完成，結合他們全部優點，不用再想東想西，現在就是最好的設定。  
-15. 👨‍💻 **參考 shell 插件開發者 agkozak 的 shell 設定**，筆者就問，一般人自己瞎搞能比開發者本身設定的更好嗎？  
+不只快而且功能齊全。
 
-網路上的中文文章一堆設定錯誤，沒有啟用延遲載入（尤其是使用 Zinit 這個強調延遲載入的插件管理器還不使用延遲載入，[如何選擇](#choose-zsh-plugin-manager)章節列出的兩個測試都顯示 Zinit light mode 之慢，這些文章也是滿搞笑的）、補全設定錯誤，筆者甚至能把正確拿來當賣點，如果按照其他中文文章設定高機率有某些功能設定錯誤。
+1. ⚡ **是真的快**，幾乎達到速度上限，而且是嚴謹的測試，不像網路上的搞笑演員拿 `time` 指令跑 10 次就說這叫做速度測試。  
+2. 🚀 0.03s 的首次命令延遲
+3. 📂 集中管理安裝腳本和設定檔
+4. 📚 完整註解
+5. 🛠️ 易於調整
+6. 🔲 極簡風格：沒有花花綠綠的分散注意力
+7. 🎨 WezTerm 主題
+8. ✏️ neovim 設定檔
+9. ✅ zsh-syntax-highlighting 語法上色
+10. ✅ zsh-autosuggestions 指令歷史建議
+11. ✅ zsh-completions 指令補全
+12. ✅ zsh-z 快速切換目錄
+13. ✅ colored-man-pages
+14. ✅ GPG、homebrew 和 Git 等套件的常見問題都已經解決
+15. ✅ 指令補全
+16. 🧹 **乾淨的家目錄**，能改到 `.cache` `.config` 的系統檔案全部改位置。  
+17. 🌍 **參考 GitHub 前 20 大 dotfiles** 完成，結合他們全部優點，不用再想東想西，現在就是最好的設定。  
+18. 👨‍💻 **參考 shell 插件開發者 agkozak 的 shell 設定**，筆者就問，一般人自己瞎搞能比開發者本身設定的更好嗎？  
+
+網路上的中文文章一堆設定錯誤，沒有啟用延遲載入（尤其是使用 Zinit 這個強調延遲載入的插件管理器還不使用延遲載入，[如何選擇](#choose-zsh-plugin-manager)章節列出的兩個測試都顯示 Zinit light mode 之慢，這些文章也是滿搞笑的）、補全設定錯誤，筆者甚至能把正確拿來當賣點，因為如果按照其他中文文章設定高機率有某些功能設定錯誤。
 
 ---
 
@@ -339,13 +345,15 @@ clone 後就完成設定，開啟 wezterm 就可立即使用！
 
 前面說到搞笑演員拿 time 指令跑 10 次就說這是效能測試，首先好歹拿個 hyperfine 就可以一鍵生成統計數據，筆者使用 hyperfine 執行 100 次測試統計結果都沒有到非常穩定了，跑 10 次不是來搞笑的嗎？而且 [zsh-bench](https://github.com/romkatv/zsh-bench/) 早在 2021 就說了測試 `zsh -i -c exit` 毫無意義[^meaningless]，功課不做就開始寫文章誤導他人。
 
-不過搞笑演員至少還可以搞笑，甚至還有很多文章使用 Zinit 結果[不使用 turbo mode](https://github.com/zimfw/zimfw/wiki/Speed)，我無話可說。
+那為什麼開頭還要用離開延遲 `zsh -lic "exit"` 作為噱頭呢？因為所有人都這樣測試，我不可能拿正確的指標 0.08 秒來說我的最快吧，因為網路上有很多 0.04, 0.05 秒的。
+
+除此之外甚至還有很多文章使用 Zinit 結果[不使用 turbo mode](https://github.com/zimfw/zimfw/wiki/Speed)，我無話可說。
 
 </details>
 
 [^meaningless]: exit time (ms): how long it takes to execute `zsh -lic "exit"`; this value is meaningless as far as measuring interactive shell latencies goes
 
-測試使用專門評估 shell 的 [zsh-bench](https://github.com/romkatv/zsh-bench/) 和直觀易懂的 hyperfine 進行測試[^test-method]，測試項目涵蓋五種框架：
+測試使用專門評估 shell 的 [zsh-bench](https://github.com/romkatv/zsh-bench/) 測試，測試項目涵蓋五種框架：
 
 - Oh-My-ZSH: 最多人使用的框架
 - Zinit: 內建豐富延遲載入功能的插件管理器
@@ -358,12 +366,10 @@ clone 後就完成設定，開啟 wezterm 就可立即使用！
 
 如果使用筆者的 dotfile，裡面甚至幫你寫好了兩個 profiling 指令：簡易測試的 `zsh_prof_zprof` 和追蹤所有指令呼叫的 `zsh_prof_xtrace`，不過現在也用不太到，除了換掉 p10k 以外已經沒辦法再更快了。
 
-如果使用筆者的 dotfile，你甚至可以透過 git 標籤得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet，遷移到其他插件管理器也是一秒完成的事。
+如果使用筆者的 dotfile，你甚至可以透過 git 分支得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet，遷移到其他插件管理器也是一秒完成的事。
 
 ![dotfiles-bench](data/dotfiles-benchmark.svg "dotfiles-bench")
 
-你說奇怪，為什麼數據和 [repo](https://github.com/ZhenShuo2021/dotfiles) 上面的不一樣呢，因為 repo 上面的所有測試項目都公平的使用 zsh-defer 加速，但是綜觀整個網路根本沒幾個人會這樣設定，也就是說上圖才是大部分終端機的開啟速度（大部分的比例絕對超過 99\%，在 Github 上面搜 zshrc 就知道了，這個比例在繁體中文圈可能會變成 99.95\%），repo 上面的圖表則是每個插件管理器都使用 zsh-defer 大幅優化載入速度的結果。
+你說奇怪，為什麼數據和 [repo](https://github.com/ZhenShuo2021/dotfiles) 上面的不一樣呢，因為 repo 上面的所有測試項目都使用 zsh-defer 加速，但是綜觀整個網路根本沒幾個人會這樣設定，也就是說上圖才是大部分終端機的開啟速度，這個「大部分」的比例絕對超過 99\%，在 Github 上面搜 zshrc 就知道了，這個比例在繁體中文圈可能會變成 99.95\%。
 
 並且請注意，這個測試是包含 `alias`/`setopt`/`brew shellenv`/`補全系統`/`uv 補全系統`/`fpath` 和 `PATH` 等等所有設定一起測試的真實使用環境，是更反應現實情況的實際載入延遲。
-
-[^test-method]: 測試執行於 M1 MacBook Pro 8G RAM，zsh-bench 使用預設值，測試總共載入的插件有 powerlevel10k, zsh-defer, zsh-syntax-highlighting, zsh-autosuggestions, zsh-completions, zsh-z, zsh-history-substring-search, extract, git，每個測試都確保 brew/docker/docker-compose/yarn/npm 的指令補全必須正常運作。hyperfine 使用 `hyperfine --runs 100 --warmup 3 'zsh -i -c exit 0'` 測試，請注意 hyperfine 測試是超級簡化的測試[沒有特別意義](https://github.com/romkatv/zsh-bench?tab=readme-ov-file#how-not-to-benchmark)，他只告訴你執行這行指令的平均時間，不代表真正的體感時間。

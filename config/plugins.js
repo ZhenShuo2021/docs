@@ -6,6 +6,19 @@ module.exports = [
   [
     '@docusaurus/plugin-content-docs',
     {
+      id: 'pluginForGit',
+      path: 'docs/git',
+      routeBasePath: 'git',
+      sidebarPath: require.resolve('../config/git-sidebars.js'),
+      showLastUpdateAuthor: true,
+      showLastUpdateTime: true,
+      breadcrumbs: true,
+      editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",
+    },
+  ],
+  [
+    '@docusaurus/plugin-content-docs',
+    {
       id: 'default',
       path: 'docs/docs',
       routeBasePath: 'docs',

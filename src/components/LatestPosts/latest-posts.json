@@ -184,44 +184,44 @@
   },
   {
     "title": "使用變基 Rebase 合併分支",
-    "permalink": "/docs/git/history-manipulation/rebase",
+    "permalink": "/git/history-manipulation/rebase",
     "description": "最快最清楚而且最正確的搞懂變基 git rebase。",
     "tags": [
       {
         "inline": true,
         "label": "Git",
-        "permalink": "/docs/tags/git"
+        "permalink": "/git/tags/git"
       },
       {
         "inline": true,
         "label": "教學",
-        "permalink": "/docs/tags/教學"
+        "permalink": "/git/tags/教學"
       }
     ],
     "date": "2025-02-13 23:59:25",
     "yearMonth": "2025 年 02 月",
     "day": "13",
-    "source": "docs"
+    "source": "git"
   },
   {
     "title": "Git Rebase Onto 全中文圈最完整教學",
-    "permalink": "/docs/git/advance/rebase-onto",
+    "permalink": "/git/advance/rebase-onto",
     "description": "不要再亂教 rebase onto 了",
     "tags": [
       {
         "inline": true,
         "label": "Git",
-        "permalink": "/docs/tags/git"
+        "permalink": "/git/tags/git"
       },
       {
         "inline": true,
         "label": "教學",
-        "permalink": "/docs/tags/教學"
+        "permalink": "/git/tags/教學"
       }
     ],
     "date": "2025-02-13 23:59:00",
     "yearMonth": "2025 年 02 月",
     "day": "13",
-    "source": "docs"
+    "source": "git"
   }
 ]

@@ -1,7 +1,7 @@
 ---
 title: Github Actions 自動化 CI/CD
 description: Github Actions 自動化 CI/CD
-sidebar_label: Actions
+sidebar_label: Github Action
 tags:
   - Git
   - Github

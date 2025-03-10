@@ -1,7 +1,7 @@
 ---
-title: 在本地執行 Github Actions
-description: 在本地執行 Github Actions
-sidebar_label: 在本地執行 Github Actions
+title: 在本地執行 Github Action
+description: 在本地執行 Github Action
+sidebar_label: 在本地執行 Github Action
 tags:
   - Git
   - Github

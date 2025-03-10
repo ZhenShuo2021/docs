@@ -1,4 +1,4 @@
-const imageGit = require("@site/docs/docs/git/10-preliminaries/data/areas_upscayl.webp").default;
+const imageGit = require("@site/docs/git/10-preliminaries/data/areas_upscayl.webp").default;
 import imageShell from "./defaultBackground/shell.webp";
 import imageGrayScale from "./defaultBackground/grayscale.webp";
 import imageProgramming from "./defaultBackground/program.webp";
@@ -51,11 +51,11 @@ export const articlesMeta = [
   {
     description:
       "網路教學 rebase onto 的文章十篇有九篇是錯的，本文最大的特色是內容正確",
-    link: "/docs/git/advance/rebase-onto",
+    link: "/git/advance/rebase-onto",
     image: imageGit,
   },
   {
-    link: "/docs/git/advance/reduce-size-with-sparse-checkout",
+    link: "/git/advance/reduce-size-with-sparse-checkout",
     image: imageGit,
   },
 ];

@@ -6,7 +6,7 @@ const themeConfig = require('./config/themeConfig');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "ZSL的文檔庫",
-  // tagline: "",
+  tagline: "Reading a lot, writing what I read.",
   url: "https://docs.zsl0621.cc",
   baseUrl: "/",
   organizationName: "ZhenShuo2021", // Usually your GitHub org/user name.

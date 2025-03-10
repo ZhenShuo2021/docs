@@ -1,17 +1,14 @@
 ---
 title: 在 Github README 中嵌入影片
-description: 在 README 中嵌入影片
 sidebar_label: README 嵌入影片
 tags:
   - Git
   - Github
   - 教學
-
 keywords:
   - Git
   - Github
   - 教學
-
 last_update:
   date: 2024-12-28T00:03:30+08:00
   author: zsl0621

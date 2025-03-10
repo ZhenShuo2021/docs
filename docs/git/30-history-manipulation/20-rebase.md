@@ -2,15 +2,12 @@
 title: 使用變基 Rebase 合併分支
 sidebar_label: 使用變基 Rebase 合併分支
 author: zsl0621
-description: 最快最清楚而且最正確的搞懂變基 git rebase。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-02-13T23:59:25+08:00
   author: zsl0621

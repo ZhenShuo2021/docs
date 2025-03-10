@@ -1,6 +1,5 @@
 ---
 title: 常用指令
-description: 常用的 Linux 指令小抄
 tags:
   - Linux
   - Docker

@@ -1,15 +1,12 @@
 ---
 title: 一分鐘入門
 author: zsl0621
-description: 最快速上手 Git 的文章沒有之一。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-06-02T04:07:33+08:00
   author: zsl0621

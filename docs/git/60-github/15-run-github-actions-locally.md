@@ -1,17 +1,14 @@
 ---
 title: 在本地執行 Github Action
-description: 在本地執行 Github Action
 sidebar_label: 在本地執行 Github Action
 tags:
   - Git
   - Github
   - 教學
-
 keywords:
   - Git
   - Github
   - 教學
-
 last_update:
   date: 2025-01-05T02:51:00+08:00
   author: zsl0621

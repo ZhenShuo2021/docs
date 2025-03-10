@@ -1,6 +1,5 @@
 ---
 title: '清除 Linux 殘存設定'
-description: 清除 Linux 系統安裝軟體時殘留的設定
 tags:
   - Linux
 keywords:

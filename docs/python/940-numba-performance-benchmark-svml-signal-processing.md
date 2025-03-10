@@ -1,6 +1,5 @@
 ---
 title: Numba 效能深入實測
-description: Numba 效能深入實測：矩陣計算與訊號還原演算法
 tags:
   - Python
   - Numba

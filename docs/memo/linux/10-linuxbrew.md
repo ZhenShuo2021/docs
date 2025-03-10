@@ -1,6 +1,5 @@
 ---
 title: Homebrew (Linuxbrew) 介紹和名詞解析
-description: Homebrew (Linuxbrew) 介紹和名詞解析
 sidebar_label: Linuxbrew 介紹和名詞解析
 tags:
   - Linux

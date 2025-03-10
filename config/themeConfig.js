@@ -109,8 +109,14 @@ module.exports = {
     }
   },
   metadata: [
-    { name: 'robots', content: 'max-image-preview:large' },
-    { name: 'og:type', content: 'article' },
+    { name: "robots", content: "max-image-preview:large" },
+    { name: 'description', content: '這是我的文檔庫，包含我的學習記錄、筆記以及教學，寫文章的動力是網路上的錯誤資訊！' },
+    { name: 'keywords', content: '筆記, 教學, 文檔, Python, Git' },
+    { name: 'keywords', content: 'notes, tutorial, documentation, Python, Git' },
+    { name: 'author', content: 'ZSL' },
+    { property: 'og:description', content: '這是我的文檔庫，包含我的學習記錄、筆記以及教學，寫文章的動力是網路上的錯誤資訊！' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:image', content: 'https://docs.zsl0621.cc/img/default.webp' },
   ],
   webpack: {
     configure: (webpackConfig) => {

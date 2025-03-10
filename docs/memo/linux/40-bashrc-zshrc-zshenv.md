@@ -1,6 +1,5 @@
 ---
 title: Shell 和他的設定檔，以及 Dotfiles
-description: Shell 和他的設定檔，以及 Dotfiles
 sidebar_label: Shell and Dotfiles
 tags:
   - Linux

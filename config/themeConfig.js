@@ -12,54 +12,63 @@ module.exports = {
     darkTheme: prismThemes.vsDark,
   },
   navbar: {
-    title: "zsl0621@Docs",
+    // title: "zsl0621@Docs",
     logo: {
-      alt: "Site Logo",
-      src: "img/favicon.svg",
+      alt: "zsl0621@Docs",
+      src: "img/logo_circle.webp",
     },
     items: [
       {
         type: 'doc',
-        position: 'left',
         docsPluginId: 'pluginForGit',
         docId: 'git-hello-page',
         sidebarId: 'gitSidebar',
         label: "Git",
-      },
-      {
-        type: 'docSidebar',
-        position: 'left',
-        sidebarId: 'docsSidebar',
-        label: "文檔庫",
+        position: 'right',
       },
       {
         type: 'doc',
-        position: 'left',
-        docsPluginId: 'pluginForMemo',
-        docId: 'memo',
-        sidebarId: 'memoSidebar',
-        label: "備忘錄",
+        docsPluginId: 'pluginForPython',
+        docId: 'python-hello-page',
+        sidebarId: 'pythonSidebar',
+        label: "Python",
+        position: 'right',
       },
+      // {
+      //   type: 'docSidebar',
+      //   position: 'left',
+      //   sidebarId: 'docsSidebar',
+      //   label: "文檔庫",
+      // },
       {
-        label: '導航',
-        to: '/portfolio',
-        position: 'left',
+        type: 'doc',
+        docsPluginId: 'pluginForMemo',
+        docId: 'about',
+        sidebarId: 'memoSidebar',
+        label: "筆記",
+        position: 'right',
       },
       // {
       //   type: 'dropdown',
-      //   label: 'Quick Links',
-      //   position: 'left',
+      //   label: '更多',
+      //   position: 'right',
       //   items: [
       //     {
-      //       label: '終端機實測',
-      //       to: '/docs/useful-tools/cross-platform-terminal-comparison',
+      //       label: '筆記',
+      //       to: '/memo/about',
+      //       // href: 'https://www.zsl0621.cc/',
       //     },
       //     {
-      //       label: '部落格',
-      //       href: 'https://www.zsl0621.cc/',
+      //       label: 'Github',
+      //       href: 'https://github.com/ZhenShuo2021/',
       //     },
       //   ],
       // },
+      {
+        label: '導航',
+        to: '/portfolio',
+        position: 'right',
+      },
       {
         href: 'https://github.com/ZhenShuo2021',
         position: 'right',
@@ -81,6 +90,7 @@ module.exports = {
   docs: {
     sidebar: {
       hideable: true,
+      autoCollapseCategories: true,
     },
   },
   algolia: {

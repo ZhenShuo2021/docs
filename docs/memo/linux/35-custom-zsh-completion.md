@@ -145,7 +145,7 @@ zstyle ':completion:*' list-separator ' ➤ '
 #   max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 ```
 
-什麼！！！哪裡找的到這麼多設定，這些是我到處抄 Github 大佬的設定檔弄來的，而且過濾掉很多舊版過時設定，順便推銷，如果你覺得這些設定很讚，可以用我的 dotfiles 設定檔，這是[介紹文章](/docs/linux/fastest-zsh-dotfile)，設定檔的 repo 在[這裡](https://github.com/ZhenShuo2021/dotfiles)。
+什麼！！！哪裡找的到這麼多設定，這些是我到處抄 Github 大佬的設定檔弄來的，而且過濾掉很多舊版過時設定，順便推銷，如果你覺得這些設定很讚，可以用我的 dotfiles 設定檔，這是[介紹文章](/memo/linux/fastest-zsh-dotfile)，設定檔的 repo 在[這裡](https://github.com/ZhenShuo2021/dotfiles)。
 
 ## 加速載入
 

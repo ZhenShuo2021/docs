@@ -309,7 +309,7 @@ eval "$(uv generate-shell-completion zsh)"
 
 接著回頭講設定部分，讀者可能看過 [Ubuntu 安裝 Zsh + Oh My Zsh + Powerlevel10k 與各種插件](https://www.kwchang0831.dev/dev-env/ubuntu/oh-my-zsh)，才安裝兩三個插件對初學者來說已經滿頭大汗了，這不是文章的問題而是 omz 才有的問題，現在輕鬆的複製貼上就等同於已經安裝 10 個插件，並且使用 eval 指令設定好 brew，大量的 zstyle 設定檔，還有完整的自動補全系統，雖然是自己寫的但是自己看了都覺得相見恨晚，這些要設定完成而且正確我讀了上百篇文章並且還要排除大量錯誤資訊。
 
-從 pyenv 往後的行數順序不可變動，他們有載入先後順序要求：pyenv 需要在 compinit 前設定好，而 uv 需要 compinit 後才會有的 compdef 才能執行，如果不是 Python 開發者可以移除 pyenv 和 uv，這是一個用於展示補全系統先後順序的範例，如果你是 Python 開發者那麼筆者強烈建議使用 uv，請參考筆者的文章 [Python UV 教學，最佳虛擬環境管理工具](../python/python-uv-complete-guide)。
+從 pyenv 往後的行數順序不可變動，他們有載入先後順序要求：pyenv 需要在 compinit 前設定好，而 uv 需要 compinit 後才會有的 compdef 才能執行，如果不是 Python 開發者可以移除 pyenv 和 uv，這是一個用於展示補全系統先後順序的範例，如果你是 Python 開發者那麼筆者強烈建議使用 uv，請參考筆者的文章 [Python UV 教學，最佳虛擬環境管理工具](/python/python-uv-complete-guide)。
 
 ### 安裝其餘工具
 

@@ -518,6 +518,10 @@ jobs:
         run: uv run echo Today is a $DAY_STATUS day
 ```
 
+## 在 Docker 中使用 UV
+
+UV 對 Docker 的支援也很完善且積極，文檔介紹了各種常見問題，直接查看[文檔](https://docs.astral.sh/uv/guides/integration/docker/)。
+
 ## 上篇結束
 
 文章太長了所以拆成上下兩篇，但是上篇已經包含八成的日常使用指令，下篇在[這裡](python-uv-complete-guide-2)，會包含套件發佈的和其他細節指令的教學。

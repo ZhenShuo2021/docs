@@ -19,7 +19,12 @@ const paths = [
     path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForMemo",
     filesPattern: "site-docs-*.json",
     sourceType: "memo"
-  }
+  },
+  {
+    path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForGit",
+    filesPattern: "site-docs-*.json",
+    sourceType: "git"
+  },
 ];
 
 // 輸出的 JSON 位置

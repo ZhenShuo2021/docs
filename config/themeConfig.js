@@ -24,6 +24,14 @@ module.exports = {
     },
     items: [
       {
+        type: 'doc',
+        position: 'left',
+        docsPluginId: 'pluginForGit',
+        docId: 'git-hello-page',
+        sidebarId: 'gitSidebar',
+        label: "Git",
+      },
+      {
         type: 'docSidebar',
         position: 'left',
         sidebarId: 'docsSidebar',

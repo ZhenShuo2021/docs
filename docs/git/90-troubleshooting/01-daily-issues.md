@@ -5,11 +5,9 @@ description: 介紹 Git 常見的本地和遠端問題，包含清除reflog記�
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-02-12T23:19:00+08:00
   author: zsl0621
@@ -17,7 +15,7 @@ first_publish:
   date: 2025-02-12T13:35:00+08:00
 ---
 
-都是簡單的日常問題但是要花一點時間搜尋，所以這篇文章集中列出方便查詢。
+都是簡單的日常問題但是要花一點時間搜尋，所以這篇文章集中列出方便查詢，分為[本地問題](#本地問題)和[遠端問題](#遠端問題)兩個章節。
 
 ---
 
@@ -73,7 +71,7 @@ refs 只是幫助人類記憶的名稱，只紀錄提交 hash 讓你直接用 re
 
 reset 實際在做的就是清除提交，最荒謬的是賣課網說[不要被名詞誤導](https://gitbook.tw/chapters/using-git/reset-commit)結果他的說法才是在誤導別人。
 
-他的文章都只介紹表面這我沒意見，本來就簡易介紹課才賣的多，結果偏偏這裡說明這個指令底層實際上在移動 HEAD，講的沒錯但是這樣說也不是很清楚，所以他又補充說明 git reset 比較像 goto，**問題就出在這個自創名詞**，請問 goto 到過往的提交能 goto 回到原本的提交嗎？不能嘛，那這個解釋不就有漏洞了嗎？reset 實際在做的就是清除提交，搞自創名詞拜託先想清楚能不能被合理解釋。
+他的文章都只介紹表面這我沒意見，本來就簡易介紹課才賣的多，結果偏偏這裡說明這個指令底層實際上在移動 HEAD，這樣講沒錯但是不太直觀易懂，所以他又補充說明 git reset 比較像 goto，**問題就出在這個自創名詞**，請問 goto 到過往的提交能 goto 回到原本的提交嗎？不能嘛，那這個解釋不就有漏洞了嗎？reset 實際在做的就是清除提交，搞自創名詞拜託先想清楚能不能被合理解釋。
 
 <br />
 
@@ -156,7 +154,7 @@ git remote add <url>
 
 #### 安全的強制推送
 
-你以為我要講 force-with-lease 嗎，我要說的是 force-if-includes，請見[使用 Force if Includes 安全的強制推送](../advance/dive-into-force-if-includes)，裡面還有解釋 lease 到底在"租"什麼東西。
+你以為我要講 force-with-lease 嗎，我要說的是 force-if-includes，請見[使用 Force if Includes 安全的強制推送](../advance/dive-into-force-if-includes)，裡面還有解釋 lease 到底在「租」什麼東西。
 
 <br />
 
@@ -184,7 +182,7 @@ git push <遠端名稱> <指定提交>:<遠端分支名稱>
 
 請見我的文章[使用 Git Sparse Checkout 只下載部分專案以加速 Clone 速度](../advance/reduce-size-with-sparse-checkout)。
 
-其實 [The Will Will Web](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts) 就寫的很詳細，但是我覺得小缺點是詳是但不夠清楚，而且指令有部分更新，所以統整更新資訊寫成文章。
+其實 [The Will Will Web](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts) 就寫的很詳細，我覺得雖然詳細但不夠清楚，而且指令有部分更新，所以統整後寫成文章。
 
 ## End
 

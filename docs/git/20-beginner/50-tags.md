@@ -17,9 +17,9 @@ first_publish:
   date: 2024-10-20T02:21:33+08:00
 ---
 
-用標籤標示重要版本，分為 lightweight 和 annotated 兩種，官方建議使用 annotated。lightweight 是幫助人類記憶位置而不是肉眼找 hash 的 refs ，annotated 則是完整的物件對象，包含作者名稱、日期、email、GPG 簽名等資訊。
+用標籤標示重要版本，分為 lightweight 和 annotated 兩種，官方建議使用 annotated。lightweight 是簡單的 refs ，annotated 則是完整的物件對象，包含作者名稱、日期、email、GPG 簽名等資訊。
 
-新手暫時用不到此功能，但是他太簡單了所以放在 rebase 前面。
+新手暫時用不到此功能，但是他太簡單了所以放在前面講。
 
 > 什麼是 refs？請見 [Git 中的關鍵字、符號和基本組成](../preliminaries/keyword#basics)。
 

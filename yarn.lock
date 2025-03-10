@@ -3970,6 +3970,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/string-similarity@npm:^4":
+  version: 4.0.2
+  resolution: "@types/string-similarity@npm:4.0.2"
+  checksum: 10c0/2286b221b0f4bb732b94df4295083e1be75f303c4604132a067da2f18485dba6d0fe6a252595ce893327c22c0bb8a046cd63050bd0adceeadd486646d1e05d9c
+  languageName: node
+  linkType: hard
+
 "@types/trusted-types@npm:^2.0.2, @types/trusted-types@npm:^2.0.7":
   version: 2.0.7
   resolution: "@types/trusted-types@npm:2.0.7"
@@ -13311,6 +13318,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"string-similarity@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "string-similarity@npm:4.0.4"
+  checksum: 10c0/fce331b818efafa701f692ddc2e170bd3ceaf6e7ca56a445b36b139981effe0884d8edc794a65005e54304da55ba054edfcff16a339bd301c9b94983fbc62047
+  languageName: node
+  linkType: hard
+
 "string-width-cjs@npm:string-width@^4.2.0, string-width@npm:^4.1.0, string-width@npm:^4.2.0":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -14546,6 +14560,7 @@ __metadata:
     "@giscus/react": "npm:^3.1.0"
     "@mdx-js/react": "npm:^3.1.0"
     "@types/react": "npm:^19.0.10"
+    "@types/string-similarity": "npm:^4"
     acorn: "npm:^8.14.0"
     clsx: "npm:^2.1.1"
     cross-env: "npm:^7.0.3"
@@ -14564,6 +14579,7 @@ __metadata:
     rehype-stringify: "npm:^10.0.1"
     remark-math: "npm:^6.0.0"
     search-insights: "npm:^2.17.3"
+    string-similarity: "npm:^4.0.4"
     typescript: "npm:^5.7.3"
     url-loader: "npm:^4.1.1"
     webpack: "npm:^5.98.0"

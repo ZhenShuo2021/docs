@@ -23,7 +23,7 @@
   {
     "title": "跨平台終端機實測大對決",
     "permalink": "/memo/useful-tools/cross-platform-terminal-comparison",
-    "description": "跨平台終端機實測大對決",
+    "description": "本篇著重跨平台終端機，如果不需跨平台的話可以不用讀這篇文章。",
     "tags": [
       {
         "inline": true,
@@ -223,5 +223,1308 @@
     "yearMonth": "2025 年 02 月",
     "day": "13",
     "source": "git"
+  },
+  {
+    "title": "Git 遠端概念和常見錯誤",
+    "permalink": "/git/remote/concept-and-commands",
+    "description": "操作遠端儲存庫的指令都在這。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-13 23:03:42",
+    "yearMonth": "2025 年 02 月",
+    "day": "13",
+    "source": "git"
+  },
+  {
+    "title": "使用 Force if Includes 安全的強制推送",
+    "permalink": "/git/advance/dive-into-force-if-includes",
+    "description": "使用 force-if-includes 安全的進行強制推送",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-13 20:44:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "13",
+    "source": "git"
+  },
+  {
+    "title": "Git 各種日常問題集合",
+    "permalink": "/git/troubleshooting/daily-issues",
+    "description": "介紹 Git 常見的本地和遠端問題，包含清除reflog記錄、正確使用rebase、git mv、以及如何加速clone等進階技巧。還解釋了常見錯誤誤導，並提供正確的 Git 操作方法。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-12 23:19:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "如何回到過去進行修正與新增功能",
+    "permalink": "/git/history-manipulation/flashback-commit",
+    "description": "如何在 Git 中回到過去進行修正與新增功能",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-12 01:33:27",
+    "yearMonth": "2025 年 02 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "使用 cherry-pick 揀選指定提交",
+    "permalink": "/git/history-manipulation/cherry-pick",
+    "description": "使用 cherry-pick 揀選指定提交",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-12 00:44:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "使用 Git Sparse Checkout 只下載部分專案以加速 Clone 速度",
+    "permalink": "/git/advance/reduce-size-with-sparse-checkout",
+    "description": "介紹操作大型儲存庫時如何減少容量加速 Clone",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-02-11 07:38:25",
+    "yearMonth": "2025 年 02 月",
+    "day": "11",
+    "source": "git"
+  },
+  {
+    "title": "新竹市加水站地圖",
+    "permalink": "/memo/python/water-stations-map",
+    "description": "發現自己整整三年都跑去更遠的加水站後直接破防，太生氣了所以弄了一個地圖，原始碼在這裡，點擊這裡可以查看完整地圖。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "folium",
+        "permalink": "/memo/tags/folium"
+      }
+    ],
+    "date": "2025-02-07 15:26:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "07",
+    "source": "memo"
+  },
+  {
+    "title": "看懂 Git 文檔",
+    "permalink": "/git/preliminaries/read-git-docs",
+    "description": "教你看懂 Git 文檔",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-16 15:30:00",
+    "yearMonth": "2025 年 01 月",
+    "day": "16",
+    "source": "git"
+  },
+  {
+    "title": "分支操作",
+    "permalink": "/git/beginner/branch",
+    "description": "基礎分支操作，讓你用最快速度上手 Git。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-16 14:38:33",
+    "yearMonth": "2025 年 01 月",
+    "day": "16",
+    "source": "git"
+  },
+  {
+    "title": "使用 Git Worktree 簡化分支切換",
+    "permalink": "/git/advance/git-worktree",
+    "description": "使用 Git Worktree 簡化分支切換步驟以提升工作效率",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-14 20:41:33",
+    "yearMonth": "2025 年 01 月",
+    "day": "14",
+    "source": "git"
+  },
+  {
+    "title": "使用互動式變基 Interactive Rebase 任意修改提交歷史",
+    "permalink": "/git/history-manipulation/interactive-rebase",
+    "description": "最快最清楚而且最正確的搞懂變基 git rebase。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-12 23:40:00",
+    "yearMonth": "2025 年 01 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "JSON、YAML、TOML 簡易說明",
+    "permalink": "/memo/python/json-yaml-toml",
+    "description": "JSON、YAML、TOML 資料格式簡易說明",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "yaml",
+        "permalink": "/memo/tags/yaml"
+      },
+      {
+        "inline": true,
+        "label": "toml",
+        "permalink": "/memo/tags/toml"
+      }
+    ],
+    "date": "2025-01-11 23:09:00",
+    "yearMonth": "2025 年 01 月",
+    "day": "11",
+    "source": "memo"
+  },
+  {
+    "title": "關於修改的動詞小抄",
+    "permalink": "/git/troubleshooting/verb-cheatsheet",
+    "description": "這是一堂英文課",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-11 19:50:07",
+    "yearMonth": "2025 年 01 月",
+    "day": "11",
+    "source": "git"
+  },
+  {
+    "title": "Github Actions 自動化 CI/CD",
+    "permalink": "/git/github/github-actions",
+    "description": "Github Actions 自動化 CI/CD",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-11 19:39:30",
+    "yearMonth": "2025 年 01 月",
+    "day": "11",
+    "source": "git"
+  },
+  {
+    "title": "實用工具選輯",
+    "permalink": "/memo/useful-tools/awesome-collections",
+    "description": "選輯",
+    "tags": [
+      {
+        "inline": true,
+        "label": "實用工具",
+        "permalink": "/memo/tags/實用工具"
+      }
+    ],
+    "date": "2025-01-07 16:21:00",
+    "yearMonth": "2025 年 01 月",
+    "day": "07",
+    "source": "memo"
+  },
+  {
+    "title": "在本地執行 Github Action",
+    "permalink": "/git/github/run-github-actions-locally",
+    "description": "在本地執行 Github Action",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-01-05 02:51:00",
+    "yearMonth": "2025 年 01 月",
+    "day": "05",
+    "source": "git"
+  },
+  {
+    "title": "Homebrew (Linuxbrew) 介紹和名詞解析",
+    "permalink": "/memo/linux/linuxbrew",
+    "description": "Homebrew (Linuxbrew) 介紹和名詞解析",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      }
+    ],
+    "date": "2025-01-04 18:40:30",
+    "yearMonth": "2025 年 01 月",
+    "day": "04",
+    "source": "memo"
+  },
+  {
+    "title": "Shell 和他的設定檔，以及 Dotfiles",
+    "permalink": "/memo/linux/bashrc-zshrc-zshenv",
+    "description": "Shell 和他的設定檔，以及 Dotfiles",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Terminal",
+        "permalink": "/memo/tags/terminal"
+      }
+    ],
+    "date": "2024-12-29 19:49:30",
+    "yearMonth": "2024 年 12 月",
+    "day": "29",
+    "source": "memo"
+  },
+  {
+    "title": "在 Github README 中嵌入影片",
+    "permalink": "/git/github/github-readme-video",
+    "description": "在 README 中嵌入影片",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-12-28 00:03:30",
+    "yearMonth": "2024 年 12 月",
+    "day": "28",
+    "source": "git"
+  },
+  {
+    "title": "Github 搜尋技巧",
+    "permalink": "/git/github/github-search",
+    "description": "Github 搜尋技巧",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-12-27 17:18:30",
+    "yearMonth": "2024 年 12 月",
+    "day": "27",
+    "source": "git"
+  },
+  {
+    "title": "Comparing BeautifulSoup4, LXML, and Selectolax: A Simple HTML Parser Performance Test",
+    "permalink": "/python/html-parser-performance-test",
+    "description": "- English",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "HTML parser",
+        "permalink": "/python/tags/html-parser"
+      }
+    ],
+    "date": "2024-12-25 11:49:30",
+    "yearMonth": "2024 年 12 月",
+    "day": "25",
+    "source": "git"
+  },
+  {
+    "title": "UV 快速手冊",
+    "permalink": "/python/uv-quick-guide",
+    "description": "UV 快速手冊",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/python/tags/虛擬環境"
+      }
+    ],
+    "date": "2024-12-24 21:53:30",
+    "yearMonth": "2024 年 12 月",
+    "day": "24",
+    "source": "git"
+  },
+  {
+    "title": "Python 遍歷資料夾方式",
+    "permalink": "/memo/python/traversal-dir",
+    "description": "Python 遍歷資料夾方式",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/memo/tags/教學"
+      }
+    ],
+    "date": "2024-12-13 16:42:10",
+    "yearMonth": "2024 年 12 月",
+    "day": "13",
+    "source": "memo"
+  },
+  {
+    "title": "Python 虛擬環境管理和依賴解析套件完整比較",
+    "permalink": "/python/virtual-environment-management-comparison",
+    "description": "Python 虛擬環境管理和依賴解析套件完整比較",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境",
+        "permalink": "/python/tags/虛擬環境"
+      }
+    ],
+    "date": "2024-12-12 02:51:00",
+    "yearMonth": "2024 年 12 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "False-Sharing 閱讀筆記和實測",
+    "permalink": "/python/false-sharing-in-python",
+    "description": "Python 中的 False-Sharing 閱讀筆記和實測",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Numba",
+        "permalink": "/python/tags/numba"
+      },
+      {
+        "inline": true,
+        "label": "Performance",
+        "permalink": "/python/tags/performance"
+      }
+    ],
+    "date": "2024-12-01 23:38:00",
+    "yearMonth": "2024 年 12 月",
+    "day": "01",
+    "source": "git"
+  },
+  {
+    "title": "PEP 更新紀錄",
+    "permalink": "/memo/python/PEP-history",
+    "description": "PEP 更新紀錄",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "PEP",
+        "permalink": "/memo/tags/pep"
+      },
+      {
+        "inline": true,
+        "label": "cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      }
+    ],
+    "date": "2024-11-29 16:20:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "29",
+    "source": "memo"
+  },
+  {
+    "title": "在獨立子線程中執行非同步操作",
+    "permalink": "/python/run-asyncio-in-sub-thread",
+    "description": "在獨立子線程中執行非同步操作",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "asyncio",
+        "permalink": "/python/tags/asyncio"
+      }
+    ],
+    "date": "2024-11-23 09:27:30",
+    "yearMonth": "2024 年 11 月",
+    "day": "23",
+    "source": "git"
+  },
+  {
+    "title": "PyNaCl 加密套件使用紀錄",
+    "permalink": "/memo/python/pynacl-usage",
+    "description": "PyNaCl 使用紀錄以及基本密碼學概念",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "PyNaCl",
+        "permalink": "/memo/tags/py-na-cl"
+      },
+      {
+        "inline": true,
+        "label": "密碼學",
+        "permalink": "/memo/tags/密碼學"
+      }
+    ],
+    "date": "2024-11-20 01:49:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "20",
+    "source": "memo"
+  },
+  {
+    "title": "Python 中的異步操作 - 協程",
+    "permalink": "/python/python-async-basic",
+    "description": "Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/python/tags/multitasking"
+      }
+    ],
+    "date": "2024-11-19 14:23:30",
+    "yearMonth": "2024 年 11 月",
+    "day": "19",
+    "source": "git"
+  },
+  {
+    "title": "Python 中的多工處理原理介紹",
+    "permalink": "/python/python-multitasking-threading-processing-coroutine",
+    "description": "Python 中的多工處理原理介紹：多線程/多進程/協程/分佈式計算",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "multitasking",
+        "permalink": "/python/tags/multitasking"
+      }
+    ],
+    "date": "2024-11-19 14:23:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "19",
+    "source": "git"
+  },
+  {
+    "title": "初嘗 Python 工作流自動化",
+    "permalink": "/memo/python/pre-commit-first-try",
+    "description": "初嘗 Python 工作流自動化",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "pre-commit",
+        "permalink": "/memo/tags/pre-commit"
+      }
+    ],
+    "date": "2024-11-19 14:22:30",
+    "yearMonth": "2024 年 11 月",
+    "day": "19",
+    "source": "memo"
+  },
+  {
+    "title": "初嘗策略模式",
+    "permalink": "/memo/python/strategy-pattern-first-try",
+    "description": "第一次撰寫策略模式的紀錄",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Programming",
+        "permalink": "/memo/tags/programming"
+      },
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": "2024-11-03 18:08:33",
+    "yearMonth": "2024 年 11 月",
+    "day": "03",
+    "source": "memo"
+  },
+  {
+    "title": "Python Type Hint 教學",
+    "permalink": "/python/type-hint-typing-complete-guide",
+    "description": "Type Hint 教學：從入門到進階的 Python 型別註釋，掌握 Protocol、泛型等進階技巧 | 2024 Python 3.8-3.14 版本更新整理，最新語法特性 + 實戰技巧 | 一篇精通 Type Hints",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "typing",
+        "permalink": "/python/tags/typing"
+      },
+      {
+        "inline": true,
+        "label": "type hint",
+        "permalink": "/python/tags/type-hint"
+      }
+    ],
+    "date": "2024-11-03 18:00:33",
+    "yearMonth": "2024 年 11 月",
+    "day": "03",
+    "source": "git"
+  },
+  {
+    "title": "慣例式提交",
+    "permalink": "/git/beginner/conventional-commit",
+    "description": "寫好慣例式提交，讓提交訊息一目了然",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-10-29 02:44:12",
+    "yearMonth": "2024 年 10 月",
+    "day": "29",
+    "source": "git"
+  },
+  {
+    "title": "解決 GPG 無法提交的錯誤",
+    "permalink": "/git/troubleshooting/gpg-failed-to-sign-the-data",
+    "description": "解決 GPG 無法提交的錯誤",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-10-20 03:56:07",
+    "yearMonth": "2024 年 10 月",
+    "day": "20",
+    "source": "git"
+  },
+  {
+    "title": "幫重要版本打上標籤",
+    "permalink": "/git/beginner/tags",
+    "description": "幫提交上標籤",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-10-20 02:21:33",
+    "yearMonth": "2024 年 10 月",
+    "day": "20",
+    "source": "git"
+  },
+  {
+    "title": "Numba 教學：加速 Python 科學計算（上）",
+    "permalink": "/python/numba-tutorial-accelerate-python-computing",
+    "description": "最快、最正確、最完整的 Numba 教學：使用 Numba 加速 Python 科學計算。坑筆者都踩過了只要照做可以得到最好性能，不會漏掉任何優化可能；除此之外本文第一不廢話，第二上手極快，第三介紹如何除錯和優化，第四補充進階使用方式，第五給出「精選有用的延伸閱讀」，不是給沒用文章，第六也是最重要，筆者可以很自信的說本文是中文圈最詳細教學。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Numba",
+        "permalink": "/python/tags/numba"
+      },
+      {
+        "inline": true,
+        "label": "Performance",
+        "permalink": "/python/tags/performance"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/python/tags/教學"
+      }
+    ],
+    "date": "2024-10-18 00:00:00",
+    "yearMonth": "2024 年 10 月",
+    "day": "18",
+    "source": "git"
+  },
+  {
+    "title": "Numba 效能深入實測",
+    "permalink": "/python/numba-performance-benchmark-svml-signal-processing",
+    "description": "Numba 效能深入實測：矩陣計算與訊號還原演算法",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Numba",
+        "permalink": "/python/tags/numba"
+      },
+      {
+        "inline": true,
+        "label": "Performance",
+        "permalink": "/python/tags/performance"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/python/tags/教學"
+      }
+    ],
+    "date": "2024-10-12 00:00:00",
+    "yearMonth": "2024 年 10 月",
+    "day": "12",
+    "source": "git"
+  },
+  {
+    "title": "寫出優雅程式",
+    "permalink": "/memo/python/how-to-write-clean-code",
+    "description": "How to Write Clean Code",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": "2024-10-01 00:00:00",
+    "yearMonth": "2024 年 10 月",
+    "day": "01",
+    "source": "memo"
+  },
+  {
+    "title": "[轉載] Z 檔案系統 (ZFS)",
+    "permalink": "/memo/nas/zfs",
+    "description": "[轉載] Z 檔案系統 (ZFS)",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/memo/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "ZFS",
+        "permalink": "/memo/tags/zfs"
+      }
+    ],
+    "date": "2024-09-25 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "25",
+    "source": "memo"
+  },
+  {
+    "title": "Ubuntu 的套件管理工具",
+    "permalink": "/memo/linux/package",
+    "description": "介紹 Ubuntu 中套件管理工具 apt apt-get dpkg snap flatpak 差異",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/memo/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Ubuntu",
+        "permalink": "/memo/tags/ubuntu"
+      }
+    ],
+    "date": "2024-09-23 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "23",
+    "source": "memo"
+  },
+  {
+    "title": "設定 Traefik 反向代理",
+    "permalink": "/memo/nas/traefik-setting",
+    "description": "如何在 NAS 中設定 Traefik 反向代理 Docker 服務安全的讓服務連上外網",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/memo/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Traefik",
+        "permalink": "/memo/tags/traefik"
+      },
+      {
+        "inline": true,
+        "label": "Reverse-Proxy",
+        "permalink": "/memo/tags/reverse-proxy"
+      }
+    ],
+    "date": "2024-09-21 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "21",
+    "source": "memo"
+  },
+  {
+    "title": "無預警斷線（原因排查中）",
+    "permalink": "/memo/nas/unexpected-disconnection",
+    "description": "TrueNAS 無預警斷線，ping 主機也失敗",
+    "tags": [
+      {
+        "inline": true,
+        "label": "NAS",
+        "permalink": "/memo/tags/nas"
+      },
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      }
+    ],
+    "date": "2024-09-19 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "19",
+    "source": "memo"
+  },
+  {
+    "title": "基礎知識",
+    "permalink": "/git/preliminaries/basic-knowledge",
+    "description": "宏觀、精簡的介紹 Git 基礎概念。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-13 04:00:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "13",
+    "source": "git"
+  },
+  {
+    "title": "正則表達式",
+    "permalink": "/memo/python/regex",
+    "description": "Python 正則表達式 Regex",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Regex",
+        "permalink": "/memo/tags/regex"
+      }
+    ],
+    "date": "2024-09-11 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "11",
+    "source": "memo"
+  },
+  {
+    "title": "Git 中的關鍵字、符號和基本組成",
+    "permalink": "/git/preliminaries/keyword",
+    "description": "這篇文章介紹 Git 中的保留關鍵字，包含 HEAD, ^, ~ 等符號",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 17:51:07",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "基礎操作",
+    "permalink": "/git/beginner/step-above-basic",
+    "description": "挑選日常常用指令集合，囊括 99% 的日常使用問題。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 16:15:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "遠端儲存庫設定",
+    "permalink": "/git/remote/setup",
+    "description": "上傳到遠端儲存庫的必要前置設定。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 06:07:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "前言",
+    "permalink": "/python/introduction",
+    "description": "學到什麼就寫什麼。",
+    "tags": [],
+    "date": "2024-09-10 03:07:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "關於這個網站",
+    "permalink": "/memo/about",
+    "description": "這裡是 zsl0621 的筆記區，筆記寫的比較隨意，讀了很多，記下來才不會忘。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Docusaurus",
+        "permalink": "/memo/tags/docusaurus"
+      }
+    ],
+    "date": "2024-09-08 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "08",
+    "source": "memo"
+  },
+  {
+    "title": "各種修改提交歷史的情境和解法",
+    "permalink": "/git/history-manipulation/edit-commits",
+    "description": "各種修改 commit 的情況和對應的解決方式。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-07 14:10:12",
+    "yearMonth": "2024 年 09 月",
+    "day": "07",
+    "source": "git"
+  },
+  {
+    "title": "幫所有提交加上 GPG 簽名",
+    "permalink": "/git/troubleshooting/batch-sign",
+    "description": "幫 commit 加上已認證標籤。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-08-22 05:31:07",
+    "yearMonth": "2024 年 08 月",
+    "day": "22",
+    "source": "git"
+  },
+  {
+    "title": "tmux 筆記",
+    "permalink": "/memo/linux/tmux",
+    "description": "使用 tmux 能讓你，管理多個任務：將一個終端分割成多個視窗或面板，或者保持會話持久性：即使斷線，會話依然可重連繼續工作。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "tmux",
+        "permalink": "/memo/tags/tmux"
+      }
+    ],
+    "date": "2024-07-21 07:12:50",
+    "yearMonth": "2024 年 07 月",
+    "day": "21",
+    "source": "memo"
+  },
+  {
+    "title": "清除 Linux 殘存設定",
+    "permalink": "/memo/linux/clean-settings",
+    "description": "清除 Linux 系統安裝軟體時殘留的設定",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      }
+    ],
+    "date": "2024-07-19 07:07:30",
+    "yearMonth": "2024 年 07 月",
+    "day": "19",
+    "source": "memo"
+  },
+  {
+    "title": "一分鐘入門",
+    "permalink": "/git/beginner/one-minute",
+    "description": "最快速上手 Git 的文章沒有之一。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-06-02 04:07:33",
+    "yearMonth": "2024 年 06 月",
+    "day": "02",
+    "source": "git"
+  },
+  {
+    "title": "[實戰] 團隊協作最佳實踐🔥",
+    "permalink": "/git/remote/collaboration-best-practice",
+    "description": "實戰搞懂如何多人協作，與開源作者使用相同流程開發。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-06-02 00:00:00",
+    "yearMonth": "2024 年 06 月",
+    "day": "02",
+    "source": "git"
+  },
+  {
+    "title": "Unix 語法筆記",
+    "permalink": "/memo/linux/unix-syntax",
+    "description": "Unix 語法筆記",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      }
+    ],
+    "date": "2024-05-31 00:00:00",
+    "yearMonth": "2024 年 05 月",
+    "day": "31",
+    "source": "memo"
+  },
+  {
+    "title": "常用指令",
+    "permalink": "/memo/linux/useful-linux-commands",
+    "description": "常用的 Linux 指令小抄",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Docker",
+        "permalink": "/memo/tags/docker"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      }
+    ],
+    "date": "2024-05-30 00:00:00",
+    "yearMonth": "2024 年 05 月",
+    "day": "30",
+    "source": "memo"
+  },
+  {
+    "title": "Docker 基礎知識",
+    "permalink": "/memo/others/docker-day-one",
+    "description": "第一天學習 Docker 該知道的基礎知識",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Docker",
+        "permalink": "/memo/tags/docker"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/memo/tags/教學"
+      }
+    ],
+    "date": "2024-05-27 00:00:00",
+    "yearMonth": "2024 年 05 月",
+    "day": "27",
+    "source": "memo"
   }
 ]

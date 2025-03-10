@@ -70,7 +70,7 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
 });
 
 const allIds = Object.keys(allItems);
-const latestIds = allIds.sort().reverse().slice(0, 10);
+const latestIds = allIds.sort().reverse();
 const latestItems = latestIds.map((v) => allItems[v]);
 
 fs.writeFileSync(latestPostsList, JSON.stringify(latestItems, null, 2));

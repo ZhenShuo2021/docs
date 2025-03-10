@@ -1,15 +1,12 @@
 ---
 title: Vim 文字編輯器基礎操作
 author: zsl0621
-description: 講人話的 Vim 文字編輯器教學。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-09-10T03:07:33+08:00
   author: zsl0621

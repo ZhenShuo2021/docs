@@ -1,6 +1,5 @@
 ---
 title: tmux 筆記
-description: 使用 tmux 能讓你，管理多個任務：將一個終端分割成多個視窗或面板，或者保持會話持久性：即使斷線，會話依然可重連繼續工作。
 tags:
   - Linux
   - tmux

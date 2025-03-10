@@ -1,15 +1,12 @@
 ---
 title: 使用 Git Sparse Checkout 只下載部分專案以加速 Clone 速度
-description: 介紹操作大型儲存庫時如何減少容量加速 Clone
 sidebar_label: 使用 Sparse Checkout 加速 Clone
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-02-11T07:38:25+08:00
   author: zsl0621

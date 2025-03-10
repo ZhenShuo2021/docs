@@ -1,6 +1,5 @@
 ---
 title: "[轉載] Z 檔案系統 (ZFS)"
-description: "[轉載] Z 檔案系統 (ZFS)"
 tags:
   - NAS
   - Linux

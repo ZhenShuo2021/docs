@@ -1,15 +1,12 @@
 ---
 title: 分支操作
 author: zsl0621
-description: 基礎分支操作，讓你用最快速度上手 Git。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-01-16T14:38:33+08:00
   author: zsl0621

@@ -1,6 +1,5 @@
 ---
 title: TrueNas SMB 簽名及加密設定
-description: "TrueNAS 預設沒有開啟 SMB 簽名及加密，新版又取消了 auxiliary parameters 欄位，所以不要懷疑自己找不到，搞老半天就這個能用。"
 tags:
   - NAS
   - Linux

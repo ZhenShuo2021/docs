@@ -1,15 +1,12 @@
 ---
 title: 使用 Git Worktree 簡化分支切換
 author: zsl0621
-description: 使用 Git Worktree 簡化分支切換步驟以提升工作效率
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-01-14T20:41:33+08:00
   author: zsl0621

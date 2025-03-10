@@ -1,15 +1,13 @@
 ---
 title: Git 遠端概念和常見錯誤
 sidebar_label: 遠端概念和常見錯誤
-description: 操作遠端儲存庫的指令都在這。
+description: 本文介紹操作遠端儲存庫的指令。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-02-13T23:03:42+08:00
   author: zsl0621

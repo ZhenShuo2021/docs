@@ -1,16 +1,13 @@
 ---
 title: 看懂 Git 文檔
 author: zsl0621
-description: 教你看懂 Git 文檔
 sidebar_label: 看懂文檔
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-01-16T15:30:00+08:00
   author: zsl0621

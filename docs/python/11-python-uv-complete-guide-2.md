@@ -1,6 +1,5 @@
 ---
 title: UV Python 教學，最佳虛擬環境管理工具（下）
-description: UV Python 教學，最佳虛擬環境管理工具（下）
 sidebar_label: UV 虛擬環境套件（下）
 tags:
   - Python

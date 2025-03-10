@@ -1,6 +1,5 @@
 ---
 title: Unix 語法筆記
-description: Unix 語法筆記
 tags:
   - Linux
   - Cheatsheet

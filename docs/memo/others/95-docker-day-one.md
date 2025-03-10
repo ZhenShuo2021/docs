@@ -1,6 +1,5 @@
 ---
 title: Docker 基礎知識
-description: 第一天學習 Docker 該知道的基礎知識
 tags:
   - Linux
   - Docker

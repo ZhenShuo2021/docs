@@ -1,16 +1,12 @@
 ---
 title: 基礎知識
 author: zsl0621
-description: 宏觀、精簡的介紹 Git 基礎概念。
 tags:
   - Git
   - 教學
-
 keywords:
+  - Git
   - 教學
-
-  - 教學
-
 last_update:
   date: 2024-09-13T04:00:33+08:00
   author: zsl0621

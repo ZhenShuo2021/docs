@@ -1,6 +1,5 @@
 ---
 title: 初嘗 Python 工作流自動化
-description: 初嘗 Python 工作流自動化
 tags:
   - Python
   - pre-commit

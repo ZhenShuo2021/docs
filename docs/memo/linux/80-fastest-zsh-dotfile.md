@@ -1,6 +1,6 @@
 ---
 title: 0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
-description: 0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles
+description: 0.03 秒啟動極速 Zsh，速度超快、功能齊全而且設定正確！
 sidebar_label: 啟動極速 Zsh
 tags:
   - Zsh

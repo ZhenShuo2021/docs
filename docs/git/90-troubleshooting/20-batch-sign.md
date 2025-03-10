@@ -1,14 +1,11 @@
 ---
 title: 幫所有提交加上 GPG 簽名
-description: 幫 commit 加上已認證標籤。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-08-22T05:31:07+08:00
   author: zsl0621

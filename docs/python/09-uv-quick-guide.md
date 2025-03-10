@@ -1,6 +1,5 @@
 ---
 title: UV 快速手冊
-description: UV 快速手冊
 sidebar_label: UV 快速手冊
 tags:
   - Python

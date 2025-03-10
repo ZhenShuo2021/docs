@@ -1,6 +1,5 @@
 ---
 title: 寫出優雅程式
-description: How to Write Clean Code
 tags:
   - Python
 keywords:

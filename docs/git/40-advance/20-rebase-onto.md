@@ -2,15 +2,12 @@
 title: "Git Rebase Onto 全中文圈最完整教學"
 sidebar_label: "搞懂 Rebase Onto"
 author: zsl0621
-description: 不要再亂教 rebase onto 了
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2025-02-13T23:59:00+08:00
   author: zsl0621

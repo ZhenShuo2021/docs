@@ -1,15 +1,12 @@
 ---
 title: 幫重要版本打上標籤
 author: zsl0621
-description: 幫提交上標籤
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-10-20T02:21:33+08:00
   author: zsl0621

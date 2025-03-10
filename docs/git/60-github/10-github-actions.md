@@ -1,17 +1,14 @@
 ---
 title: Github Actions 自動化 CI/CD
-description: Github Actions 自動化 CI/CD
 sidebar_label: Github Action
 tags:
   - Git
   - Github
   - 教學
-
 keywords:
   - Git
   - Github
   - 教學
-
 last_update:
   date: 2025-01-11T19:39:30+08:00
   author: zsl0621

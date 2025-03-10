@@ -5,11 +5,9 @@ description: 上傳到遠端儲存庫的必要前置設定。
 tags:
   - Git
   - 教學
-
 keywords:
   - Git
   - 教學
-
 last_update:
   date: 2024-09-10T06:07:33+08:00
   author: zsl0621

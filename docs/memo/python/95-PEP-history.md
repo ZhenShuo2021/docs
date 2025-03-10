@@ -1,6 +1,5 @@
 ---
 title: PEP 更新紀錄
-description: PEP 更新紀錄
 tags:
   - Python
   - PEP

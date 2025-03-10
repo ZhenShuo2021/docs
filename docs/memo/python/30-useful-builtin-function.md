@@ -1,6 +1,5 @@
 ---
 title: 實用的內建函式
-description: Useful Built-in Functions in Python
 tags:
   - Python
 keywords:

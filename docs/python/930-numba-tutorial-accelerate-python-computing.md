@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 
 :::info 寫在前面
 
-**[舊版文檔](https://numba.pydata.org/numba-doc/dev/index.html)內容缺失！**，查看文檔時注意左上角版本號是否為 Stable，偏偏舊版文檔 Google 搜尋在前面，一不小心就點進去了。
+**[舊版文檔](https://numba.pydata.org/numba-doc/dev/index.html)內容缺失**，查看文檔時注意左上角版本號是否為 Stable，偏偏舊版文檔 Google 搜尋在前面，一不小心就點進去了。
 
 :::
 

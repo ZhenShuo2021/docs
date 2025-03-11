@@ -1,6 +1,6 @@
 ---
 title: Github Actions 自動化 CI/CD
-sidebar_label: Github Action
+sidebar_label: Github Actions
 tags:
   - Git
   - Github
@@ -18,9 +18,7 @@ first_publish:
 
 # Github Actions 自動化 CI/CD
 
-網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以把自己摸索的結果寫成文章。
-
-Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、執行 cron 任務等等，額度請參考[文檔](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes)，簡單使用基本上用不完。
+網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以又寫了一篇。Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、執行 cron 任務等等，額度請參考[文檔](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes)，簡單使用基本上用不完。
 
 ## 組成
 
@@ -131,7 +129,7 @@ Github Actions 由以下幾個項目組成：
 
 ### 自訂任務
 
-如果想要進行某項直覺很常見的任務例如設定 Python/Docker，千萬不要自己寫而是找現成的 Actions 使用，如果找不到有八成可能是 Github 根本不支援。以安裝 chrome 為例，應該使用 [setup-chrome](https://github.com/browser-actions/setup-chrome) 而不是自己寫 curl 會遇到很多奇怪問題，而且使用現成 actions 會有很多附加功能可選。
+如果想要進行某項直覺很常見的任務例如設定 Python/Docker，千萬不要自己寫而是找現成的 Actions 使用，如果找不到有八成可能是 Github 根本不支援。以安裝 chrome 為例，應該使用 [setup-chrome](https://github.com/browser-actions/setup-chrome) 而不是自己寫 curl 會遇到很多奇怪問題，使用現成 actions 還會有很多附加功能可選。
 
 使用最新版只需要指定大版本（例如 `actions/checkout@v4`）不需特別指定子版本號。
 
@@ -151,9 +149,9 @@ Github Actions 由以下幾個項目組成：
 
 ### 系統環境變數
 
-這裡指的環境變數是作業系統的環境變數而不是 Github 的。
+如果要直接把指令或程式新增到環境變數該怎麼做呢？
 
-以 Windows 為例，上面執行 Invoke-WebRequest 其實會因為網路問題造成偶發失敗，簡單的解決方法是把整個 cwrsync 丟到 repo 中，並且把執行檔加入環境變數中
+以 Windows 為例，在上面的範例中執行 Invoke-WebRequest 會因為網路問題造成偶發失敗。簡單的解決方法是把整個 cwrsync 丟到 repo 中，並且把執行檔的路徑加入環境變數中，這樣就免去了網路問題。Windows 中加入環境變數的指令如下：
 
 ```powershell
 echo "${{ github.workspace }}\.github\workflows\rsync\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
@@ -241,7 +239,7 @@ choco install act-cli
 brew install act
 ```
 
-act 的使用教學請見[下一篇文章](./run-github-actions-locally)。
+act 的使用教學請見[在本地執行 Github Action](./run-github-actions-locally)。
 
 ## 實際範例
 

@@ -125,15 +125,15 @@ export const projectsMeta = [
 
 export const sectionsMeta = [
   {
-    id: "articlesID",
-    title: "✍️ 文章",
-    buttonText: "查看文章",
-    contentType: "文章",
-  },
-  {
     id: "projectsID",
     title: "🚀 專案",
     buttonText: "瀏覽專案",
     contentType: "專案",
+  },
+  {
+    id: "articlesID",
+    title: "✍️ 文章",
+    buttonText: "查看文章",
+    contentType: "文章",
   },
 ];

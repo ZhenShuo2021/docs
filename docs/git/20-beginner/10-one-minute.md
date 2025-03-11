@@ -16,7 +16,7 @@ first_publish:
 
 # Git 一分鐘入門
 
-本文介紹 Git 最基礎的指令。
+本文介紹 Git 最基礎的指令，只會說明如何往後增加新的提交記錄。
 
 ## 基礎操作指令
 
@@ -30,7 +30,7 @@ git commit -m <messages>    # 提交到儲存庫
 
 > 看不懂 pathspec？請見[看懂文檔](../preliminaries/read-git-docs#pathspec)。
 
-這些指令完成了序章的[檔案標記狀態](../preliminaries/basic-knowledge#概念)。完成提交後我們試著用以下指令查看檔案狀態和提交歷史：
+這些指令完成了序章的[檔案標記狀態](../preliminaries/basic-knowledge#file-status)。完成提交後我們試著用以下指令查看檔案狀態和提交歷史：
 
 ```sh
 git status                  # 檔案狀態（新增A、修改M、重新命名R、刪除D、未追蹤U）

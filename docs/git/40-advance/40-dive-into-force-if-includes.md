@@ -14,7 +14,7 @@ first_publish:
   date: 2025-02-12T00:44:00+08:00
 ---
 
-本文資訊主要來自 [When should I use "git push --force-if-includes"](https://stackoverflow.com/questions/65837109/when-should-i-use-git-push-force-if-includes)。
+本文資訊整理自 [When should I use "git push --force-if-includes"](https://stackoverflow.com/questions/65837109/when-should-i-use-git-push-force-if-includes)，原文跟論文沒兩樣，有夠長...
 
 ## TL;DR
 
@@ -56,7 +56,7 @@ git show <remote>/<name>   # inspect their most recent commit
 git push --force-with-lease <remote> <name>
 ```
 
-他的說明非常詳細但是不推薦的原因沒有仔細解釋，而筆者自己的看法是可以嘗試使用。
+原文作者的說明非常詳細，但是不推薦的原因沒有仔細解釋，筆者自己的看法是可以嘗試使用。
 
 <br />
 
@@ -119,7 +119,7 @@ git push --force-with-lease origin main
 
 如果 `--force-with-lease[=<refname>[:<expect-remote-hash>]]` 兩個參數都提供則 `--force-if-includes` 會變成 no-op。
 
-這東西 2020 就有了結果到現在 2025 繁體中文資訊等於零。你別說 force-if-includes，連 `refname` 和 `expect` 都沒人講過他們的用途，看 stackoverflow 的原文跟讀論文沒兩樣，有夠長...
+這東西 2020 就有了結果到現在 2025 繁體中文資訊等於零。你別說 force-if-includes，連 `refname` 和 `expect` 都沒人講過他們的用途。
 
 ## 有趣小知識
 

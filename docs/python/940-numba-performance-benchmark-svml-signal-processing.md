@@ -412,8 +412,6 @@ python test.py | grep -E '\b(vadd|vsub|vmul|vdiv|fadd|fsub|fmul|fdiv)\b'`
 
 跑 benchmark 比想像中麻煩...
 
-如果有任何錯誤請留言告知，謝謝。
-
 <details>
 <summary>合併文章：寫出高效程式，因為內容重疊也不長，沒必要分兩篇</summary>
 

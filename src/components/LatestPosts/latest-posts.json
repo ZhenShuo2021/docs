@@ -1,5 +1,26 @@
 [
   {
+    "title": "使用 Git Bisect 找出錯誤提交",
+    "permalink": "/git/advance/git-bisect",
+    "description": "找出錯誤最快的方式是使用二分法切一半找問題，git bisect 指令就幫助我們完成這件事，只要提供開頭結尾分別是正確和錯誤的提交，Git 就會自動幫我們在提交歷史中切換，不過哪個提交有問題當然還是要自己確認。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-03-15 10:12:00",
+    "yearMonth": "2025 年 03 月",
+    "day": "15",
+    "source": "git"
+  },
+  {
     "title": "Nix 套件管理器：我的失敗經驗",
     "permalink": "/memo/linux/abandoned-nix",
     "description": "Nix 是非常特別的套件管理系統，而且不只是 NixOS 能用，macOS 也能將其作為套件管理器。筆者曾經嘗試使用但最後放棄了，這篇是我的使用心得和整理。",
@@ -162,7 +183,59 @@
     "source": "memo"
   },
   {
-    "title": "UV Python 教學，最佳虛擬環境管理工具（上）",
+    "title": "Python 套件管理工具全面比較",
+    "permalink": "/python/best-python-project-manager",
+    "description": "你知道 Python 有超過 10 個套件管理工具嗎？每個工具的出現都是為了解決前一個工具的痛點，然而網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該選擇這個套件嗎？於是本文是全中文圈唯一一篇完整整理 Python 專案管理工具的文章，我們應該要知道的是如何選擇，而不是照著指令複製貼上等出問題才知道到底適不適合。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
+      }
+    ],
+    "date": "2025-02-16 23:29:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "16",
+    "source": "git"
+  },
+  {
+    "title": "UV Python 教學，最佳套件管理工具（下）",
+    "permalink": "/python/python-uv-complete-guide-2",
+    "description": "本篇文章介紹 uv 的操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看我寫的Python 虛擬環境管理套件比較。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
+      }
+    ],
+    "date": "2025-02-15 10:04:00",
+    "yearMonth": "2025 年 02 月",
+    "day": "15",
+    "source": "git"
+  },
+  {
+    "title": "UV Python 教學，最佳套件管理工具（上）",
     "permalink": "/python/python-uv-complete-guide",
     "description": "本篇文章介紹 uv 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看上一篇文章。",
     "tags": [
@@ -173,8 +246,13 @@
       },
       {
         "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/python/tags/虛擬環境"
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
       }
     ],
     "date": "2025-02-15 10:04:00",
@@ -185,7 +263,7 @@
   {
     "title": "使用變基 Rebase 合併分支",
     "permalink": "/git/history-manipulation/rebase",
-    "description": "筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，對方比對並且驗證保證本文解釋方式能和指令實際作用對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文張，而且所有和本文矛盾的說明都是錯的。",
+    "description": "筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。",
     "tags": [
       {
         "inline": true,
@@ -206,7 +284,7 @@
   {
     "title": "Git Rebase Onto 全中文圈最完整教學",
     "permalink": "/git/advance/rebase-onto",
-    "description": "本文延續 使用變基 Rebase 合併分支 繼續說明 onto 用法，可以視為它的完整解析版本，完全遵照文檔說明沒有模糊地帶。本文會說明為何網路上的說法為何錯誤，同時包含實際範例展示，並且和上一篇相同，筆者保證本文絕對正確。",
+    "description": "本文延續 使用變基 Rebase 合併分支 但是專注說明 onto 用法，也可以視為 rebase 的完整解析版本，完全遵照文檔說明沒有模糊地帶。本文會說明為何網路上的說法為何錯誤，同時包含實際範例展示，並且和上一篇相同，筆者保證本文絕對正確。",
     "tags": [
       {
         "inline": true,
@@ -290,7 +368,7 @@
   {
     "title": "使用 cherry-pick 揀選指定提交",
     "permalink": "/git/history-manipulation/cherry-pick",
-    "description": "Cherry-Pick 的意思是把指定提交像是摘櫻桃一樣取過來，開發社群通常不鼓勵使用此指令，詳情請見 Git Cherry Pick 的後遺症，我們先不管這個問題只學如何使用。",
+    "description": "Cherry-Pick 的意思是把指定提交像是摘櫻桃一樣取過來，開發社群通常不鼓勵使用此指令，詳情請見 Git Cherry Pick 的後遺症，我們不管這個問題只學如何使用。",
     "tags": [
       {
         "inline": true,
@@ -311,7 +389,7 @@
   {
     "title": "使用 Git Sparse Checkout 只下載部分專案以加速 Clone 速度",
     "permalink": "/git/advance/reduce-size-with-sparse-checkout",
-    "description": "Clone 大型儲存庫又不需要全部檔案時可以使用 sparse-checkout 功能排除指定的檔案避免全部下載。",
+    "description": "Clone 大型儲存庫耗時很長又佔空間，例如樹梅派原始碼高達一百二十萬次提交 clone 一次需要長達 15 分鐘，我們也不需要全部檔案和歷史，這時就可以使用 sparse-checkout 以排除指定檔案避免全部下載。",
     "tags": [
       {
         "inline": true,
@@ -374,7 +452,7 @@
   {
     "title": "分支操作",
     "permalink": "/git/beginner/branch",
-    "description": "分支操作主要有以下五大項目，本文會一一說明，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹，如果還不熟悉 Git 的本文檔有完整且精練的教學。",
+    "description": "分支操作主要有以下五大指令，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹。本文只會有本地不會有遠端操作，遠端操作的第一篇文章要從遠端儲存庫設定開始。",
     "tags": [
       {
         "inline": true,
@@ -395,7 +473,7 @@
   {
     "title": "使用 Git Worktree 簡化分支切換",
     "permalink": "/git/advance/git-worktree",
-    "description": "有時我們會需要在多個分支間來回切換，以往我們的指令流程是",
+    "description": "Git worktree 的目的是簡化在分支之間切換的指令步驟，甚至允許你同時修改兩個分支。舉例來說，以往我們在多個分支間來回切換的指令流程是",
     "tags": [
       {
         "inline": true,
@@ -416,7 +494,7 @@
   {
     "title": "使用互動式變基 Interactive Rebase 任意修改提交歷史",
     "permalink": "/git/history-manipulation/interactive-rebase",
-    "description": "使用 git rebase -i 可進行互動式變基，這個指令用途強大並且簡單易懂，使用時可以把腦袋丟掉不用像一般的 rebase 還要背口訣。",
+    "description": "互動式變基是 Git 最強大的指令，包含移動提交、刪除提交、修改提交內容、修改提交訊息全部都可以做到。原理仍舊是基於變基，但是使用時完全不會感覺到分支操作。互動式變基常用的選項有五個：",
     "tags": [
       {
         "inline": true,
@@ -437,7 +515,7 @@
   {
     "title": "JSON、YAML、TOML 簡易說明",
     "permalink": "/memo/python/json-yaml-toml",
-    "description": "本文會從什麼是資料序列化開始介紹，並且說明常見的資料格式（有哪些標題已經破梗），還有如何選擇他們和格式範例，最後是同場加映的 JSON 讀取範例。",
+    "description": "本文會從什麼是資料序列化開始介紹，並且介紹三種常見的資料格式，以及如何選擇和格式範例，最後是 JSON 讀寫範例。",
     "tags": [
       {
         "inline": true,
@@ -484,7 +562,7 @@
   {
     "title": "Github Actions 自動化 CI/CD",
     "permalink": "/git/github/github-actions",
-    "description": "網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以把自己摸索的結果寫成文章。",
+    "description": "網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以又寫了一篇。Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、執行 cron 任務等等，額度請參考文檔，簡單使用基本上用不完。",
     "tags": [
       {
         "inline": true,
@@ -615,7 +693,7 @@
   {
     "title": "Github 搜尋技巧",
     "permalink": "/git/github/github-search",
-    "description": "本文快速精練的說明如何在 Github 進行條件搜尋，一般大概也只會用本文列出的這些，而且 Github 搜尋功能不是非常完美，光是這些常用的選項有時候就會搜尋不到了。",
+    "description": "本文快速精練的說明如何在 Github 進行條件搜尋，一般大概也只會用本文列出的這些，而且 Github 搜尋功能不是非常完美，光是這些常用的選項有時候搜尋結果就不如預期了。",
     "tags": [
       {
         "inline": true,
@@ -671,8 +749,13 @@
       },
       {
         "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/python/tags/虛擬環境"
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
       }
     ],
     "date": "2024-12-24 21:53:30",
@@ -700,27 +783,6 @@
     "yearMonth": "2024 年 12 月",
     "day": "13",
     "source": "memo"
-  },
-  {
-    "title": "Python 虛擬環境管理和依賴解析套件完整比較",
-    "permalink": "/python/virtual-environment-management-comparison",
-    "description": "撰寫於 2024/11",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/python/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "虛擬環境",
-        "permalink": "/python/tags/虛擬環境"
-      }
-    ],
-    "date": "2024-12-12 02:51:00",
-    "yearMonth": "2024 年 12 月",
-    "day": "12",
-    "source": "git"
   },
   {
     "title": "False-Sharing 閱讀筆記和實測",
@@ -844,6 +906,27 @@
     "source": "git"
   },
   {
+    "title": "Pyreverse 指令小抄和測試範例",
+    "permalink": "/memo/python/pyreverse-usage",
+    "description": "最近寫的小小爬蟲專案用了各種程式碼品質工具，例如 mypy 和 ruff 等等，然後又被我發現一個小工具 Pyreverse，可以分析出類別之間的 UML 關係圖還有檔案之間的 import 關係。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Pyreverse",
+        "permalink": "/memo/tags/pyreverse"
+      }
+    ],
+    "date": "2024-11-20 01:49:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "20",
+    "source": "memo"
+  },
+  {
     "title": "PyNaCl 加密套件使用紀錄",
     "permalink": "/memo/python/pynacl-usage",
     "description": "這篇不是教學文章！！！想看正經密碼學教學請另尋他路。",
@@ -956,7 +1039,7 @@
   {
     "title": "Python Type Hint 教學",
     "permalink": "/python/type-hint-typing-complete-guide",
-    "description": "型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 「讓使用者馬上知道該函式應該輸入哪種類型的變數」，不用點進函式閱讀程式碼；並且 「整合 IDE，在程式撰寫時就可以警告」 ，不用等到執行才知道使用錯誤。",
+    "description": "型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 「讓使用者馬上知道該函式應該輸入哪種類型的變數」，不用點進函式閱讀程式碼；並且 「整合 IDE，在程式撰寫時就可以警告」，不用等到執行才知道使用錯誤。",
     "tags": [
       {
         "inline": true,
@@ -1040,6 +1123,37 @@
     "date": "2024-10-20 02:21:33",
     "yearMonth": "2024 年 10 月",
     "day": "20",
+    "source": "git"
+  },
+  {
+    "title": "Numba 教學：加速 Python 科學計算（下）",
+    "permalink": "/python/numba-tutorial-accelerate-python-computing-2",
+    "description": "你能找到最好的 Numba 教學！",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "Numba",
+        "permalink": "/python/tags/numba"
+      },
+      {
+        "inline": true,
+        "label": "Performance",
+        "permalink": "/python/tags/performance"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/python/tags/教學"
+      }
+    ],
+    "date": "2024-10-18 00:00:00",
+    "yearMonth": "2024 年 10 月",
+    "day": "18",
     "source": "git"
   },
   {
@@ -1230,6 +1344,22 @@
     "source": "git"
   },
   {
+    "title": "實用的內建函式",
+    "permalink": "/memo/python/useful-builtin-function",
+    "description": "I always forget how to use them, so this is my memo for quick reference. Including",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/memo/tags/python"
+      }
+    ],
+    "date": "2024-09-11 00:00:00",
+    "yearMonth": "2024 年 09 月",
+    "day": "11",
+    "source": "memo"
+  },
+  {
     "title": "正則表達式",
     "permalink": "/memo/python/regex",
     "description": "第一次看到正則表達式的感想只有「？？？」，不過簡單來說就是一套可以描述字符匹配的表達方式。",
@@ -1274,7 +1404,7 @@
   {
     "title": "基礎操作",
     "permalink": "/git/beginner/step-above-basic",
-    "description": "一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的兩篇文章會這樣進行說明：",
+    "description": "一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的本文和下一篇文章分別為基礎操作（單一分支）和分支操作（多分支），快速檢索的方式是從右側目錄快速定位操作內容，例如提交錯誤時可以找到「清除提交」定位到 git reset。",
     "tags": [
       {
         "inline": true,
@@ -1314,9 +1444,72 @@
     "source": "git"
   },
   {
+    "title": "Vim 文字編輯器基礎操作",
+    "permalink": "/git/preliminaries/vim",
+    "description": "為何要學 Vim？因為編輯 Git 文件時預設使用 Vim。初學者請跳過這篇文章，需要時再回來看，Vim 要用到熟練的時間成本遠遠大於 Git 的數倍以上，一開始只要能修改和儲存就夠了。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 03:07:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "安裝與設定",
+    "permalink": "/git/preliminaries/installation",
+    "description": "安裝",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 03:07:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
+    "title": "前言",
+    "permalink": "/git/introduction",
+    "description": "啟發自码农高天的 Git 教學，被他淺顯易懂的說明驚訝到，並且深刻感受到繁體中文教學實在很差勁，於是決定自己寫，試圖解決我在學習 Git 時發現的問題：",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2024-09-10 03:07:33",
+    "yearMonth": "2024 年 09 月",
+    "day": "10",
+    "source": "git"
+  },
+  {
     "title": "前言",
     "permalink": "/python/introduction",
-    "description": "學到什麼就寫什麼。",
+    "description": "學到什麼就寫什麼，但是要寫就認真寫！這裡面有",
     "tags": [],
     "date": "2024-09-10 03:07:33",
     "yearMonth": "2024 年 09 月",
@@ -1324,7 +1517,7 @@
     "source": "git"
   },
   {
-    "title": "關於這個網站",
+    "title": "簡介",
     "permalink": "/memo/about",
     "description": "這裡是 zsl0621 的筆記區，筆記寫的比較隨意。",
     "tags": [
@@ -1421,7 +1614,7 @@
   {
     "title": "一分鐘入門",
     "permalink": "/git/beginner/one-minute",
-    "description": "本文介紹 Git 最基礎的指令。",
+    "description": "本文介紹 Git 最基礎的指令，只會說明如何增加新的提交記錄。",
     "tags": [
       {
         "inline": true,
@@ -1482,7 +1675,7 @@
     "source": "memo"
   },
   {
-    "title": "常用指令",
+    "title": "Linux 常用指令",
     "permalink": "/memo/linux/useful-linux-commands",
     "description": "常用的 Linux 指令小抄",
     "tags": [

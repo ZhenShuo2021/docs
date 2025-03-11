@@ -83,7 +83,7 @@ Git 是快照系統不是差異系統，只是具備顯示差異的功能，並�
 
 Git 是分散式系統，每個人都有一份完全相同的鏡像，遠端儲存庫只是同步手段而不是集中管理版本。
 
-Git 是分散式鏡像系統，所以你的 reflog 記錄不會被推送到遠端，不然每個人的 reflog 都不一樣怎麼搞？所以[這篇文章錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)。
+Git 是分散式鏡像系統，所以你的 reflog 記錄不會被推送到遠端，你應該沒聽過 reflog 衝突這種東西吧？所以[這篇文章錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)。
 
 ### 進階
 
@@ -108,7 +108,7 @@ Git 是分散式鏡像系統，所以你的 reflog 記錄不會被推送到遠�
 
 ## 更進階：blob, tree, tag, commit, refs{#basics}
 
-扣掉 refs 其他四個是 Git 的基本構成，超級不重要，對你的人生沒有任何幫助。
+扣掉 refs 其他四個是 Git 的基本構成，不重要，對於使用沒有任何幫助。
 
 檔案在 Git 中是一個 blob 物件
 

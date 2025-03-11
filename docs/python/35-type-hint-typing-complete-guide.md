@@ -21,14 +21,14 @@ import TabItem from '@theme/TabItem';
 
 # Type Hint 教學：從入門到進階的 Python 型別註釋
 
-型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」**，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」** ，不用等到執行才知道使用錯誤。
+型別註釋功能可以讓身為動態語言的 Python 在執行前就進行檢查，兩大優點分別是 **「<u>讓使用者馬上知道該函式應該輸入哪種類型的變數</u>」**，不用點進函式閱讀程式碼；並且 **「<u>整合 IDE，在程式撰寫時就可以警告</u>」**，不用等到執行才知道使用錯誤。
 
 本文主要著重在進階的泛型，對於初階使用網路上已經有非常多文章就不重複撰寫，附上筆者整理後覺得最好的資源，講的非常好：
 
 - [【python】Type Hint入门与初探，好好的python写什么类型标注？](https://www.youtube.com/watch?v=HYE85bqNoGw)
 - [【python】Type Hint的进阶知识，这下总该有你没学过的内容了吧？](https://www.youtube.com/watch?v=6rgBwA7TRfE)
 
-如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例。建議看這三個就好，其他中文文章的品質比起這幾個都非常差不建議閱讀以免浪費自己的時間。
+如果喜歡文字版本，請看 [用代码打点酱油的chaofa - Python 类型体操训练](https://bruceyuan.com/post/python-type-challenge-basic.html) ，該文章包含完整的語法範例。建議看這三個就好，其他中文文章的品質很差不建議閱讀。
 
 ## 基礎關鍵字
 

@@ -20,13 +20,11 @@ import EmblaCarousel from '@site/src/components/EmblaCarousel';
 
 筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的是沒有比較沒有傷害，非常難用。先介紹自己的終端機使用經驗，使用原生終端機搭配 oh-my-zsh 這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh，所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是終端機只是主題，等於還是在用內建的爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。
 
-<details>
+:::tip
 
-<summary>可以跳過的前言</summary>
+筆者現在可以說是 Zsh 插件管理器富翁，從 oh-my-zsh, zinit, zplugin, zimfw, zpm, zsh4humans 全部試過一輪，最後決定使用 zcomet，想優化終端的可以參考我的文章 [0.03 秒啟動極速 Zsh](../linux/fastest-zsh-dotfile)。
 
-筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的會想砸電腦，沒有比較沒有傷害，爛到不可思議。先介紹自己的終端機使用經驗，由於 iTerm2 的 i 距離左手位置太遠不好直接呼叫（其實是第一次自己裝壞了）所以後來使用原生終端機搭配 oh-my-zsh，這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh 所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是終端機只是主題，等於還是在用內建的爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。
-
-</details>
+:::
 
 認真研究了[這篇文章](https://setapp.com/how-to/terminal-alternatives-for-mac)，裡面有高達十一個選手，先刪掉沒有跨平台還有付費的還剩下這五個，星星數統計於 2025/03
 
@@ -38,9 +36,7 @@ import EmblaCarousel from '@site/src/components/EmblaCarousel';
 6. [Tabby](https://github.com/Eugeny/tabby) (62.2k stars, TypeScript)
 7. [waveterm](https://github.com/wavetermdev/waveterm) (9.6k stars, Golang)
 
-盤點我的需求，我需要終端機可以透過已經 key 到一半的指令篩選過往指令，最好有類似 vim 的用法例如跳到下一個單字，不在意開源，輕巧快速，最重要的是跨平台[^it]。
-
-[^it]: iTerm2 在跨平台部分慘遭淘汰，不然做了一輪功課感覺大家到最後還是用他。
+盤點我的需求，我需要終端機可以透過已經 key 到一半的指令篩選過往指令，最好有類似 vim 的用法例如跳到下一個單字，不在意開源，輕巧快速，最重要的是跨平台。
 
 ![Star History Chart](https://api.star-history.com/svg?repos=alacritty/alacritty,warpdotdev/Warp,raphamorim/rio,wez/wezterm,vercel/hyper,Eugeny/tabby,wavetermdev/waveterm&type=Date)
 
@@ -49,8 +45,8 @@ import EmblaCarousel from '@site/src/components/EmblaCarousel';
 先講結論，能用的只有這幾個
 
 1. WezTerm 每方面都均衡，是我現在常駐使用的終端
-2. Warp 開箱即用，在終端機中可以把指令當作一般文字編輯的功能非常強大，AI 很方便，但是一直更新很煩，設定檔不能匯出很愚蠢，自動補全系統和 shell 的設定非常衝突導致系統的自動補全基本不可用（這三個月來有改善，但是我不覺得他能從根本解決此問題）
-3. Tabby 開箱即用但是啟動非常慢而且程式肥大
+2. Warp 開箱即用，啟動速度在接受範圍內，特色是在終端機中可以把輸入當作一般文字編輯，這個特色非常強大實用，AI 功能很方便，但是一直更新很煩，設定檔不能匯出很愚蠢，自動補全系統和 shell 的設定大幅度衝突（補全問題這三個月來有改善，但是我不覺得他能從根本解決）
+3. Tabby 開箱即用，但是啟動非常慢而且程式肥大
 4. Wave Terminal 還在 early beta，使用類似 yabai 的 tiling 概念完成，值得期待
 
 ## 如果你不想看我的紀錄

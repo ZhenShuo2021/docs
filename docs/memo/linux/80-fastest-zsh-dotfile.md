@@ -86,7 +86,7 @@ WezTerm 設定檔可以使用筆者自己[稍微改良過的](https://github.com
 
 ### 如何選擇 Zsh 插件管理器{#choose-zsh-plugin-manager}
 
-Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者，所以他最多人用，速度也最慢。管理器的主要功能不外乎是下載、載入和更新插件，選擇的要點有速度和方便性兩個，速度很直觀，這裡有插件管理器的載入速度測試：
+Zsh 插件的概念最早是由 Oh-My-Zsh 提出的，因為是先行者，所以他最多人用，速度也最慢。管理器的主要功能不外乎是下載、載入和更新插件，選擇的要點有速度和方便性兩個，速度很直觀，這裡有插件管理器的載入速度測試：
 
 - [rossmacarthur/zsh-plugin-manager-benchmark](https://github.com/rossmacarthur/zsh-plugin-manager-benchmark)
 - [Eric Nielsen: Zim Speed](https://github.com/zimfw/zimfw/wiki/Speed)
@@ -101,10 +101,7 @@ Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者
 6. **補全系統**：自動攔截補全的 compdef 指令，放到最後才一併執行
 7. **能不能集中管理 fpath**：支援自動 symlink，避免每個插件都有一個 fpath
 
-問題一其實很好解決[^1]，問題二也不是問題，所以問題只剩下後面五個，既然追求最快的速度，那麼最重要的就是第三項最高的設定自由度，並且支援自動編譯 zwc 檔，其餘都是次要問題。
-
-[^1]: 在 zshrc 中檢查管理器是否安裝並且自動 clone 就好了，檢查時間算不上效能損失。
-[^first]: 有興趣也可以研究 [Zsh Plugin Standard](https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html)。
+問題一其實很好解決，在 zshrc 中檢查管理器是否安裝並且自動 clone 就好了，檢查時間算不上效能損失，問題二也不是問題，所以問題只剩下後面五個，既然追求最快的速度，那麼最重要的就是第三項最高的設定自由度，並且支援自動編譯 zwc 檔，其餘都是次要問題。
 
 ### Zim, Zinit, zsh4humans 都不是最快的插件管理器
 
@@ -155,8 +152,6 @@ Zsh 插件的概念最早是由 Oh-My-Zsh 提出的[^first]，因為是先行者
 16. 🧹 **乾淨的家目錄**，能改到 `.cache` `.config` 的系統檔案全部改位置。  
 17. 🌍 **參考 GitHub 前 20 大 dotfiles** 完成，結合他們全部優點，不用再想東想西，現在就是最好的設定。  
 18. 👨‍💻 **參考 shell 插件開發者 agkozak 的 shell 設定**，筆者就問，一般人自己瞎搞能比開發者本身設定的更好嗎？  
-
-網路上的中文文章一堆設定錯誤，沒有啟用延遲載入（尤其是使用 Zinit 這個強調延遲載入的插件管理器還不使用延遲載入，[如何選擇](#choose-zsh-plugin-manager)章節列出的兩個測試都顯示 Zinit light mode 之慢，這些文章也是滿搞笑的）、補全設定錯誤，筆者甚至能把正確拿來當賣點，因為如果按照其他中文文章設定高機率有某些功能設定錯誤。
 
 ---
 
@@ -305,6 +300,8 @@ compinit -d $ZSH_COMPDUMP
 eval "$(uv generate-shell-completion zsh)"
 ```
 
+儲存後重新啟動終端就完成了，是不是超快！功能還比網路上其他文章多、速度更快、管理也更方便。
+
 特別分開兩個檔案是比較 tricky 的部分，目的是為了繞過 zsh-defer。如果直接在 .zshrc 中使用相同設定，並且在載入插件、compinit、brew shellenv 三大耗時指令上使用 zsh-defer，會發現終端啟動還是一樣慢，但是把這些放在另一個文件使用 `zsh-defer source` 就沒這問題，這是 zsh-defer 的 behavior 而不是一個 feature，但是使用至今沒有遇到特別問題，設定、補全和函式都能正常載入，在我的 repo 中這些設定分的更細不只是兩個文件。
 
 接著回頭講設定部分，讀者可能看過 [Ubuntu 安裝 Zsh + Oh My Zsh + Powerlevel10k 與各種插件](https://www.kwchang0831.dev/dev-env/ubuntu/oh-my-zsh)，才安裝兩三個插件對初學者來說已經滿頭大汗了，這不是文章的問題而是 omz 才有的問題，現在輕鬆的複製貼上就等同於已經安裝 10 個插件，並且使用 eval 指令設定好 brew，大量的 zstyle 設定檔，還有完整的自動補全系統，雖然是自己寫的但是自己看了都覺得相見恨晚，這些要設定完成而且正確我讀了上百篇文章並且還要排除大量錯誤資訊。
@@ -343,15 +340,19 @@ clone 後就完成設定，開啟 wezterm 就可立即使用！
 
 <summary>錯誤百出的網路文章</summary>
 
-前面說到搞笑演員拿 time 指令跑 10 次就說這是效能測試，首先好歹拿個 hyperfine 就可以一鍵生成統計數據，筆者使用 hyperfine 執行 100 次測試統計結果都沒有到非常穩定了，跑 10 次不是來搞笑的嗎？而且 [zsh-bench](https://github.com/romkatv/zsh-bench/) 早在 2021 就說了測試 `zsh -i -c exit` 毫無意義[^meaningless]，功課不做就開始寫文章誤導他人。
+前面說到搞笑演員拿 time 指令跑 10 次就說這是效能測試，首先好歹拿個 hyperfine 就可以一鍵生成統計數據，筆者使用 hyperfine 執行 100 次測試統計結果都沒有到非常穩定了，跑 10 次不是來搞笑的嗎？而且 [zsh-bench](https://github.com/romkatv/zsh-bench/) 早在 2021 就說了測試 `zsh -i -c exit` 毫無意義，功課不做就開始寫文章誤導他人。
 
 那為什麼開頭還要用離開延遲 `zsh -lic "exit"` 作為噱頭呢？因為所有人都這樣測試，我不可能拿正確的指標 0.08 秒來說我的最快吧，因為網路上有很多 0.04, 0.05 秒的。
 
-除此之外甚至還有很多文章使用 Zinit 結果[不使用 turbo mode](https://github.com/zimfw/zimfw/wiki/Speed)，我無話可說。
+:::note 毫無意義
+
+zsh-bench 裡面介紹是這樣寫的，exit time (ms): how long it takes to execute `zsh -lic "exit"`; this value is meaningless as far as measuring interactive shell latencies goes.
+
+:::
+
+除此之外甚至還有很多文章使用 Zinit 結果[不使用 turbo mode](https://github.com/zimfw/zimfw/wiki/Speed)，我無話可說，對他們來說從慢到不行變成有點慢確實也是變快。
 
 </details>
-
-[^meaningless]: exit time (ms): how long it takes to execute `zsh -lic "exit"`; this value is meaningless as far as measuring interactive shell latencies goes
 
 測試使用專門評估 shell 的 [zsh-bench](https://github.com/romkatv/zsh-bench/) 測試，測試項目涵蓋五種框架：
 
@@ -364,9 +365,9 @@ clone 後就完成設定，開啟 wezterm 就可立即使用！
 
 測試項目的選擇從最廣泛使用的框架到手動優化，以便準確定位效能，可以看到比 Zinit 更快，基本上追平甚至超越不使用插件管理器的速度，同時又比 Zim 易於設定。
 
-如果使用筆者的 dotfile，裡面甚至幫你寫好了兩個 profiling 指令：簡易測試的 `zsh_prof_zprof` 和追蹤所有指令呼叫的 `zsh_prof_xtrace`，不過現在也用不太到，除了換掉 p10k 以外已經沒辦法再更快了。
+如果使用筆者的 dotfile，裡面甚至幫你寫好了兩個 profiling 指令：簡易測試的 `zsh_prof_zprof` 和追蹤所有指令呼叫的 `zsh_prof_xtrace`，不過現在也幾乎沒辦法再更快了。
 
-如果使用筆者的 dotfile，你甚至可以透過 git 分支得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet，遷移到其他插件管理器也是一秒完成的事。
+如果使用筆者的 dotfile，你甚至可以透過 git 分支切換得到筆者在測試不同插件管理器的時設定檔，就算不想用 zcomet，遷移到其他插件管理器也是一秒完成的事。
 
 ![dotfiles-bench](data/dotfiles-benchmark.svg "dotfiles-bench")
 

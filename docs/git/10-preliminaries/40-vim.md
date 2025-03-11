@@ -1,6 +1,5 @@
 ---
 title: Vim 文字編輯器基礎操作
-author: zsl0621
 tags:
   - Git
   - 教學
@@ -14,9 +13,9 @@ first_publish:
   date: 2024-09-10T03:07:33+08:00
 ---
 
-為何要學 Vim？因為編輯 Git 文件時預設使用 Vim。初學者請跳過這篇文章，需要時再回來看，Vim 要用到熟練的時間成本遠遠大於 Git 的數倍以上，一開始只要能修改文件和儲存就夠了。
+為何要學 Vim？因為編輯 Git 文件時預設使用 Vim。初學者請跳過這篇文章，需要時再回來看，Vim 要用到熟練的時間成本遠遠大於 Git 的數倍以上，一開始只要能修改和儲存就夠了。
 
-## 不用腦袋的教學
+## 最基本的使用
 
 初學者只需要知道這四個步驟就可以跳過本文，免得要學 Git 都沒學會就被文字編輯器搞的暈頭轉向。
 
@@ -101,6 +100,21 @@ first_publish:
 - `n`：跳到下一個搜尋結果。
 - `N`：跳到上一個搜尋結果。
 
-### 客製化
+## 客製化
 
 不要客製化 Vim，請直接改用 Neovim 開始客製化，更快、更輕量、更多插件、更現代、更方便。
+
+也可以直接用我的 Neovim 設定檔
+
+```sh
+# 備份原有設定
+git mv ~/.config/nvim ~/.config/nvim.bak
+
+# 複製我的設定: Unix
+git clone https://github.com/ZhenShuo2021/starter ~/.config/nvim
+
+# 複製我的設定: Windows
+git clone https://github.com/ZhenShuo2021/starter $HOME\AppData\Local\nvim
+```
+
+如果你的電腦沒有 clang/gcc 等編譯工具請修改 nvim 目錄下的 `lua/plugins/disable`，裡面有教你怎麼禁用這些工具。

@@ -15,13 +15,11 @@ first_publish:
   date: 2024-08-25T22:24:42+08:00
 ---
 
-## 原理說明
-
 Git 遠端的邏輯是使用 remote 設定遠端的「別名」，然後每個分支可以根據使用這個別名與遠端儲存庫中的特定分支建立「追蹤關係」。
 
 ## 找不到遠端的處理方式{#remote-debug}
 
-如果在遠端設定遇到任何問題可以使用這個流程
+會到這裡十之八九都是遠端出現問題，這是我整理出來的解決流程
 
 1. 列出和新增遠端
 
@@ -47,7 +45,29 @@ Git 遠端的邏輯是使用 remote 設定遠端的「別名」，然後每個�
     git push -u <遠端名稱> <分支名稱>
     ```
 
-這樣以後就可以正常推送了，如果還是不行請見 [各種日常問題](../troubleshooting/daily-issues#fix-remote-branch)。
+## 還是有問題{#remote-debug-further}
+
+正常來說照上面做就可以解決了，如果還是無法設定再使用這兩個步驟：
+
+4. 檢查遠端相關設定確認 origin 和 \<分支\> 確實存在
+
+```sh
+# 檢查
+git remote -vv
+git ls-remote --branches
+
+# 更新遠端資訊
+git fetch origin
+
+# 更新完成後再重新執行一次 "找不到遠端的處理方式" 的操作
+```
+
+5. 如果仍舊失敗就代表 remote 抽風了，使用以下指令重新設定遠端：
+
+```sh
+git remote remove origin
+git remote add <url>
+```
 
 ## 常用遠端指令列表
 
@@ -92,6 +112,7 @@ git branch -u <remote-name>/<remote-branch> <local-branch>
 ```sh
 git clone <repo> [<dir>]                      # 克隆遠端倉庫，dir為可選
 git push [<remote-name>] [<local-branch>]     # 推送到遠端，後兩項可選
+git push <遠端名稱> <提交終點>:<遠端分支名稱>      # 只推送部分提交 
 git pull [<remote-name>] [<local-branch>]     # 拉取更新本地提交歷史，後兩項為可選
 git fetch [remote-name]                       # 獲取資訊但不更新提交
 ```
@@ -100,7 +121,7 @@ pull 和 fetch 最大的差異是 pull 會直接新增提交，fetch 只是獲�
 
 ## 工作流程
 
-現在我們基本上已經學會所有會用到的 Git 指令，結合之前的文章這裡給出完整工作流程
+現在我們已經學會九成以上的 Git 指令，結合之前的文章這裡給出完整工作流程
 
 1. 克隆專案到本地 `git clone`
 2. 進入工作的分支 `git checkout <branch>`，如果工作分支尚未建立，使用 `git checkout -b <branch> <hash>`

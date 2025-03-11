@@ -30,7 +30,7 @@ git commit -m <comments>
 # git push origin <my-feature>   # 如果是單人作業會執行這個步驟，但是因為多人協作所以不能直接推送
 ```
 
-因為遠端已經有其他更新，所以回到 main branch 同步遠端的新 commit，之後 [rebase](../history-manipulation/interactive-rebase) main branch，這樣就可以push。
+因為遠端已經有其他更新，所以回到主分支同步遠端的新提交，最後 [rebase](../history-manipulation/interactive-rebase) main branch，這樣就可以 推送了。
 
 ```sh
 git checkout main                # 回到 main 分支
@@ -53,7 +53,7 @@ git pull origin main              # 推送 main
 git branch -D <my-feature>        # 刪除完成的 my-feature
 ```
 
-有些專案是不喜歡你直接修改 main 分支的（例如 [Blowfish](https://github.com/nunocoracao/blowfish/blob/main/CONTRIBUTING.md#have-a-patch-that-fixes-an-issue)）那就不需要自行 rebase。
+有些專案是不喜歡你直接修改 main 分支的例如 [Blowfish](https://github.com/nunocoracao/blowfish/blob/main/CONTRIBUTING.md#have-a-patch-that-fixes-an-issue)，那就不需要自行 rebase，直接推在子分支就好了。
 
 ## 示意圖
 

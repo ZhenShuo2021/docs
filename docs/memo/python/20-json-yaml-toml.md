@@ -19,7 +19,7 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-本文會從什麼是資料序列化開始介紹，並且說明常見的資料格式（有哪些標題已經破梗），還有如何選擇他們和格式範例，最後是同場加映的 JSON 讀取範例。
+本文會從什麼是資料序列化開始介紹，並且介紹三種常見的資料格式，以及如何選擇和格式範例，最後是 JSON 讀寫範例。
 
 ## 序列化
 

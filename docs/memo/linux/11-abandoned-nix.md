@@ -1,5 +1,5 @@
 ---
-title: Nix 套件管理：我的失敗經驗
+title: Nix 套件管理器：我的失敗經驗
 tags:
   - Linux
   - Nix
@@ -15,8 +15,6 @@ first_publish:
 
 Nix 是非常特別的套件管理系統，而且不只是 NixOS 能用，macOS 也能將其作為套件管理器。筆者曾經嘗試使用但最後放棄了，這篇是我的使用心得和整理。
 
-寫這篇文章的動力是網路上的中文文章大部分表達能力都糟糕透頂，連把特色說明清楚都做不到，初學者看到 Nix 的特色會覺得很有趣，但是下一步馬上就會被這些糟糕的中文文章迷惑，他的概念其實沒有很難理解，這裡寫一篇清晰解釋的介紹文章。
-
 ## Nix
 
 Nix 的特點主要有幾個
@@ -26,7 +24,7 @@ Nix 的特點主要有幾個
 3. 不會遇到版本衝突，多版本共存
 4. 社群很活躍，更新頻繁，是全世界最大的套件庫
 
-和 系統級快照/Ansible/Docker 比較的文章請見 [文檔FAQ](https://nixos-and-flakes.thiscute.world/zh/faq/)，能和這些完全不同的東西互相比較就可以看出他的獨特之處，FAQ 寫的很清楚這裡不多做介紹。
+和 系統級快照/Ansible/Docker 比較的文章請見[文檔FAQ](https://nixos-and-flakes.thiscute.world/zh/faq/)，能和這些完全不同的東西互相比較就可以看出他的獨特之處。
 
 ### 優點
 
@@ -34,11 +32,11 @@ Nix 的特點主要有幾個
 
 不存在版本衝突以及共存多版本共存的原理是，Nix 每個套件都會以 `hash-套件名稱` 作為 symlink，所以即使兩個套件的依賴版本完全衝突沒有交集，使用這種機制就可以取用各自的套件，於是永遠不會遇到套件衝突。
 
-只要安裝快速、衝突容易解決就已經是非常好用的套件管理器了，更何況 Nix 連衝突都不會遇到，更新回滾都還是原子性的就算有問題重設就好，乍看之下好像非常完美，所以接下來要介紹缺點了。
+只要安裝快速、衝突容易解決就已經是非常好用的套件管理器了，更何況 Nix 連衝突都不會遇到，更新回滾都是原子性，有問題重設就好，乍看之下好像非常完美，所以接下來要介紹缺點了。
 
 ### 缺點
 
-開始介紹缺點，第一個問題，他使用自己的程式語言寫設定檔 (/etc/nixos/configuration.nix)，新手非常不友善，你能想像安裝套件前還要先學會新的語言嗎？雖然沒有到很困難但就是一個門檻。
+第一個問題，他使用自己的程式語言寫設定檔 (/etc/nixos/configuration.nix)，新手非常不友善，你能想像安裝套件前還要先學會新的語言嗎？雖然沒有到很困難但就是一個門檻，當然你也可以不使用設定檔直接安裝，但是這樣就完全浪費 Nix 的特點了。
 
 問題二～四是類似的問題，這三個加起來也是我放棄的主因。首先問題二，我想改用 Nix 的主因是想要使用舊版套件，這是 homebrew 不允許的，homebrew 使用舊版套件的方式越來越麻煩，我基本上不會想拿他來安裝舊版套件，然而根據[此篇討論](https://www.reddit.com/r/Nix/comments/1iqtwtj/comment/md36gu6/?context=3)，Nix 要下載舊版套件首先要看一個[長到誇張的文檔](https://nixos.org/manual/nixpkgs/stable/#chap-overrides)，這個文檔甚至不是在說怎麼安裝舊版套件，而是在解釋 Nix 語言，解決方式不直觀，新手不問人是**幾乎不可能直接從文檔找到解決方法**。
 
@@ -81,9 +79,9 @@ Nix 的特點主要有幾個
 - [GitHub - LnL7/nix-darwin: nix modules for darwin](https://github.com/LnL7/nix-darwin)
 - [GitHub - DeterminateSystems/nix-installer: Install Nix and flakes with the fast and reliable Determinate Nix Installer, with over 7 million installs.](https://github.com/DeterminateSystems/nix-installer)
 
-### 說明文章
+### 相關文章
 
-這幾篇是還不錯的文章，我真的不曉得就唯獨 Nix 介紹的中文文章都這麼糟糕，Google 用了一輩子沒看過這種情況，幾乎八成以上的中文文章形容是垃圾都算客氣，學習 Nix 的時候千萬不要從中文文章開始下手，看到最後你還是要回頭找英文文章。
+寫這篇文章的動力是網路上表達能力糟糕透頂的中文文章，連把特色說明清楚都做不到，初學者看到 Nix 的特色會覺得很有趣，結果下一步馬上就會被這些文章迷惑。這幾篇是還不錯的文章，學習 Nix 的時候千萬不要從中文文章開始下手，看到最後你還是要回頭找英文文章。
 
 - [NixOS: 选择与放弃 - rqdmap \| blog](https://rqdmap.top/posts/nixos/)
 - [Nix 和 NixOS：你们安利方法错了 - Nayuki's Archive](https://nyk.ma/posts/nix-and-nixos/)

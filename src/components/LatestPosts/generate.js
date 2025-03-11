@@ -35,7 +35,7 @@ const paths = [
 // 輸出的 JSON 位置
 const latestPostsList = "./src/components/LatestPosts/latest-posts.json";
 
-let allItems = {};
+let allItems = [];
 
 paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
   const files = glob.sync(path.join(folderPath, filesPattern));
@@ -56,7 +56,7 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
     const yearMonth = moment(date).format("YYYY 年 MM 月");
     const day = moment(date).format("DD");
 
-    allItems[formattedDate] = {
+    allItems.push({
       title: item.title,
       permalink: item.permalink,
       description: item.description || "",
@@ -65,12 +65,10 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
       yearMonth: yearMonth,
       day: day,
       source: sourceType
-    };
+    });
   });
 });
 
-const allIds = Object.keys(allItems);
-const latestIds = allIds.sort().reverse();
-const latestItems = latestIds.map((v) => allItems[v]);
+const latestItems = allItems.sort((a, b) => b.date.localeCompare(a.date));
 
 fs.writeFileSync(latestPostsList, JSON.stringify(latestItems, null, 2));

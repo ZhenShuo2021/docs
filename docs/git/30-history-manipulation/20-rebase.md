@@ -17,7 +17,7 @@ first_publish:
 
 # 使用變基 Rebase 合併分支提交
 
-筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，對方比對並且驗證保證本文解釋方式能和指令實際作用對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文張，而且所有和本文矛盾的說明都是錯的。
+筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。
 
 :::danger 提醒
 
@@ -40,9 +40,9 @@ feature        A1--B1--C1
 ```
 
 ```sh
-# 使用 git merge
-# git checkout main
-# git merge feature
+# 使用 git merge，指令如下：
+# git checkout main     # 切換分支到 main
+# git merge feature     # 合併 feature 分支
 
 main     A---B---C---D---E---F
               \             /
@@ -52,8 +52,8 @@ feature        A1---B1----C1
 但如果我們想保持提交樹的乾淨，這時候我們就可以使用 `git rebase` 完成。在原始狀態使用 git rebase 效果如下：
 
 ```sh
-# 使用 git rebase
-# git checkout feature  # 切換目前分支到 feature
+# 使用 git rebase，指令如下：
+# git checkout feature  # 切換分支到 feature
 # git rebase main       # 目標分支是 main
 
 main     A---B---C---D---E
@@ -66,11 +66,13 @@ feature                    A1'--B1'--C1'
 1. 找到共同祖先 (B)
 2. 找到需要被變基的提交並且暫存他們  
   這些提交包含<u>**從共同祖先到「目前分支」之間的所有提交，並且剃除「目標分支」已經存在的提交**</u> (此範例沒有被剃除的提交，暫存 A1 B1 C1)
-3. 將目標分支最後一個提交作為出發點，把暫存的提交逐個重演[^1]到目標分支後面 (接上後成為 A1' B1' C1')
-
-[^1]: 重演 (replay)，用於表示不只是簡單的將提交複製貼上，而是會重新生成 commit hash。
+3. 將目標分支最後一個提交作為出發點，把暫存的提交逐個重演到目標分支後面 (接上後成為 A1' B1' C1')
 
 所以總共只有三步驟，找到共同祖先，以祖先為起點開始尋找目標提交，重演這些提交。
+
+:::tip 重演 (replay)
+不只是簡單的將提交複製貼上，而是會重新生成 commit hash。
+:::
 
 ## 口訣
 
@@ -83,9 +85,9 @@ re-base 的核心兩個單字分別代表 `重新` 以及 `基底`，表示此�
 
 :::
 
-請務必記住口訣，這可以讓你正常使用好一段時間，筆者保證這段敘述的絕對正確，所有違背這段敘述的說明都是錯的[^simplify]。
+請務必記住口訣，這可以讓你正常使用好一段時間，筆者保證這段敘述的絕對正確，所有違背這段敘述的說明都是錯的。
 
-[^simplify]: 這是簡化版本，完整版本請見[搞懂 Rebase Onto](../advance/rebase-onto)。
+> 口訣有稍微簡化，完整版本請見[搞懂 Rebase Onto](../advance/rebase-onto)。
 
 ## 誰 Rebase 誰才對？{#correctly-rebase}
 
@@ -105,9 +107,7 @@ git rebase main feature-1
 git rebase main feature-2
 ```
 
-錯誤的使用方式會變成將 feature 作為基底，把 main 分支放在 feature 後面，然而 feature 是新的、未經過時間驗證的提交，出現問題會導致要修復的提交歷史反而早於穩定的提交，只要看懂文檔任何人就不會犯這種錯，因為文檔就是這樣用的，很可惜大家都錯了。
-
-你可能會覺得筆者是哪來的野台班子這麼說話囂張，如果不相信筆者，那麼 Python Core Dev，微軟安全部門員工總該相信吧：[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)，他也是這樣用。
+只要看懂文檔任何人就不會犯這種錯，因為文檔就是這樣用的，很可惜大家都錯了。如果你不相信筆者，那麼請看 [官方文檔](https://git-scm.com/docs/git-rebase/zh_HANS-CN) 或是教學書 [Pro Git](https://iissnan.com/progit/html/zh-tw/ch3_6.html)，如果還是很疑惑，那麼 Python Core Dev，微軟工程師拍的影片[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)也是這樣用。
 
 :::danger 再提醒一次
 
@@ -115,9 +115,13 @@ git rebase main feature-2
 
 :::
 
+## git rebase --onto
+
+過於複雜，他可以直接寫成一篇文章，請看 [搞懂 Rebase Onto](../advance/rebase-onto)。
+
 ## 翻譯：變基和衍合
 
-rebase 中文有變基和衍合兩種翻譯，衍為散佈、滋生，我看不出來 rebase 從單字、處理方式到用途哪裡跟衍有關係，所以我投變基一票。
+rebase 中文有變基和衍合兩種翻譯，衍代表散佈、滋生，我看不出來 rebase 從單字、處理方式到用途哪裡跟衍有關係，所以我投變基一票。
 
 ## 參考
 

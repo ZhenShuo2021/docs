@@ -34,7 +34,8 @@ export const articlesMeta = [
     image: imageShell,
   },
   {
-    link: "/python/virtual-environment-management-comparison",
+    link: "/python/best-python-project-manager",
+    description: "你知道 Python 有超過 10 個專案管理工具嗎？網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該怎麼選擇？",
     image: imageProgramming,
   },
   { link: "/python/python-uv-complete-guide", image: imageProgramming },
@@ -49,7 +50,7 @@ export const articlesMeta = [
   },
   {
     description:
-      "網路教學 rebase onto 的文章十篇有九篇是錯的，本文最大的特色是內容正確",
+      "冷知識：網路教學 rebase onto 的文章十篇有九篇是錯的，本文就是那篇正確的教學",
     link: "/git/advance/rebase-onto",
     image: imageGit,
   },
@@ -87,14 +88,14 @@ export const projectsMeta = [
     title: "我的部落格",
     description:
       "使用 Hugo Blowfish 建立的部落格，PageSpeed Insights 測試四項滿分",
-    link: "https://github.com/ZhenShuo2021/ZhenShuo2021.github.io",
+    link: "https://www.zsl0621.cc/",
     tags: ["Hugo", "Blowfish"],
     image: imageGrayScale,
   },
   {
     title: "我的個人文檔",
     description: "使用 Docusaurus 建立的文檔，最大特點是內容正確",
-    link: "https://github.com/ZhenShuo2021/docs",
+    link: "/",
     image: imageGrayScale,
     tags: ["Docusaurus"],
   },
@@ -125,15 +126,15 @@ export const projectsMeta = [
 
 export const sectionsMeta = [
   {
-    id: "articlesID",
-    title: "✍️ 文章",
-    buttonText: "查看文章",
-    contentType: "文章",
-  },
-  {
     id: "projectsID",
     title: "🚀 專案",
     buttonText: "瀏覽專案",
     contentType: "專案",
+  },
+  {
+    id: "articlesID",
+    title: "✍️ 文章",
+    buttonText: "查看文章",
+    contentType: "文章",
   },
 ];

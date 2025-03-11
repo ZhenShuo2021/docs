@@ -16,16 +16,16 @@ first_publish:
 
 <br />
 
-Clone 大型儲存庫又不需要全部檔案時可以使用 sparse-checkout 功能排除指定的檔案避免全部下載。
+Clone 大型儲存庫耗時很長又佔空間，例如[樹梅派原始碼](https://github.com/raspberrypi/linux)高達一百二十萬次提交 clone 一次需要長達 15 分鐘，我們也不需要全部檔案和歷史，這時就可以使用 sparse-checkout 以排除指定檔案避免全部下載。
 
-這個指令可以用於解決兩種儲存庫過大的原因，分別是 <u>**儲存庫包含大檔案或單純的文件數量過多**</u>，本教學會搭配其他指令同時使用，可以完整解決大型儲存庫下載的問題，並且最後包含實際使用範例，包含如何在十秒內克隆完樹梅派高達一百二十萬次提交的儲存庫。
+儲存庫過大有兩種原因，分別是 <u>**儲存庫包含大檔案或單純的文件數量過多**</u>，本教學會分別示範並且搭配其他指令同時使用多管齊下，最後包含實際使用範例，包含如何在十秒內克隆完樹梅派儲存庫。
 
 <br />
 <br />
 
 ## TL;DR
 
-本章節提供兩種使用情境讓你不用看整篇就會用，而且還是最快的指令組合。使用這些指令組合後，即使 depth 設定 1000 層都不會明顯變慢，下面是簡單範例所以設定一層，平常建議 1000 起跳方便回滾歷史同時避免奇怪的問題。
+本章節是簡單範例所以設定一層，平常建議 1000 起跳方便回滾歷史同時避免奇怪的問題。
 
 ### 情境一：文件數量過多，只取出特定目錄
 
@@ -59,7 +59,7 @@ git sparse-checkout set '/*' '!exampleSite/*' '!images/*' '!assets/img/*' '!*.pn
 git checkout
 ```
 
-請注意 cone 和 no-cone 模式的 pattern 語法不相容。no-cone 的 pattern 語法和 .gitignore 完全一樣，以上述指令為例，意思是
+請注意兩種模式的 pattern 語法不相容。no-cone 的和 .gitignore 完全一樣，以上述指令為例，意思是
 
 ```
 /*               加入全部檔案
@@ -76,20 +76,20 @@ git checkout
 
 ## 詳細說明
 
-大家應該都看過 The Will Will Web 對此指令的介紹，我在讀時候就在想文章花花綠綠的好難讀，真正提筆發現全都指令很難避免，於是決定列表式寫出來看起來比較清晰，首先是指令參數介紹
+大家應該都看過 [The Will Will Web](https://blog.miniasp.com/) 的介紹，雖然很詳細完整但是讀的時候覺得文章花花綠綠的不太好讀，真正提筆發現全都指令很難避免，於是決定列表式寫出來看起來比較清晰，首先是指令參數介紹
 
 1. `--filter=blob:none`: 不要下載 blobs
 2. `--depth=1`: 淺克隆，只複製第一層
 3. `--shallow-since=<date>`: 淺克隆，限定日期
 4. `--no-checkout`: clone 後不把文件放到工作目錄
 5. `--sparse`: 設定稀疏檢出 sparse-checkout
-6. 上述五個指令可以獨立使用，只有 `--sparse` 本文建議搭配 `--no-checkout` 共同使用。
+6. 上述五個指令可以獨立使用
 
 接下來是對 sparse checkout 本身的介紹
 
 1. cone 代表圓錐，意思是選定一整個資料夾的目錄白名單模式，no-cone 則是和 .gitignore 一樣的黑名單模式
-2. [為什麼要取名叫圓錐模式？](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts#:~:text=%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%8F%96,%E4%BB%A5%E4%B8%8B%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B%EF%BC%9A)
-3. 使用 no-cone 模式時可以不透過 set 指令直接編輯 `.git/info/sparse-checkout` 後進行 checkout。編輯完成後如果忘記設定 `init --no-cone` 就直接 checkout，Git 會提醒你設定衝突並且自動退回 no-cone 模式
+2. [為什麼取名叫圓錐模式？](https://blog.miniasp.com/post/2022/05/17/Down-size-your-Monorepo-with-Git-Sparse-checkouts#:~:text=%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%8F%96,%E4%BB%A5%E4%B8%8B%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B%EF%BC%9A)
+3. 使用可以直接編輯 `.git/info/sparse-checkout`，`git sparse-checkout set` 就是修改這個文件。編輯後如果不符合 cone 模式 Git 會提醒你設定衝突並且自動退回 no-cone 模式
 4. 使用 `git sparse-checkout disable` 回到一般 checkout 模式
 
 :::tip
@@ -126,7 +126,7 @@ git checkout <local-branch-name>
 
 ### no-cone 模式一定是黑名單嗎
 
-不一定，只是因為其運作方式比較適合黑名單所以用黑明單解釋，順便和白名單對照方便記憶。黑名單的靈感來源是官方文檔就是把他當黑名單用。
+不一定，只是因為其運作方式比較適合黑名單所以用黑名單解釋，順便和白名單對照方便記憶。黑名單的靈感來源是官方文檔就是把他當黑名單用。
 
 ### sparse-index 是什麼？
 

@@ -24,9 +24,7 @@ import TabItem from '@theme/TabItem';
 
 # Python 中的異步操作 - 協程
 
-本文不敢說寫的多好，但是盡量保持內容正確。
-
-請注意這篇文章介紹的是 Python 協程，不同語言的協程會有微妙差異。
+本文不敢說寫的多好，但是確保內容正確，請注意這篇文章介紹的是 Python 協程，不同語言的協程會有微妙差異。
 
 ## 異步簡介
 
@@ -384,7 +382,9 @@ asyncio.run(main())
 - [【python】await机制详解。再来个硬核内容，把并行和依赖背后的原理全给你讲明白](https://www.youtube.com/watch?v=K0BjgYZbgfE)，由微軟工程師介紹協程
 - [Using asyncio.Queue for producer-consumer flow](https://stackoverflow.com/questions/52582685/using-asyncio-queue-for-producer-consumer-flow) 在異步中使用生產者-消費者模型
 
-## 結尾
+<details>
+
+<summary>Cursing</summary>
 
 承認自己是半桶水響叮噹，但網路上的文章可以說是 0.1 桶就開始響了。
 
@@ -393,3 +393,5 @@ asyncio.run(main())
 還有更荒謬的，把 multi-processing 標示成多處理器，當初看到直接關網頁，撰文找資料時才發現應該是 typo，還好不是真的這麼荒謬。有的還會講故事說明，一句話「需要等待時主動切換任務」不就結束了，偏偏要寫一個故事，讀完也沒有更深刻體悟，第一次學習看到這故事越看越混亂。
 
 本來就知道網路上問題文章很多，結果搜尋 async 的時候是多到爆，於是有了這篇文章，如果大家寫的都沒錯那根本沒必要再寫一篇啊。
+
+</details>

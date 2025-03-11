@@ -1,12 +1,15 @@
 ---
-title: UV Python 教學，最佳虛擬環境管理工具（上）
-sidebar_label: UV 虛擬環境套件（上）
+title: UV Python 教學，最佳套件管理工具（上）
+sidebar_label: UV 套件管理工具（上）
+slug: /python-uv-complete-guide
 tags:
   - Python
-  - 虛擬環境
+  - 套件管理工具
+  - 虛擬環境管理工具
 keywords:
   - Python
-  - 虛擬環境
+  - 套件管理工具
+  - 虛擬環境管理工具
 last_update:
   date: 2025-02-15T10:04:00+08:00
   author: zsl0621
@@ -17,9 +20,9 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Python UV 教學，最佳虛擬環境管理工具（上）
+# Python UV 教學，最佳套件管理工具（上）
 
-本篇文章介紹 **[uv](https://github.com/astral-sh/uv)** 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看[上一篇文章](./virtual-environment-management-comparison)。
+本篇文章介紹 **[uv](https://github.com/astral-sh/uv)** 的日常操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看[上一篇文章](./best-python-project-manager)。
 
 文章分為上下兩篇，下篇在[這裡](python-uv-complete-guide-2)。
 

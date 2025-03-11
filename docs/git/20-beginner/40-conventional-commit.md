@@ -67,16 +67,13 @@ drission_bot.py
 
 [Conventional Commits](https://www.conventionalcommits.org/en/about/) 列出很多工具可以使用，這裡整理出 stars 最多的幾個：
 
-- 不需要 npm 的
-  1. [commitizen](https://github.com/commitizen-tools/commitizen)
-  2. [commitlint](https://commitizen-tools.github.io/commitizen/)
+1. [commitizen](https://github.com/commitizen-tools/commitizen)
+2. [commitlint](https://commitizen-tools.github.io/commitizen/)
+3. [cz-cli](https://github.com/commitizen/cz-cli)
+4. [standard-version](https://github.com/conventional-changelog/standard-version)
+5. [semantic-release](https://github.com/semantic-release/semantic-release)
 
-- 需要 npm 的
-  1. [cz-cli](https://github.com/commitizen/cz-cli)
-  2. [standard-version](https://github.com/conventional-changelog/standard-version)
-  3. [semantic-release](https://github.com/semantic-release/semantic-release)
-
-還有自動化 CHANGELOG 工具 [git-cliff](https://github.com/orhun/git-cliff)，以及很多人用並且有好心人士繁體中文化的 [lazygit](https://github.com/jesseduffield/lazygit) TUI (terminal ui) 工具。
+還有自動化 CHANGELOG 工具 [git-cliff](https://github.com/orhun/git-cliff)。
 
 ## 自動化
 

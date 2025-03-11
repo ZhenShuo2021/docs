@@ -14,7 +14,7 @@ first_publish:
   date: 2024-09-10T16:15:33+08:00
 ---
 
-有時我們會需要在多個分支間來回切換，以往我們的指令流程是
+Git worktree 的目的是簡化在分支之間切換的指令步驟，甚至允許你同時修改兩個分支。舉例來說，以往我們在多個分支間來回切換的指令流程是
 
 1. git stash
 2. git switch \<feat\>
@@ -78,7 +78,7 @@ git worktree add ../projectA-quick-look -b quick-look feat
 - `--lock`: 避免工作樹被 git 意外清除
 - `--orphan`: 新增一個完全空白的分支
 
-其餘指令就超級直觀沒什麼好解釋：
+其餘指令很直觀沒什麼好解釋：
 
 - `list`: 列出
 - `remove`: 移除

@@ -17,19 +17,18 @@ first_publish:
 
 # Git 遠端儲存庫設定
 
-本文只講操作不講原理，介紹 Git 如何上傳到遠端儲存庫，常用的有 Github 和 Gitlab，這裡以 Github 為例。
+本文設定 SSH 連線和 GPG 簽名，選了兩篇照著做就對的文章，已經有優質文章就不需要重造輪子。
 
 ## 設定 SSH
 
 Github 已不支援帳號密碼登入，只能用 SSH 認證。  
 
-1. [產生ssh金鑰](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)，官網教學寫的非常詳細，照著做絕對可以成功。
-2. (選用) 隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"，如要隱藏信箱，請到 `https://api.github.com/users/你的github名稱` 查看下面需要的 ID。
-3. 設定名稱及信箱，如不需隱藏信箱則直接打自己的信箱
+1. [產生ssh金鑰](https://www.maxlist.xyz/2022/12/22/github-ssh-setting/)
+2. (選用) 避免使用私人電子郵件：隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"，這個設定會阻止你使用個人信箱推送，如果提交的 email 不是步驟三的隱藏信箱就會被阻止
+3. (選用) 隱藏信箱，請到 `https://api.github.com/users/你的github名稱` 找到 id 欄位並且設定
 
 ```sh
-git config --global user.name "NAME"
-git config --global user.email "{ID}+{username}@users.noreply.github.com"
+git config --global user.email "{ID}+{你的github名稱}@users.noreply.github.com"
 ```
 
 4. 測試 `ssh -T git@github.com`，出現 successfully authenticated 即成功，不用管 GitHub does not provide shell access 這句話。

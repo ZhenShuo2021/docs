@@ -1,0 +1,8 @@
+position: 1
+label: 專案管理工具
+collapsible: true
+collapsed: true
+className: red
+# link:
+#   type: generated-index
+#   title: Python

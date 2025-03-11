@@ -1,12 +1,15 @@
 ---
 title: UV 快速手冊
 sidebar_label: UV 快速手冊
+slug: /uv-quick-guide
 tags:
   - Python
-  - 虛擬環境
+  - 套件管理工具
+  - 虛擬環境管理工具
 keywords:
   - Python
-  - 虛擬環境
+  - 套件管理工具
+  - 虛擬環境管理工具
 last_update:
   date: 2024-12-24T21:53:30+08:00
   author: zsl0621
@@ -19,7 +22,7 @@ import TabItem from '@theme/TabItem';
 
 # UV 快速手冊
 
-覺得[Python UV 教學](./python-uv-complete-guide/)太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看[虛擬環境管理套件比較](./virtual-environment-management-comparison)。
+覺得[Python UV 教學](./python-uv-complete-guide/)太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看[虛擬環境管理套件比較](./best-python-project-manager)。
 
 ## uv pip/uv add 差別
 
@@ -58,7 +61,13 @@ uv 會在當前目錄或其父目錄中搜尋專案。若無法找到專案，uv
 
 使用 `uv sync -U` 更新所有套件，使用 `uv sync -P <pkg>` 更新指定套件。此指令同時也會更新 lockfile，而 uv lock 指令同樣也有 -U/-P 參數，差別是其只會更新 lockfile。
 
-如果要更新 pyproject.toml 裡面的套件版本請參考[這個 issue](https://github.com/astral-sh/uv/issues/6794)裡面的腳本完成，看起來官方沒有要馬上解決這個問題。
+如果要更新 pyproject.toml 裡面的套件版本請參考 [這個 issue](https://github.com/astral-sh/uv/issues/6794) 裡面的腳本完成，看起來官方沒有要馬上解決這個問題。
+
+## 專案容量
+
+uv 大量使用快取功能也是速度快的一個原因，在 uv 中，所有套件都會被集中放置在同一目錄 (~/.cache/uv)，再使用硬連結把套件連結到每個專案的虛擬環境資料夾中，所以就算專案再多也不會重複下載套件，使用 `uv cache clean` 可以清除所有快取檔案。
+
+把硬連結 (hard link) 和軟連結 (symlink) 一起解釋，軟連結就是以前的捷徑功能，把原始檔案刪除後捷徑也沒用了，硬連結則是兩個完全相同的檔案指向同一實際儲存位置，只要任一檔案還在，實際儲存空間就不會消失。
 
 ## Workspace
 

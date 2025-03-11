@@ -16,9 +16,7 @@ first_publish:
 
 # Git 分支操作
 
-分支操作主要有以下五大項目，本文會一一說明，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹，如果還不熟悉 Git 的[本文檔](../introduction)有完整且精練的教學。
-
-本文只會有本地不會有遠端操作，遠端操作的第一篇文章要從[遠端儲存庫設定](../remote/setup)開始。
+分支操作主要有以下五大指令，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹。本文只會有本地不會有遠端操作，遠端操作的第一篇文章要從[遠端儲存庫設定](../remote/setup)開始。
 
 ```sh
 git branch                           # 分支操作
@@ -35,7 +33,7 @@ git revert                           # 恢復提交
 ```sh
 git branch                           # 查看分支清單
 git branch <name>                    # 新建分支
-git switch <name>                    # 切換，舊版為 git checkout
+git switch <name>                    # 切換到分支，等效於為 git checkout <name>
 
 git branch -D <name>                 # 刪除
 git branch -m <old> <new>            # 改名
@@ -43,7 +41,7 @@ git branch -m <old> <new>            # 改名
 
 ## 切換 git switch
 
-`git switch` 是專門用來切換分支的新版指令，比傳統的 `git checkout` 更簡單明確。
+`git switch` 是專門用來切換分支的新版指令，比傳統的 `git checkout` 更明確，因為 `git checkout` 太過萬能。
 
 ```sh
 git switch branch_name               # 切換到現有分支
@@ -86,17 +84,17 @@ git stash clear                      # 清除所有暫存
 
 ## 合併 git merge
 
-分久必合，有了分支下一步就是合併，`git merge` 是最淺顯易懂的合併方式。使用時我們一般來說都會先進入主分支以合併子分支：
+分久必合，有了分支下一步就是合併，`git merge` 是最淺顯易懂的合併方式。使用時我們一般來說都會先進入主分支以合併子分支，指令如下：
 
 ```sh
 git switch main
 git merge feature-branch
 ```
 
-git merge 預設模式是 fast-forward，用於在兩者的提交完全相同時不會建立新的分支結構，只會將目前分支的 HEAD 向前移動，我們可以使用 `--no-ff` 關閉此模式，下方是兩者的差異示意圖：
+這樣就會把 `feature-branch` 的修改全部加在 `main` 分支中，並且建立一個新的提交用於記錄合併。`git merge` 預設模式是 fast-forward，意思是兩者的分支結構完全相同時，只會將目前分支的 HEAD 向前移動，不會建立新的用於記錄合併的提交。我們可以使用 `--no-ff` 關閉此模式，下方是兩者的差異示意圖：
 
-```
-# 初始狀態：
+```sh
+# 初始狀態
   A---B---C  main
            \
             D---E---F  feature-branch
@@ -104,30 +102,29 @@ git merge 預設模式是 fast-forward，用於在兩者的提交完全相同時
 
 使用 Fast-Forward 的結果如下：
 
-```
-# 使用 Fast-Forward：
+```sh
+# 使用 Fast-Forward，直接把 main 從 C 移動到 F
 # git merge feature-branch
   A---B---C---D---E---F  main and feature-branch
 ```
 
 不使用 Fast-Forward 的則會新增一個專門用來紀錄合併的提交 G：
 
-```
+```sh
+# 使用 --no-ff，建立記錄合併的提交 G
 # git merge --no-ff feature-branch
   A---B---C-----------G  main
            \         /
             D---E---F  feature-branch
 ```
 
-兩者的選擇端看是否需要保存分支結構。合併時可能會遇到衝突，這需要手動解決，解決完成衝突部分後需要 add 和 commit，或者使用 --abort 中斷合併。
-
-> [如何解決合併衝突？](../preliminaries/keyword#進階)
+兩者的選擇端看是否需要保存分支結構。合併時可能會遇到衝突，這需要手動解決，解決方式請看 [如何解決合併衝突](../preliminaries/keyword#進階)。
 
 <br/>
 
 ## 變基 git rebase
 
-先解釋名詞變基，意思是「變換」目前分支的「基底」，用於取代 `git merge`，因為我們不想讓提交歷史到處都是合併的結構導致閱讀和管理困難。由於比較複雜只講解他的基本邏輯：
+先解釋名詞變基，意思是「變換」目前分支的「基底」，用於取代 `git merge`，目的是簡化提交歷史，避免到處都是合併的結構導致閱讀和管理困難。由於比較複雜只講解他的基本邏輯：
 
 :::tip 口訣
 
@@ -144,7 +141,7 @@ git merge 預設模式是 fast-forward，用於在兩者的提交完全相同時
 
 ## 任意修改提交歷史 git rebase -i
 
-互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見我寫的文章：[使用互動式變基任意修改提交歷史](../history-manipulation/interactive-rebase)。
+互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見[使用互動式變基任意修改提交歷史](../history-manipulation/interactive-rebase)。
 
 :::danger
 

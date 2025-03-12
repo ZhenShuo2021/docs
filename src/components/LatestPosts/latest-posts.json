@@ -437,7 +437,7 @@
   {
     "title": "使用互動式變基 Interactive Rebase 任意修改提交歷史",
     "permalink": "/git/history-manipulation/interactive-rebase",
-    "description": "使用 git rebase -i 可進行互動式變基，這個指令用途強大並且簡單易懂，使用時可以把腦袋丟掉不用像一般的 rebase 還要背口訣。",
+    "description": "互動式變基是 Git 最強大的指令，包含移動提交、刪除提交、修改提交內容、修改提交訊息全部都可以做到。原理仍舊是基於變基，但是使用時完全不會感覺到分支操作。互動式變基常用的選項有五個：",
     "tags": [
       {
         "inline": true,
@@ -1573,7 +1573,7 @@
   {
     "title": "一分鐘入門",
     "permalink": "/git/beginner/one-minute",
-    "description": "本文介紹 Git 最基礎的指令，只會說明如何往後增加新的提交記錄。",
+    "description": "本文介紹 Git 最基礎的指令，只會說明如何增加新的提交記錄。",
     "tags": [
       {
         "inline": true,

@@ -124,7 +124,7 @@ git merge feature-branch
 
 ## 變基 git rebase
 
-先解釋名詞變基，意思是「變換」目前分支的「基底」，用於取代 `git merge`，因為我們不想讓提交歷史到處都是合併的結構導致閱讀和管理困難。由於比較複雜只講解他的基本邏輯：
+先解釋名詞變基，意思是「變換」目前分支的「基底」，用於取代 `git merge`，目的是簡化提交歷史，避免到處都是合併的結構導致閱讀和管理困難。由於比較複雜只講解他的基本邏輯：
 
 :::tip 口訣
 
@@ -141,7 +141,7 @@ git merge feature-branch
 
 ## 任意修改提交歷史 git rebase -i
 
-互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見我寫的文章：[使用互動式變基任意修改提交歷史](../history-manipulation/interactive-rebase)。
+互動式變基 (interactive rebase) 使用變基的原理實現對提交歷史進行任意修改，同時<u>**使用方式非常簡單**</u>，請見[使用互動式變基任意修改提交歷史](../history-manipulation/interactive-rebase)。
 
 :::danger
 

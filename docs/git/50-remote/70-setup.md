@@ -17,14 +17,14 @@ first_publish:
 
 # Git 遠端儲存庫設定
 
-SSH 連線設定和 GPG 簽名選了兩篇照著做就對的文章，網路上已經有的且優質的文章不需要重造輪子。
+本文設定 SSH 連線和 GPG 簽名，選了兩篇照著做就對的文章，已經有優質文章就不需要重造輪子。
 
 ## 設定 SSH
 
 Github 已不支援帳號密碼登入，只能用 SSH 認證。  
 
 1. [產生ssh金鑰](https://www.maxlist.xyz/2022/12/22/github-ssh-setting/)
-2. (選用) 避免使用私人電子郵件：隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"
+2. (選用) 避免使用私人電子郵件：隱藏信箱Setting>Email勾選 "Block command line pushes that expose my email"，這個設定會阻止你使用個人信箱推送，如果提交的 email 不是步驟三的隱藏信箱就會被阻止
 3. (選用) 隱藏信箱，請到 `https://api.github.com/users/你的github名稱` 找到 id 欄位並且設定
 
 ```sh

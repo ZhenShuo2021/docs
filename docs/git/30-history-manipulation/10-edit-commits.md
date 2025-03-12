@@ -22,9 +22,10 @@ first_publish:
 
 以下是預備知識
 
+- <u>**大部分都用互動式變基完成，操作方式請見[使用互動式變基任意修改提交歷史](./interactive-rebase)**</u>。
 - `hash^` 的 `^` 代表該 hash 的前一個提交，`~n` 代表前 n 個提交。
 - `--amend` 可以加上 `--no-edit` 表示不修改 commit 訊息。
-- rebase 如果是需要跳到以前進行修改的，git 都會自動幫你 checkout ，這時候查看 `git status` 會顯示「互動式重定基底動作正在進行中」，使用 `git branch` 查看則會顯示目前分支為「無分支，重定 main 的基底」 (no branch, rebasing main)。
+- rebase 時 git 會自動幫你 checkout，這時候查看 `git status` 會顯示「互動式重定基底動作正在進行中」，使用 `git branch` 查看則會顯示目前分支為「無分支，重定 main 的基底」 (no branch, rebasing main)。
 - 遇到合併衝突請看[如何解決合併衝突](../preliminaries/keyword#進階)，實際操作過才會清楚。
 
 ## 修改提交訊息{#edit-commit-message}
@@ -55,10 +56,12 @@ first_publish:
 
 1. `git rebase -i hash^`
 2. 該 hash 前面改成 edit 或者縮寫 e
-3. 修改文件後加入追蹤 `git add <file name>`，注意不需提交[^rebase-commit]
+3. 修改文件後加入追蹤 `git add <file name>`，注意不需提交
 4. 完成 rebase `git rebase --continue`
 
-[^rebase-commit]: 提交的話會提交歷史會新增一個額外的提交紀錄。
+:::info
+互動式變基過程中不需使用 `git commit`，使用的話會變成插入一個新的提交紀錄。
+:::
 
 ## 合併提交{#squash-commits}
 

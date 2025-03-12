@@ -17,9 +17,7 @@ first_publish:
 
 import EmblaCarousel from '@site/src/components/EmblaCarousel';
 
-使用 `git rebase -i` 可進行互動式變基，這個指令用途強大並且簡單易懂，使用時可以把腦袋丟掉不用像一般的 rebase 還要背[口訣](./rebase#口訣)。
-
-筆者使用這個的頻率比 `merge` `reset` 等指令高多了，這應該是 git 最強大的指令，包含移動提交、刪除提交、修改提交內容、修改提交訊息全部都可以做到。原理仍舊是基於變基但是使用時完全不會感覺到分支操作，如果不清楚原理筆者也寫了 [使用變基 Rebase 合併分支提交](./rebase) 介紹。互動式變基常用的選項有五個：
+互動式變基是 Git 最強大的指令，包含移動提交、刪除提交、修改提交內容、修改提交訊息全部都可以做到。原理仍舊是基於變基，但是使用時完全不會感覺到分支操作。互動式變基常用的選項有五個：
 
 - **p, pick**：預設，選擇該提交  
 - **r, reword**：修改提交訊息  
@@ -39,6 +37,8 @@ import image6 from './data/rebase-6.webp';
 import image7 from './data/rebase-7.webp';
 import image8 from './data/rebase-8.webp';
 
+我們使用範例 repo 對最近的三個提交分別進行 reward, edit 和 squash 操作。
+
 ```sh
 # 複製範例 repo
 git clone https://github.com/PIC16B/git-practice -q && cd git-practice
@@ -47,7 +47,7 @@ git clone https://github.com/PIC16B/git-practice -q && cd git-practice
 git rebase -i HEAD~3
 ```
 
-接下來就會進入互動式變基的修改頁面，預設都是 pick 也就是不改變，從上到下分別是由舊到新。我們把三個 pick，由上到下依序改為 r (reward 修改提交訊息) e (edit 編輯提交) s (squash 合併到前一個提交)，修改完如圖一，之後按下 `Esc` 回到 Vim 命令模式，輸入 `wq` 儲存並離開
+接下來就會進入互動式變基的修改頁面，預設都是 pick 也就是不改變，從上到下分別是由舊到新。我們把三個 pick，由上到下依序改為 r (reward 修改提交訊息) e (edit 編輯提交) s (squash 合併到前一個提交)，修改完的結果如圖，之後按下 `Esc` 回到 Vim 命令模式，輸入 `wq` 儲存並離開
 
 ![rebase1](./data/rebase-1.webp)
 
@@ -55,7 +55,7 @@ git rebase -i HEAD~3
 
 ![rebase2](./data/rebase-2.webp)
 
-接著進入 edit 修改模式，edit 模式中可以任意更改，我們修改 README.md 文件，簡單加上一句測試文字，這裡要注意，如果只是要修改提交，改完後使用 `git add README.md` 預存之後使用 `git rebase --continue`，跳出提交訊息修改視窗，儲存結束後進入下一次互動式提交
+接著進入 edit 修改模式，edit 模式中可以任意更改，我們修改 README.md 文件，簡單加上一句測試文字，這裡要注意，如果只是要修改提交，改完後使用 `git add README.md` 預存，再使用 `git rebase --continue` 前往下一個 rebase 作業，不需要使用 `git commit`。輸入 `git rebase --continue` 後會跳出提交訊息修改視窗，修改完成就會進入下一個提交的變基
 
 :::tip
 
@@ -64,7 +64,7 @@ git rebase -i HEAD~3
 :::
 
 <EmblaCarousel
-  images={[image4, image5]}
+  images={[image4, image5, image6]}
   options={{ loop: true }}
 />
 
@@ -72,7 +72,7 @@ git rebase -i HEAD~3
 
 ![rebase7](./data/rebase-7.webp)
 
-最後我們使用 `git log` 檢查，提交訊息確實被修改，最新的提交也確實被合併了。
+使用 `git log` 檢查，發現提交訊息確實被修改，最新的提交也確實被合併了。
 
 ![rebase8](./data/rebase-8.webp)
 

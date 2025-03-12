@@ -70,7 +70,9 @@ feature                    A1'--B1'--C1'
 
 所以總共只有三步驟，找到共同祖先，以祖先為起點開始尋找目標提交，重演這些提交。
 
-> 重演 (replay)，用於表示不只是簡單的將提交複製貼上，而是會重新生成 commit hash。
+:::tip 重演 (replay)
+不只是簡單的將提交複製貼上，而是會重新生成 commit hash。
+:::
 
 ## 口訣
 
@@ -105,7 +107,7 @@ git rebase main feature-1
 git rebase main feature-2
 ```
 
-只要看懂文檔任何人就不會犯這種錯，因為文檔就是這樣用的，很可惜大家都錯了。如果你不相信筆者，那麼請看 [官方文檔](https://git-scm.com/docs/git-rebase/zh_HANS-CN) 或是教學書 [Pro Git](https://iissnan.com/progit/html/zh-tw/ch3_6.html)，如果還是很疑惑，那麼 Python Core Dev，微軟安全部門工程師拍的影片[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)他也是這樣用。
+只要看懂文檔任何人就不會犯這種錯，因為文檔就是這樣用的，很可惜大家都錯了。如果你不相信筆者，那麼請看 [官方文檔](https://git-scm.com/docs/git-rebase/zh_HANS-CN) 或是教學書 [Pro Git](https://iissnan.com/progit/html/zh-tw/ch3_6.html)，如果還是很疑惑，那麼 Python Core Dev，微軟安全部門工程師拍的影片[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)也是這樣用。
 
 :::danger 再提醒一次
 
@@ -119,7 +121,7 @@ git rebase main feature-2
 
 ## 翻譯：變基和衍合
 
-rebase 中文有變基和衍合兩種翻譯，衍為散佈、滋生，我看不出來 rebase 從單字、處理方式到用途哪裡跟衍有關係，所以我投變基一票。
+rebase 中文有變基和衍合兩種翻譯，衍代表散佈、滋生，我看不出來 rebase 從單字、處理方式到用途哪裡跟衍有關係，所以我投變基一票。
 
 ## 參考
 

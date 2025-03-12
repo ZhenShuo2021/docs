@@ -1,6 +1,6 @@
 [
   {
-    "title": "Nix 套件管理：我的失敗經驗",
+    "title": "Nix 套件管理器：我的失敗經驗",
     "permalink": "/memo/linux/abandoned-nix",
     "description": "Nix 是非常特別的套件管理系統，而且不只是 NixOS 能用，macOS 也能將其作為套件管理器。筆者曾經嘗試使用但最後放棄了，這篇是我的使用心得和整理。",
     "tags": [
@@ -23,7 +23,7 @@
   {
     "title": "跨平台終端機實測大對決",
     "permalink": "/memo/useful-tools/cross-platform-terminal-comparison",
-    "description": "本篇著重跨平台終端機，如果不需跨平台的話可以不用讀這篇文章。",
+    "description": "筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的是沒有比較沒有傷害，非常難用。先介紹自己的終端機使用經驗，使用原生終端機搭配 oh-my-zsh 這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh，所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是終端機只是主題，等於還是在用內建的爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。",
     "tags": [
       {
         "inline": true,
@@ -283,27 +283,6 @@
       }
     ],
     "date": "2025-02-12 23:19:00",
-    "yearMonth": "2025 年 02 月",
-    "day": "12",
-    "source": "git"
-  },
-  {
-    "title": "如何回到過去進行修正與新增功能",
-    "permalink": "/git/history-manipulation/flashback-commit",
-    "description": "如何在 Git 中回到過去進行修正與新增功能",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Git",
-        "permalink": "/git/tags/git"
-      },
-      {
-        "inline": true,
-        "label": "教學",
-        "permalink": "/git/tags/教學"
-      }
-    ],
-    "date": "2025-02-12 01:33:27",
     "yearMonth": "2025 年 02 月",
     "day": "12",
     "source": "git"
@@ -770,6 +749,54 @@
     "source": "git"
   },
   {
+    "title": "如何撰寫乾淨的程式",
+    "permalink": "/blog/how-to-write-clean-code",
+    "description": "關於撰寫乾淨且可讀性高的程式碼的基本知識。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "閱讀心得",
+        "permalink": "/blog/tags/閱讀心得"
+      }
+    ],
+    "date": "2024-11-30 00:00:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "30",
+    "source": "blog"
+  },
+  {
+    "title": "別寫乾淨的程式",
+    "permalink": "/blog/do-not-write-clean-code",
+    "description": "最近看到黑暗執行緒關於重構的文章很感興趣，存了一陣子終於有機會搬出來稍微整理一下，本文是個人紀錄和閱讀心得。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "閱讀心得",
+        "permalink": "/blog/tags/閱讀心得"
+      }
+    ],
+    "date": "2024-11-30 00:00:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "30",
+    "source": "blog"
+  },
+  {
+    "title": "優質程式文章備份",
+    "permalink": "/blog/backup-coding-articles",
+    "description": "備份優質的文章，你可以把這裡作為一個書籤頁，原文請到原始網站查看。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "閱讀心得",
+        "permalink": "/blog/tags/閱讀心得"
+      }
+    ],
+    "date": "2024-11-30 00:00:00",
+    "yearMonth": "2024 年 11 月",
+    "day": "30",
+    "source": "blog"
+  },
+  {
     "title": "PEP 更新紀錄",
     "permalink": "/memo/python/PEP-history",
     "description": "簡單紀錄重要的 PEP proposal 到底講了啥方便未來查詢，不然純數字太難記了。",
@@ -1078,22 +1105,6 @@
     "source": "git"
   },
   {
-    "title": "寫出優雅程式",
-    "permalink": "/memo/python/how-to-write-clean-code",
-    "description": "Collections of useful infos on the internet for writing clean, readable code.",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/memo/tags/python"
-      }
-    ],
-    "date": "2024-10-01 00:00:00",
-    "yearMonth": "2024 年 10 月",
-    "day": "01",
-    "source": "memo"
-  },
-  {
     "title": "[轉載] Z 檔案系統 (ZFS)",
     "permalink": "/memo/nas/zfs",
     "description": "轉載 FreeBSD Handbook 的 ZFS 文檔，如有任何問題請告知。",
@@ -1315,7 +1326,7 @@
   {
     "title": "關於這個網站",
     "permalink": "/memo/about",
-    "description": "這裡是 zsl0621 的筆記區，筆記寫的比較隨意，讀了很多，記下來才不會忘。",
+    "description": "這裡是 zsl0621 的筆記區，筆記寫的比較隨意。",
     "tags": [
       {
         "inline": true,

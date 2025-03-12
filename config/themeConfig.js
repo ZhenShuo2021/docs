@@ -65,6 +65,11 @@ module.exports = {
       //   ],
       // },
       {
+        to: "/blog",
+        label: "部落格",
+        position: "right",
+      },
+      {
         label: '導航',
         to: '/portfolio',
         position: 'right',

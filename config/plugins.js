@@ -49,6 +49,21 @@ module.exports = [
     },
   ],
   [
+    '@docusaurus/plugin-content-blog',
+    {
+      id: 'default',
+      path: 'blog',
+      routeBasePath: 'blog',
+      blogSidebarCount: 0,
+      blogSidebarTitle: "最新文章",
+      blogDescription: "部落格，分享我對各種技術議題的觀點與開發實作紀錄",
+      postsPerPage: 10,
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
+      showLastUpdateTime: false,
+    },
+  ],
+  [
     '@docusaurus/plugin-google-gtag',
     {
       trackingID: 'G-QB2VKFSQ0J',

@@ -6,29 +6,13 @@ export const useDocsData = () => {
   const [docsMap, setDocsMap] = useState(new Map());
 
   useEffect(() => {
-    const requireContext = require.context(
-      "../../.docusaurus/docusaurus-plugin-content-docs",
-      true,
-      /site-docs-.*\.json$/
-    );
-
-    const loadAllDocs = async () => {
-      const filePromises = requireContext.keys().map(async (file) => {
-        try {
-          const { permalink, frontMatter } = requireContext(file);
-          return permalink ? [permalink, frontMatter] : null;
-        } catch (error) {
-          console.error(`無法讀取 ${file}:`, error);
-          return null;
-        }
-      });
-
-      const entries = await Promise.all(filePromises);
-      const validEntries = entries.filter(Boolean);
-      setDocsMap(new Map(validEntries));
+    const loadDocs = async () => {
+      const latestPosts = require("../components/LatestPosts/latest-posts.json");
+      const entries = latestPosts.map((item) => [item.permalink, item]);
+      setDocsMap(new Map(entries));
     };
 
-    loadAllDocs();
+    loadDocs();
   }, []);
 
   return docsMap;
@@ -37,12 +21,13 @@ export const useDocsData = () => {
 export const processFrontmatter = (item, docsMap) => {
   if (item.link?.startsWith("/")) {
     const frontmatter = docsMap.get(item.link) || {};
+    const tags = frontmatter.tags ? frontmatter.tags.map(tag => tag.label) : (item.tags || [""]);
     return {
       ...item,
       title: item.title?.trim() || frontmatter.title || "找不到標題",
       description: item.description?.trim() || frontmatter.description || "",
       image: item.image?.trim() || frontmatter.image,
-      tags: item.tags || frontmatter.tags || [""],
+      tags,
     };
   }
 

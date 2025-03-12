@@ -51,7 +51,7 @@
   overflow: hidden;
   border: 1px solid var(--ifm-color-emphasis-200);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: 
+  transition:
     box-shadow 0.3s ease,
     transform 0.3s ease;
   height: 100%;
@@ -134,6 +134,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+  max-height: calc(0.95rem * 1.6 * 3); /* 字體大小 * 行高 * 行數 */
 }
 
 .cardFooter {
@@ -187,12 +188,12 @@ html[data-theme='dark'] .tag {
     width: 95%;
     padding: 1rem;
   }
-  
+
   .grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .sectionTitle {
     font-size: 1.8rem;
   }

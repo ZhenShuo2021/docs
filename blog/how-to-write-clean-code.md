@@ -1,26 +1,24 @@
 ---
-title: 寫出優雅程式
-tags:
-  - Python
+title: 如何撰寫乾淨的程式
+authors: zsl0621
 keywords:
-  - Python
-last_update:
-  date: 2024-10-01T00:00:00+08:00
-  author: zsl0621
-first_publish:
-  date: 2024-10-01T00:00:00+08:00
+  - 閱讀心得
+tags:
+  - 閱讀心得
+date: 2024-11-30T00:00:00+08:00
 ---
 
-# How to Write Clean Code
+# 如何撰寫乾淨的程式碼  
 
-Collections of useful infos on the internet for writing clean, readable code.  
-码农高天: Core dev of CPython, works in Microsoft kernel security team.
+關於撰寫乾淨且可讀性高的程式碼的基本知識。
 
-## Principle
+<!-- truncate -->  
 
-These guides are not absolute rules, you should remember that the final purpose is writing a maintainable, extendable, readable and high-performance code.
+碼農高天：CPython 核心開發者，微軟安全團隊員工。
 
-> This list is organized by myself, the Chinese text is summarized by GPT.
+## 原則  
+
+這些原則不是絕對規則，不應該盲目遵守原則，真正的目標是撰寫可維護、可擴展、可讀性高且高效能的程式碼。
 
 1. 可讀性
     - KISS (Keep It Simple, Stupid)
@@ -95,44 +93,45 @@ These guides are not absolute rules, you should remember that the final purpose 
     - 單元測試
     - 自動化測試 (Github Actions CI)
 
-## Basic Knowledge (Essential)
+## 基礎知識（必讀）  
 
-You should never skip this part.
+這部分絕對不能跳過。  
 
-[Clean Code 實戰之 PHP 良好實踐](https://kylinyu.win/php_best_practice) A clean code guide from beginner to advanced  
+[Clean Code 實戰之 PHP 良好實踐](https://kylinyu.win/php_best_practice)  
+從初學者到進階的乾淨程式碼指南。  
 
-[【Code Review】把&当and用可是不行！测试写成这样也有点离谱哦！](https://www.youtube.com/watch?v=ERosfjjY40Y&list=PLSo-C2L8kdSNr5yUJYhyDArnM4FU9iG1S)  
-A beginner-friendly code review demonstrating basic code optimization techniques.
+[【Code Review】把 & 當 and 用可是不行！測試寫成這樣也有點離譜哦！](https://www.youtube.com/watch?v=ERosfjjY40Y&list=PLSo-C2L8kdSNr5yUJYhyDArnM4FU9iG1S)  
+適合初學者的程式碼審查，展示基本的程式碼優化技巧。  
 
 [如何優雅地避免程式碼巢狀 | 程式碼嵌套 | 狀態模式 | 表驅動法 |](https://www.youtube.com/watch?v=dzO0yX4MRLM)  
-Introduces methods for reducing code nesting, including table methods, early returns, assertions, polymorphism, and useful built-in functions (filter, sort, group, map, any, all). Also covers better null pointer handling.
+介紹減少巢狀結構的方法，包括表驅動法、提前返回、斷言、多型，以及內建函數（filter、sort、group、map、any、all），並探討更好的空指標處理方式。  
 
-[【python】原来我可以少写这么多for loop！学会之后代码都pythonic了起来](https://www.youtube.com/watch?v=8DJ6M3tvnwY)  
-Introduces useful built-in functions in Python and compares their performance to hand-crafted for loops.
+[【Python】原來我可以少寫這麼多 for 迴圈！學會之後程式碼都更 Pythonic 了！](https://www.youtube.com/watch?v=8DJ6M3tvnwY)  
+介紹 Python 中實用的內建函數，並與手寫 for 迴圈進行效能比較。  
 
-## Clean code
+## 乾淨程式碼  
 
-Every article is carefully curated and informative.
+每篇文章都經過精選，內容具參考價值。  
 
-[我与微软的代码规范之争——局部变量竟然不让初始化？](https://www.youtube.com/watch?v=cAvAbyadts4)  
-Discusses whether to initialize local variables in C and explains the tradeoffs related to code errors.
+[我與微軟的程式碼規範之爭——局部變數竟然不讓初始化？](https://www.youtube.com/watch?v=cAvAbyadts4)  
+討論 C 語言中是否應初始化局部變數，並分析相關錯誤的權衡。  
 
-[【Code Review】传参的时候有这么多细节要考虑？冗余循环变量你也写过么？](https://youtube.com/watch?v=er9MKp7foEQ)  
-SELECTED code review
+[【Code Review】傳參的時候有這麼多細節要考慮？冗餘的迴圈變數你也寫過嗎？](https://youtube.com/watch?v=er9MKp7foEQ)  
+精選程式碼審查案例。  
 
-[【Code Review】十行循环变两行？argparse注意事项？不易察觉的异常处理？](https://www.youtube.com/watch?v=7EQsUOT3NKY)  
-SELECTED code review
+[【Code Review】十行迴圈變兩行？argparse 注意事項？不易察覺的異常處理？](https://www.youtube.com/watch?v=7EQsUOT3NKY)  
+精選程式碼審查案例。  
 
-[【Code Review】格式，异常处理和多线程的风险](https://www.bilibili.com/video/BV1iS421Q7Bb)  
-Review code for an interesting project about controlling while loop time out.
+[【Code Review】格式、異常處理與多執行緒風險](https://www.bilibili.com/video/BV1iS421Q7Bb)  
+審查一個關於 while 迴圈超時控制的有趣專案。  
 
-## Other Knowledge
+## 其他知識  
 
-[Win系統舊代碼導致CPU干冒煙？谷歌程序員慘背鍋 | 谷歌 | 微軟 | Chrome | 負優化 | 內存 | 系統 | Windows | 程序員 | CPU](https://www.youtube.com/watch?v=9RjZxB1M1P0)  
-Outdated and unclear Windows API incurs page fault overhead.
+[Win 系統舊代碼導致 CPU 過熱？Google 工程師背鍋 | Google | 微軟 | Chrome | 負優化 | 記憶體 | 系統 | Windows | 程式設計 | CPU](https://www.youtube.com/watch?v=9RjZxB1M1P0)  
+過時且不清晰的 Windows API 導致分頁錯誤開銷過大。  
 
-[【python】听说Python的多线程是假的？它真的没有存在的价值么？](https://www.youtube.com/watch?v=1Bk3IpNsvIU)  
-Explains multi-threading of Python, including asyncio, aiohttp.
+[【Python】聽說 Python 的多執行緒是假的？它真的毫無價值嗎？](https://www.youtube.com/watch?v=1Bk3IpNsvIU)  
+深入解析 Python 多執行緒，包括 asyncio、aiohttp。  
 
-[Kotlin颜值为啥遥遥领先 | 不可变变量 | lambda | 语法糖 | 构造函数 | 教程 | 中缀表达式 | val var](https://www.youtube.com/watch?v=iTy13tsi054)  
-Good design increases read-only variables from 2.9% to 86.3%, enhancing code quality effortlessly.
+[Kotlin 顏值為何遙遙領先 | 不可變變數 | lambda | 語法糖 | 建構函式 | 教程 | 中綴表達式 | val var](https://www.youtube.com/watch?v=iTy13tsi054)  
+良好的設計讓唯讀變數比例從 2.9% 提升至 86.3%，輕鬆提升程式碼品質。

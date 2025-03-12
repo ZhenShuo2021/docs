@@ -18,7 +18,7 @@ first_publish:
 
 import EmblaCarousel from '@site/src/components/EmblaCarousel';
 
-本篇著重跨平台終端機，如果不需跨平台的話可以不用讀這篇文章。
+筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的是沒有比較沒有傷害，非常難用。先介紹自己的終端機使用經驗，使用原生終端機搭配 oh-my-zsh 這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh，所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是終端機只是主題，等於還是在用內建的爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。
 
 <details>
 

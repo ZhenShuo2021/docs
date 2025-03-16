@@ -3,6 +3,9 @@ const path = require("path");
 const fs = require("fs");
 const moment = require("moment");
 
+// 輸出的 JSON 位置
+const latestPosts = "./src/data/latest-posts.json";
+
 // 設定資料來源，包含部落格、文件、備忘錄
 const paths = [
   {
@@ -32,10 +35,11 @@ const paths = [
   },
 ];
 
-// 輸出的 JSON 位置
-const latestPostsList = "./src/components/LatestPosts/latest-posts.json";
-
 let allItems = [];
+
+if (!fs.existsSync("./.docusaurus")) {
+  process.exit(0);
+}
 
 paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
   const files = glob.sync(path.join(folderPath, filesPattern));
@@ -71,4 +75,4 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
 
 const latestItems = allItems.sort((a, b) => b.date.localeCompare(a.date));
 
-fs.writeFileSync(latestPostsList, JSON.stringify(latestItems, null, 2));
+fs.writeFileSync(latestPosts, JSON.stringify(latestItems, null, 2));

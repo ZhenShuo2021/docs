@@ -1,8 +1,6 @@
 import Link from '@docusaurus/Link';
 import styles from "./LatestPosts.module.css";
-
-import latestPostsList from './latest-posts.json';
-latestPostsList.length = Math.min(latestPostsList.length, 10);
+import postsData from '@site/src/data/latest-posts.json';
 
 function Post({ title, permalink, tags, yearMonth, day }) {
   return (
@@ -40,11 +38,13 @@ function Post({ title, permalink, tags, yearMonth, day }) {
 }
 
 export default function LatestPosts() {
+  const latestPosts = postsData.slice(0, Math.min(postsData.length, 10));
+
   return (
     <section className={styles.latestPosts}>
       <div className="container">
         <div className={styles.latest_post_row}>
-          {latestPostsList.map((props, idx) => (
+          {latestPosts.map((props, idx) => (
             <Post key={idx} {...props} />
           ))}
         </div>

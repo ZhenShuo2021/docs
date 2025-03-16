@@ -1,19 +1,20 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import ThemedImage from "@theme/ThemedImage";
+import clsx from "clsx";
 
-import styles from "./portfolio.module.css";
+import styles from "./navigation.module.css";
 
-// import defaultImage from "../../../docs/docs/git/10-preliminaries/data/branch.webp";
+// Default image if none provided
 const defaultImage = "https://picsum.photos/900/675?grayscale";
 const maxTagsShow = 3;
 
 const Tag = ({ children }) => <span className={styles.tag}>{children}</span>;
 
 const Card = React.memo(({ item, type }) => (
-  <div className={styles.card}>
-    <div className={styles.cardImageContainer}>
-      <Link to={item.link}>
+  <div className={clsx("card", styles.card)}>
+    <Link to={item.link} className="card__link">
+      <div className={styles.cardImageContainer}>
         <ThemedImage
           sources={{
             light: item.image || defaultImage,
@@ -23,11 +24,8 @@ const Card = React.memo(({ item, type }) => (
           className={styles.cardImage}
           loading="lazy"
         />
-      </Link>
-      {/* <div className={styles.cardOverlay}>
-        <span className={styles.cardType}>{type}</span>
-      </div> */}
-    </div>
+      </div>
+    </Link>
 
     <div className={styles.cardContent}>
       <h3 className={styles.cardTitle}>

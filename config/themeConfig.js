@@ -17,19 +17,29 @@ module.exports = {
     darkTheme: prismThemes.vsDark,
   },
   navbar: {
-    // title: "zsl0621@Docs",
+    // hideOnScroll: true,
+    // title: "ZSL's Docs",
     logo: {
       alt: "zsl0621@Docs",
       src: "img/logo_circle.webp",
     },
     items: [
       {
-        type: 'doc',
-        docsPluginId: 'pluginForGit',
-        docId: 'git-hello-page',
-        sidebarId: 'gitSidebar',
-        label: "Git",
+        type: 'dropdown',
+        label: 'Git',
         position: 'right',
+        items: [
+          {
+            type: 'doc',
+            docsPluginId: 'pluginForGit',
+            docId: 'git-hello-page',
+            label: '教學',
+          },
+          {
+            label: 'Git 零到一百',
+            href: 'https://docs.zsl0621.cc/gitroad101/',
+          },
+        ],
       },
       {
         type: 'doc',
@@ -78,7 +88,7 @@ module.exports = {
       },
       {
         label: '導航',
-        to: '/portfolio',
+        to: '/navigation',
         position: 'right',
       },
       {
@@ -98,12 +108,6 @@ module.exports = {
     // <a href="https://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank" rel="noopener noreferrer">
     // CC BY-NC 4.0</a>  授權條款<br>
     ,
-  },
-  docs: {
-    sidebar: {
-      hideable: true,
-      autoCollapseCategories: true,
-    },
   },
   algolia: {
     appId: 'DSU91EEXY7',

@@ -1,12 +1,13 @@
-const imageGit = require("@site/docs/git/10-preliminaries/data/areas_upscayl.webp").default;
-import imageShell from "./defaultBackground/shell.webp";
-import imageGrayScale from "./defaultBackground/grayscale.webp";
-import imageProgramming from "./defaultBackground/program.webp";
+// const imageGit = require("@site/docs/git/10-preliminaries/data/areas_upscayl.webp").default;
+import imageGit from "@site/docs/git/10-fundamental/10-preliminaries/data/areas_upscayl.webp";
+import imageShell from "@site/src/navigation/defaultBackground/shell.webp";
+import imageGrayScale from "@site/src/navigation/defaultBackground/grayscale.webp";
+import imageProgramming from "@site/src/navigation/defaultBackground/program.webp";
 
 // 新增方式
 // 1. 新增 xxxMeta
-// 2. 更新 sectionsMeta
-// 3. 更新 getPortfolioContent
+// 2. 更新 sectionsMeta, 排序影響顯示順序
+// 3. 更新 getNavigationContent
 
 export const articlesMeta = [
   // 完整範例，最少要填入 link，其餘會自動尋找
@@ -34,20 +35,21 @@ export const articlesMeta = [
     image: imageShell,
   },
   {
-    link: "/python/best-python-project-manager",
-    description: "你知道 Python 有超過 10 個專案管理工具嗎？網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該怎麼選擇？",
-    image: imageProgramming,
-  },
-  { link: "/python/python-uv-complete-guide", image: imageProgramming },
-  {
     description: "最快、最正確、最完整的 Numba 教學",
-    link: "/python/numba-tutorial-accelerate-python-computing",
+    link: "/python/numba-tutorial-1",
     image: imageProgramming,
   },
   {
-    link: "/python/numba-performance-benchmark-svml-signal-processing",
+    link: "/python/numba-performance-test",
     image: imageProgramming,
   },
+  {
+    link: "/python/best-python-project-manager",
+    description:
+      "你知道 Python 有超過 10 個專案管理工具嗎？網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該怎麼選擇？",
+    image: imageProgramming,
+  },
+  { link: "/python/uv-project-manager-2", image: imageProgramming },
   {
     description:
       "冷知識：網路教學 rebase onto 的文章十篇有九篇是錯的，本文就是那篇正確的教學",
@@ -78,8 +80,7 @@ export const projectsMeta = [
   },
   {
     title: "我的超快 Zsh Dotfiles",
-    description:
-      "特點是啟動速度超快、一鍵安裝還有正確，你沒看錯，網路文章錯誤多到可以把正確當賣點",
+    description: "特色是啟動速度超快、支援一鍵安裝並且功能齊全",
     link: "https://github.com/ZhenShuo2021/dotfiles",
     image: imageGrayScale,
     tags: ["Zsh"],
@@ -100,9 +101,9 @@ export const projectsMeta = [
     tags: ["Docusaurus"],
   },
   {
-    title: "巴哈姆特黑名單工具 + 黑名單合輯",
+    title: "巴哈姆特黑名單工具 + 清單",
     description:
-      "彈幕的臭嘴太多了，這個腳本可以匯入和匯出巴哈姆特黑名單，支援各種資料來源",
+      "彈幕總是有人在抱怨和暴雷，這個腳本可以匯入和匯出黑名單，還你乾淨彈幕體驗",
     link: "https://github.com/ZhenShuo2021/baha-blacklist",
     image: imageGrayScale,
     tags: ["Python"],
@@ -116,8 +117,7 @@ export const projectsMeta = [
   },
   {
     title: "LazyKit for Python",
-    description:
-      "與其說 kit 更像是 cheat sheet ，順便測試用 mkdocs 架設網站",
+    description: "與其說 kit 更像是 cheat sheet ，順便測試用 mkdocs 架設網站",
     link: "https://github.com/ZhenShuo2021/lazykit",
     image: imageGrayScale,
     tags: ["Python"],

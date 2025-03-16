@@ -1,13 +1,11 @@
 {
-  "name": "zsl0621-at-github",
+  "name": "zsl-docs",
   "version": "0.0.0",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
-    "start": "cross-env TZ=Asia/Taipei URL=http://localhost BASE_URL=/ yarn new && docusaurus start -p 8080",
-    "build": "cross-env TZ=Asia/Taipei URL=https://docs.zsl0621.cc BASE_URL=/ docusaurus build && cp src/components/LatestPosts/latest-posts.json ./build/site-urls.json",
+    "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start",
+    "build": "set TZ=Asia/Taipei && set URL=https://docs.zsl0621.cc&& set BASE_URL=/&&docusaurus build",
     "swizzle": "cross-env URL=http://localhost BASE_URL=/ docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -21,6 +19,7 @@
   "dependencies": {
     "@algolia/client-search": "^5.20.3",
     "@docusaurus/core": "^3.7.0",
+    "@docusaurus/faster": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
     "@docusaurus/theme-classic": "^3.7.0",
     "@docusaurus/theme-mermaid": "^3.7.0",
@@ -72,5 +71,5 @@
   "engines": {
     "node": ">=18.0"
   },
-  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

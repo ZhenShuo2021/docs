@@ -7,7 +7,7 @@
     "docusaurus": "docusaurus",
     "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
     "start": "cross-env TZ=Asia/Taipei URL=http://localhost BASE_URL=/ yarn new && docusaurus start -p 8080",
-    "build": "cross-env TZ=Asia/Taipei URL=https://docs.zsl0621.cc BASE_URL=/ docusaurus build && cp src/components/LatestPosts/latest-posts.json ./build/site-urls.json",
+    "build": "cross-env TZ=Asia/Taipei URL=https://docs.zsl0621.cc BASE_URL=/ docusaurus build",
     "swizzle": "cross-env URL=http://localhost BASE_URL=/ docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

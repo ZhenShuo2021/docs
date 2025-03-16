@@ -78,7 +78,7 @@ module.exports = {
       },
       {
         label: '導航',
-        to: '/portfolio',
+        to: '/navigation',
         position: 'right',
       },
       {

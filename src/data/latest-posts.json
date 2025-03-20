@@ -1,5 +1,36 @@
 [
   {
+    "title": "Python 專案管理工具全面比較",
+    "permalink": "/python/best-python-project-manager",
+    "description": "你知道 Python 有超過 10 個專案管理工具嗎？每個工具的出現都是為了解決前一個工具的痛點，然而網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該選擇這個工具嗎？我們應該要知道的是如何選擇，而不是照著指令複製貼上等出問題才知道到底適不適合。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "專案管理工具",
+        "permalink": "/python/tags/專案管理工具"
+      },
+      {
+        "inline": true,
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
+      }
+    ],
+    "date": "2025-03-21 03:49:00",
+    "yearMonth": "2025 年 03 月",
+    "day": "21",
+    "source": "git"
+  },
+  {
     "title": "使用 Git Bisect 找出錯誤提交",
     "permalink": "/git/advance/git-bisect",
     "description": "找出錯誤最快的方式是使用二分法切一半找問題，git bisect 指令就幫助我們完成這件事，只要提供開頭結尾分別是正確和錯誤的提交，Git 就會自動幫我們在提交歷史中切換，不過哪個提交有問題當然還是要自己確認。",
@@ -44,7 +75,7 @@
   {
     "title": "跨平台終端機實測大對決",
     "permalink": "/memo/useful-tools/cross-platform-terminal-comparison",
-    "description": "筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的是沒有比較沒有傷害，非常難用。先介紹自己的終端機使用經驗，使用原生終端機搭配 oh-my-zsh 這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh，所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且不是終端機只是主題，等於還是在用內建的爛終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找是否有跨平台的終端機可以使用。",
+    "description": "筆者原本是長年 Windows 用戶，偶然在 Mac 上使用過 zsh 再回去用 Windows 的真的是沒有比較沒有傷害，非常難用。先介紹自己的終端機使用經驗，使用原生終端機搭配 oh-my-zsh 這個配置其實對於首次優化終端機的我而言已經很好用了，使用上也沒感受到特別大的問題，但是回過頭來優化 Windows 終端時發現 Windows 壓根沒有 zsh，所以使用名字相似的 oh-my-posh，他的缺點是對比 oh-my-zsh 能抄的作業相對少，而且只是插件框架，等於還是在用內建的難用終端，同時我 Mac 使用已經很順手，還要多維護一份設定光想就麻煩，於是決定尋找跨平台的終端機。",
     "tags": [
       {
         "inline": true,
@@ -136,9 +167,9 @@
     "source": "memo"
   },
   {
-    "title": "0.03 秒啟動極速 Zsh | macOS | Linux | zcomet | dotfiles",
+    "title": "五行指令輕鬆設定啟動速度 0.03 秒的極速 Zsh | macOS | Linux | zcomet | dotfiles",
     "permalink": "/memo/linux/fastest-zsh-dotfile",
-    "description": "0.03 秒啟動極速 Zsh，速度超快、功能齊全而且設定正確！",
+    "description": "五行指令輕鬆設定啟動速度 0.03 秒的極速 Zsh，速度超快、功能齊全而且設定正確！",
     "tags": [
       {
         "inline": true,
@@ -183,40 +214,19 @@
     "source": "memo"
   },
   {
-    "title": "Python 套件管理工具全面比較",
-    "permalink": "/python/best-python-project-manager",
-    "description": "你知道 Python 有超過 10 個套件管理工具嗎？每個工具的出現都是為了解決前一個工具的痛點，然而網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該選擇這個套件嗎？於是本文是全中文圈唯一一篇完整整理 Python 專案管理工具的文章，我們應該要知道的是如何選擇，而不是照著指令複製貼上等出問題才知道到底適不適合。",
-    "tags": [
-      {
-        "inline": true,
-        "label": "Python",
-        "permalink": "/python/tags/python"
-      },
-      {
-        "inline": true,
-        "label": "套件管理工具",
-        "permalink": "/python/tags/套件管理工具"
-      },
-      {
-        "inline": true,
-        "label": "虛擬環境管理工具",
-        "permalink": "/python/tags/虛擬環境管理工具"
-      }
-    ],
-    "date": "2025-02-16 23:29:00",
-    "yearMonth": "2025 年 02 月",
-    "day": "16",
-    "source": "git"
-  },
-  {
     "title": "UV Python 教學，最佳套件管理工具（下）",
     "permalink": "/python/python-uv-complete-guide-2",
-    "description": "本篇文章介紹 uv 的操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看我寫的Python 虛擬環境管理套件比較。",
+    "description": "本篇文章介紹 uv 的操作指令，從安裝到發布套件都包含在內，還有抄作業環節，直接複製貼上就能用，適合沒寫過 pyproject.toml 的人快速上手。如果不清楚自己是否該選擇 uv 請看我寫的Python 專案管理工具比較。",
     "tags": [
       {
         "inline": true,
         "label": "Python",
         "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "專案管理工具",
+        "permalink": "/python/tags/專案管理工具"
       },
       {
         "inline": true,
@@ -243,6 +253,11 @@
         "inline": true,
         "label": "Python",
         "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "專案管理工具",
+        "permalink": "/python/tags/專案管理工具"
       },
       {
         "inline": true,
@@ -740,12 +755,17 @@
   {
     "title": "UV 快速手冊",
     "permalink": "/python/uv-quick-guide",
-    "description": "覺得Python UV 教學太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看虛擬環境管理套件比較。",
+    "description": "覺得Python UV 教學太細節，所以本文如題是一個快速手冊，著重長話短說，目標是搞懂工具的大方向。如果不知道是否應該選擇 uv 請看專案管理工具比較。",
     "tags": [
       {
         "inline": true,
         "label": "Python",
         "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "專案管理工具",
+        "permalink": "/python/tags/專案管理工具"
       },
       {
         "inline": true,

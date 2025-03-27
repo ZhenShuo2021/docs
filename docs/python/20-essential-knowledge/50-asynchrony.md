@@ -2,6 +2,7 @@
 title: Python 中的異步操作 - 協程
 description:  Python 中的異步操作 - 協程 asyncio，從原理到實際使用一一破解，沒有廢話，沒有錯誤，全是乾貨。
 sidebar_label: 異步操作 - 協程
+slug: /asynchrony
 tags:
   - Python
   - multitasking
@@ -12,7 +13,7 @@ keywords:
   - 非同步
   - 異步
 last_update:
-  date: 2024-11-19T14:23:30+08:00
+  date: 2025-03-27T18:52:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:23:30+08:00

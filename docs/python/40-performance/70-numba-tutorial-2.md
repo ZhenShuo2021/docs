@@ -2,6 +2,7 @@
 title: Numba 教學：加速 Python 科學計算（下）
 description: 你能找到最好的 Numba 教學！
 sidebar_label: Numba 教學（下）
+slug: /numba-tutorial-2
 tags:
   - Python
   - Numba
@@ -27,7 +28,7 @@ import TabItem from '@theme/TabItem';
 
 # Numba 教學：加速 Python 科學計算（下）
 
-除非你是進階用戶，否則 **你不應該看進階使用章節！** 看了反而模糊焦點，應該先掌握基礎使用，因為基礎使用已涵蓋七成以上的使用情境，基礎使用請看[教學上篇](numba-tutorial-accelerate-python-computing)。
+除非你是進階用戶，否則 **你不應該看進階使用章節！** 看了反而模糊焦點，應該先掌握基礎使用，因為基礎使用已涵蓋七成以上的使用情境，基礎使用請看[教學上篇](numba-tutorial-1)。
 
 只有 [使用字典傳遞參數](#dict-var) 和 [向量化裝飾器](#vectorize) 可以先偷看。
 

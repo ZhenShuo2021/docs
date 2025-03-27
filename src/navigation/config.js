@@ -36,11 +36,11 @@ export const articlesMeta = [
   },
   {
     description: "最快、最正確、最完整的 Numba 教學",
-    link: "/python/numba-tutorial-accelerate-python-computing",
+    link: "/python/numba-tutorial-1",
     image: imageProgramming,
   },
   {
-    link: "/python/numba-performance-benchmark-svml-signal-processing",
+    link: "/python/numba-performance-test",
     image: imageProgramming,
   },
   {
@@ -49,7 +49,7 @@ export const articlesMeta = [
       "你知道 Python 有超過 10 個專案管理工具嗎？網路教學文章總是劈哩啪啦說一堆指令，卻沒有回答我心中的問題：我該怎麼選擇？",
     image: imageProgramming,
   },
-  { link: "/python/python-uv-complete-guide", image: imageProgramming },
+  { link: "/python/uv-project-manager-2", image: imageProgramming },
   {
     description:
       "冷知識：網路教學 rebase onto 的文章十篇有九篇是錯的，本文就是那篇正確的教學",

@@ -7,19 +7,19 @@ keywords:
   - Python
   - Regex
 last_update:
-  date: 2024-09-11T00:00:00+08:00
+  date: 2025-03-27T21:20:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-09-11T00:00:00+08:00
 ---
 
-# Python 正則表達式 \*\*還沒完成\*\*
+# 正則表達式
 
-```py
-pattern = re.compile(r"^(.*?)\s*\((\d+)\)(\..+)?$")
+```regex
+^(.*?)\s*\((\d+)\)(\..+)?$
 ```
 
-第一次看到正則表達式的感想只有「？？？」，不過簡單來說就是一套可以描述字符匹配的表達方式。
+第一次看到正則表達式的感想只有「？？？」，不過講白了只是一套用於描述字符的表達方式。比起看文章死背，我推薦使用 [RegexLearn](https://regexlearn.com/)，非常好馬上學馬上使用，我自己也是看老半天背不起來，後來用他的教學看兩次不到一小時就學會了。
 
 ## 入門函式
 
@@ -79,16 +79,22 @@ print(re.search(r"\w+\W\w+", text).group())   # 'ABC 123'
 - `+`：匹配前面的元素 1 次或多次。
 - `?`：匹配前面的元素 0 次或 1 次。
 - `{n}`：精確匹配前面的元素 n 次。
+- `{n,}`：精確匹配前面的元素 n 次以上。
 - `{n,m}`：匹配前面的元素至少 n 次，至多 m 次。
 
 ### 邊界設定
 
 - `^`：匹配字符串的開始。
 - `$`：匹配字符串的結尾。
+- `^XXX$`：整個字串從頭到尾必須匹配。
 - `\b`：匹配單詞邊界（例如單詞前後的空格或標點）。
 - `\B`：匹配非單詞邊界。
+- `XXX(?=YYY)`：正向先行，YYY 匹配的字符「前面」要包含 XXX
+- `XXX(?!YYY)`：負向先行，YYY 匹配的字符「前面」不包含 XXX
+- `(?<=YYY)XXX`：正向後行，YYY 匹配的字符「後面」要包含 XXX
+- `(?<!YYY)XXX`：正向後行，YYY 匹配的字符「後面」不包含 XXX
 
-如果規則前後加上 `^` 和 `$`，即要求完整匹配開頭到結尾。
+?向?行可以在 [RegexLearn](https://regexlearn.com/learn/regex101) 的第 45 題找到。
 
 #### 範例：移除電話號碼中的空白
 
@@ -180,36 +186,7 @@ validate_email("example@test.sss")   # True
 
 ## 結語
 
-這誰記得起來，所以接下來是我的個人筆記，我才不要每次寫個小腳本還要重看文章。
-
-#### 範例：檔案重新命名一
-
-如果檔名符合規則 `"{digits} <xxx>.<extension>"`，把花括弧前加上空格移到最後，例如：  
-
-- `{123} example.txt` 變成 `example {123}.txt`
-- `{456} folder` 變成 `folder {456}`
-
-```py
-def rename_item0(directory, item):
-    pattern = re.compile(r"^{(\d+)}\s+(.+?)(\..+)?$")
-    match = pattern.match(item)
-    if match:
-        number, name, extension = match.groups()
-        if extension:
-            new_name = f"{name} {{{number}}}{extension}"
-        else:
-            # 資料夾
-            new_name = f"{name} {{{number}}}"
-        old_path = os.path.join(directory, item)
-        new_path = os.path.join(directory, new_name)
-        os.rename(old_path, new_path)
-```
-
-- `^` 匹配字符串開始
-- `{(\d+)}` 匹配花括號中的數字並捕獲這個數字
-- `\s+` 匹配空格
-- `(.+?)` 非貪婪地匹配任何字符（除了換行符），這是文件名主體
-- `(\..+)?` （可選）匹配副檔名
+regex 是一個神奇的酷東西，我靠 regex 已經交到三個女朋友了，希望大家和我看齊一起學習 regex，謝謝大家。
 
 ## 參考資料
 

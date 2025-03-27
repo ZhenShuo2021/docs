@@ -2,6 +2,7 @@
 title: 在獨立子線程中執行非同步操作
 description: 在獨立子線程中執行非同步操作
 sidebar_label: 在子線程中運行事件迴圈
+slug: /run-asyncio-in-sub-thread
 tags:
   - Python
   - asyncio
@@ -9,7 +10,7 @@ keywords:
   - Python
   - asyncio
 last_update:
-  date: 2024-11-23T09:27:30+08:00
+  date: 2025-03-27T18:52:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-23T09:27:30+08:00

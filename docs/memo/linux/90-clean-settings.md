@@ -53,7 +53,7 @@ find ~ -name "*gallery-dl*" -type d
 ```
 
 如果找到任何目錄，使用 rm -rf 刪除它們。
-清理 pip 緩存：
+清理 pip 快取：
 pip cache purge
 
 檢查是否有系統級安裝：

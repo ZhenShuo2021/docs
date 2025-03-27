@@ -17,7 +17,8 @@ module.exports = {
     darkTheme: prismThemes.vsDark,
   },
   navbar: {
-    // title: "zsl0621@Docs",
+    // hideOnScroll: true,
+    // title: "ZSL's Docs",
     logo: {
       alt: "zsl0621@Docs",
       src: "img/logo_circle.webp",

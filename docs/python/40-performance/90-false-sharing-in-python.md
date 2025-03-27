@@ -1,6 +1,7 @@
 ---
 title: False-Sharing 閱讀筆記和實測
 description: Python 中的 False-Sharing 閱讀筆記和實測
+slug: /false-sharing-in-python
 tags:
   - Python
   - Numba
@@ -24,7 +25,7 @@ import TabItem from '@theme/TabItem';
 
 # Python 中的 False-Sharing
 
-[前一篇文章](numba-performance-benchmark-svml-signal-processing)提到了 false-sharing，但是 Python 中好像沒看到有人在談這個問題，畢竟會討論效能的人本身就不會用 Python 寫程式，又看到[暗黑執行緒的文章](https://blog.darkthread.net/blog/false-sharing-demo-with-jquery-animation/)說
+[前一篇文章](numba-performance-test)提到了 false-sharing，但是 Python 中好像沒看到有人在談這個問題，畢竟會討論效能的人本身就不會用 Python 寫程式，又看到[暗黑執行緒的文章](https://blog.darkthread.net/blog/false-sharing-demo-with-jquery-animation/)說
 
 > 是台積電才要關心的事，如果你是 Samsung、hTC、Nokia，暫時可以不用煩惱怎麼對付它.
 
@@ -235,7 +236,7 @@ if __name__ == "__main__":
     plt.show()
 ```
 
-接下來是測試結果，三章圖依序是 `PADDING_SIZE = [4, 8, 16]` 的計算時間，使用長條圖的原因是折線圖變化太小看不出來差距。可以看到當 `PADDING_SIZE` 從 4 -> 8 的時候，使用 padding 的方式對比 false-sharing 的效能從原本的基本相同變成快了 ~15%，這個效能差距在把 `PADDING_SIZE` 設定成 8 -> 16 後又沒有進一步優化了，足以顯示 false-sharing 的存在以及使用的正確性。isolated 代表每個執行緒使用獨立的 Array，Numba 則是使用 [Numba 套件加速](./numba-tutorial-accelerate-python-computing)，看了這個速度差異就知道為啥沒人在 Python 中討論 false-sharing 了，在 Python 中效能是個假議題，false-sharing 雖存在但不需要用 Python 解決他，簡單加一行裝飾器都比想破頭還有用。
+接下來是測試結果，三章圖依序是 `PADDING_SIZE = [4, 8, 16]` 的計算時間，使用長條圖的原因是折線圖變化太小看不出來差距。可以看到當 `PADDING_SIZE` 從 4 -> 8 的時候，使用 padding 的方式對比 false-sharing 的效能從原本的基本相同變成快了 ~15%，這個效能差距在把 `PADDING_SIZE` 設定成 8 -> 16 後又沒有進一步優化了，足以顯示 false-sharing 的存在以及使用的正確性。isolated 代表每個執行緒使用獨立的 Array，Numba 則是使用 [Numba 套件加速](./numba-tutorial-1)，看了這個速度差異就知道為啥沒人在 Python 中討論 false-sharing 了，在 Python 中效能是個假議題，false-sharing 雖存在但不需要用 Python 解決他，簡單加一行裝飾器都比想破頭還有用。
 
 > use padding=4, still incurs false-sharing
 

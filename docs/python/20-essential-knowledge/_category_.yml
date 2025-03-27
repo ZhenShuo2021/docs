@@ -1,0 +1,8 @@
+position: 2
+label: 必備知識
+collapsible: true
+collapsed: true
+className: red
+# link:
+#   type: generated-index
+#   title: Python

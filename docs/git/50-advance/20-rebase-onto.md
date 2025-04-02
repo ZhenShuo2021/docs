@@ -1,5 +1,5 @@
 ---
-title: "Git Rebase Onto 全中文圈最完整教學"
+title: "Git Rebase Onto 全中文最完整教學"
 sidebar_label: "搞懂 Rebase Onto"
 author: zsl0621
 tags:

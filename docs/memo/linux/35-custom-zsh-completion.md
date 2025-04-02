@@ -158,7 +158,7 @@ zstyle ':completion:*' list-separator ' ➤ '
 俗話說的好，授人以漁不如直接給他魚，為了這個簡單的自動補全從頭到尾花了兩週，實際耗時超過四小時，我不希望有人受到一樣的折磨...腳本不難難在找不到資訊，找了老半天才偶然才
 [這篇文章](https://unix.stackexchange.com/questions/14434/path-files-and-compadd-ignore-files-parameter)，哭啊我的兩個禮拜。
 
-我是全中文圈第一個寫 zsh 自動補全的人，如果你搜尋 `_path_files` 然後限制所有中文網頁會得到精美的 10 項搜尋結果，全世界沒半個中文用戶寫這過東西。
+我是全中文第一個寫 zsh 自動補全的人，如果你搜尋 `_path_files` 然後限制所有中文網頁會得到精美的 10 項搜尋結果，全世界沒半個中文用戶寫這過東西。
 
 ## 參考
 

@@ -1,0 +1,5 @@
+position: 50
+label: 批量修改
+collapsible: true
+collapsed: true
+className: red

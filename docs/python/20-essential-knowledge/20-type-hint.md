@@ -1,6 +1,6 @@
 ---
-title: Python Type Hint 型別註解教學 - 基礎篇
-sidebar_label: 型別註解 - 基礎篇
+title: Python Type Hint 型別提示教學 - 基礎篇
+sidebar_label: 型別提示 - 基礎篇
 slug: /type-hint
 tags:
   - Python
@@ -20,7 +20,7 @@ first_publish:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-型別註釋功能可以讓身為動態語言的 Python **無痛的**帶來了靜態語言的優點，同時又保持原本動態語言的靈活性，如果看不懂，講人話就是
+型別提示功能可以讓身為動態語言的 Python **無痛的**帶來了靜態語言的優點，同時又保持原本動態語言的靈活性，如果看不懂，講人話就是
 
 1. **提高可讀性**：開發者可以清楚知道函數或變數預期的資料型別，不需要額外翻閱文件或原始碼。
 2. **減少錯誤**：型別提示可以搭配 mypy 等工具檢查型別不同的錯誤。
@@ -38,13 +38,35 @@ import TabItem from '@theme/TabItem';
 
 ## 注意事項
 
-覺得注意事項的內容還算有用而且網路上比較少有人提到，於是決定搬到最前面。
+這些是我覺得實用但不常見的型別提示知識，獨一無二只有我寫，所以放在教學最前面。
 
-- Union 能少用就少用，因為 IDE 和檢查系統會一直跟你說後續型別不符，除非有*穩健的 type narrowing*，不然我覺得用 Union 不如直接寫 Any 就好了。
-- 有時候遇到一個奇怪的變數不知道是什麼型別，mypy 提供 `reveal_type` 和 `reveal_locals` 兩種方法偵錯，使用時不需 import 直接用，在終端機執行 mypy example.py 即可，詳情請見[這篇文章](https://adamj.eu/tech/2021/05/14/python-type-hints-how-to-debug-types-with-reveal-type/)。
-- Type hint 不是越多越好，靈活迭代、快速開發才是 Python 的專長，過度的 type hint 反而浪費時間，尤其在他的資源相對稀缺，而且寫出一個很複雜的 type hint 對於開發沒有實質效率幫助的情況下。
-- List, Dict 這些從 typing import 的型別註解在 Python 3.9 之後就已經內建，而 3.8 已經 EOL (end of life, 產品壽命結束)，所以除非需要兼容過往系統否則完全沒有必要使用大寫版本的。
-- Python 3.10 之後預設啟用 `from __future__ import annotations`。
+**1. Type hint 不是越多越好**
+
+Python 的優勢是快速迭代與靈活開發，過度型別✍反而會拖慢流程，尤其是複雜型別如果沒有明顯效益，過度優化型別提示只會增加維護成本。
+
+**2. 少用 Union，除非有穩健的 type narrowing**
+
+Union 會造成 IDE 與靜態檢查工具一直抱怨型別問題，如果沒有明確的 type narrowing 機制那不如直接用 `Any` 簡化開發流程。
+
+**3. 用 `reveal_type` / `reveal_locals` 偵錯型別**
+
+遇到不確定的變數型別時，可以利用 mypy 內建的偵錯工具 `reveal_type` 和 `reveal_locals`，不需 import 直接寫在程式中即可。在終端機執行 `mypy example.py` 就會顯示推論結果。使用教學請見 [How to Debug Types with reveal_type](https://adamj.eu/tech/2021/05/14/python-type-hints-how-to-debug-types-with-reveal-type/)。
+
+**4. `if TYPE_CHECKING` 的正確用途**
+
+有說法是「盡量避免使用」的東西，這是錯的，正確用途是**需要導入只用於型別檢查的情境**，可以避免不必要的 import，又能保持型別提示完整，想用就用無須煩惱。
+
+**5. 延遲解析型別：使用 `"ClassName"`**
+
+型別還沒宣告而我們通常又希望在檔案開頭集中定義所有型別提示時使用，以字串表示型別名稱（如 `"MyClass"`）來延遲解析，在我的[泛型教學](type-hint-generic#covariant)有使用範例。
+
+**6. `List`, `Dict` 不需再從 `typing` 匯入**
+
+Python 3.9 之後可以直接使用內建的小寫泛型語法（如 `list[int]`、`dict[str, Any]`），不必再使用 `List`, `Dict` 等大寫版本。因為 Python 3.8 已經 EOL，除非有兼容性需求否則應該使用新語法。
+
+**7. Python 3.10 起預設啟用 `from __future__ import annotations`**
+
+告訴型別提示會延遲解析為字串，避免循環引用等問題，新版不需要再手動加入這行。
 
 ## 初階使用
 
@@ -59,11 +81,11 @@ import TabItem from '@theme/TabItem';
 - [Final](https://bruceyuan.com/post/python-type-challenge-basic.html#final): 最終結果，不應該被覆寫
 - `if TYPE_CHECKING`: 只有在型別檢查時才會啟用此區塊，通常用於啟用型別提示系統，避免真的 import
 
-接下來是稍微複雜一點的型別註解。
+接下來是稍微複雜一點的型別提示。
 
 ### NoReturn
 
-[NoReturn](https://mypy.readthedocs.io/en/latest/more_types.html#the-noreturn-type) 告訴型別註解系統這個函式應該要出錯 (raise exception)，連 None 都不會返回。  
+[NoReturn](https://mypy.readthedocs.io/en/latest/more_types.html#the-noreturn-type) 告訴型別提示系統這個函式應該要出錯 (raise exception)，連 None 都不會返回。  
 
 NoReturn: [【python】Type Hint入门与初探，好好的python写什么类型标注？@198s](https://youtu.be/6rgBwA7TRfE?si=G3uRQeGNjXqPC1jJ&t=198)  
 
@@ -134,7 +156,7 @@ b.URL_MAPPINGS = {"new album": "value"}  # 錯誤
 
 ## 高階使用
 
-可以跳過這裡也沒關係，完全不用這裡的 type hint 也不太會對型別註解系統帶來問題或是降低功能。
+可以跳過這裡也沒關係，完全不用這裡的 type hint 也不太會對型別提示系統帶來問題或是降低功能。
 
 ### overload/override
 
@@ -190,6 +212,12 @@ print(test(robot))  # 錯誤
 - Annotated: 用於[附註變數](https://stackoverflow.com/questions/71898644/how-to-use-python-typing-annotated)。
 - Self: 回傳類別本身。
 - typeguard: 用於 [type narrowing](https://rednafi.com/python/typeguard_vs_typeis/)。
+
+## 相關工具
+
+雖然只有兩行但是很重要，所以獨立一個段落。
+
+如果要最大化發揮 type hint 功效則需要結合 [靜態檢查工具](https://www.trackawesomelist.com/typeddjango/awesome-python-typing/readme/#static-type-checkers) 使用，建議直接整合 pre-commit hooks 使用，請參考文章 [初嘗 Python 工作流自動化](/memo/python/pre-commit-first-try)。
 
 ## 版本紀錄
 

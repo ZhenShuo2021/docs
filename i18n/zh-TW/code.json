@@ -29,7 +29,7 @@
   },
   "theme.ErrorPageContent.tryAgain": {
     "message": "再試一次",
-    "description": "The label of the button to try again when the page crashed"
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.NotFound.title": {
     "message": "頁面不存在",

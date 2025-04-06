@@ -44,7 +44,7 @@ module.exports = {
       swcJsLoader: true,
       swcJsMinimizer: true,
       // swcHtmlMinimizer incurs error pairing for html tags while building, especially for titles <h>
-      swcHtmlMinimizer: true,
+      // swcHtmlMinimizer: true,
       lightningCssMinimizer: true,
       rspackBundler: true,
       mdxCrossCompilerCache: true,

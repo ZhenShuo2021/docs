@@ -1,0 +1,5 @@
+position: 30
+label: 各種 Github 功能
+collapsible: true
+collapsed: true
+className: red

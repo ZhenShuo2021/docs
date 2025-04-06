@@ -1,5 +1,5 @@
 // const imageGit = require("@site/docs/git/10-preliminaries/data/areas_upscayl.webp").default;
-import imageGit from "@site/docs/git/10-preliminaries/data/areas_upscayl.webp";
+import imageGit from "@site/docs/git/10-fundamental/10-preliminaries/data/areas_upscayl.webp";
 import imageShell from "@site/src/navigation/defaultBackground/shell.webp";
 import imageGrayScale from "@site/src/navigation/defaultBackground/grayscale.webp";
 import imageProgramming from "@site/src/navigation/defaultBackground/program.webp";

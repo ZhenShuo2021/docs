@@ -4,9 +4,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
-    "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start -p 8080",
+    "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start",
     "build": "set TZ=Asia/Taipei && set URL=https://docs.zsl0621.cc&& set BASE_URL=/&&docusaurus build",
     "swizzle": "cross-env URL=http://localhost BASE_URL=/ docusaurus swizzle",
     "deploy": "docusaurus deploy",

@@ -3,9 +3,9 @@
 ## 使用
 
 1. 下載專案: `git clone https://github.com/ZhenShuo2021/docs`
-2. 安裝: `yarn install`
-3. 開啟本地伺服器: `yarn start`
-4. 建立首頁文章列表: `yarn start` 後使用 `yarn new`，如果內容錯誤則使用 `yarn clear` 清除快取
+2. 安裝: `pnpm install`
+3. 開啟本地伺服器: `pnpm start`
+4. 建立首頁文章列表: `pnpm start` 後使用 `pnpm new`，如果內容錯誤則使用 `pnpm clear` 清除快取
 
 記得把個人訊息改成自己的，在原作者的網站有說設定了哪些東西，例如 git repo name, baseurl, Giscus, algolia 等等。
 
@@ -19,9 +19,9 @@
 2. 設定部署網站
    1. 選擇儲存庫
    2. Framework Docusaurus
-   3. 組建命令 `yarn build`
+   3. 組建命令 `pnpm build`
    4. 組建輸出目錄 `build`
-   5. 環境變數 `YARN_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
+   5. 環境變數 `PNPM_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
 3. （可選）設定 custom domain，正常設定約兩分鐘內完成部屬
 
 ## 插入影片

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "types": ["node"],
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "paths": {
+      "@components/*": ["./.vitepress/components/*"]
+    }
+  },
+  "include": [".vitepress/**/*"]
+}

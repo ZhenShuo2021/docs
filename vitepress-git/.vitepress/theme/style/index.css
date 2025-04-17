@@ -1,0 +1,33 @@
+/* https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
+@import './custom-block.css';
+@import './hide-line.css';
+
+:root {
+  --vp-c-indigo-1: var(--vp-c-red-1);
+  --vp-c-indigo-2: var(--vp-c-red-2);
+  --vp-c-indigo-3: var(--vp-c-red-3);
+  --vp-c-indigo-soft: var(--vp-c-red-soft);
+}
+
+.dark {
+  --vp-c-indigo-1: var(--vp-c-red-1);
+  --vp-c-indigo-2: var(--vp-c-red-2);
+  --vp-c-indigo-3: var(--vp-c-red-3);
+  --vp-c-indigo-soft: var(--vp-c-red-soft);
+}
+
+.dark {
+  --vp-c-bg: #121212;
+  --vp-c-bg-alt: #1e1e1e;
+  --vp-c-bg-elv: #2a2a2a;
+  --vp-c-bg-soft: #333333;
+}
+
+.VPFeature .title {
+  color: var(--vp-c-indigo-1);
+  font-weight: 600;
+}
+
+.vp-doc a {
+    text-decoration: none;
+}

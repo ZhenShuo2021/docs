@@ -77,7 +77,7 @@ date: 2024-11-30T00:00:00+08:00
 
 看[黑暗執行緒說成這樣](https://blog.darkthread.net/blog/refactoring-and-performance/)我也很感興趣去讀了第一章，單純看他的描述如果是我寫八成也會想辦法合併迴圈，這裡就要提醒自己「相同等級的時間複雜度沒必要特別優化」，以及「編譯器比自己還聰明」。拿古老的 duff's device 為例，這種神奇的方式[現代編譯器](https://www.youtube.com/watch?v=-WFtkrhzTtg)開 -O3就沒了沒必要搞這些，最後效能提升可能都 negligible。
 
-效能優化問題就像我自己寫的[效能測試](https://docs.zsl0621.cc/docs/python/false-sharing-in-python)一樣，在優化效能之前先搞清楚瓶頸和優化平台、語言等，而不是被假議題騙了。以 [Python 科學運算](/python/numba-tutorial-1#see-also)為例，想都不用想就是改用 Numba 或 pybind11，其他都是徒勞，除此之外還要對現代硬體和編譯器有正確認知，例如 [unconditional writes](https://pythonspeed.com/articles/speeding-up-numba/) 這種略為 tricky 但是還算好理解的方式就是很好的實現。
+效能優化問題就像我自己寫的[效能測試](/python/false-sharing-in-python)一樣，在優化效能之前先搞清楚瓶頸和優化平台、語言等，而不是被假議題騙了。以 [Python 科學運算](/python/numba-tutorial-1#see-also)為例，想都不用想就是改用 Numba 或 pybind11，其他都是徒勞，除此之外還要對現代硬體和編譯器有正確認知，例如 [unconditional writes](https://pythonspeed.com/articles/speeding-up-numba/) 這種略為 tricky 但是還算好理解的方式就是很好的實現。
 
 總結就是搞清楚任務瓶頸、程式語言、硬體平台和編譯器。
 

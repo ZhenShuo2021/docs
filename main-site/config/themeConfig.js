@@ -37,7 +37,7 @@ module.exports = {
           },
           {
             label: 'Git 零到一百',
-            to: 'pathname:///gitroad101/index.html',
+            to: 'pathname:///gitroad101/',
             prependBaseUrlToHref: true
           },
         ],

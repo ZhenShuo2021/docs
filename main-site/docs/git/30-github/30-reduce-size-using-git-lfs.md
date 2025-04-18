@@ -93,7 +93,7 @@ Mac 預設擷圖是 PNG 很浪費空間，我會使用 imagemagick 把他轉成 
 magick input.png -sampling-factor 4:2:0 -strip -quality 80 output.webp
 ```
 
-如果想要更極限的人可以使用 AVIF。然而每次都要輸入指令太麻煩，如果是 Mac 用戶使用 Automator 會超級方便，使用方式請見我的[文章教學](/memo/useful-tools/make-magick-automator)。
+如果想要更極限的人可以使用 AVIF。然而每次都要輸入指令太麻煩，如果是 Mac 用戶使用 Automator 會超級方便，使用方式請見我的[文章教學](/memo/useful-tools/magick-automator)。
 
 import MyVideo from '/docs/memo/useful-tools/data/automator-magick.mp4';
 

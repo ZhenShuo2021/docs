@@ -1,24 +1,37 @@
-我的文檔網站，主站是由 [ouch1978.github.io](https://github.com/Ouch1978/ouch1978.github.io) 修改的 Docusaurus 網站，子站是以 Vitepress 搭建的 Git 教學。
+結合兩種靜態網站產生器的文檔網站。主站是基於 [ouch1978.github.io](https://github.com/Ouch1978/ouch1978.github.io) 修改而來的 Docusaurus 網站，用於主要內容，子站則是以 Vitepress 搭建的 Git 教學文檔。
 
-## 安裝與初始化
+## 使用說明
 
 ```bash
 git clone https://github.com/ZhenShuo2021/docs
 cd docs
 ```
 
-|            | 主站（Docusaurus）      | 子站（Vitepress）          | 全站整合     |
-|------------|------------------------|--------------------------|--------|
-| 安裝依賴    | `pnpm run install:main` | `pnpm run install:git`   | –  |
-| 開發       | `pnpm run dev:main`     | `pnpm run dev:git`       | `pnpm start`（等同 dev:main）   |
-| 建構網站    | `pnpm run build:main`   | `pnpm run build:git`     | `pnpm run build`（子站 → 整合 → 主站） |
-| 預覽建構結果 | `pnpm run preview:main` | `pnpm run preview:git`   | `pnpm run preview`（預覽主站輸出） |
-| 建立文章列表 | `pnpm run new`          | –  | –  |
-| 清除快取    | `pnpm run clear:main`   | `pnpm run clear:git`      | - |
+### 主站
 
-> ⚠️ 如果使用 `pnpm run new` 建立首頁文章列表的內容異常，請使用 `clear:main` 清除快取並重新操作。
+1. 安裝依賴 `pnpm run install:main`
+2. 開發 `pnpm run dev:main`，同 `pnpm start`
+3. 建構網站 `pnpm run build:main`
+4. 預覽建構 `pnpm run preview:main`
+5. 清除快取 `pnpm run clear:main`
+6. 建立首頁文章列表: `pnpm run new`
 
-記得把個人訊息改成自己的，包含 git repo name, baseurl, Giscus, algolia 等等。修改時應該進入各自網站目錄執行比較不會搞混。
+> ⚠️ **注意：** 如果使用 `pnpm run new` 建立的首頁文章列表內容出現錯誤，則需要用 `pnpm run clear:main` 清除主站快取。
+
+### 子站
+
+1. 安裝依賴 `pnpm run install:git`
+2. 開發 `pnpm run dev:git`
+3. 建構網站 `pnpm run build:git`
+4. 預覽建構 `pnpm run preview:git`
+5. 清除快取 `pnpm run clear:git`
+
+### 全站
+
+1. 建構 (先建構子站，再整合至主站，最後建構主站): `pnpm run build`
+2. 預覽建構 `pnpm run preview`
+
+記得把個人訊息改成自己的，包含 git repo name, baseurl, Giscus, algolia 等等。
 
 ## 部屬到 Cloudflare Pages 方式
 
@@ -29,10 +42,9 @@ cd docs
    4. 選擇 Pages
 2. 設定部署網站
    1. 選擇儲存庫
-   2. Framework Docusaurus
-   3. 組建命令 `pnpm build`
-   4. 組建輸出目錄 `main-site/build`
-   5. 環境變數 `PNPM_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
+   2. 組建命令 `pnpm build`
+   3. 組建輸出目錄 `main-site/build`
+   4. 環境變數 `PNPM_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
 3. （可選）設定 custom domain，正常設定約兩分鐘內完成部屬
 
 接下來是介紹也是備忘錄，因為我自己也記不起來怎麼用所以寫在這。
@@ -84,7 +96,7 @@ import image2 from './data/img-2.webp';
 
 ## 掃描 Broken Links
 
-除了 Docusaurus 和 Vitepress 內建的偵測以外還有兩種工具可以掃描：node 的 [linkinator](https://github.com/JustinBeckwith/linkinator) 和 Python 的 [linkchecker](https://github.com/linkchecker/linkchecker)。
+除了 Docusaurus 和 Vitepress 內建的連結檢查功能，還可以用 node 的 [linkinator](https://github.com/JustinBeckwith/linkinator) 和 Python 的 [linkchecker](https://github.com/linkchecker/linkchecker) 掃描。
 
 ### linkinator
 

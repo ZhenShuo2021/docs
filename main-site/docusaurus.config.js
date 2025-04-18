@@ -7,7 +7,7 @@ const themeConfig = require("./config/themeConfig");
 module.exports = {
   title: "ZSL的文檔庫",
   // tagline: "Reading a lot, writing what I read.",
-  url: "https://docs.zsl0621.cc",
+  url: "https://zsl0621.cc",
   baseUrl: "/",
   organizationName: "ZhenShuo2021", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.

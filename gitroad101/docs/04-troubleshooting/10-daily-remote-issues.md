@@ -42,7 +42,7 @@ first_publish:
 
 ## 還是無法推送，重設遠端分支{#fix-remote-branch}
 
-請見 Git 遠端指令的 [找不到遠端的處理方式](/intermediate/concept-and-commands#remote-debug) 段落。
+請見 Git 遠端指令的 [找不到遠端的處理方式](/intermediate/remote-concept#remote-debug) 段落。
 
 <br />
 

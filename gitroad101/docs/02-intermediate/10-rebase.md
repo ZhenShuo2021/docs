@@ -18,7 +18,7 @@ first_publish:
 
 # {{ $frontmatter.title }}
 
-筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。
+筆者認為初學者對變基 (rebase) 感到畏懼的原因不是指令複雜，反而是網路文章每篇講的都不一樣，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。
 
 ::: danger 提醒
 
@@ -62,11 +62,11 @@ main     A---B---C---D---E
 feature                    A1'--B1'--C1'
 ```
 
-可以看到目前分支 (feature) 被接在目標分支 (main) 的後面而且沒有用於紀錄合併的提交。細心的人可能會發現多了 prime symbol `'`，這裡我們詳細解釋 `git rebase main` 做了什麼：
+可以看到目前分支 (feature) 被接在目標分支 (main) 的後面而且沒有用於紀錄合併的提交。細心的人可能會發現多了 prime symbol `'`，這裡我們詳細解釋 `git rebase main` 實際上做了什麼：
 
 1. 找到共同祖先 (B)
 2. 找到需要被變基的提交並且暫存他們
-  這些提交包含**從共同祖先到「目前分支」之間的所有提交，並且剃除「目標分支」已經存在的提交** (此範例沒有被剃除的提交，暫存 A1 B1 C1)
+  這些提交包含<u>**從共同祖先到「目前分支」之間的所有提交，並且排除「目標分支」已經存在的提交**</u> (此範例沒有被剃除的提交，暫存 A1 B1 C1)
 3. 將目標分支最後一個提交作為出發點，把暫存的提交逐個重演到目標分支後面 (接上後成為 A1' B1' C1')
 
 所以總共只有三步驟，找到共同祖先，以祖先為起點開始尋找目標提交，重演這些提交。
@@ -107,13 +107,32 @@ git rebase main feature-1
 git rebase main feature-2
 ```
 
-只要看懂文檔任何人就不會犯這種錯，因為文檔就是這樣用的，很可惜大家都錯了。如果你不相信筆者，那麼請看 [官方文檔](https://git-scm.com/docs/git-rebase/zh_HANS-CN) 或是教學書 [Pro Git](https://iissnan.com/progit/html/zh-tw/ch3_6.html)，如果還是很疑惑，那麼 Python Core Dev，微軟工程師拍的影片[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)也是這樣用。
+如果你不相信筆者，那麼請看 [官方文檔](https://git-scm.com/docs/git-rebase/zh_HANS-CN) 或是教學書 [Pro Git](https://iissnan.com/progit/html/zh-tw/ch3_6.html)，如果還是很疑惑，那麼 Python Core Dev，微軟工程師拍的影片[十分钟学会正确的github工作流，和开源作者们使用同一套流程](https://www.youtube.com/watch?v=uj8hjLyEBmU&t=439s&pp=ygUM56K86L6y6auY5aSp)也是這樣用。
 
 ::: danger 再提醒一次
 
 絕對不要在主分支上 rebase 其餘分支，因為這會修改穩定的主分支提交紀錄。
 
 :::
+
+## rebase 自動暫存 autostash
+
+rebase 時要求目錄乾淨不能有尚未提交的變動，如果沒有清理乾淨就會出現
+
+```sh
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
+```
+
+可以加上 `--autostash` 讓他自動 stash，rebase 結束後會自動 stash pop，或者修改全局設定永遠自動 stash
+
+```sh
+git config --global rebase.autoStash true
+```
+
+## rebase 自動壓縮 autosquash
+
+簡單來說就是自動把 "fixup!" 開頭的 commit 合併，我認為比起一般的操作速度沒有差，也就是隨便打提交訊息再使用互動式提交，所以不用記這個。
 
 ## git rebase --onto
 

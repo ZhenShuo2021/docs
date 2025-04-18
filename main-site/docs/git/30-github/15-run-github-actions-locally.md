@@ -19,9 +19,11 @@ first_publish:
 
 # 在本地執行 Github Actions
 
-延續上一篇文章 [Github Actions 自動化 CI/CD](./github-actions)，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法設定或是節省 Actions 額度。首先需要安裝 [act](https://nektosact.com/installation/index.html) 套件以及 docker，並且手動打開 docker 才能執行，他不會自己打開。
+延續上一篇文章 [Github Actions 自動化 CI/CD](./github-actions)，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法，也可以節省 Actions 額度。
 
 ## 安裝
+
+需要安裝 docker 和 [act](https://nektosact.com/installation/index.html) 套件
 
 ```sh
 # Windows 使用 winget/choco
@@ -31,6 +33,8 @@ choco install act-cli
 # Macos
 brew install act
 ```
+
+docker 比較複雜請自行搜尋如何安裝，安裝完成需要手動打開 docker 才能執行，act 不會自己打開。
 
 ## 用法
 

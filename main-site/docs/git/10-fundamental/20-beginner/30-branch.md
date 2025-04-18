@@ -50,7 +50,7 @@ git switch -c <new-name>             # 建立新分支並切換
 git switch -c <new-name> <hash>      # 從指定的提交建立並切換
 ```
 
-使用 checkout 來切換分支也是沒問題的，完全沒有任何差別，指令也大同小異不重複介紹。
+使用 checkout 來切換分支也完全沒問題，沒有任何差別，指令也大同小異不重複介紹。
 
 ## 暫存 git stash
 
@@ -79,6 +79,11 @@ git stash clear                      # 清除所有暫存
 ```
 
 > 看不懂 pathspec？請見[看懂文檔](/git/read-git-docs)。
+
+這裡是更少用的參數，但是偶爾有奇效
+
+- git stash -u 可以把還沒被追蹤的文件也暫存進去
+- git stash --staged 只暫存已經被 stage 的檔案
 
 <br/>
 

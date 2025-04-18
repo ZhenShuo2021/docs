@@ -530,7 +530,7 @@
   {
     "title": "使用 Git Bisect 找出錯誤提交",
     "permalink": "/git/git-bisect",
-    "description": "找出錯誤最快的方式是使用二分法切一半找問題，git bisect 指令就幫助我們完成這件事，只要提供開頭結尾分別是正確和錯誤的提交，Git 就會自動幫我們在提交歷史中切換，不過哪個提交有問題當然還是要自己確認。",
+    "description": "git bisect 指令幫助我們使用找出開始發生錯誤的提交位置，只要提供開頭結尾分別是正確和錯誤的提交，Git 就會自動幫我們在提交歷史中切換，不過哪個提交有問題當然還是要自己確認。",
     "tags": [
       {
         "inline": true,
@@ -713,7 +713,7 @@
   {
     "title": "使用變基 Rebase 合併分支",
     "permalink": "/git/rebase",
-    "description": "筆者認為網路文章每篇講的都不一樣是初學者對變基 (rebase) 感到畏懼的原因，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。",
+    "description": "筆者認為初學者對變基 (rebase) 感到畏懼的原因不是指令複雜，反而是網路文章每篇講的都不一樣，所以撰寫時同時參考 Git 官方文檔以及 Pro Git Book，多方比對和驗證保證本文解釋方式能和指令實際用途能夠對應，講這麼多目的就是要讓你只要讀這篇文章就夠了，不需要再去網路上查其他文章，因為網路上的文章參差不齊容易被誤導。",
     "tags": [
       {
         "inline": true,
@@ -839,7 +839,7 @@
   {
     "title": "使用 cherry-pick 揀選指定提交",
     "permalink": "/git/cherry-pick",
-    "description": "Cherry-Pick 的意思是把指定提交像是摘櫻桃一樣取過來，開發社群通常不鼓勵使用此指令，詳情請見 Git Cherry Pick 的後遺症，我們不管這個問題只學如何使用。",
+    "description": "Cherry-Pick 的意思是把指定提交複製過來，由於動作像是摘櫻桃所以取這個名字，不得不說外國人都是命名鬼才，和 force-with-lease 一樣非常有創意。開發社群通常不鼓勵使用此指令，詳情請見 Git Cherry Pick 的後遺症，我們不管這個問題只學如何使用。",
     "tags": [
       {
         "inline": true,
@@ -1033,7 +1033,7 @@
   {
     "title": "Github Actions 自動化 CI/CD",
     "permalink": "/git/github-actions",
-    "description": "網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以又寫了一篇。Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、執行 cron 任務等等，額度請參考文檔，簡單使用基本上用不完。",
+    "description": "Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、定時執行任務等等，額度請參考文檔，簡單使用基本上用不完。",
     "tags": [
       {
         "inline": true,
@@ -1075,7 +1075,7 @@
   {
     "title": "在本地執行 Github Action",
     "permalink": "/git/run-github-actions-locally",
-    "description": "延續上一篇文章 Github Actions 自動化 CI/CD，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法設定或是節省 Actions 額度。首先需要安裝 act 套件以及 docker，並且手動打開 docker 才能執行，他不會自己打開。",
+    "description": "延續上一篇文章 Github Actions 自動化 CI/CD，我們可以在本地執行 Github Actions 用於在本地先偵錯 Workflow 語法，也可以節省 Actions 額度。",
     "tags": [
       {
         "inline": true,
@@ -1839,7 +1839,7 @@
   {
     "title": "基礎操作",
     "permalink": "/git/step-above-basic",
-    "description": "一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的本文和下一篇文章分別為基礎操作（單一分支）和分支操作（多分支），快速檢索的方式是從右側目錄快速定位操作內容，例如提交錯誤時可以找到「清除提交」定位到 git reset。",
+    "description": "一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的本文和下一篇文章分別為基礎操作（單一分支）和分支操作（多分支），快速檢索的方式是從右側目錄快速定位操作內容，例如提交錯誤時可以找到「還原提交」定位到 git reset。",
     "tags": [
       {
         "inline": true,
@@ -1923,7 +1923,7 @@
   {
     "title": "前言",
     "permalink": "/git/introduction",
-    "description": "Git 教學現在有獨立的網站了！請移駕到 Git 零到一百。",
+    "description": "Git 教學現在有獨立的網站了！請移駕 Git 零到一百。",
     "tags": [
       {
         "inline": true,
@@ -2033,7 +2033,7 @@
   {
     "title": "清除 Linux 殘存設定",
     "permalink": "/memo/linux/clean-settings",
-    "description": "在 ubuntu server 安裝 gallery-dl 時，由於之前有安裝過導致錯誤的設定殘留，在網路上查老半天都找不到要怎麼清除，最後還是請出 GPT 大神，基礎操作類他還是很擅長的。這裡也給其他網路上的資訊 https://ivonblog.com/posts/linux-uninstall-application/。",
+    "description": "在 ubuntu server 安裝 gallery-dl 時，由於之前有安裝過導致錯誤的設定殘留，在網路上查老半天都找不到要怎麼清除，最後還是請出 GPT 大神，基礎操作類他還是很擅長的。這裡也給其他網路上的資訊Linux如何解除安裝軟體並刪除乾淨。",
     "tags": [
       {
         "inline": true,

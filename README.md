@@ -7,28 +7,16 @@ git clone https://github.com/ZhenShuo2021/docs
 cd docs
 ```
 
-安裝依賴：
+|            | 主站（Docusaurus）      | 子站（Vitepress）          | 全站整合     |
+|------------|------------------------|--------------------------|--------|
+| 安裝依賴    | `pnpm run install:main` | `pnpm run install:git`   | –  |
+| 開發       | `pnpm run dev:main`     | `pnpm run dev:git`       | `pnpm start`（等同 dev:main）   |
+| 建構網站    | `pnpm run build:main`   | `pnpm run build:git`     | `pnpm run build`（子站 → 整合 → 主站） |
+| 預覽建構結果 | `pnpm run preview:main` | `pnpm run preview:git`   | `pnpm run preview`（預覽主站輸出） |
+| 建立文章列表 | `pnpm run new`          | –  | –  |
+| 清除快取    | `pnpm run clear:main`   | `pnpm run clear:git`      | - |
 
-- 主站：`pnpm run install:main`
-- 子站：`pnpm run install:git`
-
-## 開發
-
-- 主站：`pnpm run dev:main`
-- 子站：`pnpm run dev:git`
-- 或使用主入口：`pnpm start`（啟動主站）
-
-## 建構網站
-
-- 主站：`pnpm run build:main`
-- 子站：`pnpm run build:git`
-- 全站建構整合：`pnpm run build`（建構子站 → 執行整合腳本 → 建構主站）
-
-## 預覽建構結果
-
-- 主站：`pnpm run preview:main`
-- 子站：`pnpm run preview:git`
-- 整體預覽（主站 build 結果）：`pnpm run preview`
+> ⚠️ 如果使用 `pnpm run new` 建立首頁文章列表的內容異常，請使用 `clear:main` 清除快取並重新操作。
 
 記得把個人訊息改成自己的，包含 git repo name, baseurl, Giscus, algolia 等等。修改時應該進入各自網站目錄執行比較不會搞混。
 
@@ -47,7 +35,11 @@ cd docs
    5. 環境變數 `PNPM_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
 3. （可選）設定 custom domain，正常設定約兩分鐘內完成部屬
 
-## 插入影片
+接下來是介紹也是備忘錄，因為我自己也記不起來怎麼用所以寫在這。
+
+## Docusaurus 相關操作
+
+### 插入影片
 
 使用 [react-player](https://github.com/cookpete/react-player) 完成，支援的影片來源和他一樣，或者放在 /static 資料夾中的影片。
 
@@ -74,7 +66,7 @@ import MyVideo from './data/my-video.mp4';
 </figure>
 ```
 
-## 插入輪播圖片
+### 插入輪播圖片
 
 使用 Embla 完成，範例如下，假設圖片放在 md 文件同層級的 data/img-n.webp 中
 
@@ -88,4 +80,30 @@ import image2 from './data/img-2.webp';
   images={[image1, image2]}
   options={{ loop: true }}
 />
+```
+
+## 掃描 Broken Links
+
+除了 Docusaurus 和 Vitepress 內建的偵測以外還有兩種工具可以掃描：node 的 [linkinator](https://github.com/JustinBeckwith/linkinator) 和 Python 的 [linkchecker](https://github.com/linkchecker/linkchecker)。
+
+### linkinator
+
+安裝
+
+```sh
+npm install -g linkinator
+```
+
+掃描
+
+```sh
+npx linkinator http://127.0.0.1:8080 -r -s assets -s github -s wiki --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36' --verbosity error
+```
+
+### linkchecker
+
+使用 uv 不需安裝，掃描指令
+
+```sh
+uvx linkchecker http://127.0.0.1:8080 --ignore-url=/tags/ --user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36' -t 50
 ```

@@ -7,7 +7,8 @@
 /node_modules
 
 # Production
-/build
+main-site/build
+main-site/static/gitroad101
 
 # Logs
 logs
@@ -16,9 +17,6 @@ logs
 # Generated files
 .docusaurus
 .cache-loader
-
-# Misc
-.DS_Store
 
 # Misc
 .DS_Store

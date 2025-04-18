@@ -16,14 +16,14 @@ first_publish:
 
 # Git 基礎操作
 
-一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的本文和[下一篇文章](./branch)分別為基礎操作（單一分支）和分支操作（多分支），快速檢索的方式是從右側目錄快速定位操作內容，例如提交錯誤時可以找到「清除提交」定位到 git reset。
+一分鐘入門只說明如何提交檔案，但是在版本之間切換才是版本管理工具的精華，接下來的本文和[下一篇文章](./branch)分別為基礎操作（單一分支）和分支操作（多分支），快速檢索的方式是從右側目錄快速定位操作內容，例如提交錯誤時可以找到「還原提交」定位到 git reset。
 
 基礎操作包含以下指令，文章中會介紹如何更靈活的 add/commit 檔案，以及復原檔案。
 
 ```sh
 git add                              # 預存檔案
 git commit                           # 提交檔案
-git reset                            # 清除提交狀態
+git reset                            # 還原提交狀態
 git checkout                         # 檔案還原的舊版指令，本文不介紹
 git restore                          # 檔案還原的新版指令
 git reflog                           # git 操作救命稻草
@@ -122,19 +122,19 @@ git restore --source=<hash> <pathspec>
 
 ---
 
-## 清除提交 git reset
+## 還原提交 git reset
 
 ```sh
 git reset [<mode>] [<commit>] [<pathspec>]
 ```
 
-用於清除提交版本，reset 雖然聽起來是重設/還原，但實際做的是<u>**清除**</u>提交，預設模式是 mixed，預設檔案是全部檔案。三種模式分別是代表
+用於還原提交，把現在的提交歷史直接還原到指定版本，由於直接還原到指定版本，所以包括版本本身提交歷史也都會保存不會消失。預設模式是 mixed，預設還原全部檔案。三種模式分別是代表
 
-1. soft: 只清除 commit，其他不動
-2. mixed: 清除 commit 和 add
+1. soft: 只清除 commit，其他不動 (不會 unstage)
+2. mixed: 清除 commit 和 add (unstage)
 3. hard: 除了 commit 和 add 以外，連你的寫的程式都刪了，謹慎使用！
 
-這個指令不常用，因為他的使用場景大部分都可被互動式變基取代，不過還是提供幾個使用情境方便記憶。
+三個模式可能讓人有點混亂，不過實際上只是 hard 加上是否改變 stage 的差別，一般來說預設就好。這個指令不常用，因為他的使用場景大部分都可被互動式變基取代，不過還是提供幾個使用情境方便記憶。
 
 ### 程式改壞了想回復到遠端版本
 
@@ -142,13 +142,30 @@ git reset [<mode>] [<commit>] [<pathspec>]
 git reset --hard origin/main
 ```
 
-origin 代表遠端別名，main 是遠端分支名稱，這是 reset 最常用的情境，下方幾個都不常用。
+origin 代表遠端別名，main 是遠端分支名稱。
+
+### 復原錯誤的 Git 操作
+
+有時候我們不小心改壞就可以使用 reset 直接復原到指定 commit，方式是
+
+```sh
+git reflog                           # 顯示 Git 操作版本歷史，按 q 離開
+git reset <hash>                     # 還原到指定的版本
+```
+
+這兩個就是 reset 最常用的情境，下方幾個都不常用。
+
+:::info
+
+要進行複雜且不確定結果的操作時，應該先建立一個備份分支才是最佳解法，操作越複雜還原越麻煩。
+
+:::
 
 ### 不小心提交，想繼續編輯
 
 ```sh
-git reset --soft HEAD^    # 清除前一個提交
-git reset --soft HEAD~3   # 清除前三個提交
+git reset --soft HEAD^               # 清除前一個提交
+git reset --soft HEAD~3              # 清除前三個提交
 ```
 
 這個指令會取消最新的提交，但保留所有程式碼修改，使用 `git commit --amend` 也可達成相同效果（但是 amend 僅限最近一次提交）。

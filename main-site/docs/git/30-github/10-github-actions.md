@@ -19,7 +19,7 @@ first_publish:
 
 # Github Actions 自動化 CI/CD
 
-網路上似乎沒有文章能簡潔的把 Github Actions 講清楚，所以又寫了一篇。Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、執行 cron 任務等等，額度請參考[文檔](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes)，簡單使用基本上用不完。
+Github Actions 是用於自動化操作的 CI/CD 平台，可以在上面自動執行單元測試、構建發布套件、定時執行任務等等，額度請參考[文檔](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes)，簡單使用基本上用不完。
 
 ## 組成
 

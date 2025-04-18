@@ -12,7 +12,7 @@ module.exports = {
     maxHeadingLevel: 5,
   },
   prism: {
-    additionalLanguages: ["aspnet", "bash", "css", "csharp", "cshtml", "diff", "git", "java", "javascript", "json", "markup-templating", "powershell", "php", "python", "sql", "toml", "typescript", "lua"],
+    additionalLanguages: ["aspnet", "bash", "css", "csharp", "cshtml", "diff", "git", "java", "javascript", "json", "markup-templating", "powershell", "php", "python", "sql", "toml", "typescript", "lua", "ini"],
     theme: prismThemes.github,
     darkTheme: prismThemes.vsDark,
   },

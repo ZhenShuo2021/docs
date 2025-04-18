@@ -77,8 +77,8 @@ function sidebarIntermediate(): DefaultTheme.SidebarItem[] {
     {
       text: '遠端操作',
       items: [
-        { text: '遠端儲存庫設定', link: 'setup' },
-        { text: '遠端概念和常見錯誤', link: 'concept-and-commands' },
+        { text: '遠端儲存庫設定', link: 'remote-setup' },
+        { text: '遠端概念和常見錯誤', link: 'remote-concept' },
         { text: '🔥 團隊協作最佳實踐', link: 'collaboration-best-practice' },
       ],
     },

@@ -12,7 +12,7 @@ hero:
       link: /beginner/intro
     - theme: alt
       text: 遠端推送
-      link: /intermediate/concept-and-commands#remote-debug
+      link: /intermediate/remote-concept#remote-debug
     - theme: alt
       text: Github 技巧
       link: /advance/github-search
@@ -44,7 +44,7 @@ features:
 我認為不同程度的讀者都可以在本站找到有用的資訊：
 
 1. 初學者請從[前言](/beginner/intro)開始看。
-2. 遇到遠端推送問題，請見我整理的[懶人包](/intermediate/concept-and-commands#remote-debug)。
+2. 遇到遠端推送問題，請見我整理的[懶人包](/intermediate/remote-concept#remote-debug)。
 3. 遇到高階指令不會用，如 `rebase --onto` `force-if-includes` `sparse-checkout` `bisect` 等等，請見[超過一百分](/advance/intro)。
 4. 想要玩轉 Github 榨乾他的所有功能，請見 [Github 技巧](/advance/github-search)。
 5. 各式各樣的疑難雜症處理請見[日常問題](/troubleshooting/daily-local-issues)。

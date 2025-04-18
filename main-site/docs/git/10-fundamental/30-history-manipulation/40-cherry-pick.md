@@ -15,7 +15,7 @@ first_publish:
   date: 2025-02-12T00:44:00+08:00
 ---
 
-Cherry-Pick 的意思是把指定提交像是摘櫻桃一樣取過來，開發社群通常不鼓勵使用此指令，詳情請見 [Git Cherry Pick 的後遺症](https://blog.darkthread.net/blog/git-cherry-pick-cons/)，我們不管這個問題只學如何使用。
+Cherry-Pick 的意思是把指定提交複製過來，由於動作像是摘櫻桃所以取這個名字，不得不說外國人都是命名鬼才，和 force-with-lease 一樣[非常有創意](/git/force-if-includes#有趣小知識)。開發社群通常不鼓勵使用此指令，詳情請見 [Git Cherry Pick 的後遺症](https://blog.darkthread.net/blog/git-cherry-pick-cons/)，我們不管這個問題只學如何使用。
 
 ```sh
 # 揀選一個提交

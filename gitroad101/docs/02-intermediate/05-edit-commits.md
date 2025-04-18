@@ -61,7 +61,7 @@ first_publish:
 4. 完成 rebase `git rebase --continue`
 
 ::: info
-互動式變基過程中不需使用 `git commit`，使用的話會變成插入一個新的提交紀錄。
+互動式變基過程中應該使用 continue，如果使用 `git commit` 會變成插入一個新的提交。
 :::
 
 ## 合併提交{#squash-commits}

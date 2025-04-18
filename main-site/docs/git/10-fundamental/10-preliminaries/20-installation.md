@@ -26,7 +26,7 @@ Git 可以安裝命令行 (CLI) 和圖形介面 (GUI) 兩種工具，圖形介�
 
 ## 設定
 
-安裝後先進行基礎設定。首先開啟終端機設定使用者名稱和 email，macOS 就叫做終端機，Windows 是 Powershell 或 CMD
+安裝後先進行基礎設定，首先開啟終端機設定使用者名稱和 email，macOS 就叫做終端機，Windows 是 Powershell 或 CMD
 
 ```sh
 # 基礎必要設定
@@ -49,4 +49,4 @@ git config --global alias.ll "log --graph --pretty='%Cred%h%Creset -%C(auto)%d%C
 
 alias 是設定別名，非必要但是是最有感的，之後就可以使用 `git ll` 指令印出漂亮且易讀的歷史紀錄。
 
-每個儲存庫可以新增 `.gitignore` 文件設定忽略追蹤的清單，例如安裝的套件 (node_modules, .venv) 或是敏感文件 (.env)。根據你的專案到 [github/gitignore](https://github.com/github/gitignore) 直接複製模板或者網路搜尋，不要浪費時間自己寫。
+每個儲存庫可以新增 `.gitignore` 文件設定忽略追蹤的清單，例如安裝的套件 (node_modules, .venv) 或是敏感文件 (.env)。根據你的專案到 [github/gitignore](https://github.com/github/gitignore) 直接複製模板，或者使用 [.gitignore Generator](https://www.git-tower.com/free-tools/gitignore/) 輸入程式語言等關鍵字自動生成，不要浪費時間自己寫。

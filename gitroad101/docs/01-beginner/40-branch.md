@@ -16,7 +16,7 @@ first_publish:
 
 # {{ $frontmatter.title }}
 
-分支操作主要有以下五大指令，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹。本文只會有本地不會有遠端操作，遠端操作的第一篇文章要從[遠端儲存庫設定](../intermediate/setup)開始。
+分支操作主要有以下五大指令，扣掉複雜的 rebase 以外其餘根本不需要每個寫成一篇文章來介紹。本文只會有本地不會有遠端操作，遠端操作的第一篇文章要從[遠端儲存庫設定](/intermediate/remote-setup)開始。
 
 ```sh
 git branch                           # 分支操作
@@ -50,7 +50,7 @@ git switch -c <new-name>             # 建立新分支並切換
 git switch -c <new-name> <hash>      # 從指定的提交建立並切換
 ```
 
-使用 checkout 來切換分支也是沒問題的，完全沒有任何差別，指令也大同小異不重複介紹。
+使用 checkout 來切換分支也完全沒問題，沒有任何差別，指令也大同小異不重複介紹。
 
 ## 暫存 git stash
 
@@ -79,6 +79,11 @@ git stash clear                      # 清除所有暫存
 ```
 
 > 看不懂 pathspec？請見[看懂文檔](../beginner/read-git-docs)。
+
+這裡是更少用的參數，但是偶爾有奇效
+
+- git stash -u 可以把還沒被追蹤的文件也暫存進去
+- git stash --staged 只暫存已經被 stage 的檔案
 
 <br/>
 
@@ -158,4 +163,4 @@ git rebase -i 會修改歷史，再次強調修改提交歷史 **永遠只該用
 
 ## 結語
 
-到這邊你已經熟悉 Git 的所有常用指令了，只是需要一點時間熟悉，下一步請快轉到[遠端儲存庫設定](../intermediate/setup)，進階文章初學者用不到建議暫時跳過以免越看越亂。
+到這邊你已經熟悉 Git 的所有常用指令了，只是需要一點時間熟悉，下一步請快轉到[遠端儲存庫設定](/intermediate/remote-setup)，進階文章初學者用不到建議暫時跳過以免越看越亂。

@@ -77,11 +77,44 @@ git rebase -i HEAD~3
 
 ![rebase8](./data/rebase-8.webp)
 
+## 改到一半想修改等一下的任務
+
+使用 `--edit-todo` 選項。
+
+## 進入 Vim 視窗後想要跳出繼續進行修改
+
+進入 Vim 編輯器之後反悔，但是只要儲存 Git 就會執行任務，該怎麼辦？使用 `:cq` 告訴 Git 這是強制退出，他就不會執行後續任務，這不限制 rebase，amend 等等操作也都適用。
+
 ## 可以在互動式提交過程中進行提交嗎？
 
 在互動式變基過程中使用 `git commit` 會插入一個新的提交。
 
 在[使用變基 Rebase 合併分支](./rebase)有提到變基過程中的提交只是被暫存，沒有限制你哪些事情不能做，所以甚至可以在變基過程中使用 `git cherry-pick` 等等指令任意的修改提交。
+
+## 使用 exec 選項自動執行任務
+
+這個功能超強！把每個互動式提交中間自動加上要執行的指令，於是你就可以批量處理提交，對於小範圍的修改非常有用，不用再學超慢的 filter-branch，也不用看文檔 filter-repo 令人痛苦的文檔。簡單的範例是我們可以在每個提交後面自動執行 `prettier` 進行 format
+
+```sh
+git rebase -i --exec 'prettier --write {**/*,*}.js' <commit-ish>
+```
+
+甚至是[幫提交簽名](https://peterbabic.dev/blog/git-sign-previous-commits-keeping-dates/)
+
+```sh
+git rebase --exec 'git commit --amend --no-edit --no-verify -S' -i --root
+git rebase --committer-date-is-author-date -i --root
+```
+
+## 我想修改 committer date
+
+Git 有 author date 和 committer date 兩種時間，分別記錄一個提交最初和最後一次修改的時間，可以使用這個選項一鍵完成
+
+```sh
+git rebase --committer-date-is-author-date
+```
+
+不需要再使用超慢且危險的 filter-branch，也不用 `GIT_COMMITTER_DATE="$DATE" git commit --amend --date="$DATE" --allow-empty --no-edit;` 打超長的指令。
 
 ## 重構初始提交
 

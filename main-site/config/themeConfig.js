@@ -33,12 +33,13 @@ module.exports = {
             type: 'doc',
             docsPluginId: 'pluginForGit',
             docId: 'git-hello-page',
-            label: '教學',
+            label: '站內教學',
           },
           {
             label: 'Git 零到一百',
             to: 'pathname:///gitroad101/',
-            prependBaseUrlToHref: true
+            prependBaseUrlToHref: true,
+            className: 'gitroad-icon-item'
           },
         ],
       },

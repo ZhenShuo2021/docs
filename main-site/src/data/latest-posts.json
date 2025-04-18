@@ -2048,7 +2048,7 @@
   },
   {
     "title": "一分鐘入門",
-    "permalink": "/git/learn-in-one-minute",
+    "permalink": "/git/one-minute",
     "description": "本文介紹 Git 最基礎的指令，只會說明如何增加新的提交記錄。",
     "tags": [
       {

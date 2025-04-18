@@ -37,7 +37,8 @@ module.exports = {
           },
           {
             label: 'Git 零到一百',
-            href: 'https://docs.zsl0621.cc/gitroad101/',
+            to: 'pathname:///gitroad101/index.html',
+            prependBaseUrlToHref: true
           },
         ],
       },

@@ -18,6 +18,8 @@
   --doc-sidebar-width: 16rem !important;
   --ifm-pagination-nav-border-radius: 0;
   --wave-color: #800020;
+
+  --svg-external-link: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M11 5H5V19H19V13'/><path d='M13 11L20 4'/><path d='M21 3H15M21 3V9'/></g></svg>");
 }
 
 html {
@@ -250,4 +252,16 @@ div[class^="admonitionHeading_"] {
   /* font-family: "Noto Sans TC" !important; */
   font-size: 1.2em !important;
   font-weight: 700 !important;
+}
+
+.dropdown__link.gitroad-icon-item::after {
+  content: '';
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 6px;
+  background-image: var(--svg-external-link);
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
 }

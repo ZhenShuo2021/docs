@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "pnpm run dev:main",
+    "new": "cd main-site && pnpm install && pnpm run new",
     "dev:main": "cd main-site && pnpm install && pnpm run start",
     "dev:git": "cd gitroad101 && pnpm install && pnpm run dev",
     "clear:main": "cd main-site && pnpm install && pnpm clear",

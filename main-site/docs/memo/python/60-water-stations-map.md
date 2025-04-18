@@ -16,9 +16,9 @@ first_publish:
 
 import React from 'react';
 
-發現自己整整三年都跑去更遠的加水站後直接破防，太生氣了所以弄了一個地圖，原始碼在[這裡](https://github.com/ZhenShuo2021/blog-script/tree/main/python/hsinchu-water-station)，點擊這裡可以查看<a href="/hsinchu-water-station.html" target="_blank">完整地圖</a>。
+發現自己整整三年都跑去更遠的加水站後直接破防，太生氣了所以弄了一個地圖，原始碼在[這裡](https://github.com/ZhenShuo2021/blog-script/tree/main/python/hsinchu-water-station)，點擊這裡可以查看<a href="/hsinchu-water-station" target="_blank">完整地圖</a>。
 
-<iframe src="/hsinchu-water-station.html" width="100%" height="450px"></iframe>
+<iframe src="/hsinchu-water-station" width="100%" height="450px"></iframe>
 
 <br/>
 <br/>

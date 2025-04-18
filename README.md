@@ -1,13 +1,36 @@
-由 [ouch1978.github.io](https://github.com/Ouch1978/ouch1978.github.io) 修改而成，基礎使用方式請見[原作者網站](https://ouch1978.github.io/)。
+我的文檔網站，主站是由 [ouch1978.github.io](https://github.com/Ouch1978/ouch1978.github.io) 修改的 Docusaurus 網站，子站是以 Vitepress 搭建的 Git 教學。
 
-## 使用
+## 安裝與初始化
 
-1. 下載專案: `git clone https://github.com/ZhenShuo2021/docs`
-2. 安裝: `pnpm install`
-3. 開啟本地伺服器: `pnpm start`
-4. 建立首頁文章列表: `pnpm start` 後使用 `pnpm new`，如果內容錯誤則使用 `pnpm clear` 清除快取
+```bash
+git clone https://github.com/ZhenShuo2021/docs
+cd docs
+```
 
-記得把個人訊息改成自己的，在原作者的網站有說設定了哪些東西，例如 git repo name, baseurl, Giscus, algolia 等等。
+安裝依賴：
+
+- 主站：`pnpm run install:main`
+- 子站：`pnpm run install:git`
+
+## 開發
+
+- 主站：`pnpm run dev:main`
+- 子站：`pnpm run dev:git`
+- 或使用主入口：`pnpm start`（啟動主站）
+
+## 建構網站
+
+- 主站：`pnpm run build:main`
+- 子站：`pnpm run build:git`
+- 全站建構整合：`pnpm run build`（建構子站 → 執行整合腳本 → 建構主站）
+
+## 預覽建構結果
+
+- 主站：`pnpm run preview:main`
+- 子站：`pnpm run preview:git`
+- 整體預覽（主站 build 結果）：`pnpm run preview`
+
+記得把個人訊息改成自己的，包含 git repo name, baseurl, Giscus, algolia 等等。修改時應該進入各自網站目錄執行比較不會搞混。
 
 ## 部屬到 Cloudflare Pages 方式
 
@@ -20,7 +43,7 @@
    1. 選擇儲存庫
    2. Framework Docusaurus
    3. 組建命令 `pnpm build`
-   4. 組建輸出目錄 `build`
+   4. 組建輸出目錄 `main-site/build`
    5. 環境變數 `PNPM_VERSION` `NODE_VERSION` 選擇和本地一樣的版本
 3. （可選）設定 custom domain，正常設定約兩分鐘內完成部屬
 

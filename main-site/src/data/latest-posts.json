@@ -27,7 +27,7 @@
   },
   {
     "title": "使用 automator 簡化日常工作流程",
-    "permalink": "/memo/useful-tools/make-magick-automator",
+    "permalink": "/memo/useful-tools/magick-automator",
     "description": "寫腳本的目的就是簡化重複的操作，大家都是宅宅工程師不需要再說廢話，這裡介紹我怎麼使用 automator 的。",
     "tags": [
       {

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& pnpm new && docusaurus start",
-    "build": "set TZ=Asia/Taipei && set URL=https://docs.zsl0621.cc&& set BASE_URL=/&&docusaurus build",
+    "build": "set TZ=Asia/Taipei && set URL=https://zsl0621.cc&& set BASE_URL=/&&docusaurus build",
     "swizzle": "cross-env URL=http://localhost BASE_URL=/ docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

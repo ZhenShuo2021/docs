@@ -133,7 +133,7 @@ module.exports = {
     { name: 'author', content: 'ZSL' },
     { property: 'og:description', content: '這是我的文檔庫，包含我的學習記錄、筆記以及教學，寫文章的動力是網路上的錯誤資訊！' },
     { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: 'https://docs.zsl0621.cc/img/default.webp' },
+    { property: 'og:image', content: 'https://zsl0621.cc/img/default.webp' },
   ],
   webpack: {
     configure: (webpackConfig) => {

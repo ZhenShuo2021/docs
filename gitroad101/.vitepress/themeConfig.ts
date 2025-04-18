@@ -173,7 +173,7 @@ function getSocialLinks() {
       icon: {
         svg: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 5H5V19H19V13"/><path d="M13 11L20 4"/><path d="M21 3H15M21 3V9"/></g></svg>',
       },
-      link: 'https://docs.zsl0621.cc/',
+      link: '../',
       ariaLabel: '主站',
     },
   ]

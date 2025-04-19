@@ -67,20 +67,20 @@ compinit
 1. 除了補全專案資料夾，還可以直接顯示最愛資料夾
 2. 使用 Zsh 補全功能分類補全的目錄
 
-程式碼大如下
+程式碼如下
 
 ```sh reference title="c 函式本身"
-https://github.com/ZhenShuo2021/dotfiles/blob/9a4886d96df1dc76601bcf9a4450403197f0014b/home/private_dot_config/zsh/fpath/c
+https://github.com/ZhenShuo2021/dotfiles/blob/0d6c09e12b73d368fb725cbe2e48e322d0c099ec/home/dot_local/fpath/c
 ```
 
 <br/>
 
-大概意思是在專案目錄下尋找專案，如果專案目錄不存在就嘗試把輸入當作一般 cd 處理，如果專案目錄存在就跳到 cd 切換，如果 cd 失敗印出錯誤訊息。
+大概意思是在指定目錄下尋找輸入的資料夾並且 cd 移動，如果不存在就把輸入當作一般 cd 處理。
 
 <br/>
 
 ```sh reference title="c 函式的補全"
-https://github.com/ZhenShuo2021/dotfiles/blob/9a4886d96df1dc76601bcf9a4450403197f0014b/home/private_dot_config/zsh/fpath/_c
+https://github.com/ZhenShuo2021/dotfiles/blob/0d6c09e12b73d368fb725cbe2e48e322d0c099ec/home/dot_local/fpath/_c
 ```
 
 撰寫補全函式用了兩個 Zsh 函式，這兩個函式的用途是：
@@ -92,7 +92,7 @@ https://github.com/ZhenShuo2021/dotfiles/blob/9a4886d96df1dc76601bcf9a4450403197
 
 ## 美化補全
 
-照上面的設定完成後就可以啟用補全系統了，以 c 函式為例補全會變這樣：
+照上面的設定完成後就可以啟用補全系統了，如果沒有任何設定，以 c 函式為例補全會變這樣：
 
 ![completion-1](data/zsh-completion-1.jpg "zsh completion before zstyle")
 
@@ -149,7 +149,7 @@ zstyle ':completion:*' list-separator ' ➤ '
 
 ## 加速載入
 
-補全系統載入速度很慢會讓你的終端第一次啟動時卡住約 0.2 秒，這是 `compinit` 問題不是我的腳本問題，建議使用 [zsh-defer](https://github.com/romkatv/zsh-defer) 延遲載入他，這樣你既有補全系統，又有速度幾乎完全一樣的終端載入速度。
+啟用補全系統初始化時間很長，會讓你的終端啟動時卡住約 0.2 秒，建議使用 [zsh-defer](https://github.com/romkatv/zsh-defer) 延遲載入他，這樣你既有補全系統，又有速度幾乎完全一樣的終端載入速度。
 
 再次推銷，如果你的終端機很慢也可以用我的 dotfiles 設定檔，*不會有任何設定檔的載入速度能比我的快*。
 
@@ -158,7 +158,7 @@ zstyle ':completion:*' list-separator ' ➤ '
 俗話說的好，授人以漁不如直接給他魚，為了這個簡單的自動補全從頭到尾花了兩週，實際耗時超過四小時，我不希望有人受到一樣的折磨...腳本不難難在找不到資訊，找了老半天才偶然才
 [這篇文章](https://unix.stackexchange.com/questions/14434/path-files-and-compadd-ignore-files-parameter)，哭啊我的兩個禮拜。
 
-我是全中文圈第一個寫 zsh 自動補全的人，如果你搜尋 `_path_files` 然後限制所有中文網頁會得到精美的 10 項搜尋結果，全世界沒半個中文用戶寫這過東西。
+我是全中文第一個寫 zsh 自動補全的人，如果你搜尋 `_path_files` 然後限制所有中文網頁會得到精美的 10 項搜尋結果，全世界沒半個中文用戶寫這過東西。
 
 ## 參考
 

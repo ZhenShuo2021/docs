@@ -1,5 +1,6 @@
 ---
-title: 在 Neovim 中設定 OSC52 實現跨 ssh 複製 
+title: 在 Neovim 中設定 OSC52 實現跨 SSH 複製
+sidebar_label: Neovim 跨 SSH 複製
 tags:
   - 實用工具
   - Neovim

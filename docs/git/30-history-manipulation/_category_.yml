@@ -1,5 +1,0 @@
-position: 30 # float position is supported
-label: 三、修改提交歷史
-collapsible: true # make the category collapsible
-collapsed: true # keep the category open by default
-className: red

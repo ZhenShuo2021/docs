@@ -1,5 +1,0 @@
-position: 20
-label: 二、基礎指令
-collapsible: true # make the category collapsible
-collapsed: true # keep the category open by default
-className: red

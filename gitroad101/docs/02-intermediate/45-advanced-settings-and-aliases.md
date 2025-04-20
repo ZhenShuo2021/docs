@@ -17,21 +17,33 @@ first_publish:
 
 # {{ $frontmatter.title }}
 
-[上一篇文章](/intermediate/git-bash-setup-in-windows)說明如何優化 shell 體驗，這篇終於講到要怎麼優化 Git，設定別名 (alias) 可以把我們從落落長的指令拯救出來，廢話不多說直接上我的設定，除了很多實用的 alias 之外，還有設定 delta、rebase autostash 以及顏色客製化。
+[上一篇文章](/intermediate/git-bash-setup-in-windows)說明如何優化終端機，這篇終於講到要怎麼優化 shell and Git，設定別名 (alias) 可以把我們從落落長的指令拯救出來，廢話不多說直接上我的設定，除了很多實用的 alias 之外，還有設定 delta、rebase autostash 以及顏色客製化。
 
 :::info
-Windows 由於他特立獨行的問題，所以步驟和其他系統略有不同。
+
+由於 Windows 系統特立獨行，所以步驟和其他系統略有不同。
+
+本設定檔已經測試過以下系統皆可正常運行：
+
+1. MacOS Sonoma, Sequoia
+2. Windows 10
+3. Windows 10 + Git Bash
+4. Windows WSL2 Ubuntu
+5. Ubuntu LTS 22.04.4
+6. Github Codespace
+7. TrueNAS 24.10.2
+
 :::
 
 :::info
-git config 的設定檔在 `~/.gitconfig`，我把預設路徑改為 `export GIT_CONFIG_GLOBAL="~/.config/git/gitconfig"`，如果想改回來的要注意這點。
+git config 的設定檔在 `~/.gitconfig`，此設定檔的預設路徑被改為 `export GIT_CONFIG_GLOBAL="~/.config/git/gitconfig"`，如果想改回來的要注意這點。
 :::
 
 ## 開始優化 Zsh{#enhance-zsh}
 
-終於要開始優化了！本段落的內容等價於 [如何打造一個華麗又實用的 PowerShell 命令輸入環境](https://blog.miniasp.com/post/2021/11/24/PowerShell-prompt-with-Oh-My-Posh-and-Windows-Terminal)，只是他在優化 PowerShell，我們則是在 Windows 上優化 Zsh。
+終於要開始優化了！本段落的內容等同於 [如何打造一個華麗又實用的 PowerShell 命令輸入環境](https://blog.miniasp.com/post/2021/11/24/PowerShell-prompt-with-Oh-My-Posh-and-Windows-Terminal)，只是他在優化 PowerShell，我們則是在 Windows 上優化 Zsh。
 
-有兩個方式完成我的設定：腳本安裝或是手動複製貼上，不過只有腳本安裝方式才有補全系統，因為補全系統非常麻煩寫成文章應該沒人看的完。
+有兩個方式完成設定：腳本安裝或是手動複製貼上，不過只有腳本安裝方式才有補全系統，因為補全系統非常麻煩寫成文章應該沒人看的完。
 
 ### 腳本安裝方式
 
@@ -52,19 +64,16 @@ MINIMUM=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZhenShuo2021/dot
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
 
-# 把 Git Bash 預設 shell 改為 Zsh
+# 把 Git Bash 預設 shell 改為 Zsh，Windows 以外系統不要執行此指令！
 echo "if [ -t 1 ]; then exec zsh; fi" > ~/.bashrc
 
 # 我的腳本把 Git 設定檔放在子目錄中，這樣家目錄比較乾淨，cp 是複製，可以改為 mv 移動
 mkdir -p ~/.config/git
 cp ~/.gitconfig ~/.config/git/gitconfig
 cp ~/.gitignore_global ~/.config/git/gitignore_global
-
-# 啟動 Zsh，這會下載其他插件，需要等待約 15 秒
-exec zsh
 ```
 
-這樣就完成所有的 shell 優化了。
+到此為止結束所有設定，執行 `exec zsh` 啟動 Zsh 下載其他插件，需要等待約 15 秒，完成所有的 shell 優化。
 
 ### 手動複製方式
 
@@ -2143,19 +2152,16 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 完成後續設定收尾
 
 ```sh
-# 把 Git Bash 預設 shell 改為 Zsh
+# 把 Git Bash 預設 shell 改為 Zsh，Windows 以外系統不要執行此指令！
 echo "if [ -t 1 ]; then exec zsh; fi" > ~/.bashrc
 
 # 我的腳本把 Git 設定檔放在子目錄中，這樣家目錄比較乾淨，cp 是複製，可以改為 mv 移動
 mkdir -p ~/.config/git
 cp ~/.gitconfig ~/.config/git/gitconfig
 cp ~/.gitignore_global ~/.config/git/gitignore_global
-
-# 啟動 Zsh，這會下載其他插件，需要等待約 15 秒
-exec zsh
 ```
 
-這樣就完成惹。
+最後使用 `exec zsh` 啟動 Zsh 並且自動下載其他插件，需要等待約 15 秒，這樣就完成惹。
 
 ## 說明{#description}
 

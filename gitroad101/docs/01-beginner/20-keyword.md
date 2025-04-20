@@ -37,7 +37,7 @@ git reset --hard HEAD~3          # 回到前三個提交
 git checkout --options -- file   # 分界線
 ```
 
-## 入門
+## 入門{#entry-level}
 
 1. `@{n}`：代表分支或引用的歷史位置，用於 reflog
 2. `+`：在變更的文件中，代表新增的行

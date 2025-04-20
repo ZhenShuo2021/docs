@@ -233,6 +233,55 @@ $ git reset --hard HEAD@{4}
 
 這樣會回到 rebase 前的狀態。reflog 只會紀錄本地操作，推送到遠端再 clone 下來後不會有 reflog 紀錄，所以為你自己學 Git 的[這篇文章](https://gitbook.tw/chapters/faq/remove-files-from-git)寫錯了。
 
+## 歷史查詢 git log
+
+查詢提交歷史，但是我 99.9% 的時間都用 [alias](/git/advanced-settings-and-aliases#description) 和 GUI 完成，分別對應簡單和複雜的場景，所以沒有必要學這個指令，這裡列出的指令目的是作為 cheat sheet 速查表：
+
+```sh
+# 最基礎
+git log
+
+# 把兩個加入你的 alias
+# 單分支
+git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+
+# 多分支
+git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all
+
+# 不要以 pager 模式顯示，直接印在終端
+git --no-pager log
+
+# 參數總集
+git log -10 --oneline --show-signature --decorate --graph --stat -p --since="2 weeks ago"
+```
+
+每個指令的作用是
+
+1. --oneline: 顯示一行
+2. --show-signature: 檢查 GPG 簽名
+3. --decorate: 顯示分支和標籤名稱
+4. --graph: 顯示分支結構
+5. --stat: 顯示行數變化數據
+6. -p: 以 [patch 格式](/git/keyword#entry-level) 顯示
+7. --since: 指定日期
+
+要提醒的是在 pager 模式下可以使用 regex 來查找指定文字，例如使用參數總集的範例時想要直接跳到下一個提交不想要慢慢捲動，可以
+
+1. 按下斜線進入搜尋模式
+2. 輸入 regex `^\*\s\w{7}\s` 定位 hash
+3. `n` 跳到下一個，`N` 返回上一個
+
+> 此 regex 代表找到行開頭是 `star 空格` 再加上七個 ASCII 再加上一個空格的字串
+
+## 差別比較 git diff
+
+git diff 比起 git log 更沒必要學，最大的問題就是在終端看差異簡直是在折磨自己，這個指令無論是顯示方式和任務類型天生就都適合 GUI 操作，這也是我覺得 GitKraken 最有用的地方[^gui]，可以清楚且快速看出 diff，不要在終端機折磨自己。
+
+除此之外要說明為何本文檔要強調自己不亂造詞，`git diff <commit> > name.patch` 可以生成 patch 檔案[^patch]，用途是方便在不同環境間分享程式修改，例如有時候我們偶爾會在 Google 搜尋到別人程式修改 email，他們就是傳 patch 檔，偏偏就有教學拿 patch 當「提交名詞」的替代，這不就讓人搞混了嗎。
+
+[^gui]: VSCode 的 GitGraph 無法查看多個提交合併在一起的變更，GitKraken 的安裝版則可以一次顯示。
+[^patch]: 使用 `git format patch -數字` 也可以生成 patch，使用 `git apply <file>` 可以套用 patch 檔案。
+
 ## 結語
 
 到這邊就結束單一分支的操作，你已經可以基本的操作 Git 了，[下一篇文章](./branch)會介紹多分支操作。在初學階段個人使用時不太會用到分支功能，根據需求可以快轉到[遠端儲存庫設定](/git/remote-setup)。

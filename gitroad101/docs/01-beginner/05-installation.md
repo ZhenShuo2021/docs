@@ -22,11 +22,11 @@ Git 可以安裝命令行 (CLI) 和圖形介面 (GUI) 兩種工具，圖形介�
 
 <!-- truncate -->
 
-命令行介面在[官網](https://git-scm.com/downloads)選擇自己的系統安裝，就算一路 next 都可以安裝完。
+命令行介面在[官網](https://git-scm.com/downloads)選擇自己的系統安裝，`Select components` 時記得勾選 `Add a Git Bash Profile to Windows Terminal`，其餘一路 next 即可。
 
-圖形介面筆者只用 VSCode 裡面的 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) 和 [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory) 方便查看歷史記錄，其餘可選項目有 [Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame) 可以看程式是誰寫的，[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 介面雜亂臃腫而且還會要你付費升級。
+圖形介面筆者只用 VSCode 裡面的 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) 和 [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory) 方便查看歷史記錄，其餘可選項目有 [Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame) 可以看程式是誰寫的，[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 介面雜亂臃腫而且還會要你付費升級，要用的話不如直接安裝他們家的 [GitKraken](https://www.gitkraken.com/)，但先學 CLI 這個建議還是不變。
 
-## 設定
+## 設定{#setting}
 
 安裝後先進行基礎設定，首先開啟終端機設定使用者名稱和 email，macOS 就叫做終端機，Windows 是 Powershell 或 CMD
 

@@ -82,6 +82,13 @@ function sidebarIntermediate(): DefaultTheme.SidebarItem[] {
         { text: '🔥 團隊協作最佳實踐', link: 'collaboration-best-practice' },
       ],
     },
+    {
+      text: '客製化 Git',
+      items: [
+        { text: '行前準備', link: 'git-bash-setup-in-windows' },
+        { text: '開始設定', link: 'advanced-settings-and-aliases' },
+      ],
+    },
   ]
 }
 
@@ -96,6 +103,7 @@ function sidebarAdvance(): DefaultTheme.SidebarItem[] {
         { text: 'Rebase Onto 詳解', link: 'rebase-onto' },
         { text: 'Sparse Checkout 加速克隆', link: 'reduce-size-with-sparse-checkout' },
         { text: 'Force if Includes 強制推送', link: 'force-if-includes' },
+        { text: '子模組和子樹', link: 'submodule-and-subtree' },
         { text: 'Git Bisect 找出錯誤提交', link: 'git-bisect' },
       ],
     },
@@ -124,6 +132,7 @@ function sidebarTroubleShooting(): DefaultTheme.SidebarItem[] {
         { text: '日常問題 - 本地', link: 'daily-local-issues' },
         { text: '日常問題 - 遠端', link: 'daily-remote-issues' },
         { text: 'GPG 無法簽名的錯誤', link: 'gpg-failed-to-sign-the-data' },
+        { text: '很少用的知識', link: 'advanced-uncommon-knowledge' },
         { text: '關於修改的動詞', link: 'verb-cheatsheet' },
       ],
     },

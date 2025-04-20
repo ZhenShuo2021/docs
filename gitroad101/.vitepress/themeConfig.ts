@@ -11,8 +11,8 @@ const themeConfig: DefaultTheme.Config = {
     '/troubleshooting/': { base: '/troubleshooting/', items: sidebarTroubleShooting() },
   },
   editLink: {
-    pattern: 'https://github.com/ZhenShuo2021/docs/edit/main/vitepress-git/docs/:path',
-    text: 'Edit this page on GitHub'
+    pattern: 'https://github.com/ZhenShuo2021/docs/edit/main/gitroad101/docs/:path',
+    text: '編輯此頁'
   },
   footer: {
     message: '本站內容採用 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh-Hant" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a> 授權，歡迎非商業轉載並註明出處。',
@@ -24,7 +24,9 @@ const themeConfig: DefaultTheme.Config = {
     // https://econ-sense.com/engineer/blog-2.html
     formatOptions: {
       forceLocale: true,
-      dateStyle: 'full',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
     },
   },
   nav: nav(),

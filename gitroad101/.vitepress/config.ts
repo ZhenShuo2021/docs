@@ -62,7 +62,7 @@ export default defineConfig({
     // ],
   },
 
-  lang: 'en-US',
+  lang: 'zh-TW',
   // In `docs` repo, `vitepress-git` folder
   base: '/gitroad101/',
   head: [['link', { rel: 'icon', href: '/gitroad101/img/favicon.ico' }]],

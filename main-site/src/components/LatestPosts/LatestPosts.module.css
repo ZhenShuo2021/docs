@@ -37,7 +37,7 @@
 
 .latest_post_row_item_title {
   font-size: 1.75em;
-  font-family: "Noto Sans TC";
+  /* font-family: "Noto Sans TC"; */
   font-weight: 700;
 }
 
@@ -55,7 +55,7 @@
 
 .post_list_date_yearmonth {
   align-self: start;
-  font-family: "Noto Sans TC";
+  /* font-family: "Noto Sans TC"; */
   font-weight: 900;
   text-align: center;
   margin-top: 8px;

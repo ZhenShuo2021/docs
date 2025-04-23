@@ -15,7 +15,11 @@ first_publish:
   date: 2025-04-06T16:52:07+08:00
 ---
 
-如何批量修改提交訊息？這個功能一樣需要請出 `git filter-repo`，以修改 github-bot 的提交訊息為例，因為我設定他的提交格式是
+如何批量修改提交訊息？這個功能一樣需要請出 `git filter-repo`
+
+## 以修改 github-bot 的提交訊息為例
+
+因為我設定他的提交格式是
 
 ```sh
 [ci skip]chore: automated update at 2025-04-05T22:11:32+08:00
@@ -63,7 +67,7 @@ repo_filter.run()
 
 最後使用 `uv run script-name.py` 完成。
 
-## 說明
+### 說明
 
 這是 shebang 和 PEP 723 規範，使用 PEP 723 加上適當工具就可以直接執行自動下載依賴。
 
@@ -91,4 +95,33 @@ def modify_commit_message(commit, metadata) -> None:
         datetime_str = match.group(1)
         new_message = f"chore: automated update at {datetime_str}\n\n[ci skip]"
         commit.message = new_message.encode("utf-8")
+```
+
+## 以移除 cherry-pick message 為例，並且限制範圍
+
+用了 `cherry-pick -x` 選項所有 commit 都多了一個註解
+
+```txt
+commit 643232ec6856ff40dddef6ebf1723a7da9f9498c
+Author: ZhenShuo2021 <98386542+ZhenShuo2021@users.noreply.github.com>
+Date:   Sat Apr 19 04:55:12 2025 +0800
+    docs: update readme [ci skip]
+    
+    (cherry picked from commit 30da84e5b59f4a2719419c320308248375cacaa7)
+```
+
+現在反悔想要移除，使用指令完成，限制 refs feat 分支往前兩個提交：
+
+```sh
+git filter-repo --message-callback '
+import re
+try:
+    message_str = message.decode("utf-8")
+except UnicodeDecodeError:
+    # Fall back to latin-1 or other encodings if utf-8 fails
+    message_str = message.decode("latin-1")
+    
+modified_message = re.sub(r"\n\(cherry picked from commit [0-9a-f]+\)\n?", "\n", message_str)
+return modified_message.encode("utf-8")
+' --refs feat~2..feat --force
 ```

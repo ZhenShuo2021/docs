@@ -17,55 +17,30 @@ first_publish:
 
 常用的 Linux 指令小抄
 
-## 文件移動
+## 比較麻煩的
+
+### 找出 HTML 檔案數量
 
 ```sh
-mv source/ dest/        # 搬移整個資料夾
-cp -rfp source/ dest/   # 複製並保留文件屬性
-# r: 包含子目錄
-# f: 強制複製
-# p: 保留原始文件屬性
-cp source/* dest        # 只搬資料夾內檔案
+find public/posts -type f -name "*.html" | wc -l
 ```
 
-## 縮寫指令✨
-
-如果要把 `hugo new content` 縮寫成 `hnc`
+### 找出 HTML 檔案並且依照大小排序
 
 ```sh
-echo "alias hnc='hugo new content'" >> ~/.bashrc
-source ~/.bashrc
+find public/posts -type f -name "*.html" -exec du -h {} + | sort -rh | tail -n 90
 ```
 
-macOS 使用 zsh，所以改為 zshrc。
+### 找出特定 status 的 git 檔案
 
-## 設定系統可執行文件搜尋路徑
-
-假設要把下載的可執行文件加到系統路徑中
+以 modified 為例
 
 ```sh
-export PATH="$PATH:/directory/to/bin/path"
+git status -sb | grep '^\s?M'
+git status -sb | grep -v '^\s?M'
 ```
 
-## 檢視硬碟容量
-
-```sh
-du /home -h | sort -nr | tail
-df -h
-sudo ncdu -x /path                 # ncdu 好用「非常多」
-```
-
-也可使用 gdu 作為 ncdu 替代品，速度更快。
-
-## 檢視記憶體佔用
-
-列出前十大記憶體使用
-
-```sh
-ps aux --sort=-%mem | head -n 10
-```
-
-## 開機自動執行
+### 開機自動執行
 
 這裡用docker-compose示範，五步驟分別是建立.service檔、reload .service、啟用、開始、查看狀態。
 
@@ -111,7 +86,7 @@ exit 0
 
 設定開機自動掛載smb。
 
-## SMB 掛載
+### SMB 掛載
 
 在 `/etc/fstab` 最下方新增：
 
@@ -133,7 +108,7 @@ username=遠端SMB帳戶
 password=密碼
 ```
 
-## SSH 金鑰登入
+### SSH 金鑰登入
 
 ```shell
 # 生成密鑰，接著會要你輸入密碼，如果不需要可以直接enter
@@ -158,9 +133,59 @@ ssh {alias name}
 - -t: algorithm
 - -f: file
 
-一般來說名稱使用 id_rsa 就可以了，要不要在不同服務使用不同 ssh 看你個人，我分過一次發現完全記不起來哪個是哪個，最後還是統一用同一把金鑰。
+一般來說檔案名稱使用 id_rsa 就可以了。
 
-## 列出系統時間
+## 基礎
+
+### 文件移動
+
+```sh
+mv source/ dest/        # 搬移整個資料夾
+cp -rfp source/ dest/   # 複製並保留文件屬性
+# r: 包含子目錄
+# f: 強制複製
+# p: 保留原始文件屬性
+cp source/* dest        # 只搬資料夾內檔案
+```
+
+### 縮寫指令✨
+
+如果要把 `hugo new content` 縮寫成 `hnc`
+
+```sh
+echo "alias hnc='hugo new content'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+macOS 使用 zsh，所以改為 zshrc。
+
+### 設定系統可執行文件搜尋路徑
+
+假設要把下載的可執行文件加到系統路徑中
+
+```sh
+export PATH="$PATH:/directory/to/bin/path"
+```
+
+### 檢視硬碟容量
+
+```sh
+du /home -h | sort -nr | tail
+df -h
+sudo ncdu -x /path                 # ncdu 好用「非常多」
+```
+
+也可使用 gdu 作為 ncdu 替代品，速度更快。
+
+### 檢視記憶體佔用
+
+列出前十大記憶體使用
+
+```sh
+ps aux --sort=-%mem | head -n 10
+```
+
+### 列出系統時間
 
 ```shell
 date

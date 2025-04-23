@@ -80,7 +80,7 @@ function sidebarIntermediate(): DefaultTheme.SidebarItem[] {
       text: '遠端操作',
       items: [
         { text: '遠端儲存庫設定', link: 'remote-setup' },
-        { text: '遠端概念和常見錯誤', link: 'remote-concept' },
+        { text: '🔥 觀念和錯誤排除', link: 'remote-concept' },
         { text: '🔥 團隊協作最佳實踐', link: 'collaboration-best-practice' },
       ],
     },
@@ -105,7 +105,7 @@ function sidebarAdvance(): DefaultTheme.SidebarItem[] {
         { text: 'Rebase Onto 詳解', link: 'rebase-onto' },
         { text: 'Sparse Checkout 加速克隆', link: 'reduce-size-with-sparse-checkout' },
         { text: 'Force if Includes 強制推送', link: 'force-if-includes' },
-        { text: '子模組和子樹', link: 'submodule-and-subtree' },
+        { text: '多儲存庫管理', link: 'submodule-and-subtree' },
         { text: 'Git Bisect 找出錯誤提交', link: 'git-bisect' },
       ],
     },
@@ -184,7 +184,7 @@ function getSocialLinks() {
       icon: {
         svg: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 5H5V19H19V13"/><path d="M13 11L20 4"/><path d="M21 3H15M21 3V9"/></g></svg>',
       },
-      link: '../',
+      link: 'https://zsl0621.cc',
       ariaLabel: '主站',
     },
   ]

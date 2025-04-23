@@ -53,11 +53,11 @@ export const articlesMeta = [
   {
     description:
       "冷知識：網路教學 rebase onto 的文章十篇有九篇是錯的，本文就是那篇正確的教學",
-    link: "/git/advance/rebase-onto",
+    link: "/git/rebase-onto",
     image: imageGit,
   },
   {
-    link: "/git/advance/reduce-size-with-sparse-checkout",
+    link: "/git/reduce-size-with-sparse-checkout",
     image: imageGit,
   },
 ];

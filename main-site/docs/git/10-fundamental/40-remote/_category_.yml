@@ -1,5 +1,5 @@
 position: 40
-label: 4️⃣ 遠端操作
+label: 遠端操作
 collapsible: true # make the category collapsible
 collapsed: false # keep the category open by default
 className: red

@@ -13,7 +13,7 @@ keywords:
   - 套件管理工具
   - 虛擬環境管理工具
 last_update:
-  date: 2025-03-27T18:52:00+08:00
+  date: 2025-04-23T00:52:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -45,11 +45,9 @@ first_publish:
 
 1. 小專案用 `uv`，使用方式簡單同時速度飛快
 2. 稍微大一點的專案**一律在 Poetry 和 uv 之間二選一**，核心差別是 Poetry 已經是穩定版，uv 還在開發階段
-3. 科學開發需要 C 語言或 R 語言擴展，建議使用 Pixi 或 Mamba 而不是常見的 Conda，原因是 Conda 現在和未來都不會支援 pyproject.toml，[#12462](https://github.com/conda/conda/issues/12462) 已經存在兩年都沒有提交
+3. 科學開發的專案需要 C 或 R 語言擴展，所以大部分人原本都用 Conda，但是這裡建議使用 Pixi 或 Mamba，原因是 Conda 現在和未來都不會支援 pyproject.toml，[#12462](https://github.com/conda/conda/issues/12462) 已經存在兩年都沒有提交
 
-對於依賴解析這個課題，[Pixi 已經和 uv 合作開發](https://github.com/astral-sh/uv/issues/1572#issuecomment-1957318567)，uv 的[解析演算法](https://docs.astral.sh/uv/reference/resolver-internals/)原本就已經非常好，聯手後可以把他們視為 Python 世界最先進的依賴解析工具，再來是 Poetry，再來就是 others。
-
-對於 Python 科學開發這個課題，由於需要 Python 以外的庫，所以大部分人一直都使用 Conda，不過 Pixi 寫了一篇文章說明[從 Conda 切換到 Pixi 的七個理由](https://prefix.dev/blog/pixi_a_fast_conda_alternative#reason-7-native-lockfiles)，我認為最重要的幾個原因是完整兼容 Conda 庫、PyPI 兼容、有 task 功能以及原生<u>**支援鎖定文件**</u>。
+> Pixi 寫了一篇文章說明[從 Conda 切換到 Pixi 的七個理由](https://prefix.dev/blog/pixi_a_fast_conda_alternative#reason-7-native-lockfiles)，我認為最重要的幾個原因是完整兼容 Conda 庫、PyPI 兼容、有 task 功能以及原生<u>**支援鎖定文件**</u>。
 
 :::info
 科學運算的開發者可能不熟悉鎖定文件的概念。鎖定文件（Lock File）**精確記錄**專案所有依賴的確切版本、依賴關係和校驗和，確保不同開發環境中能夠**重現**完全相同的環境，避免 *It works on my machine, but not yours* 問題。
@@ -181,7 +179,7 @@ first_publish:
 
 <summary>時代的眼淚</summary>
 
-時代的眼淚組連身為套件管理器的基本功能都無法滿足，文章幾經更新後覺得這段沒必要看了，反正又不會用他們。當然如果你是初學者想要搞清楚這些工具在做甚麼、有什麼差異、前因後果先來後到也可以閱讀本段落，本段落依照發表時間由舊到新介紹。
+時代的眼淚組連基本功能都無法滿足，文章幾經更新後覺得這段沒必要看了，反正又不會用他們。當然如果你是初學者想要搞清楚這些工具在做甚麼、有什麼差異、前因後果先來後到也可以閱讀本段落，本段落依照工具的發表時間由舊到新介紹。
 
 ### venv/virtualenv
 
@@ -253,6 +251,12 @@ uv 是 2024/2 才首發的新工具，簡單摘要幾個特點：
 為何選擇 uv？我會給出這個結論：「一個工具完整取代 pyenv/pipx，幾乎包含 poetry 的所有功能，更不要說還有強大的 `uv run` 和超快的速度」，這麼多優點是我可以一次擁有的嗎，太夢幻了吧。
 
 [^global]: 只剩下等效於 `pyenv global` 的設定全局 Python 功能還不支援但[已經在規劃中](https://github.com/astral-sh/uv/issues/6265)，加上 `--preview --default` 參數即可使用，目前實測還很早期，連 venv 都不能跑。
+
+:::info
+
+對於依賴解析這個課題，[Pixi 已經和 uv 合作開發](https://github.com/astral-sh/uv/issues/1572#issuecomment-1957318567)，uv 的[解析演算法](https://docs.astral.sh/uv/reference/resolver-internals/)原本就已經非常好，聯手後可以把他們視為 Python 世界最先進的依賴解析工具，再來是 Poetry，再來就是 others。
+
+:::
 
 :::tip 使用心得
 

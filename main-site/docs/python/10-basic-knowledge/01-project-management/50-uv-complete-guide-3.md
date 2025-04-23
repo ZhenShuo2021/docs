@@ -13,7 +13,7 @@ keywords:
   - 套件管理工具
   - 虛擬環境管理工具
 last_update:
-  date: 2025-03-27T18:52:00+08:00
+  date: 2025-04-23T22:49:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-19T14:22:30+08:00
@@ -74,6 +74,20 @@ uv tool upgrade
 uv tool install --with <extra-package> <tool-package>
 ```
 
+## 建立符合 PEP 751 的鎖定文件{#pep751-lockfile}
+
+Python 不只[專案管理工具一團亂](https://chriswarrick.com/blog/2023/01/15/how-to-improve-python-packaging/#summary)，鎖定文件也沒有規範，直到這個月 (2025/4) PEP 751 被採納之後現在終於有統一的 pylock.toml 用以替代 requirements.txt，uv 相關指令如下
+
+```sh
+# 從 uv.lock 生成 pylock.toml
+uv export -o pylock.toml
+
+# 從 pylock.toml 安裝套件
+uv pip sync pylock.toml
+```
+
+值得注意的是 pylock.toml 不支援 uv 全部功能，所以 uv 還是會繼續使用 uv.lock 管理鎖定文件。
+
 ## 在 Docker 中使用 uv
 
 uv 對 Docker 的支援也很完善且積極，文檔介紹了各種常見問題，直接查看[文檔](https://docs.astral.sh/uv/guides/integration/docker/)。
@@ -83,6 +97,8 @@ uv 對 Docker 的支援也很完善且積極，文檔介紹了各種常見問題
 ### 編譯 requirements.txt
 
 https://docs.astral.sh/uv/concepts/projects/sync/#exporting-the-lockfile  
+
+> 鎖定檔案的相關資訊可以參考[建立使用 PEP 751 的鎖定文件](#pep751-lockfile)
 
 ```sh
 uv export --no-emit-project --locked --no-hashes -o requirements.txt -q

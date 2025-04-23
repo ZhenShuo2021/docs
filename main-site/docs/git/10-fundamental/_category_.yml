@@ -1,5 +1,5 @@
 position: 1
 label: 新手入門
 collapsible: true
-collapsed: true
+collapsed: false
 className: red

@@ -1,5 +1,5 @@
 ---
-title: Git 子模組和子樹 Submodule vs Subtree
+title: Git 多儲存庫管理：子模組和子樹 Submodule vs Subtree
 slug: /submodule-and-subtree
 sidebar_label: 多儲存庫管理
 tags:
@@ -17,7 +17,7 @@ first_publish:
 
 # {{ $frontmatter.title }}
 
-巢狀儲存庫其實指的就是上面的 multi-repo，拆成多個儲存庫管理，而拆分的方式有兩種
+當專案越來越龐大時可以拆成多個儲存庫管理，拆分的方式有兩種
 
 1. submodule: 主儲存庫只追蹤子儲存庫的 commit hash，要更新子儲存庫比較麻煩，要移動到子庫、提交、回到主庫更新。
 2. subtree: 直接把子儲存庫的副本，包含提交歷史一起放進主儲存庫追蹤，因此幾乎等同於 Monorepo。

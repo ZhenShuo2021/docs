@@ -1,6 +1,6 @@
 ---
 title: Git 遠端概念和常見錯誤
-sidebar_label: 遠端概念和常見錯誤
+sidebar_label: 🔥 觀念和錯誤排除
 description: 本文介紹操作遠端儲存庫的指令。
 slug: /concept-and-commands
 tags:

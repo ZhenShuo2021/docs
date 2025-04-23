@@ -9,7 +9,7 @@ keywords:
   - PEP
   - cheatsheet
 last_update:
-  date: 2024-11-29T16:20:00+08:00
+  date: 2025-04-23T22:49:00+08:00
   author: zsl0621
 first_publish:
   date: 2024-11-29T16:20:00+08:00
@@ -30,3 +30,4 @@ first_publish:
 - PEP 621/631/639: 專案 metadata，[Poetry 要 2.0 之後才會支援 621](https://github.com/orgs/python-poetry/discussions/5833)
 - PEP 723: Inline script metadata，腳本內部可設定依賴
 - PEP 744: JIT 編譯
+- PEP 751: Python 官方的鎖定檔案 lockfile，用於替代 requirements.txt，[uv 在 0.6.15 支援](https://github.com/astral-sh/uv/releases/tag/0.6.15)

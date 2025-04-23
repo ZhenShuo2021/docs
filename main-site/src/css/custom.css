@@ -86,9 +86,38 @@ h6 {
   font-size: 14px;
 }
 
-#__docusaurus .menu__link--sublist-caret::after,
+/* #__docusaurus .menu__link--sublist-caret::after,
 #__docusaurus .menu__caret::before {
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+} */
+
+.menu__link--sublist-caret:after {
+  display: none;
+}
+
+.menu__link--sublist-caret:before {
+  content: "";
+  margin-inline-end: 0.67rem;
+  min-width: 1rem;
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+  filter: var(--ifm-menu-link-sublist-icon-filter);
+  height: 1rem;
+  transform: rotate(180deg);
+  width: 1rem;
+  transition: transform var(--ifm-transition-fast) linear;
+}
+
+.menu__list-item--collapsed .menu__link--sublist:before {
+  transform: rotateZ(90deg);
+}
+
+.menu__list-item-collapsible + .menu__list {
+  margin-inline-start: 19.5px;
+  padding-inline-start: 6px;
+  border-inline-start: #eaeaea 1px solid;
+}
+[data-theme=dark] .menu__list-item-collapsible + .menu__list {
+  border-inline-start-color: #222;
 }
 
 /* 文章區域到左右兩側距離 */

@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 import { themes as prismThemes } from 'prism-react-renderer';
 
 module.exports = {
@@ -26,23 +26,12 @@ module.exports = {
     },
     items: [
       {
-        type: 'dropdown',
-        label: 'Git',
+        type: 'doc',
+        docsPluginId: 'pluginForGit',
+        docId: 'git-hello-page',
+        sidebarId: 'gitSidebar',
+        label: "Git",
         position: 'right',
-        items: [
-          {
-            type: 'doc',
-            docsPluginId: 'pluginForGit',
-            docId: 'git-hello-page',
-            label: '站內教學',
-          },
-          {
-            label: 'Git 零到一百',
-            to: 'pathname:///gitroad101/',
-            prependBaseUrlToHref: true,
-            className: 'gitroad-icon-item'
-          },
-        ],
       },
       {
         type: 'doc',

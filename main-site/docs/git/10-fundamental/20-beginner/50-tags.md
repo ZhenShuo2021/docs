@@ -9,7 +9,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2024-10-20T02:21:33+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2024-10-20T02:21:33+08:00
@@ -54,13 +54,13 @@ git tag -l --format='%(contents)' <tag name>
 git tag <tag name> <tag name>^{} -f -m "<new message>"
 ```
 
-列出標籤的指令雜亂又複雜保證記不起來，建議直接用 alias 完成。僅適用 ZSH，Bash 改一下應該能用，Windows 搞了半小時還是失敗我放棄。在 .zshrc 加入這行：
+列出標籤的指令雜亂又複雜保證記不起來，建議直接用 alias 完成。僅適用 ZSH，在 .zshrc 加入這行：
 
 ```sh
 alias 'gtl'='gtl(){ git tag --sort=-v:refname -n999 --format="[%(objectname:short) %(refname:short)] %(contents:lines=999)%0a" --list "${1}*" }; noglob gtl'
 ```
 
-之後就可以使用 gtl 指令列出所有標籤，並且支援使用 gtl v0.2 列出所有 v0.2 開頭的標籤。如果想用更多這種奇特簡寫歡迎使用[我的 dotfile](https://github.com/ZhenShuo2021/dotfiles)。
+之後就可以使用 gtl 指令列出所有標籤，並且支援使用 gtl v0.2 列出所有 v0.2 開頭的標籤。如果想用更多這種奇特簡寫在[命令行優化](/git/git-bash-setup-in-windows)有說明如何操作，包含讓 Windows 也可以使用 Zsh。
 
 ## 第二常用指令
 

@@ -1,7 +1,7 @@
 ---
-title: Git 那些你可能不知道/用不到的進階知識
-slug: /advanced-uncommon-knowledge
-sidebar_label: 很少用的知識
+title: Git 那些很少用到的知識
+slug: /uncommon-knowledge
+sidebar_label: 很少用到的知識
 tags:
   - Git
   - 教學
@@ -9,7 +9,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2025-04-19T01:02:07+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2025-04-19T01:02:07+08:00

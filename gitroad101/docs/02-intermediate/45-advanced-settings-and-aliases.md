@@ -26,12 +26,11 @@ first_publish:
 本設定檔已經測試過以下系統皆可正常運行：
 
 1. MacOS Sonoma, Sequoia
-2. Windows 10
-3. Windows 10 + Git Bash
-4. Windows WSL2 Ubuntu
-5. Ubuntu LTS 22.04.4
-6. Github Codespace
-7. TrueNAS 24.10.2
+2. Windows 10 + Git Bash
+3. Windows WSL2 Ubuntu
+4. Ubuntu LTS 22.04.4
+5. Github Codespace
+6. TrueNAS 24.10.2
 
 :::
 

@@ -2,7 +2,7 @@
 title: Git 各種日常問題集合 - 遠端
 sidebar_label: 日常問題 - 遠端
 description: 介紹 Git 常見的本地和遠端問題，包含清除reflog記錄、正確使用rebase、git mv、以及如何加速clone等進階技巧。還解釋了常見錯誤誤導，並提供正確的 Git 操作方法。
-slug: /daily-issues
+slug: /daily-issues-remote
 tags:
   - Git
   - 教學
@@ -10,7 +10,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2025-02-12T23:19:00+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2025-02-12T13:35:00+08:00
@@ -54,7 +54,7 @@ first_publish:
 
 使用任意方式把目標提交從提交歷史中移除就可以了，不用擔心 reflog 紀錄，因為 reflog 紀錄壓根就不會被推送到遠端，如果要徹底清除本地紀錄可以使用 filter-repo，內建的 filter-branch 已經不被建議使用。
 
-[賣課網又寫錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)，想想每個人的 reflog 紀錄都不一樣，那怎麼可能被推送？作者書都寫完了結果還是不知道 Git 是「分散式」的「鏡像系統」，有搞清楚分散鏡像系統就不可能說出 reflog 紀錄被推送這句話。
+[賣課網寫錯了](https://gitbook.tw/chapters/faq/remove-files-from-git)，每個人的 reflog 紀錄都不一樣，那怎麼可能被推送？搞清楚 Git 是「分散式」的「鏡像系統」就不會說出 reflog 紀錄被推送這句話。
 
 你可能會覺得我很嚴格，可能作者就是剛好沒想到啊，你說的沒錯，那退一步來說，要寫書教別人之前至少要測試正確性吧，看起來是沒有。
 
@@ -66,7 +66,7 @@ first_publish:
 git push <遠端名稱> <指定提交>:<遠端分支名稱>
 ```
 
-又是賣課網，10 秒能講完的事情他拍了[七分鐘的影片](https://www.youtube.com/watch?v=VShhhq_5sMc)。
+這個 10 秒能講完的事情賣課網拍了七分鐘的影片。
 
 <br />
 

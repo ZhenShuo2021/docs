@@ -1,6 +1,6 @@
 ---
-title: Git 遠端概念和常見錯誤
-sidebar_label: 🔥 觀念和錯誤排除
+title: Git 遠端概念、錯誤排除懶人包和常用指令
+sidebar_label: 🔥 觀念和錯誤排除懶人包
 description: 本文介紹操作遠端儲存庫的指令。
 slug: /concept-and-commands
 tags:
@@ -10,7 +10,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2025-02-13T23:03:42+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2024-08-25T22:24:42+08:00

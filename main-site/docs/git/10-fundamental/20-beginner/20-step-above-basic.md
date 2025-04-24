@@ -8,7 +8,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2024-09-10T16:15:33+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2024-09-10T16:15:33+08:00
@@ -231,7 +231,7 @@ $ git reflog
 $ git reset --hard HEAD@{4}
 ```
 
-這樣會回到 rebase 前的狀態。reflog 只會紀錄本地操作，推送到遠端再 clone 下來後不會有 reflog 紀錄，所以為你自己學 Git 的[這篇文章](https://gitbook.tw/chapters/faq/remove-files-from-git)寫錯了。
+這樣會回到 rebase 前的狀態。reflog 只會紀錄本地操作，推送到遠端再 clone 下來後不會有 reflog 紀錄，[這篇文章](https://gitbook.tw/chapters/faq/remove-files-from-git)寫錯了。
 
 ## 歷史查詢 git log
 

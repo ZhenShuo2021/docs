@@ -14,6 +14,9 @@ hero:
       text: 遠端推送
       link: /intermediate/remote-concept#remote-debug
     - theme: alt
+      text: 客製化終端機
+      link: /intermediate/git-bash-setup-in-windows
+    - theme: alt
       text: Github 技巧
       link: /advance/github-search
     - theme: alt
@@ -46,7 +49,8 @@ features:
 1. 初學者請從[前言](/beginner/intro)開始看。
 2. 遇到遠端推送問題，請見我整理的[懶人包](/intermediate/remote-concept#remote-debug)。
 3. 遇到高階指令不會用，如 `rebase --onto` `force-if-includes` `sparse-checkout` `bisect` 等等，請見[超過一百分](/advance/intro)。
-4. 想要玩轉 Github 榨乾他的所有功能，請見 [Github 技巧](/advance/github-search)。
-5. 各式各樣的疑難雜症處理請見[日常問題](/troubleshooting/daily-local-issues)。
+4. 想要客製化終端機，體驗網路上那些酷酷的終端機功能，請見[客製化教學](/intermediate/git-bash-setup-in-windows)
+5. 想要玩轉 Github 榨乾他的所有功能，請見 [Github 技巧](/advance/github-search)。
+6. 各式各樣的疑難雜症處理請見[日常問題](/troubleshooting/daily-issues-local)。
 
 </div>

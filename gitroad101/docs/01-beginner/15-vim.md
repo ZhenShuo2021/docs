@@ -8,7 +8,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2024-09-10T03:07:33+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2024-09-10T03:07:33+08:00
@@ -120,5 +120,3 @@ git clone https://github.com/ZhenShuo2021/starter ~/.config/nvim
 # 複製我的設定: Windows
 git clone https://github.com/ZhenShuo2021/starter $HOME\AppData\Local\nvim
 ```
-
-如果你的電腦沒有 clang/gcc 等編譯工具請修改 nvim 目錄下的 `lua/plugins/disable`，裡面有教你怎麼禁用這些工具。

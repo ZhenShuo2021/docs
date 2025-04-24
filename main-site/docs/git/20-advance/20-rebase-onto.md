@@ -10,7 +10,7 @@ keywords:
   - Git
   - 教學
 last_update:
-  date: 2025-02-13T23:59:00+08:00
+  date: 2025-04-25T11:27:33+08:00
   author: zsl0621
 first_publish:
   date: 2025-01-13T14:40:00+08:00
@@ -248,12 +248,10 @@ git rebase --onto main~4 main fix
 
 rebase onto 用法這麼複雜的指令，網路上教學文章只說一句「改接」「嫁接」「任意改接」有講跟沒講一樣，因為所有 rebase 都是改接，讀者看完之後不明所以要嘛死記要嘛乾脆不敢用，而所有講解 `git rebase --onto` 卻又不講指令如何解析的文章都在亂教，連輸入的指令都不知道對應到哪個變數，我們怎麼敢用這個指令？更糟糕是自創名詞的文章，指令用法只在他說的那種情況下適用，這種文章非常差勁。
 
-這個文檔從我還不熟 Git 的時候開始寫，開宗明義就說<u>**使用官方翻譯而不是自己造詞**</u>，現在回頭看我最初講的話是對的。在蒐集 rebase onto 資料時發現很多文章寫了「onto 之後的參數是 `<new base-commit> <current base-commit>`」，這就是明顯的亂造詞問題，後來發現所有的錯誤用法都來自於[同一篇文章](https://git-tutorial.readthedocs.io/zh/latest/rebase.html)，也可以算是一種 error propagation 吧。
+這個文檔從我還不熟 Git 的時候開始寫，開宗明義就說<u>**使用官方翻譯而不是自己造詞**</u>，現在回頭看我最初講的話是對的。在蒐集 rebase onto 資料時發現很多文章寫了「onto 之後的參數是 `<new base-commit> <current base-commit>`」，這就是明顯的亂造詞問題，後來發現所有的錯誤用法都來自於同一篇文章，也可以算是一種 error propagation 吧。
 
 我就問寫第一篇文章的人，如果 onto 使用三個參數，你這參數說明是不是要改成 `<new base-commit> <start-commit> <end-commit>`？還沒完，再照他文章中自己的範例指令 `git rebase 分支 --onto 哈希值` 用法，是不是又要多一種解釋？官方這樣設定參數名稱自然有他的道理，沒想清楚就自己亂改又放在網路上，結果就是讓所有讀過文章的人都搞混。開頭說的還是不會永遠成立，這傢伙的解釋方式更慘，只在那時會成立。
 
 甚至還使用 `git checkout main; git rebase sub-branch`，rebase 難學有很大一部分就是拜這傢伙所賜，最誇張的是竟然把 rebase onto 排版在 rebase interactive 前面，把使用頻率低又難理解的指令放在前面到底什麼意思，初學者就是最沒有判斷能力的時期，然後網路搜尋最前面的幾個教學都錯，我不知道要怪教學、怪 Google 還是怪自己。
-
-順帶一提 rebase 對象連 gitbook.tw 都寫錯，我真的是無言。
 
 </details>

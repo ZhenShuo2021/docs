@@ -131,10 +131,10 @@ function sidebarTroubleShooting(): DefaultTheme.SidebarItem[] {
       // collapsed: false,
       items: [
         { text: '正確的移除敏感訊息', link: 'removing-sensitive-data' },
-        { text: '日常問題 - 本地', link: 'daily-local-issues' },
-        { text: '日常問題 - 遠端', link: 'daily-remote-issues' },
+        { text: '日常問題 - 本地', link: 'daily-issues-local' },
+        { text: '日常問題 - 遠端', link: 'daily-issues-remote' },
         { text: 'GPG 無法簽名的錯誤', link: 'gpg-failed-to-sign-the-data' },
-        { text: '很少用的知識', link: 'advanced-uncommon-knowledge' },
+        { text: '很少用到的知識', link: 'uncommon-knowledge' },
         { text: '關於修改的動詞', link: 'verb-cheatsheet' },
       ],
     },

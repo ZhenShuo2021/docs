@@ -2,86 +2,8 @@ import { visit } from 'unist-util-visit';
 
 const WARNING_NODE = {
   type: 'mdxJsxFlowElement',
-  name: 'div',
-  attributes: [
-    {
-      type: 'mdxJsxAttribute',
-      name: 'style',
-      value: {
-        type: 'mdxJsxAttributeValueExpression',
-        value: '{{"background":"#fff3cd","padding":"1em","borderRadius":"6px","border":"1px solid #ffeeba","marginBottom":"1.5em","color":"#000"}}',  // 加上文字顏色設定
-        data: {
-          estree: {
-            type: 'Program',
-            body: [
-              {
-                type: 'ExpressionStatement',
-                expression: {
-                  type: 'ObjectExpression',
-                  properties: [
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'background' },
-                      value: { type: 'Literal', value: '#fff3cd' },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    },
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'padding' },
-                      value: { type: 'Literal', value: '1em' },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    },
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'borderRadius' },
-                      value: { type: 'Literal', value: '6px' },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    },
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'border' },
-                      value: { type: 'Literal', value: '1px solid #ffeeba' },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    },
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'marginBottom' },
-                      value: { type: 'Literal', value: '1.5em' },
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    },
-                    {
-                      type: 'Property',
-                      key: { type: 'Identifier', name: 'color' },  // 新增顏色屬性
-                      value: { type: 'Literal', value: '#000' },  // 設定文字顏色為紅色
-                      kind: 'init',
-                      computed: false,
-                      method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      }
-    }
-  ],
+  name: 'blockquote',
+  attributes: [],
   children: [
     {
       type: 'text',

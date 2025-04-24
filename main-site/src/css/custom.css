@@ -56,18 +56,16 @@ html[data-theme="dark"] {
 
 /* https://github.com/hasura/ddn-docs/blob/1cbc1eebda2a2e789a62bf42f6b3e67468638245/src/css/custom.css#L1405 */
 @media (min-width: 997px) {
-  .container.padding-top--md.padding-bottom--lg > div > div:first-child {
+  .container.padding-top--md.padding-bottom--lg > div > div:first-child:has(article) {
     padding-left: 4rem !important;
     padding-right: 2.5rem !important;
   }
 
-  .row > .col:first-child {
+  .container.padding-top--md.padding-bottom--lg > .row > .col:first-child:has(article) {
     flex: 0 0 72.5% !important;
     max-width: 72.5% !important;
   }
-}
 
-@media (min-width: 997px) {
   .container.padding-top--md.padding-bottom--lg {
     margin-top: 2.5rem;
   }

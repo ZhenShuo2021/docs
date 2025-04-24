@@ -1,5 +1,6 @@
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import gitWarningPlugin from '../src/remark/git-warning';
 
 module.exports = [
   require.resolve("docusaurus-plugin-image-zoom"),
@@ -10,7 +11,7 @@ module.exports = [
       path: 'docs/git',
       routeBasePath: 'git',
       sidebarPath: require.resolve('../config/sidebars-git.js'),
-      remarkPlugins: [remarkMath],
+      remarkPlugins: [remarkMath, gitWarningPlugin],
       rehypePlugins: [[rehypeKatex, { strict: false }]],
       showLastUpdateAuthor: true,
       showLastUpdateTime: true,

@@ -18,8 +18,6 @@ first_publish:
 
 # 前言
 
-> Git 教學現在有獨立的網站了！請移駕 [Git 零到一百](https://zsl0621.cc/gitroad101/)。
-
 啟發自[码农高天的 Git 教學](https://www.youtube.com/watch?v=uj8hjLyEBmU)，被他淺顯易懂的說明驚訝到，並且深刻感受到繁體中文教學實在很差勁，於是決定自己寫，想解決我在學習 Git 時發現的問題：
 
 1. 沒搞清楚受眾

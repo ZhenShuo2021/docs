@@ -11,7 +11,7 @@ const maxTagsShow = 3;
 
 const Tag = ({ children }) => <span className={styles.tag}>{children}</span>;
 
-const Card = React.memo(({ item, type }) => (
+const Card = ({ item, type }) => (
   <div className={clsx("card", styles.card)}>
     <Link to={item.link} className="card__link">
       <div className={styles.cardImageContainer}>
@@ -45,6 +45,6 @@ const Card = React.memo(({ item, type }) => (
       </div>
     </div>
   </div>
-));
+);
 
 export { Card, Tag };

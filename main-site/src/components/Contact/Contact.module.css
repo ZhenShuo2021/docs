@@ -1,0 +1,64 @@
+:root {
+  --radius: 4px;
+}
+
+.ContactForm {
+  padding: 5%;
+  margin: 2rem 0;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--radius);
+  background: transparent;
+}
+[data-theme="dark"] .ContactForm {
+  border-color: var(--ifm-color-emphasis-200);
+}
+
+.ContactForm textarea,
+.ContactForm input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-family: var(--ifm-font-family-base);
+  letter-spacing: 2px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  appearance: none;
+  box-sizing: border-box;
+  border-radius: var(--radius);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+[data-theme="dark"] .ContactForm textarea,
+[data-theme="dark"] .ContactForm input {
+  border-color: var(--ifm-color-emphasis-200);
+}
+.ContactForm textarea {
+  resize: none;
+  height: 9rem;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background: transparent;
+  color: var(--ifm-color-primary) !important;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.submitButton:hover {
+  border-color: var(--ifm-color-primary) !important;
+}
+
+@media (min-width: 997px) {
+  .ContactTitle::before,
+  .ContactTitle::after {
+    width: 38%;
+  }
+}

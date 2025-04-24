@@ -36,11 +36,11 @@
     "description": "The title of the 404 page"
   },
   "theme.NotFound.p1": {
-    "message": "哎呀，你要找的東西不存在喔。",
+    "message": "哎呀，你要找的東西不存在喔，",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "麻煩聯絡站長，跟他說有連結壞掉了。",
+    "message": "麻煩聯絡站長，跟他說連結壞掉了。",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {

@@ -10,6 +10,7 @@
   --ifm-color-primary-light: #8d0023;
   --ifm-color-primary-lighter: #930025;
   --ifm-color-primary-lightest: #a6002a;
+  --ifm-background-color: #ffffff;
   --ifm-code-font-size: 95%;
 
   --ifm-h4-font-size: 1.25rem;
@@ -48,6 +49,52 @@ html[data-theme="dark"] {
   --card-background: #0c0c0c;
   --docusaurus-highlighted-code-line-bg: rgba(128, 128, 128, 0.3);
 }
+
+/* -------------------------------------------------------------------------- */
+/*                            Document page layouts                           */
+/* -------------------------------------------------------------------------- */
+
+/* https://github.com/hasura/ddn-docs/blob/1cbc1eebda2a2e789a62bf42f6b3e67468638245/src/css/custom.css#L1405 */
+@media (min-width: 997px) {
+  .container.padding-top--md.padding-bottom--lg > div > div:first-child {
+    padding-left: 4rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .row > .col:first-child {
+    flex: 0 0 72.5% !important;
+    max-width: 72.5% !important;
+  }
+}
+
+@media (min-width: 997px) {
+  .container.padding-top--md.padding-bottom--lg {
+    margin-top: 2.5rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Concise sidebar                               */
+/* -------------------------------------------------------------------------- */
+
+/* .navbar {
+  border-bottom: none;
+  box-shadow: none;
+}
+
+aside {
+  border-right: none !important;
+  background-color: #f6f6f7;
+  z-index: 9999;
+}
+
+html[data-theme="dark"] aside {
+  background-color: #1e1e1e;
+}
+
+html[data-theme="dark"] .navbar {
+  background-color: #1b1b1d;
+} */
 
 /* -------------------------------------------------------------------------- */
 /*                             Docusaurus layouts                             */
@@ -116,14 +163,9 @@ h6 {
   padding-inline-start: 6px;
   border-inline-start: #eaeaea 1px solid;
 }
-[data-theme=dark] .menu__list-item-collapsible + .menu__list {
-  border-inline-start-color: #222;
+[data-theme="dark"] .menu__list-item-collapsible + .menu__list {
+  border-inline-start-color: var(--ifm-toc-border-color);
 }
-
-/* 文章區域到左右兩側距離 */
-/* .theme-doc-toc-desktop {
-  margin: 20px;
-} */
 
 /* ToC */
 .table-of-contents__link--active {
@@ -148,33 +190,23 @@ h6 {
   color: var(--ifm-color-primary-dark) !important;
 }
 
-/* .theme-doc-sidebar-container {
-  margin-right: 40px;
-} */
-
-/* article {
-  margin-left: 45px;
-  margin-right: 25px;
-} */
-
-@media (max-width: 768px) {
-  article {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+.theme-doc-toc-desktop {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.theme-doc-toc-desktop::-webkit-scrollbar {
+  display: none;
 }
 
-/* left sidebar */
-/* Looks better while using Taipei Sans TC */
-/* .menu__link {
-  padding-top: 0.32rem;
-  padding-bottom: 0.32rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--ifm-font-color-base);
+/* ToC 不換行 */
+/* .table-of-contents__link.toc-highlight {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 } */
+.table-of-contents li {
+  margin-left: 0.5px;
+}
 
 /* 文章底部翻頁 */
 .pagination-nav .pagination-nav__link {
@@ -247,7 +279,6 @@ html[data-theme="dark"] u {
 .docusaurus-theme-github-codeblock a.githubLink {
   cursor: pointer;
 }
-
 
 /* -------------------------------------------------------------------------- */
 /*                                   misc                                     */

@@ -6,11 +6,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rootDir = path.resolve(__dirname, "..");
-const vitepressDir = path.join(rootDir, "gitroad101");
+const vitepressDir = path.join(rootDir, "ripgit");
 const docusaurusDir = path.join(rootDir, "main-site");
 const vitepressDist = path.join(vitepressDir, ".vitepress", "dist");
 const docusaurusBuild = path.join(docusaurusDir, "static");
-const targetDir = path.join(docusaurusBuild, "gitroad101");
+const targetDir = path.join(docusaurusBuild, "ripgit");
 
 async function integrate() {
   try {
@@ -19,7 +19,7 @@ async function integrate() {
     }
 
     if (fs.existsSync(targetDir)) {
-      console.log("移除舊有的 /gitroad101 目錄...");
+      console.log("移除舊有的 /ripgit 目錄...");
       fs.removeSync(targetDir);
     }
 

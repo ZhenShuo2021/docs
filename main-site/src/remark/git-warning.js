@@ -16,7 +16,7 @@ const WARNING_NODE = {
         {
           type: 'mdxJsxAttribute',
           name: 'href',
-          value: 'https://zsl0621.cc/gitroad101/'
+          value: 'https://zsl0621.cc/ripgit/'
         }
       ],
       children: [
@@ -41,7 +41,7 @@ const plugin = (options) => {
       // 只處理第一個 h1 標題
       if (node.depth === 1 && !foundFirstH1) {
         foundFirstH1 = true;
-        
+
         // 在 h1 後插入警告訊息
         if (parent && Array.isArray(parent.children) && index !== undefined) {
           const warningNodeCopy = JSON.parse(JSON.stringify(WARNING_NODE));
@@ -56,7 +56,7 @@ const plugin = (options) => {
       ast.children.unshift(warningNodeCopy);
     }
   };
-  
+
   return transformer;
 };
 

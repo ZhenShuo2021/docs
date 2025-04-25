@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://zsl0621.cc/sitemap.xml
-Sitemap: https://zsl0621.cc/gitroad101/sitemap.xml
+Sitemap: https://zsl0621.cc/ripgit/sitemap.xml

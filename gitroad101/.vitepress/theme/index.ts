@@ -1,9 +1,12 @@
+import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
 import googleAnalytics from 'vitepress-plugin-google-analytics'
+
 import Mermaid from './components/Mermaid.vue'
+import CopyrightFooter from './components/CopyrightFooter.vue'
 import ArticleMetadata from "./components/ArticleMetadata.vue"
 import LastUpdate from "./components/LastUpdate.vue"
 
@@ -41,4 +44,9 @@ export default (<Theme>{
       true,
     )
   },
+  Layout: () => {
+    return h(DefaultTheme.Layout, null, {
+      'doc-bottom': () => h(CopyrightFooter)
+    })
+  }
 })

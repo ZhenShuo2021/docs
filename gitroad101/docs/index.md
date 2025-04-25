@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "Git 零到一百"
-  text: "為你自己省時間，不要再看錯誤的教學文章！"
-  tagline: 完整、詳細且正確，全網唯一一個三者兼備的教學文章
+  text: ""
+  tagline: 完整、詳細且正確，全網唯一一個三者兼備的教學
   actions:
     - theme: brand
       text: 開始閱讀

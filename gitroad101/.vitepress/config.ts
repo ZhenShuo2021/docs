@@ -11,7 +11,7 @@ const srcExclude = ['**/README.md', '**/TODO.md', 'snippets/*.md']
 
 export default defineConfig({
   title: 'Git 零到一百',
-  description: '為你自己省時間，快速且正確的學會 Git！',
+  description: '自學 Git 最大的阻礙就是錯誤的網路資訊，不要再看錯誤的文章，本站教你快速且正確的學會 Git！',
   sitemap: { hostname: 'https://zsl0621.cc/gitroad101/' },
   rewrites: {
     ...generateRewrites('./docs/01-beginner', srcDir),

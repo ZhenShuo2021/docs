@@ -16,7 +16,7 @@ const themeConfig: DefaultTheme.Config = {
   },
   footer: {
     message: '本站內容採用 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh-Hant" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a> 授權，歡迎非商業轉載並註明出處。',
-    copyright: `© 2024-${currentYear} ZhenShuo2021 (zsl0621.cc)`
+    copyright: `© 2024-${currentYear} ZhenShuo2021 (<a href="https://zsl0621.cc/" target="_blank" rel="noopener noreferrer">zsl0621.cc</a>)`
   },
   socialLinks: getSocialLinks(),
   lastUpdated: {

@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress'
 import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
+import googleAnalytics from 'vitepress-plugin-google-analytics'
 import Mermaid from './components/Mermaid.vue'
 import ArticleMetadata from "./components/ArticleMetadata.vue"
 import LastUpdate from "./components/LastUpdate.vue"
@@ -14,6 +15,9 @@ export default (<Theme>{
     app.component('Mermaid', Mermaid)
     // app.component('LastUpdate' , LastUpdate)
     // app.component('ArticleMetadata' , ArticleMetadata)
+    googleAnalytics({
+      id: 'G-QB2VKFSQ0J',
+    })
   },
 
   setup() {

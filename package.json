@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "pnpm run dev:main",
+    "start": "cd main-site && pnpm install && npx docusaurus start",
     "new": "cd main-site && pnpm install && pnpm run new",
-    "dev:main": "cd main-site && pnpm install && pnpm run start",
-    "dev:git": "cd gitroad101 && pnpm install && pnpm run dev",
+    "dev:main": "cd main-site && pnpm install && npx docusaurus start",
+    "dev:git": "cd gitroad101 && pnpm install && npx vitepress dev .",
     "clear:main": "cd main-site && pnpm install && pnpm clear",
     "clear:git": "cd gitroad101 && pnpm install && pnpm clear",
     "clear:build": "rimraf main-site/build gitroad101/.vitepress/dist",

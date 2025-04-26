@@ -17,6 +17,11 @@ const WARNING_NODE = {
           type: 'mdxJsxAttribute',
           name: 'href',
           value: 'https://zsl0621.cc/ripgit/'
+        },
+        {
+          type: 'mdxJsxAttribute',
+          name: 'target',
+          value: '_self'
         }
       ],
       children: [

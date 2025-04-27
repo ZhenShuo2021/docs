@@ -1,17 +1,16 @@
-// index.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './EmblaCarousel.module.css';
-import { EmblaCarouselProps } from './types';
 
 export default function EmblaCarousel({ 
   images, 
+  captions = [],
   options = { 
     slidesToScroll: 1,
     align: 'center',
     containScroll: 'trimSnaps'
   } 
-}: EmblaCarouselProps) {
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -31,6 +30,18 @@ export default function EmblaCarousel({
     if (emblaApi) emblaApi.scrollTo(index);
   }, [emblaApi]);
 
+  const getImageSrc = (image) => {
+    if (typeof image === 'string') {
+      return image;
+    }
+    return image.src;
+  };
+  
+  const getImageKey = (image, index) => {
+    const src = getImageSrc(image);
+    return `slide-${src.split('/').pop()}-${index}`;
+  };
+
   return (
     <div className={styles.embla}>
       <div 
@@ -38,28 +49,37 @@ export default function EmblaCarousel({
         ref={emblaRef}
       >
         <div className={styles.emblaContainer}>
-          {images.map((src, index) => (
+          {images.map((image, index) => (
             <div 
-              key={index} 
+              key={getImageKey(image, index)}
               className={styles.emblaSlide}
             >
-              <img 
-                src={src} 
-                alt={`Slide ${index + 1}`} 
-                className={styles.emblaSlideImg}
-              />
+              <div className={styles.emblaSlideInner}>
+                <img 
+                  src={getImageSrc(image)} 
+                  alt={captions[index] || `Slide ${index + 1}`} 
+                  className={styles.emblaSlideImg}
+                />
+                {captions[index] && (
+                  <div className={styles.emblaCaption}>
+                    {captions[index]}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
       </div>
       <div className={styles.emblaDots}>
-        {images.map((_, index) => (
+        {images.map((image, index) => (
           <button
-            key={index}
+            key={getImageKey(image, index)}
+            type="button"
             onClick={() => scrollTo(index)}
             className={`${styles.emblaDot} ${
               index === selectedIndex ? styles.emblaDotSelected : ''
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

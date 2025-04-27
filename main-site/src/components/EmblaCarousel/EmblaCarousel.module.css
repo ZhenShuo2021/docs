@@ -1,0 +1,69 @@
+.embla {
+  position: relative;
+  margin: 0 auto;
+}
+
+.emblaViewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.emblaContainer {
+  display: flex;
+  transition: transform 0.0002s ease-out;
+}
+
+.emblaSlide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emblaSlideInner {
+  position: relative;
+  width: 100%;
+}
+
+.emblaSlideImg {
+  width: 100%;
+  display: block;
+}
+
+.emblaCaption {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  padding: 0.5rem;
+}
+
+.emblaDots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.emblaDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--ifm-color-emphasis-300);
+  margin: 0 8px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.emblaDot:hover {
+  transform: scale(1.2);
+}
+
+.emblaDotSelected {
+  background-color: var(--ifm-color-primary);
+  transform: scale(1.4);
+}

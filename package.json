@@ -1,0 +1,28 @@
+{
+  "name": "zsl-docs-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd main-site && pnpm install && npx docusaurus start",
+    "new": "cd main-site && pnpm install && pnpm run new",
+    "dev:main": "cd main-site && pnpm install && npx docusaurus start",
+    "dev:git": "cd ripgit && pnpm install && npx vitepress dev .",
+    "clear:main": "cd main-site && pnpm install && pnpm clear",
+    "clear:git": "cd ripgit && pnpm install && pnpm clear",
+    "clear:build": "rimraf main-site/build ripgit/.vitepress/dist",
+    "build:main": "cd main-site && pnpm install && pnpm run build",
+    "build:git": "cd ripgit && pnpm install && pnpm run build",
+    "build": "pnpm run build:git && pnpm install && node scripts/integrate.js && pnpm run build:main",
+    "preview:main": "cd main-site && pnpm install && pnpm run preview",
+    "preview:git": "cd ripgit && pnpm install && pnpm run preview",
+    "preview": "pnpm http-server main-site/build",
+    "install:main": "cd main-site && pnpm install",
+    "install:git": "cd ripgit && pnpm install"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "http-server": "^14.1.1",
+    "rimraf": "^5.0.5"
+  },
+  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677"
+}

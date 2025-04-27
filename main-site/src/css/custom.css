@@ -1,0 +1,368 @@
+/* -------------------------------------------------------------------------- */
+/*                                 Infima variables                           */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --ifm-color-primary: #800020;
+  --ifm-color-primary-dark: #73001d;
+  --ifm-color-primary-darker: #6d001b;
+  --ifm-color-primary-darkest: #5a0016;
+  --ifm-color-primary-light: #8d0023;
+  --ifm-color-primary-lighter: #930025;
+  --ifm-color-primary-lightest: #a6002a;
+  --ifm-background-color: #ffffff;
+  --ifm-code-font-size: 95%;
+
+  --ifm-h4-font-size: 1.25rem;
+  --ifm-h5-font-size: 1.1rem;
+
+  --doc-sidebar-width: 17rem !important;
+  --ifm-pagination-nav-border-radius: 0;
+  --wave-color: #800020;
+
+  --svg-external-link: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M11 5H5V19H19V13'/><path d='M13 11L20 4'/><path d='M21 3H15M21 3V9'/></g></svg>");
+}
+
+html {
+  font-weight: normal;
+  --post-title-color: hsl(220deg 79% 58%);
+  --post-pub-date-color: #8c8c8c;
+  --content-background-color: #fafafa;
+  --blog-item-background-color: linear-gradient(50deg, #ffffff, hsl(0deg 0% 95%));
+  --ifm-heading-color: #000000;
+  --docusaurus-highlighted-code-line-bg: rgba(200, 200, 200, 0.5);
+}
+
+html[data-theme="dark"] {
+  --ifm-color-primary: #ef2246;
+  --ifm-color-primary-dark: #e51136;
+  --ifm-color-primary-darker: #d81033;
+  --ifm-color-primary-darkest: #b20d2a;
+  --ifm-color-primary-light: #f13b5b;
+  --ifm-color-primary-lighter: #f24866;
+  --ifm-color-primary-lightest: #f56e86;
+
+  --post-title-color: hsl(220deg 79% 58%);
+  --post-pub-date-color: #8c8c8c;
+  --content-background-color: inherit;
+  --blog-item-background-color: black;
+  --card-background: #0c0c0c;
+  --docusaurus-highlighted-code-line-bg: rgba(128, 128, 128, 0.3);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Document page layouts                           */
+/* -------------------------------------------------------------------------- */
+
+/* https://github.com/hasura/ddn-docs/blob/1cbc1eebda2a2e789a62bf42f6b3e67468638245/src/css/custom.css#L1405 */
+@media (min-width: 997px) {
+  .container.padding-top--md.padding-bottom--lg > div > div:first-child:has(article) {
+    padding-left: 4rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .container.padding-top--md.padding-bottom--lg > .row > .col:first-child:has(article) {
+    flex: 0 0 72.5% !important;
+    max-width: 72.5% !important;
+  }
+
+  .container.padding-top--md.padding-bottom--lg {
+    margin-top: 2.5rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Concise sidebar                               */
+/* -------------------------------------------------------------------------- */
+
+/* .navbar {
+  border-bottom: none;
+  box-shadow: none;
+}
+
+aside {
+  border-right: none !important;
+  background-color: #f6f6f7;
+  z-index: 9999;
+}
+
+html[data-theme="dark"] aside {
+  background-color: #1e1e1e;
+}
+
+html[data-theme="dark"] .navbar {
+  background-color: #1b1b1d;
+} */
+
+/* -------------------------------------------------------------------------- */
+/*                             Docusaurus layouts                             */
+/* -------------------------------------------------------------------------- */
+
+/* font */
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div[class^="admonitionHeading_"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans TC", sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.4rem;
+}
+
+/* sidebar */
+.theme-doc-sidebar-container {
+  font-size: 14px;
+}
+
+/* #__docusaurus .menu__link--sublist-caret::after,
+#__docusaurus .menu__caret::before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+} */
+
+.menu__link--sublist-caret:after {
+  display: none;
+}
+
+.menu__link--sublist-caret:before {
+  content: "";
+  margin-inline-end: 0.67rem;
+  min-width: 1rem;
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+  filter: var(--ifm-menu-link-sublist-icon-filter);
+  height: 1rem;
+  transform: rotate(180deg);
+  width: 1rem;
+  transition: transform var(--ifm-transition-fast) linear;
+}
+
+.menu__list-item--collapsed .menu__link--sublist:before {
+  transform: rotateZ(90deg);
+}
+
+.menu__list-item-collapsible + .menu__list {
+  margin-inline-start: 19.5px;
+  padding-inline-start: 6px;
+  border-inline-start: #eaeaea 1px solid;
+}
+[data-theme="dark"] .menu__list-item-collapsible + .menu__list {
+  border-inline-start-color: var(--ifm-toc-border-color);
+}
+
+/* Sidebar 捲軸 */
+.menu.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.menu.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.menu.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ToC */
+.table-of-contents__link--active {
+  filter: none !important;
+  color: var(--ifm-color-primary) !important;
+  background-color: var(--ifm-menu-color-background-active) !important;
+  transform: scale(1.02) !important;
+  transform-origin: left;
+}
+
+.table-of-contents__link {
+  padding: 0.3rem 0 0.3rem 0.5rem;
+  border-radius: 10px;
+  transition: filter 0.08s ease-in-out, background-color 0.08s ease-in-out;
+  margin-top: -0.5rem;
+  transition: 0.25s !important;
+}
+
+.table-of-contents__link:hover {
+  filter: none;
+  background-color: var(--ifm-menu-color-background-active) !important;
+  color: var(--ifm-color-primary-dark) !important;
+}
+
+.theme-doc-toc-desktop {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.theme-doc-toc-desktop::-webkit-scrollbar {
+  display: none;
+}
+
+/* ToC 不換行 */
+/* .table-of-contents__link.toc-highlight {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+.table-of-contents li {
+  margin-left: 0.5px;
+}
+
+/* 文章底部翻頁 */
+.pagination-nav .pagination-nav__link {
+  display: inline-flex;
+  justify-content: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--ifm-color-primary);
+  opacity: 0.8;
+  border-radius: 5px;
+  border-color: transparent;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pagination-nav .pagination-nav__link .pagination-nav__sublabel {
+  display: none;
+}
+
+.pagination-nav .pagination-nav__link:active {
+  background-color: var(--ifm-color-primary-darker);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 inline code                                */
+/* -------------------------------------------------------------------------- */
+
+code {
+  color: var(--ifm-color-primary);
+  background-color: rgba(209, 209, 209, 0.28);
+  border: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.8em;
+}
+
+/* inline code 在h/pre以外的情況 */
+:not(pre):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
+  font-family: monospace;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+html[data-theme="dark"] :not(pre) > code {
+  background-color: #2d2d2d;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 under lines                                */
+/* -------------------------------------------------------------------------- */
+
+a {
+  text-underline-offset: 2.75px;
+}
+
+u {
+  text-decoration-thickness: 1.8px;
+  text-decoration-color: var(--ifm-color-primary-lightest);
+  text-underline-offset: 4.5px;
+}
+
+html[data-theme="dark"] u {
+  text-decoration-color: var(--ifm-color-primary-darker);
+}
+
+.docusaurus-theme-github-codeblock div {
+  text-decoration: none !important;
+}
+
+.docusaurus-theme-github-codeblock a.githubLink {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   misc                                     */
+/* -------------------------------------------------------------------------- */
+
+/* github icon */
+.header-github-link:hover,
+.header-blog-link:hover {
+  opacity: 0.6;
+}
+
+.header-github-link:before,
+.header-blog-link:before {
+  content: "";
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+.header-blog-link:before {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg fill='%23000000' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M172.2 226.8c-14.6-2.9-28.2 8.9-28.2 23.8V301c0 10.2 7.1 18.4 16.7 22 18.2 6.8 31.3 24.4 31.3 45 0 26.5-21.5 48-48 48s-48-21.5-48-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v248c0 89.5 82.1 160.2 175 140.7 54.4-11.4 98.3-55.4 109.7-109.7 17.4-82.9-37-157.2-112.5-172.2zM209 0c-9.2-.5-17 6.8-17 16v31.6c0 8.5 6.6 15.5 15 15.9 129.4 7 233.4 112 240.9 241.5.5 8.4 7.5 15 15.9 15h32.1c9.2 0 16.5-7.8 16-17C503.4 139.8 372.2 8.6 209 0zm.3 96c-9.3-.7-17.3 6.7-17.3 16.1v32.1c0 8.4 6.5 15.3 14.8 15.9 76.8 6.3 138 68.2 144.9 145.2.8 8.3 7.6 14.7 15.9 14.7h32.2c9.3 0 16.8-8 16.1-17.3-8.4-110.1-96.5-198.2-206.6-206.7z'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .header-github-link:before {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .header-blog-link:before {
+  filter: brightness(0) invert(1);
+}
+
+blockquote {
+  border-left-width: 3px;
+  font-style: italic;
+}
+
+kbd {
+  margin: 0px 0.2em;
+  padding: 0.1em 0.6em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  color: rgb(51, 51, 51);
+  /* font-family: "Arial Black", Impact; */
+  display: inline-block;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  background-color: rgb(247, 247, 247);
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+div[class^="admonitionHeading_"] {
+  /* font-family: "Noto Sans TC" !important; */
+  font-size: 1.2em !important;
+  font-weight: 700 !important;
+}
+
+.dropdown__link.gitroad-icon-item::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 6px;
+  background-image: var(--svg-external-link);
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}

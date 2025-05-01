@@ -1,4 +1,5 @@
 const path = require('node:path');
+
 import { themes as prismThemes } from 'prism-react-renderer';
 
 module.exports = {
@@ -22,7 +23,8 @@ module.exports = {
     // title: "ZSL's Docs",
     logo: {
       alt: "zsl0621@Docs",
-      src: "/img/logo_circle.png",
+      src: "/img/logo_light.svg",
+      srcDark: "/img/logo_dark.svg",
     },
     items: [
       {
@@ -118,13 +120,12 @@ module.exports = {
   },
   metadata: [
     { name: "robots", content: "max-image-preview:large" },
-    { name: 'description', content: '這是我的文檔庫，包含我的學習記錄、筆記以及教學，寫文章的動力是網路上的錯誤資訊！' },
-    { name: 'keywords', content: '筆記, 教學, 文檔, Python, Git' },
+    { name: 'description', content: "這裡是 zsl0621 程式類型的文檔小站，喜歡寫沒人寫過或是沒人能整理好的的東西，希望我的文章能幫助到你。" },
     { name: 'keywords', content: 'notes, tutorial, documentation, Python, Git' },
     { name: 'author', content: 'ZSL' },
-    { property: 'og:description', content: '這是我的文檔庫，包含我的學習記錄、筆記以及教學，寫文章的動力是網路上的錯誤資訊！' },
+    { property: 'og:description', content: "這裡是 zsl0621 程式類型的文檔小站，喜歡寫沒人寫過或是沒人能整理好的的東西，希望我的文章能幫助到你。" },
     { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: 'https://zsl0621.cc/img/default.webp' },
+    { property: 'og:image', content: 'https://cdn.zsl0621.cc/2025/docs/background-grayscale---2025-04-27T16-41-14.webp' },
   ],
   webpack: {
     configure: (webpackConfig) => {

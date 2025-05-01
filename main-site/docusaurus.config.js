@@ -1,11 +1,10 @@
-const path = require("path");
 const presets = require("./config/presets");
 const plugins = require("./config/plugins");
 const themeConfig = require("./config/themeConfig");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "ZSL的文檔庫",
+  title: "ZSL 的文檔庫",
   // tagline: "Reading a lot, writing what I read.",
   url: "https://zsl0621.cc",
   baseUrl: "/",
@@ -21,6 +20,8 @@ module.exports = {
       type: "text/css",
       integrity: "sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP",
       crossorigin: "anonymous",
+      media: "print",
+      onload: "this.media='all'"
     },
   ],
 

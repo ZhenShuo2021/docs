@@ -1,0 +1,8 @@
+*/static/*.html -linguist-detectable=false
+*.md linguist-language=Markdown linguist-detectable=false
+*.mdx linguist-language=Markdown linguist-detectable=false
+*.js linguist-language=JavaScript linguist-detectable
+*.jsx linguist-language=JavaScript linguist-detectable
+*.ts linguist-language=TypeScript linguist-detectable
+*.tsx linguist-language=TypeScript linguist-detectable
+*.css linguist-language=CSS linguist-detectable

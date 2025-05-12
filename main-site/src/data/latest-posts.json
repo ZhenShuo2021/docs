@@ -1,4 +1,30 @@
 [
+    {
+    "title": "GitHub Actions 複雜工作流：從自動同步到建立預覽、發佈版本",
+    "permalink": "/git/complex-github-actions",
+    "description": "我們在 Github Actions 自動化 CI/CD 展示了多種使用 Github Actions 的範例，不過都侷限在單一的簡單任務，本文則提供一個複雜範例，長達 250 行的自動化腳本，目的是移除 blowfish 專案的非必要檔案並且自動發佈 core 版本，具體目標如下：",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-05-11 18:32:30",
+    "yearMonth": "2025 年 05 月",
+    "day": "11",
+    "source": "git"
+  },
   {
     "title": "整個中文圈說明移除 Git 敏感訊息的文章方式都不正確",
     "permalink": "/git/removing-sensitive-data",

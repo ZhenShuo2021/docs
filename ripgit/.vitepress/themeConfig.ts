@@ -117,6 +117,7 @@ function sidebarPro(): DefaultTheme.SidebarItem[] {
         { text: 'README 嵌入影片', link: 'github-readme-video' },
         { text: 'Github Actions', link: 'github-actions' },
         { text: '本地執行 Github Action', link: 'run-github-actions-locally' },
+        { text: 'Github Actions 自動化部署發佈', link: 'complex-github-actions' },
         { text: '免費架設網站', link: 'github-pages' },
         { text: 'Git LFS 減少儲存庫容量', link: 'reduce-size-using-git-lfs' },
       ],

@@ -31,3 +31,15 @@
 .vp-doc a {
     text-decoration: none;
 }
+
+/* hide scroll bar of sidebar */
+.VPSidebar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.VPSidebar:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}
+.dark .VPSidebar:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}

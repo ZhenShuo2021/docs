@@ -285,6 +285,12 @@ html[data-theme="dark"] u {
 /*                                   misc                                     */
 /* -------------------------------------------------------------------------- */
 
+/* footnote offset */
+li[id^="user-content-fn-"],
+a[id^="user-content-fnref-"] {
+  scroll-margin-top: 120px;
+}
+
 /* github icon */
 .header-github-link:hover,
 .header-blog-link:hover {
@@ -334,12 +340,14 @@ kbd {
   -webkit-border-radius: 3px;
 }
 
+/* admonition */
 div[class^="admonitionHeading_"] {
   /* font-family: "Noto Sans TC" !important; */
   font-size: 1.2em !important;
   font-weight: 700 !important;
 }
 
+/* algolia */
 .DocSearch-Button {
   background: transparent !important;
 }

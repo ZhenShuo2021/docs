@@ -83,7 +83,7 @@ repo_filter.run()
 # ///
 ```
 
-modify_commit_message 是主要邏輯，regex 使用方式請見 [cheatsheet](https://zsl0621.cc/memo/python/regex)，教學請見 [RegexLearn](https://regexlearn.com/learn/regex101)。
+modify_commit_message 是主要邏輯，regex 使用方式請見 [cheatsheet](https://zsl0621.cc/linux-command/regex)，教學請見 [RegexLearn](https://regexlearn.com/learn/regex101)。
 
 ```py
 def modify_commit_message(commit, metadata) -> None:

@@ -15,7 +15,7 @@ first_publish:
   date: 2025-04-06T16:52:07+08:00
 ---
 
-不小心把金鑰、API 鑰匙、密碼等敏感資訊提交甚至推送時，網路上有中文文章每篇都各顯神通使用各種不同的清除方式，但是這些中文文章沒有任何一篇的方式正確，怎麼本站老是在說別人做錯？因為那些人連文檔都不看就上網寫文章了，該怎麼做[文檔寫的一清二楚](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)。
+不小心把金鑰、API 鑰匙、密碼等敏感資訊提交甚至推送時，網路上的中文文章各顯神通每篇都有不同的清除方式，但是這麼多方式卻沒有任何一篇的方式正確，怎麼本站老是在說別人做錯？因為那些人連文檔都不看就上網寫文章了，該怎麼做[文檔寫的一清二楚](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)。
 
 講重點不廢話，Git 根本就不會把 reflog 記錄推送到遠端鏡像，所以不用擔心 reflog 和垃圾回收 (GC) 問題，處理方式只分成這三種情況
 
@@ -23,7 +23,7 @@ first_publish:
 2. **還沒有被推送上去，但已經是很久遠的提交了**：請見本文的[清除本地歷史](#clear-local-history)
 3. **已經被推送上去**：非常麻煩，除非刪庫，否則除了完成第二點的工作以外還要找客服幫你刪，沒有其他解決方式
 
-[^pushed]: 除非你擔心電腦的 reflog 記錄被翻出來，但是如果有這個風險你應該擔心的是整台電腦的安全問題。
+[^pushed]: 除非擔心電腦的 reflog 記錄被翻出來，但是如果有這個風險你應該擔心的是整台電腦的安全問題，如果真要處理，簡單的 `git gc --aggressive --prune=now` 就能完成，當然你要用 filter-repo 也不是不行。
 
 ## 說明和測試
 

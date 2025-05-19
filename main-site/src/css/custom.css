@@ -162,11 +162,6 @@ h6 {
   border-inline-start-color: var(--ifm-toc-border-color);
 }
 
-/* Sidebar 捲軸 */
-.menu.thin-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-}
 
 /* ToC */
 .table-of-contents__link--active {
@@ -191,12 +186,37 @@ h6 {
   color: var(--ifm-color-primary-dark) !important;
 }
 
-.theme-doc-toc-desktop {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* ToC+sidebar scrollbar 美化 */
+[class^="tableOfContents_"],
+.menu.thin-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  position: relative;
 }
-.theme-doc-toc-desktop::-webkit-scrollbar {
-  display: none;
+
+[class^="tableOfContents_"]::-webkit-scrollbar,
+.menu.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+[class^="tableOfContents_"]::-webkit-scrollbar-thumb,
+.menu.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+[class^="tableOfContents_"]:hover::-webkit-scrollbar-thumb,
+.menu.thin-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.6);
+}
+
+[class^="tableOfContents_"]:hover,
+.menu.thin-scrollbar:hover {
+  scrollbar-color: rgba(128, 128, 128, 0.6) transparent;
 }
 
 /* ToC 不換行 */

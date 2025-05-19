@@ -1,0 +1,5 @@
+position: 30
+label: 其他
+collapsible: true
+collapsed: false
+className: red

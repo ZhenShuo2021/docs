@@ -19,7 +19,7 @@ first_publish:
 ^(.*?)\s*\((\d+)\)(\..+)?$
 ```
 
-第一次看到正則表達式的感想只有「？？？」，不過講白了只是一套用於描述字符的表達方式。本文原本是教學，但是 RegexLearn 太強了所以決定刪掉說明變成 cheat sheet，比起看死背我更推薦使用 [RegexLearn](https://regexlearn.com/)，我自己也是看半天背不起來，後來用他的教學寫兩次一小時就學會了。
+第一次看到正則表達式的感想只有「？？？」，不過講白了只是一套用於描述字符的表達方式。本文原本是教學，但是 [RegexLearn](https://regexlearn.com/) 太強了所以決定刪掉說明變成 cheat sheet，比起看指令死背我更推薦使用 RegexLearn，我自己也是看半天背不起來，後來用他的教學寫兩次一小時就學會了。
 
 regex 是一個神奇的酷東西，我靠 regex 已經交到三個女朋友了，希望大家和我看齊一起學習 regex，謝謝大家。
 
@@ -28,7 +28,7 @@ regex 是一個神奇的酷東西，我靠 regex 已經交到三個女朋友了�
 不造輪子，直接看使用[正規表達式 re](https://steam.oxxostudio.tw/category/python/library/re.html#a01)。
 
 ## 所有匹配規則
-  
+
 ### 字符類型匹配
 
 - `.`：任意字符（不包括換行符）
@@ -49,6 +49,10 @@ regex 是一個神奇的酷東西，我靠 regex 已經交到三個女朋友了�
 - `[\p{Script=Hiragana}\p{Script=Katakana}]`：日文，同上
 - `[\u1100-\u11FF\uAC00-\uD7AF\u3130-\u318F]`：韓文
 
+:::info
+`\d` `\w` `\s` 這些在 Linux 中屬於 extended regex (ERE)
+:::
+
 ### 邊界設定
 
 - `^`：匹配字符串的開始
@@ -61,7 +65,13 @@ regex 是一個神奇的酷東西，我靠 regex 已經交到三個女朋友了�
 - `(?<=YYY)XXX`：正向後行，XXX 匹配的字符「前面」要包含 YYY
 - `(?<!YYY)XXX`：負向後行，XXX 匹配的字符「前面」不包含 YYY
 
-什麼向什麼行 (positive lookahead, positive lookbehind) 可以在 [RegexLearn](https://regexlearn.com/learn/regex101) 的第 45 題找到，舉例來說 `XXX(?= 匹配)` 正向先行只會匹配後面有 `"空格"匹配` 的 `XXX`，其他以次類推。
+什麼向什麼行 (lookahead / lookbehind) 可以在 [RegexLearn](https://regexlearn.com/learn/regex101) 的第 45 題找到，舉例來說 `XXX(?= 匹配)` 正向先行只會匹配後面有 `"空格"匹配` 的 `XXX`，其他以次類推。
+
+:::info
+
+lookahead / lookbehind 屬於 PCRE。
+
+:::
 
 ### 量詞
 

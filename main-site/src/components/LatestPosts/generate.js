@@ -10,28 +10,27 @@ const latestPosts = "./src/data/latest-posts.json";
 const paths = [
   {
     path: "./.docusaurus/docusaurus-plugin-content-blog/default",
-    filesPattern: "site-blog-*.json",
-    sourceType: "blog"
+    filesPattern: "site-blog-*.json"
   },
   {
     path: "./.docusaurus/docusaurus-plugin-content-docs/default",
-    filesPattern: "site-docs-*.json",
-    sourceType: "docs"
+    filesPattern: "site-docs-*.json"
   },
   {
     path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForMemo",
-    filesPattern: "site-docs-*.json",
-    sourceType: "memo"
+    filesPattern: "site-docs-*.json"
   },
   {
     path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForGit",
-    filesPattern: "site-docs-*.json",
-    sourceType: "git"
+    filesPattern: "site-docs-*.json"
   },
   {
     path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForPython",
-    filesPattern: "site-docs-*.json",
-    sourceType: "git"
+    filesPattern: "site-docs-*.json"
+  },
+  {
+    path: "./.docusaurus/docusaurus-plugin-content-docs/pluginForLinuxCommand",
+    filesPattern: "site-docs-*.json"
   },
 ];
 
@@ -41,7 +40,7 @@ if (!fs.existsSync("./.docusaurus")) {
   process.exit(0);
 }
 
-paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
+paths.forEach(({ path: folderPath, filesPattern }) => {
   const files = glob.sync(path.join(folderPath, filesPattern));
 
   files.forEach((file) => {
@@ -50,9 +49,9 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
 
     if (!item || item.draft === true) return;
 
-    let date = item.date || 
-               (item.frontMatter?.last_update?.date) || 
-               (item.frontMatter?.first_publish?.date);
+    let date = item.date ||
+      (item.frontMatter?.last_update?.date) ||
+      (item.frontMatter?.first_publish?.date);
 
     if (!date) return;
 
@@ -67,8 +66,7 @@ paths.forEach(({ path: folderPath, filesPattern, sourceType }) => {
       tags: item.tags || [],
       date: formattedDate,
       yearMonth: yearMonth,
-      day: day,
-      source: sourceType
+      day: day
     });
   });
 });

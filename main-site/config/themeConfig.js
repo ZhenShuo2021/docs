@@ -43,6 +43,14 @@ module.exports = {
         label: "Python",
         position: 'right',
       },
+      {
+        type: 'doc',
+        docsPluginId: 'pluginForLinuxCommand',
+        docId: 'about-linux-command',
+        sidebarId: 'linuxCommandSidebar',
+        label: "Linux",
+        position: 'right',
+      },
       // {
       //   type: 'docSidebar',
       //   position: 'left',

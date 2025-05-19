@@ -50,6 +50,21 @@ module.exports = [
     },
   ],
   [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'pluginForLinuxCommand',
+      path: 'docs/linux-command',
+      routeBasePath: 'linux-command',
+      sidebarPath: require.resolve('../config/sidebars-linux-command.js'),
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [[rehypeKatex, { strict: false }]],
+      showLastUpdateAuthor: true,
+      showLastUpdateTime: true,
+      breadcrumbs: false,
+      editUrl: "https://github.com/ZhenShuo2021/docs/edit/main",
+    },
+  ],
+  [
     '@docusaurus/plugin-content-blog',
     {
       id: 'default',

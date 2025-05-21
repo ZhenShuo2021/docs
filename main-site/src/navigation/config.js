@@ -57,6 +57,16 @@ export const articlesMeta = [
     image: imageGit,
   },
   {
+    description: "繁體中文唯一一篇 git absorb 教學，輕鬆完成 commit 合併",
+    link: "/git/git-absorb",
+    image: imageGit,
+  },
+  {
+    description: "繁體中文唯一一篇 git update-ref 教學，輕鬆完成多分支自動變基",
+    link: "/git/rebase-update-ref",
+    image: imageGit,
+  },
+  {
     link: "/git/reduce-size-with-sparse-checkout",
     image: imageGit,
   },

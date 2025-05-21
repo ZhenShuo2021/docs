@@ -1,5 +1,390 @@
 [
   {
+    "title": "Git Absorb 繁體中文唯一教學",
+    "permalink": "/git/git-absorb",
+    "description": "我們常常會完成 A/B/C 提交後，推送前檢查發現每個提交都有些 typo 要修正，這時候有兩種解決方法，一種是 rebase -i 進去 edit，另一種是提交一個新的版本後再使用 rebase -i，然後修改順序並且改為 fixup，兩者都要手動進行重複操作非常麻煩。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-05-21 17:31:33",
+    "yearMonth": "2025 年 05 月",
+    "day": "21"
+  },
+  {
+    "title": "Git Rebase Update-Ref 繁體中文唯一教學",
+    "permalink": "/git/rebase-update-ref",
+    "description": "本文是全網路唯一一篇 git rebase --update-ref 的繁體中文教學，內容來自於 Working with stacked branches in Git is easier with --update-refs。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-05-21 17:15:33",
+    "yearMonth": "2025 年 05 月",
+    "day": "21"
+  },
+  {
+    "title": "在 Mac 上以 VS Code 編輯 LaTeX",
+    "permalink": "/memo/others/latex-on-macos-vscode",
+    "description": "本文基於以下幾篇文章完成，由於我只需要 Paper 和 Book 兩種版型所以省略了很多步驟，如果需要完整版教學的請看原文：",
+    "tags": [
+      {
+        "inline": true,
+        "label": "LaTeX",
+        "permalink": "/memo/tags/la-te-x"
+      },
+      {
+        "inline": true,
+        "label": "VS Code",
+        "permalink": "/memo/tags/vs-code"
+      }
+    ],
+    "date": "2025-05-21 15:50:33",
+    "yearMonth": "2025 年 05 月",
+    "day": "21"
+  },
+  {
+    "title": "Unix/Linux 的 read 指令使用",
+    "permalink": "/linux-command/string/read",
+    "description": "read 用於從標準輸入或檔案中讀取資料。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-19 16:52:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "19"
+  },
+  {
+    "title": "Unix/Linux 的 uniq 指令使用",
+    "permalink": "/linux-command/string/uniq",
+    "description": "uniq 以行為單位找出相鄰的重複行，因為只比較相鄰行所以常搭配 sort 使用。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-19 02:14:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "19"
+  },
+  {
+    "title": "Unix/Linux 的 sort 指令使用",
+    "permalink": "/linux-command/string/sort",
+    "description": "sort 是 Linux 中用來排序輸入資料的工具，能根據字母、數字、欄位等多種條件排序，處理純文字表格特別實用。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-19 01:56:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "19"
+  },
+  {
+    "title": "Unix/Linux 的 tr 指令使用",
+    "permalink": "/linux-command/string/tr",
+    "description": "tr（translate）用來轉換或刪除文字資料中指定字元，是精簡的文字處理工具，特別是不需要完整的 regex 或 awk 功能時。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-19 01:29:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "19"
+  },
+  {
+    "title": "Unix/Linux 的 cut 指令使用",
+    "permalink": "/linux-command/string/cut",
+    "description": "cut 顧名思義就是剪去指定文字，最常用的方式還是在管道符後面使用，不過為了方便介紹還是使用和 awk 教學 一樣的範例文本。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-18 23:55:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "18"
+  },
+  {
+    "title": "Unix/Linux 的 sed 指令使用",
+    "permalink": "/linux-command/string/sed",
+    "description": "sed 和 awk 都是 Linux 中常用的字串處理，awk 注重於欄位分割處理，sed 則是注重在文字的替換。可以理解為搜尋功能比較弱且著重於字串修改的 grep。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-18 21:51:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "18"
+  },
+  {
+    "title": "Unix/Linux 的 awk 指令使用（下）",
+    "permalink": "/linux-command/string/awk-2",
+    "description": "本文是 awk 指令教學的下篇，範例 log.txt 請見上篇。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-18 02:11:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "18"
+  },
+  {
+    "title": "Unix/Linux 的 awk 指令使用（上）",
+    "permalink": "/linux-command/string/awk-1",
+    "description": "要寫 awk 教學時其實我也是邊寫邊學，但是發現這個指令已經發展的太過龐大不是一篇簡單的文章就能清楚表達，於是求助 AI。比較網路文章和 AI 生成的文章，我個人認為內容比網路上九成的教學都更清晰，所以毫不客氣的給 AI 寫並且人工潤飾+校稿，本文使用此 prompt 給 Claude 3.7 生成：",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-18 02:11:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "18"
+  },
+  {
+    "title": "Unix/Linux 的 curl + wget 指令使用",
+    "permalink": "/linux-command/misc/curl-and-wget",
+    "description": "cURL 用來發送 HTTP 請求，學他就好不用學 wget，因為 curl 更多參數用法，輸出控制更方便，兩者空間也差不多，除此之外再請語言模型列出其他優點",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-17 01:47:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "17"
+  },
+  {
+    "title": "Unix/Linux 的 xargs 指令使用",
+    "permalink": "/linux-command/misc/xargs",
+    "description": "xargs (extended arguments) 用途是把文本依照空隔分開，通常會再搭配指令執行。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-15 16:22:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "15"
+  },
+  {
+    "title": "Unix/Linux 的 fd 指令使用",
+    "permalink": "/linux-command/search/fd",
+    "description": "fd 和 rg 一樣是用 rust 寫的多線程工具，一個要替代 find，另一個替代 grep，一樣都會自動忽略隱藏檔案和套用 .gitignore 規則。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-15 10:00:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "15"
+  },
+  {
+    "title": "Unix/Linux 的 ripgrep 指令使用",
+    "permalink": "/linux-command/search/ripgrep",
+    "description": "為何要用 ripgrep？",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-13 23:50:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "13"
+  },
+  {
+    "title": "Unix/Linux 的 grep 指令使用",
+    "permalink": "/linux-command/search/grep",
+    "description": "grep (global regular expression print) 的用途是找到符合 regex 的文字，是初學者比較容易搞混的指令，因為太多範例都是搭配管道符使用，其實他的語法是這樣：",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-13 23:50:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "13"
+  },
+  {
+    "title": "Unix/Linux 的 find 指令使用",
+    "permalink": "/linux-command/search/find",
+    "description": "find 用於找檔案，和 grep 並列我最愛的 linux 指令沒有之一，再搭配正則表達式可以找到所有你想找的資料。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-13 23:50:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "13"
+  },
+  {
+    "title": "Linux 指令完全制霸",
+    "permalink": "/linux-command/intro",
+    "description": "指令會用是會用，但是細節參數永遠都記不起來，每次都要上網查很煩，網路上也沒有什麼系統性或是實務的教學，甚至連讓人方便查找的文檔都沒有（一股腦全部寫的不算），那就乾脆自己寫好了。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/linux-command/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/linux-command/tags/cheatsheet"
+      }
+    ],
+    "date": "2025-05-13 23:50:00",
+    "yearMonth": "2025 年 05 月",
+    "day": "13"
+  },
+  {
+    "title": "Github Pull Request",
+    "permalink": "/git/github-pull-request",
+    "description": "Pull request (PR) 不是 Git 的原生指令，是 Git 託管平台的加值服務，本身是分支的一種，目的是用於多人協作，把你的提交發給別人的 repo，又或者是避免在主分支提交也可以用 PR 工作流程。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "Github",
+        "permalink": "/git/tags/github"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-05-12 18:32:30",
+    "yearMonth": "2025 年 05 月",
+    "day": "12"
+  },
+  {
     "title": "GitHub Actions 複雜工作流：從自動同步到建立預覽、發佈版本",
     "permalink": "/git/complex-github-actions",
     "description": "我們在 Github Actions 自動化 CI/CD 展示了多種使用 Github Actions 的範例，不過都侷限在單一的簡單任務，本文則提供一個複雜範例，長達 250 行的自動化腳本，目的是移除 blowfish 專案的非必要檔案並且自動發佈 core 版本，具體目標如下：",
@@ -23,6 +408,146 @@
     "date": "2025-05-11 18:32:30",
     "yearMonth": "2025 年 05 月",
     "day": "11"
+  },
+  {
+    "title": "uv 快速手冊",
+    "permalink": "/python/uv-quick-guide",
+    "description": "覺得 Python uv 教學 太細節，所以本文如題是一個快速手冊，長話短說搞懂工具的大方向。如果不知道是否應該選擇 uv 請看專案管理工具比較。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Python",
+        "permalink": "/python/tags/python"
+      },
+      {
+        "inline": true,
+        "label": "專案管理工具",
+        "permalink": "/python/tags/專案管理工具"
+      },
+      {
+        "inline": true,
+        "label": "套件管理工具",
+        "permalink": "/python/tags/套件管理工具"
+      },
+      {
+        "inline": true,
+        "label": "虛擬環境管理工具",
+        "permalink": "/python/tags/虛擬環境管理工具"
+      }
+    ],
+    "date": "2025-04-29 23:23:30",
+    "yearMonth": "2025 年 04 月",
+    "day": "29"
+  },
+  {
+    "title": "使用 filter-repo 移除大型檔案",
+    "permalink": "/git/filter-repo-image-files",
+    "description": "最近把網站圖片改為 CDN 部署以減小儲存庫容量，因此順便用了一下 filter-repo 功能來清除大型檔案，廢話不多說直接上步驟",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-04-27 17:34:07",
+    "yearMonth": "2025 年 04 月",
+    "day": "27"
+  },
+  {
+    "title": "Docker 基礎知識",
+    "permalink": "/memo/others/docker-day-one",
+    "description": "先聲明這是一個讀演算法的人玩 NAS 半路出家想說自己寫個 Docker 邊玩邊學的記錄。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Linux",
+        "permalink": "/memo/tags/linux"
+      },
+      {
+        "inline": true,
+        "label": "Docker",
+        "permalink": "/memo/tags/docker"
+      },
+      {
+        "inline": true,
+        "label": "Cheatsheet",
+        "permalink": "/memo/tags/cheatsheet"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/memo/tags/教學"
+      }
+    ],
+    "date": "2025-04-25 11:27:33",
+    "yearMonth": "2025 年 04 月",
+    "day": "25"
+  },
+  {
+    "title": "Git 那些很少用到的知識",
+    "permalink": "/git/uncommon-knowledge",
+    "description": "本文不廢話的記錄看到的資訊，如你所見我不是專家，我只是看到文章並且簡單記錄，本文有簡單的也有難的，但是共通點是 99.9\\% 的人用不到這些知識。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-04-25 11:27:33",
+    "yearMonth": "2025 年 04 月",
+    "day": "25"
+  },
+  {
+    "title": "Git 各種日常問題集合 - 遠端",
+    "permalink": "/git/daily-issues-remote",
+    "description": "介紹 Git 常見的本地和遠端問題，包含清除reflog記錄、正確使用rebase、git mv、以及如何加速clone等進階技巧。還解釋了常見錯誤誤導，並提供正確的 Git 操作方法。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-04-25 11:27:33",
+    "yearMonth": "2025 年 04 月",
+    "day": "25"
+  },
+  {
+    "title": "Git 各種日常問題集合 - 本地",
+    "permalink": "/git/daily-issues-local",
+    "description": "介紹 Git 常見問題，包含清除reflog記錄、正確使用rebase、git mv、以及如何加速clone等進階技巧。還解釋了常見錯誤誤導，並提供正確的 Git 操作方法。",
+    "tags": [
+      {
+        "inline": true,
+        "label": "Git",
+        "permalink": "/git/tags/git"
+      },
+      {
+        "inline": true,
+        "label": "教學",
+        "permalink": "/git/tags/教學"
+      }
+    ],
+    "date": "2025-04-25 11:27:33",
+    "yearMonth": "2025 年 04 月",
+    "day": "25"
   },
   {
     "title": "整個中文圈說明移除 Git 敏感訊息的文章方式都不正確",

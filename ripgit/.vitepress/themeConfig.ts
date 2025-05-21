@@ -103,6 +103,8 @@ function sidebarPro(): DefaultTheme.SidebarItem[] {
       items: [
         { text: 'Worktree 多工處理', link: 'git-worktree' },
         { text: 'Rebase Onto 詳解', link: 'rebase-onto' },
+        { text: 'Rebase Update-Ref 詳解', link: 'rebase-update-ref' },
+        { text: 'Git Absorb 教學', link: 'git-absorb' },
         { text: 'Sparse Checkout 加速克隆', link: 'reduce-size-with-sparse-checkout' },
         { text: 'Force if Includes 強制推送', link: 'force-if-includes' },
         { text: '多儲存庫管理', link: 'submodule-and-subtree' },

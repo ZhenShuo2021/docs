@@ -132,7 +132,13 @@ git config --global rebase.autoStash true
 
 ## rebase 自動壓縮 autosquash
 
-簡單來說就是自動把 "fixup!" 開頭的 commit 合併，我認為比起一般的操作速度沒有差，也就是隨便打提交訊息再使用互動式提交，所以不用記這個。
+簡單來說就是自動把 "fixup!" 開頭的 commit 合併，詳情請見 [Git Rebase Absorb 教學](/pro/git-absorb)。
+
+## rebase 自動壓縮 --rebase-merges
+
+用於把被 rebase 的分支上，裡面如果有 merge commit（記錄合併用的提交），保留此提交不 drop。
+
+此指令是邪教，沒有任何一個正常人會在需要 rebase 的分支混用 merge，要就是都用 rebase 或者都用 merge。
 
 ## git rebase --onto
 
